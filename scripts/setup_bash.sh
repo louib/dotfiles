@@ -15,3 +15,10 @@ if [[ ! -f "$HOME/.inputrc" ]]; then
     cp "$SCRIPT_DIR/../assets/bash/.inputrc" "$HOME/.inputrc"
     echo "✔️ Copied inputrc for readline config."
 fi
+
+if [[ -n $(diff "$SCRIPT_DIR/../assets/bash/.bashrc" "$HOME/.bashrc") ]]; then
+    cp "$SCRIPT_DIR/../assets/bash/.bashrc" ~/.bashrc
+    echo "✔️ Configured bashrc"
+else
+    echo "✔️ bashrc is already configured, skipping."
+fi
