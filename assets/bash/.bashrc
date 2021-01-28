@@ -129,6 +129,7 @@ function gpf () {
 # Cargo stuff
 alias ci="cargo install --force --path ."
 alias ct="cargo test"
+alias cf="rustfmt src/*.rs"
 export PATH="$PATH:$HOME/.cargo/bin"
 export RUSTFLAGS="$RUSTFLAGS -A warnings"
 
