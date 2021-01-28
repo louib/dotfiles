@@ -14,6 +14,8 @@ fi
 if [[ ! -f "$HOME/.inputrc" ]]; then
     cp "$SCRIPT_DIR/../assets/bash/.inputrc" "$HOME/.inputrc"
     echo "✔️ Copied inputrc for readline config."
+else
+    echo "✔️ Readline is already configured."
 fi
 
 if [[ -n $(diff "$SCRIPT_DIR/../assets/bash/.bashrc" "$HOME/.bashrc") ]]; then
