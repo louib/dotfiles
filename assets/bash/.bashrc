@@ -132,6 +132,16 @@ alias ct="cargo test"
 alias cf="rustfmt src/*.rs"
 export PATH="$PATH:$HOME/.cargo/bin"
 export RUSTFLAGS="$RUSTFLAGS -A warnings"
+# Default commands for a meson and ninja build.
+function meb () {
+    meson . _build
+    ninja -C _build
+}
+function mei () {
+    meson . _build
+    ninja -C _build
+    ninja -C _build install
+}
 
 source ~/git-prompt.sh
 export PS1='\[\e[35m\][\[\e[m\]\u\[\e[35m\]]\[\e[m\]\[\e[35m\][\[\e[m\]\t\[\e[35m\]]\[\e[m\]\[\e[35m\][\[\e[m\]\w\[\e[35m\]]\[\e[m\]\[\e[95m\]$(__git_ps1 "[%s]")\[\e[m\]\[\e[91m\]\\$\[\e[m\] '
