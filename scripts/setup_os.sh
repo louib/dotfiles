@@ -10,6 +10,8 @@ if ! command -v nvim &> /dev/null; then
     # Main programs.
     apt-get install -y \
       bash-completion \
+      build-essential \
+      meson \
       cryptsetup \
       curl \
       evince \
