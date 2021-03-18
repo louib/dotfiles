@@ -182,6 +182,7 @@ function sp () {
         --exclude-dir=target/ \
         --exclude-dir=dist/ \
         --exclude-dir=build/ \
+        --exclude-dir=_build/ \
         "$1"
 }
 
