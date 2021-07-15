@@ -49,6 +49,7 @@ if ! command -v emojify &> /dev/null; then
         echo "✔️ Validated checksum for emojify."
     fi
     install emojify /usr/local/bin/
+    rm ./emojify
     echo "✔️ Installed emojify from GitHub"
 else
     echo "✔️ emojify is already installed."
