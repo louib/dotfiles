@@ -1,5 +1,3 @@
-execute pathogen#infect()
-
 set encoding=utf8
 set pastetoggle=<F5>
 set number
@@ -90,12 +88,14 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 set foldlevel=99
 
 colorscheme gruvbox
-" colorscheme badwolf
+
 set background=dark
 set termguicolors
 
+packloadall
+
 " Skip errors and warnings (e.g. E4,W)
-call pymode#default("g:pymode_lint_ignore", ["E501"])
+" call pymode#default("g:pymode_lint_ignore", ["E501"])
 
 set grepprg=ack\ --no-group\ --column\ $*
 set grepformat=%f:%l:%c:%m
