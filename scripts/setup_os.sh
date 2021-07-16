@@ -27,6 +27,7 @@ if ! command -v nvim &> /dev/null; then
       python3-pip \
       python3-venv \
       pwgen \
+      ripgrep \
       shellcheck \
       keepassxc \
       thunderbird \

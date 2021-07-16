@@ -97,8 +97,15 @@ set termguicolors
 " Skip errors and warnings (e.g. E4,W)
 call pymode#default("g:pymode_lint_ignore", ["E501"])
 
-set grepprg=ack\ --no-group\ --column\ $*
+" the grep related configuration is inspired by
+" https://gist.github.com/romainl/56f0c28ef953ffc157f36cc495947ab3
+set grepprg=rg\ --vimgrep
 set grepformat=%f:%l:%c:%m
+augroup quickfix
+    autocmd!
+    autocmd QuickFixCmdPost [^l]* cwindow
+    autocmd QuickFixCmdPost l* lwindow
+augroup END
 
 " Settings for vim-cpp-enhanced-highlight
 " See https://github.com/octol/vim-cpp-enhanced-highlight for details.
