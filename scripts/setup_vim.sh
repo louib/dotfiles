@@ -28,9 +28,6 @@ else
     git clone --recursive https://github.com/tpope/vim-surround.git ~/.local/share/nvim/site/pack/others/start/vim-surround
     git clone --recursive https://github.com/vim-airline/vim-airline ~/.local/share/nvim/site/pack/others/start/vim-airline
 
-    # Copying config file
-    cp "$SCRIPT_DIR/../assets/vim/init.vim" ~/.config/nvim/
-
     # Copying language files.
     cp "$SCRIPT_DIR/../assets/vim/javascript.vim" ~/.config/nvim/ftplugin/
     cp "$SCRIPT_DIR/../assets/vim/sh.vim" ~/.config/nvim/ftplugin/
@@ -38,4 +35,11 @@ else
     cp "$SCRIPT_DIR/../assets/vim/cpp.vim" ~/.config/nvim/ftplugin/
     cp "$SCRIPT_DIR/../assets/vim/python.vim" ~/.config/nvim/ftplugin/
     echo "✔️ Configured NeoVim"
+fi
+
+if [[ -n $(diff "$SCRIPT_DIR/../assets/vim/init.vim" ~/.config/nvim/init.vim) ]]; then
+    cp "$SCRIPT_DIR/../assets/vim/init.vim" ~/.config/nvim/
+    echo "✔️ Configured Vim init file."
+else
+    echo "✔️ Vim init file already configured, skipping."
 fi
