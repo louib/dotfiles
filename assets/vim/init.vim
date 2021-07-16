@@ -1,4 +1,4 @@
-execute pathogen#infect()
+packloadall
 
 set encoding=utf8
 set pastetoggle=<F5>
@@ -90,7 +90,7 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 set foldlevel=99
 
 colorscheme gruvbox
-" colorscheme badwolf
+
 set background=dark
 set termguicolors
 

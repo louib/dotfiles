@@ -13,22 +13,20 @@ else
     mkdir ~/.config/nvim/bundle
     mkdir ~/.config/nvim/ftplugin
 
-    # Installing vim pathogen.
-    curl -LSso ~/.config/nvim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+    # Installing plugins.
+    mkdir -p ~/.local/share/nvim/site/pack/languages/start
+    mkdir -p ~/.local/share/nvim/site/pack/colorschemes/start
+    mkdir -p ~/.local/share/nvim/site/pack/others/start
 
-    # Cloning plugins.
-    git clone --recursive https://github.com/morhetz/gruvbox.git ~/.config/nvim/bundle/gruvbox
-    git clone --recursive https://github.com/leafgarland/typescript-vim.git ~/.config/nvim/bundle/typescript-vim
-    git clone --recursive https://github.com/pangloss/vim-javascript.git ~/.config/nvim/bundle/vim-javascript
-    git clone --recursive https://github.com/python-mode/python-mode.git ~/.config/nvim/bundle/python-mode
-    git clone --recursive https://github.com/tpope/vim-surround.git ~/.config/nvim/bundle/vim-surround
-    git clone --recursive https://github.com/vim-airline/vim-airline ~/.config/nvim/bundle/vim-airline
-    git clone --recursive https://github.com/octol/vim-cpp-enhanced-highlight.git ~/.config/nvim/bundle/vim-cpp-enhanced-highlight
-    git clone --recursive https://github.com/hashivim/vim-terraform.git ~/.config/nvim/bundle/vim-terraform
-    git clone --recursive https://github.com/rust-lang/rust.vim.git ~/.config/nvim/bundle/rust.vim
-
-    # Copying config file
-    cp "$SCRIPT_DIR/../assets/vim/init.vim" ~/.config/nvim/
+    git clone --recursive https://github.com/leafgarland/typescript-vim.git ~/.local/share/nvim/site/pack/languages/start/typescript
+    git clone --recursive https://github.com/pangloss/vim-javascript.git ~/.local/share/nvim/site/pack/languages/start/vim-javascript
+    git clone --recursive https://github.com/python-mode/python-mode.git ~/.local/share/nvim/site/pack/languages/start/python-mode
+    git clone --recursive https://github.com/octol/vim-cpp-enhanced-highlight.git ~/.local/share/nvim/site/pack/languages/start/vim-cpp-enhanced-highlight
+    git clone --recursive https://github.com/hashivim/vim-terraform.git ~/.local/share/nvim/site/pack/languages/start/vim-terraform
+    git clone --recursive https://github.com/rust-lang/rust.vim.git ~/.local/share/nvim/site/pack/languages/start/rust.vim
+    git clone --recursive https://github.com/morhetz/gruvbox.git ~/.local/share/nvim/site/pack/colorschemes/start/gruvbox
+    git clone --recursive https://github.com/tpope/vim-surround.git ~/.local/share/nvim/site/pack/others/start/vim-surround
+    git clone --recursive https://github.com/vim-airline/vim-airline ~/.local/share/nvim/site/pack/others/start/vim-airline
 
     # Copying language files.
     cp "$SCRIPT_DIR/../assets/vim/javascript.vim" ~/.config/nvim/ftplugin/
@@ -37,4 +35,11 @@ else
     cp "$SCRIPT_DIR/../assets/vim/cpp.vim" ~/.config/nvim/ftplugin/
     cp "$SCRIPT_DIR/../assets/vim/python.vim" ~/.config/nvim/ftplugin/
     echo "✔️ Configured NeoVim"
+fi
+
+if [[ -n $(diff "$SCRIPT_DIR/../assets/vim/init.vim" ~/.config/nvim/init.vim) ]]; then
+    cp "$SCRIPT_DIR/../assets/vim/init.vim" ~/.config/nvim/
+    echo "✔️ Configured Vim init file."
+else
+    echo "✔️ Vim init file already configured, skipping."
 fi
