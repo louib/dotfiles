@@ -37,9 +37,12 @@ else
     echo "✔️ Configured NeoVim"
 fi
 
-if [[ -n $(diff "$SCRIPT_DIR/../assets/vim/init.vim" ~/.config/nvim/init.vim) ]]; then
+if [[ ! -f "$HOME/.config/nvim/init.vim" ]]; then
     cp "$SCRIPT_DIR/../assets/vim/init.vim" ~/.config/nvim/
     echo "✔️ Configured Vim init file."
+elif [[ -n $(diff "$SCRIPT_DIR/../assets/vim/init.vim" "$HOME/.config/nvim/init.vim") ]]; then
+    cp "$SCRIPT_DIR/../assets/vim/init.vim" ~/.config/nvim/
+    echo "✔️ Updated Vim init file."
 else
     echo "✔️ Vim init file already configured, skipping."
 fi
