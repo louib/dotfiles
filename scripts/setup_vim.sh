@@ -18,6 +18,11 @@ else
     mkdir -p ~/.local/share/nvim/site/pack/colorschemes/start
     mkdir -p ~/.local/share/nvim/site/pack/others/start
 
+    # TODO have a look at https://github.com/tpope/vim-commentary or https://github.com/tomtom/tcomment_vim
+    # for handling comments.
+
+    # TODO have a look at https://github.com/dense-analysis/ale for language features.
+
     git clone --recursive https://github.com/leafgarland/typescript-vim.git ~/.local/share/nvim/site/pack/languages/start/typescript
     git clone --recursive https://github.com/pangloss/vim-javascript.git ~/.local/share/nvim/site/pack/languages/start/vim-javascript
     git clone --recursive https://github.com/python-mode/python-mode.git ~/.local/share/nvim/site/pack/languages/start/python-mode
