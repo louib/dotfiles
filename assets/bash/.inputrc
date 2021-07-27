@@ -1,2 +1,8 @@
 set show-mode-in-prompt on
 set show-all-if-ambiguous on
+
+$if mode=vi
+    # normal mode
+    set keymap vi-command
+    "J": end-of-history
+$endif
