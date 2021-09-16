@@ -107,6 +107,12 @@ augroup quickfix
     autocmd QuickFixCmdPost l* lwindow
 augroup END
 
+" Running spell checking by default on specific text files.
+" See https://vimtricks.com/p/vimtrick-spell-checking-in-vim/ for
+" the spell checking shortcuts.
+autocmd FileType tex :setlocal spell
+autocmd FileType markdown :setlocal spell
+
 " Settings for vim-cpp-enhanced-highlight
 " See https://github.com/octol/vim-cpp-enhanced-highlight for details.
 let g:cpp_no_function_highlight = 1
