@@ -12,6 +12,7 @@ dconf write /org/gnome/terminal/legacy/keybindings/find "'<Primary>slash'"
 dconf write /org/gnome/terminal/legacy/keybindings/find-next "'<Primary>n'"
 dconf write /org/gnome/terminal/legacy/keybindings/find-previous "'<Primary>p'"
 
+# FIXME this does not work so far...
 dconf write /org/gnome/desktop/media-handling/autorun-never true
 
 # FIXME I think this is broken, the --maximize option no longer exists...
