@@ -12,6 +12,8 @@ dconf write /org/gnome/terminal/legacy/keybindings/find "'<Primary>slash'"
 dconf write /org/gnome/terminal/legacy/keybindings/find-next "'<Primary>n'"
 dconf write /org/gnome/terminal/legacy/keybindings/find-previous "'<Primary>p'"
 
+dconf write /org/gnome/desktop/media-handling/autorun-never true
+
 # FIXME I think this is broken, the --maximize option no longer exists...
 if [[ ! -f "$HOME/.local/share/applications/org.gnome.Terminal.desktop" ]]; then
     mkdir -p ~/.local/share/applications/
