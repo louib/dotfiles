@@ -12,6 +12,12 @@ dconf write /org/gnome/terminal/legacy/keybindings/find "'<Primary>slash'"
 dconf write /org/gnome/terminal/legacy/keybindings/find-next "'<Primary>n'"
 dconf write /org/gnome/terminal/legacy/keybindings/find-previous "'<Primary>p'"
 
+# Configure application navigation
+dconf write /org/gnome/desktop/wm/keybindings/switch-applications "['<Alt>Tab']"
+dconf write /org/gnome/desktop/wm/keybindings/switch-applications-backward "['<Shift><Alt>Tab']"
+dconf write /org/gnome/desktop/wm/keybindings/switch-windows "@as []"
+dconf write /org/gnome/desktop/wm/keybindings/switch-windows-backward "@as []"
+
 # FIXME this does not work so far...
 dconf write /org/gnome/desktop/media-handling/autorun-never true
 
