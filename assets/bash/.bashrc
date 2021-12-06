@@ -150,8 +150,11 @@ export PS1='\[\e[35m\][\[\e[m\]\u\[\e[35m\]]\[\e[m\]\[\e[35m\][\[\e[m\]\t\[\e[35
 # Setting the current directory as the tab's title.
 # See https://wiki.archlinux.org/title/Bash/Prompt_customization#Prompts
 # for additional Bash customizations.
-CURRENT_DIR=$(basename "$PWD")
-PS1="${PS1}\[\e]2;$CURRENT_DIR\a\]"
+set_title () {
+    CURRENT_DIR=$(basename "$PWD")
+    PS1="${PS1}\[\e]2;$CURRENT_DIR\a\]"
+}
+set_title
 # From https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh:
 # In addition, if you set GIT_PS1_SHOWDIRTYSTATE to a nonempty value,
 # unstaged (*) and staged (+) changes will be shown next to the branch
