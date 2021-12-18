@@ -161,6 +161,17 @@ set_title
 # name.
 export GIT_PS1_SHOWDIRTYSTATE=1
 
+# Replace cd by an alias that will also update the title after
+# changing the directory.
+function cd () {
+  if [ $# -eq 1 ]; then
+    command cd -- "$1"
+    set_title
+  else
+    echo "Need a directory to cd to!"
+  fi
+}
+
 export QT_LOGGING_RULES="*.debug=false"
 
 # function to send an emojified message to git commit
