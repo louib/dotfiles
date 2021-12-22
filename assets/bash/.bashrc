@@ -66,15 +66,6 @@ alias la='ls -A'
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -145,7 +136,7 @@ function mei () {
 }
 
 source ~/git-prompt.sh
-export PS1='\[\e[35m\][\[\e[m\]\u\[\e[35m\]]\[\e[m\]\[\e[35m\][\[\e[m\]\t\[\e[35m\]]\[\e[m\]\[\e[35m\][\[\e[m\]\w\[\e[35m\]]\[\e[m\]\[\e[95m\]$(__git_ps1 "[%s]")\[\e[m\]\[\e[91m\]\\$\[\e[m\] '
+export PS1='\[\e[m\]\[\e[35m\][\[\e[m\]\t\[\e[35m\]]\[\e[m\]\[\e[35m\][\[\e[m\]\w\[\e[35m\]]\[\e[m\]\[\e[95m\]$(__git_ps1 "[%s]")\[\e[m\]\[\e[91m\]\\$\[\e[m\] '
 
 # Setting the current directory as the tab's title.
 # See https://wiki.archlinux.org/title/Bash/Prompt_customization#Prompts
