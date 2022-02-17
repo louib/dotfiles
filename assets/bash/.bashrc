@@ -137,11 +137,21 @@ function mei () {
 
 source ~/git-prompt.sh
 get_prompt () {
+    PS1=""
     FENV_PROMPT=""
     if [[ -n "$FENV_IS_IN_SANDBOX" ]]; then
         FENV_PROMPT="[fenv sandbox]"
     fi
-    PS1="\[\e[m\]\[\e[35m\][\[\e[m\]\t\[\e[35m\]]\[\e[m\]\[\e[35m\][\[\e[m\]\w\[\e[35m\]]\[\e[m\]\[\e[95m\]$(__git_ps1 '[%s]')$FENV_PROMPT\[\e[m\]\[\e[91m\]\\$\[\e[m\] "
+    # This adds the time as [22:22:22]
+    PS1="${PS1}\[\e[m\]\[\e[35m\][\[\e[m\]\t\[\e[35m\]]"
+    # This adds the directory as [~/Projects/fenv]
+    PS1="${PS1}\[\e[m\]\[\e[35m\][\[\e[m\]\w\[\e[35m\]]"
+    # This adds the git prompt as [branch_name *]
+    PS1="${PS1}\[\e[m\]\[\e[95m\]$(__git_ps1 '[%s]')"
+    # This adds the fenv sandbox prompt
+    PS1="${PS1}$FENV_PROMPT"
+    # This adds the ending $ char.
+    PS1="${PS1}\[\e[m\]\[\e[91m\]\\$\[\e[m\] "
 }
 PROMPT_COMMAND=get_prompt
 
