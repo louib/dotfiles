@@ -136,7 +136,14 @@ function mei () {
 }
 
 source ~/git-prompt.sh
-export PS1='\[\e[m\]\[\e[35m\][\[\e[m\]\t\[\e[35m\]]\[\e[m\]\[\e[35m\][\[\e[m\]\w\[\e[35m\]]\[\e[m\]\[\e[95m\]$(__git_ps1 "[%s]")\[\e[m\]\[\e[91m\]\\$\[\e[m\] '
+get_prompt () {
+    FENV_PROMPT=""
+    if [[ -n "$FENV_IS_IN_SANDBOX" ]]; then
+        FENV_PROMPT="[fenv sandbox]"
+    fi
+    PS1="\[\e[m\]\[\e[35m\][\[\e[m\]\t\[\e[35m\]]\[\e[m\]\[\e[35m\][\[\e[m\]\w\[\e[35m\]]\[\e[m\]\[\e[95m\]$(__git_ps1 '[%s]')$FENV_PROMPT\[\e[m\]\[\e[91m\]\\$\[\e[m\] "
+}
+PROMPT_COMMAND=get_prompt
 
 # Setting the current directory as the tab's title.
 # See https://wiki.archlinux.org/title/Bash/Prompt_customization#Prompts
