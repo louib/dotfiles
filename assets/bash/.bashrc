@@ -135,7 +135,21 @@ function mei () {
     ninja -C _build install
 }
 
+# Setting the current directory as the tab's title.
+# See https://wiki.archlinux.org/title/Bash/Prompt_customization#Prompts
+# for additional Bash customizations.
+set_title () {
+    CURRENT_DIR=$(basename "$PWD")
+    PS1="${PS1}\[\e]2;$CURRENT_DIR\a\]"
+}
+
 source ~/git-prompt.sh
+# From https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh:
+# In addition, if you set GIT_PS1_SHOWDIRTYSTATE to a nonempty value,
+# unstaged (*) and staged (+) changes will be shown next to the branch
+# name.
+export GIT_PS1_SHOWDIRTYSTATE=1
+
 get_prompt () {
     PS1=""
     FENV_PROMPT=""
@@ -152,22 +166,11 @@ get_prompt () {
     PS1="${PS1}$FENV_PROMPT"
     # This adds the ending $ char.
     PS1="${PS1}\[\e[m\]\[\e[91m\]\\$\[\e[m\] "
+
+    # Setting the terminal title everytime the prompt gets updated.
+    set_title
 }
 PROMPT_COMMAND=get_prompt
-
-# Setting the current directory as the tab's title.
-# See https://wiki.archlinux.org/title/Bash/Prompt_customization#Prompts
-# for additional Bash customizations.
-set_title () {
-    CURRENT_DIR=$(basename "$PWD")
-    PS1="${PS1}\[\e]2;$CURRENT_DIR\a\]"
-}
-set_title
-# From https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh:
-# In addition, if you set GIT_PS1_SHOWDIRTYSTATE to a nonempty value,
-# unstaged (*) and staged (+) changes will be shown next to the branch
-# name.
-export GIT_PS1_SHOWDIRTYSTATE=1
 
 # Replace cd by an alias that will also update the title after
 # changing the directory.
