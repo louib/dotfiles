@@ -14,31 +14,39 @@ if ! command -v nvim &> /dev/null; then
       meson \
       cryptsetup \
       curl \
-      evince \
       gnome-tweak-tool \
       gnome-terminal \
+      flatpak \
+      flatpak-builder \
       git \
       git-core \
       dconf-cli \
       dconf-editor \
+      # TODO migrate this to a flatpak app
       neovim \
       net-tools \
+      # TODO do I really need python always? Maybe put
+      # that in a container.
       python3 \
       python3-pip \
       python3-venv \
       pwgen \
       ripgrep \
       shellcheck \
-      keepassxc \
+      # TODO move that to a flatpak app.
       thunderbird \
       ttf-bitstream-vera \
-      vim \
       wl-clipboard
     echo "✔️  Installed main OS packages."
 else
     echo "✔️  Main OS packages already installed."
 fi
 
+
+flatpak install --user flathub org.keepass.KeePassXC
+flatpak install --user flathub org.gnome.Evince
+# flatpak install --user flathub io.neovim.nvim
+# flatpak install --user flathub org.mozilla.Thunderbird
 
 if ! command -v emojify &> /dev/null; then
     echo "✔️ Installing emojify from GitHub"
