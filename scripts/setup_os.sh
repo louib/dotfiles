@@ -42,12 +42,6 @@ else
     echo "✔️  Main OS packages already installed."
 fi
 
-
-flatpak install --user flathub org.keepass.KeePassXC
-flatpak install --user flathub org.gnome.Evince
-# flatpak install --user flathub io.neovim.nvim
-# flatpak install --user flathub org.mozilla.Thunderbird
-
 if ! command -v emojify &> /dev/null; then
     echo "✔️ Installing emojify from GitHub"
     curl https://raw.githubusercontent.com/mrowa44/emojify/6dc2c1df9a484cf01e7f48e25a1e36e328c32816/emojify -o ./emojify
