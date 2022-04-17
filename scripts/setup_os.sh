@@ -22,18 +22,14 @@ if ! command -v nvim &> /dev/null; then
       git-core \
       dconf-cli \
       dconf-editor \
-      # TODO migrate this to a flatpak app
       neovim \
       net-tools \
-      # TODO do I really need python always? Maybe put
-      # that in a container.
       python3 \
       python3-pip \
       python3-venv \
       pwgen \
       ripgrep \
       shellcheck \
-      # TODO move that to a flatpak app.
       thunderbird \
       ttf-bitstream-vera \
       wl-clipboard

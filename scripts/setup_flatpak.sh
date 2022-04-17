@@ -28,6 +28,7 @@ flatpak remote-add --if-not-exists --user gnome-nightly "$SCRIPT_DIR/../assets/f
 flatpak install --user flathub org.keepass.KeePassXC
 flatpak install --user flathub org.gnome.Evince
 # flatpak install --user flathub io.neovim.nvim
+# flatpak install --user flathub org.mozilla.Firefox
 # flatpak install --user flathub org.mozilla.Thunderbird
 
 flatpak update
