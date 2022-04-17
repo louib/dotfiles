@@ -84,6 +84,8 @@ export VISUAL=vi
 alias vi="nvim"
 alias vim="nvim"
 
+alias keepassxc-cli="flatpak run org.keepassxc.KeePassXC cli"
+
 # checkout the default git branch.
 # (git checkout default)
 function gcd () {
