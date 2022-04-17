@@ -29,6 +29,13 @@ flatpak remote-add --if-not-exists --user gnome-nightly "$SCRIPT_DIR/../assets/f
 flatpak install --user https://dl.flathub.org/build-repo/84660/org.keepassxc.KeePassXC.flatpakref
 # flatpak install --user flathub org.keepass.KeePassXC
 
+KPXC_CONFIG_DIR="$HOME/.config/keepassxc"
+KPXC_CONFIG_PATH="$KPXC_CONFIG_DIR/keepassxc.ini"
+if [[ ! -d "$KPXC_CONFIG_DIR" ]]; then
+    mkdir -p "$KPXC_CONFIG_DIR"
+fi
+cp "$SCRIPT_DIR/../assets/keepassxc/keepassxc.ini" "$KPXC_CONFIG_PATH"
+
 flatpak install --user flathub org.gnome.Evince
 
 # flatpak install --user flathub io.neovim.nvim
