@@ -51,3 +51,6 @@ elif [[ -n $(diff "$SCRIPT_DIR/../assets/vim/init.vim" "$HOME/.config/nvim/init.
 else
     echo "✔️ Vim init file already configured, skipping."
 fi
+
+# If neovim was installed through flatpak, we need this alias
+# ln -v -s "$HOME/.config/nvim" "/home/${USER}/.var/app/io.neovim.nvim/config"
