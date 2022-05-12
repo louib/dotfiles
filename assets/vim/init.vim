@@ -123,4 +123,15 @@ lua << EOF
   -- add ts support?
   -- add python support
   -- add C and C++ support
+
+  local custom_lsp_attach = function(client)
+    -- Use LSP as the handler for omnifunc.
+    --    See `:help omnifunc` and `:help ins-completion` for more information.
+    vim.api.nvim_buf_set_option(0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+    -- Use LSP as the handler for formatexpr.
+    --    See `:help formatexpr` for more information.
+    vim.api.nvim_buf_set_option(0, 'formatexpr', 'v:lua.vim.lsp.formatexpr()')
+  end
+
 EOF
