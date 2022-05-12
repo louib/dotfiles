@@ -25,6 +25,8 @@ set nomodeline
 filetype plugin on
 filetype plugin indent on
 
+set omnifunc=syntaxcomplete#Complete
+
 " Always show the status line
 set laststatus=2
 
