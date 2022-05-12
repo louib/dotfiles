@@ -84,7 +84,9 @@ export VISUAL=vi
 alias vi="nvim"
 alias vim="nvim"
 
-alias keepassxc-cli="flatpak run org.keepassxc.KeePassXC cli"
+# TODO rename that to just nvim when the migration to flatpak is finished.
+alias nvim-flatpak="LATPAK_ENABLE_SDK_EXT=rust-stable,node16 flatpak run --user io.neovim.nvim"
+alias keepassxc-cli="flatpak run --user org.keepassxc.KeePassXC cli"
 
 # checkout the default git branch.
 # (git checkout default)
