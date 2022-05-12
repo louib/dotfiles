@@ -46,7 +46,13 @@ else
     flatpak install --user flathub org.gnome.Evince
 fi
 
+# See the list of extensions here https://github.com/orgs/flathub/repositories?language=&page=1&q=extension&sort=&type=all
+# TODO python extension is installed by default?
+# flatpak install --user flathub org.freedesktop.Sdk.Extension.node16
+# flatpak install --user flathub org.freedesktop.Sdk.Extension.rust-stable
+# TODO also add C++ via llvm extension?
 # flatpak install --user flathub io.neovim.nvim
+# Run as FLATPAK_ENABLE_SDK_EXT=rust-stable,node16 flatpak run io.neovim.nvim
 
 # flatpak install --user flathub org.mozilla.Firefox
 
