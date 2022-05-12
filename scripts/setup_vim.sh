@@ -21,8 +21,10 @@ else
     # TODO have a look at https://github.com/tpope/vim-commentary or https://github.com/tomtom/tcomment_vim
     # for handling comments.
 
-    # TODO have a look at https://github.com/dense-analysis/ale for language features.
+    # TODO have a look at nvim-compe
+    # TODO have a look at telescope, replaces ctrl-p and fzf
 
+    git clone --recursive https://github.com/neovim/nvim-lspconfig.git ~/.local/share/nvim/site/pack/languages/start/nvim-lspconfig
     git clone --recursive https://github.com/leafgarland/typescript-vim.git ~/.local/share/nvim/site/pack/languages/start/typescript
     git clone --recursive https://github.com/octol/vim-cpp-enhanced-highlight.git ~/.local/share/nvim/site/pack/languages/start/vim-cpp-enhanced-highlight
     git clone --recursive https://github.com/rust-lang/rust.vim.git ~/.local/share/nvim/site/pack/languages/start/rust.vim
