@@ -121,10 +121,16 @@ let g:cpp_concepts_highlight = 1
 
 lua << EOF
   require'lspconfig'.rust_analyzer.setup{}
-  -- add node support
-  -- add ts support?
+  -- require'lspconfig'.tsserver.setup{}
+  -- TODO add eslint support?
+  -- add vanilla JS support?
+  -- add dockerfile support?
   -- add python support
   -- add C and C++ support
+  -- add bash support (apparently there's a bash language server)
+  -- require'lspconfig'.bashls.setup{}
+  -- add YAML language server support?
+  -- https://github.com/redhat-developer/yaml-language-server
 
   local custom_lsp_attach = function(client)
     -- Use LSP as the handler for omnifunc.
