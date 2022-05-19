@@ -120,6 +120,9 @@ let g:cpp_class_scope_highlight = 1
 let g:cpp_concepts_highlight = 1
 
 lua << EOF
+  -- See https://github.com/neovim/nvim-lspconfig#suggested-configuration for
+  -- the suggested configuration.
+
   require'lspconfig'.rust_analyzer.setup{}
   -- require'lspconfig'.tsserver.setup{}
   -- TODO add eslint support?
