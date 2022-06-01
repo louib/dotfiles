@@ -24,14 +24,16 @@ else
     # TODO have a look at https://github.com/dense-analysis/ale for language features.
 
     git clone --recursive https://github.com/leafgarland/typescript-vim.git ~/.local/share/nvim/site/pack/languages/start/typescript
-    git clone --recursive https://github.com/pangloss/vim-javascript.git ~/.local/share/nvim/site/pack/languages/start/vim-javascript
-    git clone --recursive https://github.com/python-mode/python-mode.git ~/.local/share/nvim/site/pack/languages/start/python-mode
     git clone --recursive https://github.com/octol/vim-cpp-enhanced-highlight.git ~/.local/share/nvim/site/pack/languages/start/vim-cpp-enhanced-highlight
-    git clone --recursive https://github.com/hashivim/vim-terraform.git ~/.local/share/nvim/site/pack/languages/start/vim-terraform
     git clone --recursive https://github.com/rust-lang/rust.vim.git ~/.local/share/nvim/site/pack/languages/start/rust.vim
     git clone --recursive https://github.com/morhetz/gruvbox.git ~/.local/share/nvim/site/pack/colorschemes/start/gruvbox
     git clone --recursive https://github.com/tpope/vim-surround.git ~/.local/share/nvim/site/pack/others/start/vim-surround
     git clone --recursive https://github.com/vim-airline/vim-airline ~/.local/share/nvim/site/pack/others/start/vim-airline
+
+    # These should probably be migrated to proper LSP plugins
+    # git clone --recursive https://github.com/pangloss/vim-javascript.git ~/.local/share/nvim/site/pack/languages/start/vim-javascript
+    # git clone --recursive https://github.com/python-mode/python-mode.git ~/.local/share/nvim/site/pack/languages/start/python-mode
+    # git clone --recursive https://github.com/hashivim/vim-terraform.git ~/.local/share/nvim/site/pack/languages/start/vim-terraform
 
     # Copying language files.
     cp "$SCRIPT_DIR/../assets/vim/javascript.vim" ~/.config/nvim/ftplugin/

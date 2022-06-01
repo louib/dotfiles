@@ -6,7 +6,7 @@ die() { echo "$*" 1>&2 ; exit 1; }
 SCRIPT_DIR=$(realpath "$0")
 SCRIPT_DIR=$(dirname "$SCRIPT_DIR")
 
-if ! command -v nvim &> /dev/null; then
+if ! command -v shellcheck &> /dev/null; then
     # Main programs.
     apt-get install -y \
       bash-completion \
