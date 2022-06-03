@@ -240,10 +240,11 @@ function far () {
 }
 
 # FIXME this is because of a bug in Ubuntu 20.04 where the mapping Caps Lock -> Esc does not work.
-function rmap () {
-    if command -v dconf &> /dev/null; then
-        dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:swapescape', 'grp:win_space_toggle']"
-        dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:escape', 'grp:win_space_toggle']"
-    fi
-}
-rmap
+# Remove once I know for sure that the bug was fixed in 22.04
+# function rmap () {
+#     if command -v dconf &> /dev/null; then
+#         dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:swapescape', 'grp:win_space_toggle']"
+#         dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:escape', 'grp:win_space_toggle']"
+#     fi
+# }
+# rmap
