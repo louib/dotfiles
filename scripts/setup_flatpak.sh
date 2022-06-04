@@ -29,7 +29,7 @@ if flatpak list --app | grep org.keepassxc.KeePassXC &> /dev/null; then
     echo "KeePassXC is already installed."
 else
     # Version that includes the ssh-add CLI command
-    flatpak install --user https://dl.flathub.org/build-repo/84660/org.keepassxc.KeePassXC.flatpakref
+    flatpak install --user https://dl.flathub.org/build-repo/92408/org.keepassxc.KeePassXC.flatpakref
     # flatpak install --user flathub org.keepass.KeePassXC
 fi
 
