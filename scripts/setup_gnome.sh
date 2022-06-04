@@ -69,9 +69,12 @@ dconf write /org/gnome/settings-daemon/plugins/power/sleep-inactive-ac-type "'no
 dconf write /org/gnome/desktop/screensaver/logout-delay 7200
 
 dconf write /org/gnome/shell/extensions/dash-to-dock/dock-fixed false
+# FIXME the firefox_firefox entry is from ubuntu22.04. Not sure why it was renamed,
+# maybe because of snap?
 dconf write /org/gnome/shell/favorite-apps "[\
   'firefox-esr.desktop', \
   'firefox.desktop', \
+  'firefox_firefox.desktop', \
   'org.gnome.Nautilus.desktop', \
   'org.gnome.Terminal.desktop', \
   'org.keepassxc.KeePassXC.desktop', \
