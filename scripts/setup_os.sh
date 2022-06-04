@@ -14,7 +14,7 @@ if ! command -v shellcheck &> /dev/null; then
       meson \
       cryptsetup \
       curl \
-      gnome-tweak-tool \
+      gnome-tweaks \
       gnome-terminal \
       flatpak \
       flatpak-builder \
