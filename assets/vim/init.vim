@@ -136,13 +136,14 @@ lua << EOF
     vim.api.nvim_buf_set_option(buffer_number, 'formatexpr', 'v:lua.vim.lsp.formatexpr()')
 
     -- Mappings.
+    -- See `:h :map-arguments` for the options available when mapping
+    local mapping_options = { noremap=true, silent=true, buffer=buffer_number }
+
     -- See `:help vim.lsp.*` for documentation on any of the below functions
-    local buffer_options = { noremap=true, silent=true, buffer=buffer_number }
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, mapping_options)
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, mapping_options)
 
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, buffer_options)
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, buffer_options)
-
-    vim.keymap.set('n', '<C-s>', vim.lsp.buf.signature_help, buffer_options)
+    vim.keymap.set('n', '<C-s>', vim.lsp.buf.signature_help, mapping_options)
 
   end
 
