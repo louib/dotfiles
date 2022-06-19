@@ -56,9 +56,13 @@ else
     echo "✔️ Vim init file already configured, skipping."
 fi
 
-# If neovim was installed through flatpak, we need this alias
-# mkdir -p "/home/${USER}/.var/app/io.neovim.nvim/config"
-# ln -v -s "$HOME/.config/nvim" "/home/${USER}/.var/app/io.neovim.nvim/config"
-# rm -r "/home/${USER}/.var/app/io.neovim.nvim/data"
-# mkdir -p "/home/${USER}/.var/app/io.neovim.nvim/data"
-# ln -v -s "$HOME/.local/share/nvim" "/home/${USER}/.var/app/io.neovim.nvim/data"
+if [[ ! -f "/home/${USER}/.var/app/io.neovim.nvim/config/nvim/init.vim" ]]; then
+    echo "Linking nvim config to Flatpak sandbox."
+
+    # If neovim was installed through flatpak, we need this alias
+    mkdir -p "/home/${USER}/.var/app/io.neovim.nvim/config"
+    ln -v -s "$HOME/.config/nvim" "/home/${USER}/.var/app/io.neovim.nvim/config"
+    rm -r "/home/${USER}/.var/app/io.neovim.nvim/data"
+    mkdir -p "/home/${USER}/.var/app/io.neovim.nvim/data"
+    ln -v -s "$HOME/.local/share/nvim" "/home/${USER}/.var/app/io.neovim.nvim/data"
+fi
