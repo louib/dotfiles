@@ -2,8 +2,6 @@ packloadall
 
 set encoding=utf8
 set pastetoggle=<F5>
-set number
-set relativenumber
 syntax on
 
 " Defaults for all file types.
@@ -24,6 +22,8 @@ set nomodeline
 " Enable filetypes
 filetype plugin on
 filetype plugin indent on
+
+set omnifunc=syntaxcomplete#Complete
 
 " Always show the status line
 set laststatus=2
@@ -116,3 +116,64 @@ let g:cpp_no_function_highlight = 1
 let g:cpp_class_decl_highlight = 1
 let g:cpp_class_scope_highlight = 1
 let g:cpp_concepts_highlight = 1
+
+lua << EOF
+
+  -- wo = window options
+  -- bo = buffer options
+  -- o = global options
+
+  vim.wo.number = true
+  vim.wo.relativenumber = true
+
+  local custom_lsp_attach = function(client, buffer_number)
+    -- Use LSP as the handler for omnifunc.
+    --    See `:help omnifunc` and `:help ins-completion` for more information.
+    vim.api.nvim_buf_set_option(buffer_number, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+    -- Use LSP as the handler for formatexpr.
+    --    See `:help formatexpr` for more information.
+    vim.api.nvim_buf_set_option(buffer_number, 'formatexpr', 'v:lua.vim.lsp.formatexpr()')
+
+    -- Mappings.
+    -- See `:h :map-arguments` for the options available when mapping
+    local mapping_options = { noremap=true, silent=true, buffer=buffer_number }
+
+    -- See `:help vim.lsp.*` for documentation on any of the below functions
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, mapping_options)
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, mapping_options)
+
+    vim.keymap.set('n', '<C-s>', vim.lsp.buf.signature_help, mapping_options)
+
+  end
+
+  local lsp_flags = {
+      -- This is the default in Nvim 0.7+
+      debounce_text_changes = 150,
+  }
+
+  require'lspconfig'.rust_analyzer.setup{
+    on_attach = custom_lsp_attach,
+    flags = lsp_flags,
+    -- Server-specific settings...
+    settings = {
+      ["rust-analyzer"] = {}
+    }
+  }
+
+  -- See https://github.com/neovim/nvim-lspconfig#suggested-configuration for
+  -- the suggested configuration.
+
+  -- require'lspconfig'.tsserver.setup{}
+  -- TODO add eslint support?
+  -- add vanilla JS support?
+  -- add dockerfile support?
+  -- add python support
+  -- add C and C++ support
+  -- add bash support (apparently there's a bash language server)
+  -- require'lspconfig'.bashls.setup{}
+  -- add YAML language server support?
+  -- https://github.com/redhat-developer/yaml-language-server
+
+
+EOF

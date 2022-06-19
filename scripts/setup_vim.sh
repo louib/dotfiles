@@ -21,8 +21,10 @@ else
     # TODO have a look at https://github.com/tpope/vim-commentary or https://github.com/tomtom/tcomment_vim
     # for handling comments.
 
-    # TODO have a look at https://github.com/dense-analysis/ale for language features.
+    # TODO have a look at nvim-compe
+    # TODO have a look at telescope, replaces ctrl-p and fzf
 
+    git clone --recursive https://github.com/neovim/nvim-lspconfig.git ~/.local/share/nvim/site/pack/languages/start/nvim-lspconfig
     git clone --recursive https://github.com/leafgarland/typescript-vim.git ~/.local/share/nvim/site/pack/languages/start/typescript
     git clone --recursive https://github.com/octol/vim-cpp-enhanced-highlight.git ~/.local/share/nvim/site/pack/languages/start/vim-cpp-enhanced-highlight
     git clone --recursive https://github.com/rust-lang/rust.vim.git ~/.local/share/nvim/site/pack/languages/start/rust.vim
@@ -54,9 +56,13 @@ else
     echo "✔️ Vim init file already configured, skipping."
 fi
 
-# If neovim was installed through flatpak, we need this alias
-# mkdir -p "/home/${USER}/.var/app/io.neovim.nvim/config"
-# ln -v -s "$HOME/.config/nvim" "/home/${USER}/.var/app/io.neovim.nvim/config"
-# rm -r "/home/${USER}/.var/app/io.neovim.nvim/data"
-# mkdir -p "/home/${USER}/.var/app/io.neovim.nvim/data"
-# ln -v -s "$HOME/.local/share/nvim" "/home/${USER}/.var/app/io.neovim.nvim/data"
+if [[ ! -f "/home/${USER}/.var/app/io.neovim.nvim/config/nvim/init.vim" ]]; then
+    echo "Linking nvim config to Flatpak sandbox."
+
+    # If neovim was installed through flatpak, we need this alias
+    mkdir -p "/home/${USER}/.var/app/io.neovim.nvim/config"
+    ln -v -s "$HOME/.config/nvim" "/home/${USER}/.var/app/io.neovim.nvim/config"
+    rm -r "/home/${USER}/.var/app/io.neovim.nvim/data"
+    mkdir -p "/home/${USER}/.var/app/io.neovim.nvim/data"
+    ln -v -s "$HOME/.local/share/nvim" "/home/${USER}/.var/app/io.neovim.nvim/data"
+fi
