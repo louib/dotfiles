@@ -1,6 +1,5 @@
 packloadall
 
-set encoding=utf8
 set pastetoggle=<F5>
 syntax on
 
@@ -8,13 +7,6 @@ syntax on
 set tabstop=2
 set shiftwidth=2
 set expandtab
-
-" Make searching case insensitive
-set ignorecase
-" ... unless the query has capital letters.
-set smartcase
-
-set cursorline
 
 " Disabling mainly for security reasons
 set nomodeline
@@ -110,13 +102,6 @@ let g:cpp_concepts_highlight = 1
 
 lua << EOF
   require('init').configure()
-
-  -- wo = window options
-  -- bo = buffer options
-  -- o = global options
-
-  -- vim.wo.number = true
-  -- vim.wo.relativenumber = true
 
   local custom_lsp_attach = function(client, buffer_number)
     -- Use LSP as the handler for omnifunc.

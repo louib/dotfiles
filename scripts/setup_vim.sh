@@ -13,7 +13,8 @@ else
     mkdir ~/.config/nvim/bundle
     mkdir ~/.config/nvim/ftplugin
 
-    # Installing plugins.
+    # Creating the config directories.
+    # The list of supported directories can be found here https://github.com/nanotee/nvim-lua-guide#runtime-files
     mkdir -p ~/.local/share/nvim/site/pack/languages/start
     mkdir -p ~/.local/share/nvim/site/pack/colorschemes/start
     mkdir -p ~/.local/share/nvim/site/pack/others/start
