@@ -89,8 +89,6 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 " Do not fold any of the block dy default.
 set foldlevel=99
 
-colorscheme gruvbox
-
 set background=dark
 set termguicolors
 
