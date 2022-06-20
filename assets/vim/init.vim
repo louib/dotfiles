@@ -8,17 +8,11 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 
-" Disabling mainly for security reasons
-set nomodeline
-
 " Enable filetypes
 filetype plugin on
 filetype plugin indent on
 
 set omnifunc=syntaxcomplete#Complete
-
-" Always show the status line
-set laststatus=2
 
 " This will render the trailing spaces and the tabs in a visible way.
 set listchars=tab:>-,trail:·

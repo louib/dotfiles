@@ -10,6 +10,13 @@ local function configure()
   -- ... unless the query has capital letters.
   vim.o.smartcase = true
 
+  -- Disabling mainly for security reasons
+  vim.o.modeline = false
+
+  -- Always show the status line
+  vim.o.laststatus = 2
+
+
   vim.wo.number = true
   vim.wo.relativenumber = true
   vim.wo.cursorline = true
