@@ -118,13 +118,14 @@ let g:cpp_class_scope_highlight = 1
 let g:cpp_concepts_highlight = 1
 
 lua << EOF
+  require('init').configure()
 
   -- wo = window options
   -- bo = buffer options
   -- o = global options
 
-  vim.wo.number = true
-  vim.wo.relativenumber = true
+  -- vim.wo.number = true
+  -- vim.wo.relativenumber = true
 
   local custom_lsp_attach = function(client, buffer_number)
     -- Use LSP as the handler for omnifunc.
@@ -174,6 +175,5 @@ lua << EOF
   -- require'lspconfig'.bashls.setup{}
   -- add YAML language server support?
   -- https://github.com/redhat-developer/yaml-language-server
-
 
 EOF
