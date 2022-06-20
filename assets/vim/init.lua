@@ -4,6 +4,8 @@ local function escape_termcode(raw_termcode)
 end
 
 local function configure()
+  vim.api.nvim_command('syntax on')
+
   -- wo = window options
   -- bo = buffer options
   -- o = global options

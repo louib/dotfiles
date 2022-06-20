@@ -1,7 +1,6 @@
 packloadall
 
 set pastetoggle=<F5>
-syntax on
 
 " Defaults for all file types.
 set tabstop=2
