@@ -1,5 +1,3 @@
-packloadall
-
 set pastetoggle=<F5>
 
 " Defaults for all file types.

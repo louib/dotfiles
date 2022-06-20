@@ -5,6 +5,10 @@ end
 
 local function configure()
   vim.api.nvim_command('syntax on')
+  -- Calling packloadall is not necessary, because it will be called after
+  -- running the init.lua anyway. Leaving here in case we want to load the plugins
+  -- earlier in the future.
+  -- vim.api.nvim_command('packloadall')
 
   -- wo = window options
   -- bo = buffer options
