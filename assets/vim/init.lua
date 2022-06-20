@@ -1,3 +1,8 @@
+local function escape_termcode(raw_termcode)
+    -- Adjust boolean arguments as needed
+    return vim.api.nvim_replace_termcodes(raw_termcode, true, true, true)
+end
+
 local function configure()
   -- wo = window options
   -- bo = buffer options
@@ -15,6 +20,12 @@ local function configure()
 
   -- Always show the status line
   vim.o.laststatus = 2
+
+  -- Do not fold any of the block dy default.
+  vim.o.foldlevel = 99
+
+  -- FIXME this does not work yet.
+  -- vim.o.pastetoggle = escape_termcode'<F5>'
 
 
   vim.wo.number = true
