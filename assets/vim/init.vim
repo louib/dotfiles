@@ -41,13 +41,6 @@ endif
 " I dont remember where I took this one from :(
 au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
 
-" WIP opens the first file in the current project that matches the search
-" term.
-function! LuckyOpen(term)
-    let filename = system('find ./ | grep '.a:term.' | head -1')
-    silent! execute "e ".filename
-endfunction
-
 "Window navigation and creation
 nnoremap <Space>s <C-w>s
 nnoremap <Space>v <C-w>v
