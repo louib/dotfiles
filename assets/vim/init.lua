@@ -123,6 +123,20 @@ local function configure()
   -- local colorscheme = "everforest"
 
   pcall(vim.cmd, "colorscheme " .. colorscheme)
+
+  -- See https://github.com/numToStr/Comment.nvim#configuration-optional
+  require('Comment').setup({
+      padding = true,
+
+      ---LHS of operator-pending mappings in NORMAL + VISUAL mode
+      ---@type table
+      opleader = {
+          ---Line-comment keymap
+          line = 'gc',
+          ---Block-comment keymap
+          block = 'gb',
+      },
+  })
 end
 
 return {
