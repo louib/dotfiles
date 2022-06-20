@@ -52,8 +52,11 @@ local function configure()
   vim.wo.relativenumber = true
   vim.wo.cursorline = true
 
+  -- The shusia, maia and espresso variants exist for the sonokai colorscheme
+  -- FIXME how to change the colorscheme variant?
   local colorscheme = "sonokai"
-  -- local colorscheme = "gruvbox"
+  -- local colorscheme = "everforest"
+
   pcall(vim.cmd, "colorscheme " .. colorscheme)
 end
 

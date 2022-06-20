@@ -28,7 +28,7 @@ else
     git clone --recursive https://github.com/neovim/nvim-lspconfig.git ~/.local/share/nvim/site/pack/languages/start/nvim-lspconfig
     git clone --recursive https://github.com/leafgarland/typescript-vim.git ~/.local/share/nvim/site/pack/languages/start/typescript
     git clone --recursive https://github.com/rust-lang/rust.vim.git ~/.local/share/nvim/site/pack/languages/start/rust.vim
-    git clone --recursive https://github.com/morhetz/gruvbox.git ~/.local/share/nvim/site/pack/colorschemes/start/gruvbox
+    git clone --recursive https://github.com/sainnhe/everforest.git ~/.local/share/nvim/site/pack/colorschemes/start/everforest
     git clone --recursive https://github.com/sainnhe/sonokai.git ~/.local/share/nvim/site/pack/colorschemes/start/sonokai
     git clone --recursive https://github.com/tpope/vim-surround.git ~/.local/share/nvim/site/pack/others/start/vim-surround
     git clone --recursive https://github.com/vim-airline/vim-airline ~/.local/share/nvim/site/pack/others/start/vim-airline
