@@ -26,6 +26,9 @@ local function configure()
   -- Do not fold any of the block dy default.
   vim.o.foldlevel = 99
 
+  vim.o.background = 'dark'
+  vim.o.termguicolors = true
+
   -- FIXME this does not work yet.
   -- vim.o.pastetoggle = escape_termcode'<F5>'
 
