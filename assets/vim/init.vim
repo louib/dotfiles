@@ -10,6 +10,8 @@ set omnifunc=syntaxcomplete#Complete
 set listchars=tab:>-,trail:·
 set list
 
+set completeopt=menu,menuone,noselect
+
 " This beauty remembers where you were the last time you edited the file, and returns to the same position.
 " I dont remember where I took this one from :(
 au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif

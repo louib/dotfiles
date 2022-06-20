@@ -22,16 +22,22 @@ else
     # TODO have a look at https://github.com/tpope/vim-commentary or https://github.com/tomtom/tcomment_vim
     # for handling comments.
 
-    # TODO have a look at nvim-compe
     # TODO have a look at telescope, replaces ctrl-p and fzf
 
-    git clone --recursive https://github.com/neovim/nvim-lspconfig.git ~/.local/share/nvim/site/pack/languages/start/nvim-lspconfig
-    git clone --recursive https://github.com/leafgarland/typescript-vim.git ~/.local/share/nvim/site/pack/languages/start/typescript
-    git clone --recursive https://github.com/rust-lang/rust.vim.git ~/.local/share/nvim/site/pack/languages/start/rust.vim
-    git clone --recursive https://github.com/sainnhe/everforest.git ~/.local/share/nvim/site/pack/colorschemes/start/everforest
-    git clone --recursive https://github.com/sainnhe/sonokai.git ~/.local/share/nvim/site/pack/colorschemes/start/sonokai
+    git clone --recursive https://github.com/neovim/nvim-lspconfig.git ~/.local/share/nvim/site/pack/others/start/nvim-lspconfig
+    git clone --recursive https://github.com/hrsh7th/nvim-cmp.git ~/.local/share/nvim/site/pack/others/start/nvim-cmp
+    git clone --recursive https://github.com/hrsh7th/cmp-nvim-lsp.git ~/.local/share/nvim/site/pack/others/start/cmp-nvim-lsp
+    git clone --recursive https://github.com/hrsh7th/cmp-buffer.git ~/.local/share/nvim/site/pack/others/start/cmp-buffer
+    # git clone --recursive https://github.com/hrsh7th/cmp-path.git ~/.local/share/nvim/site/pack/others/start/cmp-path
+    # git clone --recursive https://github.com/hrsh7th/cmp-cmdline.git ~/.local/share/nvim/site/pack/others/start/cmp-cmdline
     git clone --recursive https://github.com/tpope/vim-surround.git ~/.local/share/nvim/site/pack/others/start/vim-surround
     git clone --recursive https://github.com/vim-airline/vim-airline ~/.local/share/nvim/site/pack/others/start/vim-airline
+
+    git clone --recursive https://github.com/leafgarland/typescript-vim.git ~/.local/share/nvim/site/pack/languages/start/typescript
+    git clone --recursive https://github.com/rust-lang/rust.vim.git ~/.local/share/nvim/site/pack/languages/start/rust.vim
+
+    git clone --recursive https://github.com/sainnhe/everforest.git ~/.local/share/nvim/site/pack/colorschemes/start/everforest
+    git clone --recursive https://github.com/sainnhe/sonokai.git ~/.local/share/nvim/site/pack/colorschemes/start/sonokai
 
     # These should probably be migrated to proper LSP plugins
     # git clone --recursive https://github.com/pangloss/vim-javascript.git ~/.local/share/nvim/site/pack/languages/start/vim-javascript
