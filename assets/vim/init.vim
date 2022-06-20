@@ -1,10 +1,5 @@
 set pastetoggle=<F5>
 
-" Defaults for all file types.
-set tabstop=2
-set shiftwidth=2
-set expandtab
-
 " Enable filetypes
 filetype plugin on
 filetype plugin indent on
@@ -14,11 +9,6 @@ set omnifunc=syntaxcomplete#Complete
 " This will render the trailing spaces and the tabs in a visible way.
 set listchars=tab:>-,trail:·
 set list
-
-" This is for intelligent merging of lines. Will handle comments for example.
-if v:version > 703 || v:version == 703 && has('patch541')
-  set formatoptions+=j
-endif
 
 " This beauty remembers where you were the last time you edited the file, and returns to the same position.
 " I dont remember where I took this one from :(
@@ -49,7 +39,7 @@ nnoremap <Space>9 :e #9<Enter>
 " with easy re-apply!
 " Start recording that buffer with `qq`. Stop recording with `q`. Apply with
 " space+q !!!
-:nnoremap <Space>q @q
+nnoremap <Space>q @q
 
 " This unsets the "last search pattern" register by hitting return
 " Credits to https://stackoverflow.com/a/662914
@@ -77,13 +67,6 @@ augroup END
 " the spell checking shortcuts.
 autocmd FileType tex :setlocal spell
 autocmd FileType markdown :setlocal spell
-
-" Settings for vim-cpp-enhanced-highlight
-" See https://github.com/octol/vim-cpp-enhanced-highlight for details.
-let g:cpp_no_function_highlight = 1
-let g:cpp_class_decl_highlight = 1
-let g:cpp_class_scope_highlight = 1
-let g:cpp_concepts_highlight = 1
 
 lua << EOF
   require('init').configure()
