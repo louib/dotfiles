@@ -1,5 +1,3 @@
-set pastetoggle=<F5>
-
 " Enable filetypes
 filetype plugin on
 filetype plugin indent on
@@ -9,8 +7,6 @@ set omnifunc=syntaxcomplete#Complete
 " This will render the trailing spaces and the tabs in a visible way.
 set listchars=tab:>-,trail:·
 set list
-
-set completeopt=menu,menuone,noselect
 
 " This beauty remembers where you were the last time you edited the file, and returns to the same position.
 " I dont remember where I took this one from :(

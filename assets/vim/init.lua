@@ -72,6 +72,8 @@ local function configure_auto_completion()
       { name = 'cmdline' }
     })
   })
+
+  vim.o.completeopt = 'menu,menuone,noselect'
 end
 
 local function configure_status_bar()
@@ -157,6 +159,8 @@ local function configure()
 
   vim.o.background = 'dark'
   vim.o.termguicolors = true
+
+  vim.o.pastetoggle = '<F5>'
 
   -- FIXME this does not work yet.
   -- vim.o.pastetoggle = escape_termcode'<F5>'
