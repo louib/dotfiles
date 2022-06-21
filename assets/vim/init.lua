@@ -162,6 +162,10 @@ local function configure()
 
   vim.o.pastetoggle = '<F5>'
 
+  -- This will render the trailing spaces and the tabs in a visible way.
+  vim.o.listchars = 'tab:>-,trail:·'
+  vim.o.list = true
+
   -- FIXME this does not work yet.
   -- vim.o.pastetoggle = escape_termcode'<F5>'
 

@@ -4,10 +4,6 @@ filetype plugin indent on
 
 set omnifunc=syntaxcomplete#Complete
 
-" This will render the trailing spaces and the tabs in a visible way.
-set listchars=tab:>-,trail:·
-set list
-
 " This beauty remembers where you were the last time you edited the file, and returns to the same position.
 " I dont remember where I took this one from :(
 au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
@@ -91,7 +87,7 @@ lua << EOF
       debounce_text_changes = 150,
   }
 
-  require'lspconfig'.rust_analyzer.setup{
+  require('lspconfig').rust_analyzer.setup{
     on_attach = custom_lsp_attach,
     flags = lsp_flags,
     -- Server-specific settings...
