@@ -50,10 +50,6 @@ nnoremap <CR> :noh<CR><CR>
 " This will copy the visual selection to the clipboard on Ctrl-C.
 map <C-c> "+y
 
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_nr_show = 1
-let g:airline#extensions#tabline#formatter = 'unique_tail'
-
 " the grep related configuration is inspired by
 " https://gist.github.com/romainl/56f0c28ef953ffc157f36cc495947ab3
 set grepprg=rg\ --vimgrep

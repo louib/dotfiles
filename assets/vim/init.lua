@@ -74,6 +74,54 @@ local function configure_auto_completion()
   })
 end
 
+local function configure_status_bar()
+    if not pcall(require, "lualine") then
+        print("lualine is not installed.")
+        return
+    end
+
+    require('lualine').setup {
+      options = {
+        -- FIXME what do I need to enable the icons?
+        icons_enabled = false,
+        theme = 'auto',
+        component_separators = { left = '', right = ''},
+        section_separators = { left = '', right = ''},
+        disabled_filetypes = {},
+        always_divide_middle = true,
+        globalstatus = false,
+      },
+      sections = {
+        lualine_a = {
+          {
+            'mode',
+            padding = 2,
+          }
+        },
+        lualine_b = {'branch', 'diff', 'diagnostics'},
+        lualine_c = {
+          {
+            'filename',
+            padding = 2,
+          },
+        },
+        lualine_x = {'encoding', 'fileformat', 'filetype'},
+        lualine_y = {'progress'},
+        lualine_z = {'location'}
+      },
+      inactive_sections = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = {'filename'},
+        lualine_x = {'location'},
+        lualine_y = {},
+        lualine_z = {}
+      },
+      tabline = {},
+      extensions = {}
+    }
+end
+
 local function configure()
   vim.api.nvim_command('syntax on')
   -- Calling packloadall is not necessary, because it will be called after
@@ -137,6 +185,8 @@ local function configure()
           block = 'gb',
       },
   })
+
+  configure_status_bar()
 end
 
 return {

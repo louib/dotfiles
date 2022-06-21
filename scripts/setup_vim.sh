@@ -20,8 +20,13 @@ else
     mkdir -p ~/.local/share/nvim/site/pack/others/start
 
     # TODO have a look at telescope, replaces ctrl-p and fzf
+    #
+    # TODO migrate to packer https://github.com/wbthomason/packer.nvim.git for installing and
+    # managing the nvim packages.
 
+    # TODO check out https://github.com/kyazdani42/nvim-web-devicons.git
     # TODO check out https://github.com/L3MON4D3/LuaSnip
+    # TODO check out https://github.com/lewis6991/gitsigns.nvim.git
     git clone --recursive https://github.com/neovim/nvim-lspconfig.git ~/.local/share/nvim/site/pack/others/start/nvim-lspconfig
     git clone --recursive https://github.com/hrsh7th/nvim-cmp.git ~/.local/share/nvim/site/pack/others/start/nvim-cmp
     git clone --recursive https://github.com/hrsh7th/cmp-nvim-lsp.git ~/.local/share/nvim/site/pack/others/start/cmp-nvim-lsp
@@ -29,7 +34,7 @@ else
     # git clone --recursive https://github.com/hrsh7th/cmp-path.git ~/.local/share/nvim/site/pack/others/start/cmp-path
     # git clone --recursive https://github.com/hrsh7th/cmp-cmdline.git ~/.local/share/nvim/site/pack/others/start/cmp-cmdline
     git clone --recursive https://github.com/tpope/vim-surround.git ~/.local/share/nvim/site/pack/others/start/vim-surround
-    git clone --recursive https://github.com/vim-airline/vim-airline ~/.local/share/nvim/site/pack/others/start/vim-airline
+    git clone --recursive https://github.com/nvim-lualine/lualine.nvim.git ~/.local/share/nvim/site/pack/others/start/lualine.nvim
     git clone --recursive https://github.com/numToStr/Comment.nvim.git ~/.local/share/nvim/site/pack/others/start/Comment.nvim
 
     git clone --recursive https://github.com/leafgarland/typescript-vim.git ~/.local/share/nvim/site/pack/languages/start/typescript
