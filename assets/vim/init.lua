@@ -10,6 +10,55 @@ local function configure_default_spacing()
     vim.o.expandtab = true
 end
 
+
+local function configure_auto_format()
+  -- Utilities for creating configurations
+  local formatter_util = require "formatter.util"
+
+  -- Provides the Format and FormatWrite commands
+  require('formatter').setup {
+    -- All formatter configurations are opt-in
+    filetype = {
+      cpp = {
+        function()
+          return {
+            exe = "clangformat",
+            stdin = true,
+          }
+        end
+      },
+      rust = {
+        function()
+          return {
+            exe = "rustfmt",
+            stdin = true,
+          }
+        end
+      },
+      lua = {
+        -- Pick from defaults:
+        require('formatter.filetypes.lua').stylua,
+
+        -- ,or define your own:
+        function()
+          return {
+            exe = "stylua",
+            args = {
+              "--search-parent-directories",
+              "--stdin-filepath",
+              formatter_util.escape_path(formatter_util.get_current_buffer_file_path()),
+              "--",
+              "-",
+            },
+            stdin = true,
+          }
+        end
+      }
+    }
+  }
+end
+
+
 local function configure_auto_completion()
   -- Setup nvim-cmp.
   local cmp = require'cmp'
@@ -135,6 +184,7 @@ local function configure()
   -- bo = buffer options
   -- o = global options
 
+  configure_auto_format()
   configure_default_spacing()
   configure_auto_completion()
 

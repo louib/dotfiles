@@ -36,6 +36,7 @@ else
     git clone --recursive https://github.com/tpope/vim-surround.git ~/.local/share/nvim/site/pack/others/start/vim-surround
     git clone --recursive https://github.com/nvim-lualine/lualine.nvim.git ~/.local/share/nvim/site/pack/others/start/lualine.nvim
     git clone --recursive https://github.com/numToStr/Comment.nvim.git ~/.local/share/nvim/site/pack/others/start/Comment.nvim
+    git clone --recursive https://github.com/mhartington/formatter.nvim.git ~/.local/share/nvim/site/pack/others/start/formatter.nvim
 
     git clone --recursive https://github.com/leafgarland/typescript-vim.git ~/.local/share/nvim/site/pack/languages/start/typescript
     git clone --recursive https://github.com/rust-lang/rust.vim.git ~/.local/share/nvim/site/pack/languages/start/rust.vim
