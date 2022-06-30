@@ -1,13 +1,13 @@
 local function escape_termcode(raw_termcode)
-    -- Adjust boolean arguments as needed
-    return vim.api.nvim_replace_termcodes(raw_termcode, true, true, true)
+  -- Adjust boolean arguments as needed
+  return vim.api.nvim_replace_termcodes(raw_termcode, true, true, true)
 end
 
 local function configure_default_spacing()
-    -- Default if we did not customize the filetype
-    vim.o.tabstop = 2
-    vim.o.shiftwidth = 2
-    vim.o.expandtab = true
+  -- Default if we did not customize the filetype
+  vim.o.tabstop = 2
+  vim.o.shiftwidth = 2
+  vim.o.expandtab = true
 end
 
 
@@ -22,7 +22,7 @@ local function configure_auto_format()
       cpp = {
         function()
           return {
-            exe = "clangformat",
+            exe = "clang-format",
             stdin = true,
           }
         end
@@ -126,51 +126,114 @@ local function configure_auto_completion()
 end
 
 local function configure_status_bar()
-    if not pcall(require, "lualine") then
-        print("lualine is not installed.")
-        return
-    end
+  if not pcall(require, "lualine") then
+    print("lualine is not installed.")
+    return
+  end
 
-    require('lualine').setup {
-      options = {
-        -- FIXME what do I need to enable the icons?
-        icons_enabled = false,
-        theme = 'auto',
-        component_separators = { left = '', right = ''},
-        section_separators = { left = '', right = ''},
-        disabled_filetypes = {},
-        always_divide_middle = true,
-        globalstatus = false,
+  require('lualine').setup {
+    options = {
+      -- FIXME what do I need to enable the icons?
+      icons_enabled = false,
+      theme = 'auto',
+      component_separators = { left = '', right = ''},
+      section_separators = { left = '', right = ''},
+      disabled_filetypes = {},
+      always_divide_middle = true,
+      globalstatus = false,
+    },
+    sections = {
+      lualine_a = {
+        {
+          'mode',
+          padding = 2,
+        }
       },
-      sections = {
-        lualine_a = {
-          {
-            'mode',
-            padding = 2,
-          }
+      lualine_b = {'branch', 'diff', 'diagnostics'},
+      lualine_c = {
+        {
+          'filename',
+          padding = 2,
         },
-        lualine_b = {'branch', 'diff', 'diagnostics'},
-        lualine_c = {
-          {
-            'filename',
-            padding = 2,
-          },
-        },
-        lualine_x = {'encoding', 'fileformat', 'filetype'},
-        lualine_y = {'progress'},
-        lualine_z = {'location'}
       },
-      inactive_sections = {
-        lualine_a = {},
-        lualine_b = {},
-        lualine_c = {'filename'},
-        lualine_x = {'location'},
-        lualine_y = {},
-        lualine_z = {}
-      },
-      tabline = {},
-      extensions = {}
+      lualine_x = {'encoding', 'fileformat', 'filetype'},
+      lualine_y = {'progress'},
+      lualine_z = {'location'}
+    },
+    inactive_sections = {
+      lualine_a = {},
+      lualine_b = {},
+      lualine_c = {'filename'},
+      lualine_x = {'location'},
+      lualine_y = {},
+      lualine_z = {}
+    },
+    tabline = {},
+    extensions = {}
+  }
+end
+
+local function configure_lsp()
+  local custom_lsp_attach = function(client, buffer_number)
+    -- Use LSP as the handler for omnifunc.
+    --    See `:help omnifunc` and `:help ins-completion` for more information.
+    vim.api.nvim_buf_set_option(buffer_number, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+    -- Use LSP as the handler for formatexpr.
+    --    See `:help formatexpr` for more information.
+    vim.api.nvim_buf_set_option(buffer_number, 'formatexpr', 'v:lua.vim.lsp.formatexpr()')
+
+    -- Mappings.
+    -- See `:h :map-arguments` for the options available when mapping
+    local mapping_options = { noremap=true, silent=true, buffer=buffer_number }
+
+    -- See `:help vim.lsp.*` for documentation on any of the below functions
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, mapping_options)
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, mapping_options)
+
+    vim.keymap.set('n', '<C-s>', vim.lsp.buf.signature_help, mapping_options)
+
+  end
+
+  local lsp_flags = {
+      -- This is the default in Nvim 0.7+
+      debounce_text_changes = 150,
+  }
+
+  require('lspconfig').rust_analyzer.setup{
+    on_attach = custom_lsp_attach,
+    flags = lsp_flags,
+    -- Server-specific settings...
+    settings = {
+      ["rust-analyzer"] = {
+        cargo = {
+          -- This can be used to toggle off some features when building for the text editor.
+          features = {},
+        }
+      }
     }
+  }
+
+  require('lspconfig').clangd.setup{
+    on_attach = custom_lsp_attach,
+    flags = lsp_flags,
+    settings = {
+      ["clangd"] = {}
+    }
+  }
+
+  -- See https://github.com/neovim/nvim-lspconfig#suggested-configuration for
+  -- the suggested configuration.
+
+  -- require'lspconfig'.tsserver.setup{}
+  -- TODO add eslint support?
+  -- add vanilla JS support?
+  -- add dockerfile support?
+  -- add python support
+  -- add bash support (apparently there's a bash language server)
+  -- require'lspconfig'.bashls.setup{}
+  -- add YAML language server support?
+  -- https://github.com/redhat-developer/yaml-language-server
 end
 
 local function configure()
@@ -216,9 +279,6 @@ local function configure()
   vim.o.listchars = 'tab:>-,trail:·'
   vim.o.list = true
 
-  -- FIXME this does not work yet.
-  -- vim.o.pastetoggle = escape_termcode'<F5>'
-
   vim.wo.number = true
   vim.wo.relativenumber = true
   vim.wo.cursorline = true
@@ -232,21 +292,22 @@ local function configure()
 
   -- See https://github.com/numToStr/Comment.nvim#configuration-optional
   require('Comment').setup({
-      padding = true,
+    padding = true,
 
-      ---LHS of operator-pending mappings in NORMAL + VISUAL mode
-      ---@type table
-      opleader = {
-          ---Line-comment keymap
-          line = 'gc',
-          ---Block-comment keymap
-          block = 'gb',
-      },
+    ---LHS of operator-pending mappings in NORMAL + VISUAL mode
+    ---@type table
+    opleader = {
+      ---Line-comment keymap
+      line = 'gc',
+      ---Block-comment keymap
+      block = 'gb',
+    },
   })
 
   configure_status_bar()
+  configure_lsp()
 end
 
 return {
-    configure = configure
+  configure = configure
 }

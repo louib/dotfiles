@@ -56,10 +56,12 @@ fi
 # TODO python extension is installed by default?
 # flatpak install --user flathub org.freedesktop.Sdk.Extension.node16
 
+# TODO llvm 13 and 14 are already available.
+flatpak install --user -y flathub org.freedesktop.Sdk.Extension.llvm12
 flatpak install --user -y flathub org.freedesktop.Sdk.Extension.rust-stable
 
 # TODO also add C++ via llvm extension?
-# Run as FLATPAK_ENABLE_SDK_EXT=rust-stable,node16 flatpak run io.neovim.nvim
+# Run as FLATPAK_ENABLE_SDK_EXT=rust-stable,node16,llvm12 flatpak run io.neovim.nvim
 
 # flatpak install --user flathub org.mozilla.Firefox
 
