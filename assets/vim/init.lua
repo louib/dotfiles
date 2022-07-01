@@ -1,3 +1,15 @@
+local function get_project_name()
+  local current_dir = vim.fn.getcwd()
+
+  local last_dir_name = nil
+  for dir_name in string.gmatch(current_dir, "//") do
+    last_dir_name = dir_name
+    print(dir_name)
+  end
+
+  return last_dir_name
+end
+
 local function escape_termcode(raw_termcode)
   -- Adjust boolean arguments as needed
   return vim.api.nvim_replace_termcodes(raw_termcode, true, true, true)
@@ -200,6 +212,13 @@ local function configure_lsp()
       debounce_text_changes = 150,
   }
 
+  local rust_analyzer_features = {}
+  -- FIXME the get_project_name() function is still untested, but
+  -- could be useful in the future.
+  -- if get_project_name() == "project-name" then
+  --   rust_analyzer_features = {"allo"}
+  -- end
+
   require('lspconfig').rust_analyzer.setup{
     on_attach = custom_lsp_attach,
     flags = lsp_flags,
@@ -207,8 +226,7 @@ local function configure_lsp()
     settings = {
       ["rust-analyzer"] = {
         cargo = {
-          -- This can be used to toggle off some features when building for the text editor.
-          features = {},
+          features = rust_analyzer_features,
         }
       }
     }
@@ -223,8 +241,10 @@ local function configure_lsp()
   }
 
   -- See https://github.com/neovim/nvim-lspconfig#suggested-configuration for
-  -- the suggested configuration.
+  -- the suggested top-level configuration and https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+  -- for a list of all the available language servers.
 
+  -- add sumneko_lua support.
   -- require'lspconfig'.tsserver.setup{}
   -- TODO add eslint support?
   -- add vanilla JS support?
