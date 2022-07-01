@@ -61,7 +61,7 @@ end
 
 local function configure_auto_completion()
   -- Setup nvim-cmp.
-  local cmp = require'cmp'
+  local cmp = require('cmp')
 
   cmp.setup({
     snippet = {
@@ -282,6 +282,14 @@ local function configure()
   vim.wo.number = true
   vim.wo.relativenumber = true
   vim.wo.cursorline = true
+
+  -- the grep related configuration is inspired by
+  -- https://gist.github.com/romainl/56f0c28ef953ffc157f36cc495947ab3
+  -- FIXME switch to rg when I installed it in the neovim container.
+  -- vim.go.grepprg = "rg --vimgrep"
+  -- vim.go.grepformat = "%f:%l:%c:%m"
+  vim.go.grepprg = "grep --binary-files=without-match --exclude-dir=target/ --exclude-dir=.git/ -rni"
+  -- vim.go.grepformat = "%f:%l:%c:%m"
 
   -- The shusia, maia and espresso variants exist for the sonokai colorscheme
   -- FIXME how to change the colorscheme variant?

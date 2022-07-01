@@ -42,10 +42,6 @@ nnoremap <CR> :noh<CR><CR>
 " This will copy the visual selection to the clipboard on Ctrl-C.
 map <C-c> "+y
 
-" the grep related configuration is inspired by
-" https://gist.github.com/romainl/56f0c28ef953ffc157f36cc495947ab3
-set grepprg=rg\ --vimgrep
-set grepformat=%f:%l:%c:%m
 augroup quickfix
     autocmd!
     autocmd QuickFixCmdPost [^l]* cwindow
