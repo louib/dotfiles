@@ -20,12 +20,6 @@ local function configure_default_spacing()
   vim.o.tabstop = 2
   vim.o.shiftwidth = 2
   vim.o.expandtab = true
-
-  if vim.bo.filetype == "sh" then
-    vim.o.tabstop = 4
-    vim.o.shiftwidth = 4
-    vim.o.expandtab = true
-  end
 end
 
 
