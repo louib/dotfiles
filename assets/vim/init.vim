@@ -19,6 +19,8 @@ autocmd FileType sh :set tabstop=4
 autocmd FileType sh :set shiftwidth=4
 autocmd FileType cpp :set tabstop=4
 autocmd FileType cpp :set shiftwidth=4
+autocmd FileType python :set tabstop=4
+autocmd FileType python :set shiftwidth=4
 
 lua << EOF
   require('init').configure()

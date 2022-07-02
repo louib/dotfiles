@@ -11,7 +11,6 @@ else
     mkdir ~/.config/nvim
     mkdir ~/.config/nvim/autoload
     mkdir ~/.config/nvim/bundle
-    mkdir ~/.config/nvim/ftplugin
 
     # Creating the config directories.
     # The list of supported directories can be found here https://github.com/nanotee/nvim-lua-guide#runtime-files
@@ -24,6 +23,7 @@ else
     # TODO migrate to packer https://github.com/wbthomason/packer.nvim.git for installing and
     # managing the nvim packages.
 
+    # TODO check out https://github.com/akinsho/bufferline.nvim
     # TODO check out https://github.com/ethanholz/nvim-lastplace to replace the snippet I had to return to the last edited line.
     # TODO check out https://github.com/kyazdani42/nvim-web-devicons.git
     # TODO check out https://github.com/L3MON4D3/LuaSnip
@@ -50,10 +50,6 @@ else
     # git clone --recursive https://github.com/python-mode/python-mode.git ~/.local/share/nvim/site/pack/languages/start/python-mode
     # git clone --recursive https://github.com/hashivim/vim-terraform.git ~/.local/share/nvim/site/pack/languages/start/vim-terraform
 
-    # Copying language files.
-    cp "$SCRIPT_DIR/../assets/vim/javascript.vim" ~/.config/nvim/ftplugin/
-    cp "$SCRIPT_DIR/../assets/vim/typescript.vim" ~/.config/nvim/ftplugin/
-    cp "$SCRIPT_DIR/../assets/vim/python.vim" ~/.config/nvim/ftplugin/
     echo "✔️ Configured NeoVim"
 fi
 
