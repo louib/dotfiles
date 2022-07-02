@@ -20,6 +20,12 @@ local function configure_default_spacing()
   vim.o.tabstop = 2
   vim.o.shiftwidth = 2
   vim.o.expandtab = true
+
+  if vim.bo.filetype == "sh" then
+    vim.o.tabstop = 4
+    vim.o.shiftwidth = 4
+    vim.o.expandtab = true
+  end
 end
 
 
@@ -290,6 +296,13 @@ end
 
 local function configure()
   vim.api.nvim_command('syntax on')
+
+  -- Enable filetype detection
+  vim.cmd [[
+    filetype plugin on
+    filetype plugin indent on
+  ]]
+
   -- Calling packloadall is not necessary, because it will be called after
   -- running the init.lua anyway. Leaving here in case we want to load the plugins
   -- earlier in the future.
@@ -335,6 +348,11 @@ local function configure()
   vim.wo.number = true
   vim.wo.relativenumber = true
   vim.wo.cursorline = true
+
+  -- TODO not sure that this makes sense just yet.
+  vim.wo.colorcolumn = "100"
+
+  -- TODO configure vim.o.wildignore ??
 
   -- the grep related configuration is inspired by
   -- https://gist.github.com/romainl/56f0c28ef953ffc157f36cc495947ab3

@@ -1,7 +1,3 @@
-" Enable filetypes
-filetype plugin on
-filetype plugin indent on
-
 " Using the 'q' buffer as the quick buffer,
 " with easy re-apply!
 " Start recording that buffer with `qq`. Stop recording with `q`. Apply with
