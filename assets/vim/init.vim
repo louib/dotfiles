@@ -2,8 +2,6 @@
 filetype plugin on
 filetype plugin indent on
 
-set omnifunc=syntaxcomplete#Complete
-
 " This beauty remembers where you were the last time you edited the file, and returns to the same position.
 " I dont remember where I took this one from :(
 au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif

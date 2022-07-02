@@ -72,6 +72,8 @@ end
 
 
 local function configure_auto_completion()
+  vim.go.omnifunc = "syntaxcomplete#Complete"
+
   -- Setup nvim-cmp.
   local cmp = require('cmp')
 
@@ -266,7 +268,10 @@ local function configure_key_bindings()
 
   -- This unsets the "last search pattern" register by hitting return
   -- Credits to https://stackoverflow.com/a/662914
-  vim.api.nvim_set_keymap("n", "<CR>", ":noh<CR><CR>", { silent = true, noremap = true })
+  vim.api.nvim_set_keymap("n", "<CR>", ":noh<CR><CR>", { silent = false, noremap = true })
+
+  -- FIXME can't make this one work :(
+  -- vim.api.nvim_set_keymap("n", "<C-c>", "\"+y", { silent = false, noremap = false })
 end
 
 local function configure()
@@ -323,7 +328,6 @@ local function configure()
   -- vim.go.grepprg = "rg --vimgrep"
   -- vim.go.grepformat = "%f:%l:%c:%m"
   vim.go.grepprg = "grep --binary-files=without-match --exclude-dir=target/ --exclude-dir=.git/ -rni"
-  -- vim.go.grepformat = "%f:%l:%c:%m"
 
   -- The shusia, maia and espresso variants exist for the sonokai colorscheme
   -- FIXME how to change the colorscheme variant?
