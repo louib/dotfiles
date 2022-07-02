@@ -24,6 +24,7 @@ else
     # TODO migrate to packer https://github.com/wbthomason/packer.nvim.git for installing and
     # managing the nvim packages.
 
+    # TODO check out https://github.com/ethanholz/nvim-lastplace to replace the snippet I had to return to the last edited line.
     # TODO check out https://github.com/kyazdani42/nvim-web-devicons.git
     # TODO check out https://github.com/L3MON4D3/LuaSnip
     # TODO check out https://github.com/lewis6991/gitsigns.nvim.git
