@@ -52,7 +52,6 @@ else
 
     # Copying language files.
     cp "$SCRIPT_DIR/../assets/vim/javascript.vim" ~/.config/nvim/ftplugin/
-    cp "$SCRIPT_DIR/../assets/vim/sh.vim" ~/.config/nvim/ftplugin/
     cp "$SCRIPT_DIR/../assets/vim/typescript.vim" ~/.config/nvim/ftplugin/
     cp "$SCRIPT_DIR/../assets/vim/cpp.vim" ~/.config/nvim/ftplugin/
     cp "$SCRIPT_DIR/../assets/vim/python.vim" ~/.config/nvim/ftplugin/
