@@ -8,13 +8,6 @@ set omnifunc=syntaxcomplete#Complete
 " I dont remember where I took this one from :(
 au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
 
-"Window navigation and creation
-nnoremap <Space>s <C-w>s
-nnoremap <Space>v <C-w>v
-nnoremap <Space>c <C-w>c
-nnoremap <Space>j <C-w>j
-nnoremap <Space>k <C-w>k
-
 "Buffer navigation and management
 nnoremap <Space>w :bdelete<Enter>
 nnoremap <Space>h :bprevious<Enter>

@@ -256,6 +256,15 @@ local function configure_lsp()
   -- https://github.com/redhat-developer/yaml-language-server
 end
 
+local function configure_key_bindings()
+  -- Window navigation and creation
+  vim.api.nvim_set_keymap("n", "<Space>s", "<C-w>s", { silent = true, noremap = true })
+  vim.api.nvim_set_keymap("n", "<Space>v", "<C-w>v", { silent = true, noremap = true })
+  vim.api.nvim_set_keymap("n", "<Space>c", "<C-w>c", { silent = true, noremap = true })
+  vim.api.nvim_set_keymap("n", "<Space>j", "<C-w>j", { silent = true, noremap = true })
+  vim.api.nvim_set_keymap("n", "<Space>k", "<C-w>k", { silent = true, noremap = true })
+end
+
 local function configure()
   vim.api.nvim_command('syntax on')
   -- Calling packloadall is not necessary, because it will be called after
@@ -267,6 +276,7 @@ local function configure()
   -- bo = buffer options
   -- o = global options
 
+  configure_key_bindings()
   configure_auto_format()
   configure_default_spacing()
   configure_auto_completion()
