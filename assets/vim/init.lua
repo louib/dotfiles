@@ -266,6 +266,20 @@ local function configure_key_bindings()
   vim.api.nvim_set_keymap("n", "<Space>j", "<C-w>j", { silent = true, noremap = true })
   vim.api.nvim_set_keymap("n", "<Space>k", "<C-w>k", { silent = true, noremap = true })
 
+  -- Buffer navigation and management
+  vim.api.nvim_set_keymap("n", "<Space>w", ":bdelete<Enter>", { silent = false, noremap = true })
+  vim.api.nvim_set_keymap("n", "<Space>h", ":bprevious<Enter>", { silent = false, noremap = true })
+  vim.api.nvim_set_keymap("n", "<Space>l", ":bnext<Enter>", { silent = false, noremap = true })
+  vim.api.nvim_set_keymap("n", "<Space>1", ":bfirst<Enter>", { silent = false, noremap = true })
+  vim.api.nvim_set_keymap("n", "<Space>2", ":e #2<Enter>", { silent = false, noremap = true })
+  vim.api.nvim_set_keymap("n", "<Space>3", ":e #3<Enter>", { silent = false, noremap = true })
+  vim.api.nvim_set_keymap("n", "<Space>4", ":e #4<Enter>", { silent = false, noremap = true })
+  vim.api.nvim_set_keymap("n", "<Space>5", ":e #5<Enter>", { silent = false, noremap = true })
+  vim.api.nvim_set_keymap("n", "<Space>6", ":e #6<Enter>", { silent = false, noremap = true })
+  vim.api.nvim_set_keymap("n", "<Space>7", ":e #7<Enter>", { silent = false, noremap = true })
+  vim.api.nvim_set_keymap("n", "<Space>8", ":e #8<Enter>", { silent = false, noremap = true })
+  vim.api.nvim_set_keymap("n", "<Space>9", ":e #9<Enter>", { silent = false, noremap = true })
+
   -- This unsets the "last search pattern" register by hitting return
   -- Credits to https://stackoverflow.com/a/662914
   vim.api.nvim_set_keymap("n", "<CR>", ":noh<CR><CR>", { silent = false, noremap = true })
