@@ -1,9 +1,3 @@
-" Using the 'q' buffer as the quick buffer,
-" with easy re-apply!
-" Start recording that buffer with `qq`. Stop recording with `q`. Apply with
-" space+q !!!
-nnoremap <Space>q @q
-
 augroup quickfix
     autocmd!
     autocmd QuickFixCmdPost [^l]* cwindow
@@ -15,6 +9,7 @@ augroup END
 " the spell checking shortcuts.
 autocmd FileType tex :setlocal spell
 autocmd FileType markdown :setlocal spell
+
 autocmd FileType sh :set tabstop=4
 autocmd FileType sh :set shiftwidth=4
 autocmd FileType cpp :set tabstop=4

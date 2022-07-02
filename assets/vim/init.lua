@@ -287,33 +287,35 @@ local function configure_key_bindings()
   -- Credits to https://stackoverflow.com/a/662914
   vim.api.nvim_set_keymap("n", "<CR>", ":noh<CR><CR>", { silent = false, noremap = true })
 
-  -- FIXME can't make this one work :(
   vim.api.nvim_set_keymap("", "<C-c>", "\"+y", { silent = false, noremap = false })
+
+  -- Using the 'q' buffer as the quick buffer, with easy re-apply!
+  -- Start recording that buffer with `qq`.
+  -- Stop recording with `q`.
+  -- Apply with space+q !!!
+  vim.api.nvim_set_keymap("n", "<Space>q", "@q", { silent = false, noremap = true })
 end
 
-local function configure()
-  vim.api.nvim_command('syntax on')
+local function configure_commenting()
+  -- See https://github.com/numToStr/Comment.nvim#configuration-optional
+  require('Comment').setup({
+    padding = true,
 
-  -- Enable filetype detection
-  vim.cmd [[
-    filetype plugin on
-    filetype plugin indent on
-  ]]
+    ---LHS of operator-pending mappings in NORMAL + VISUAL mode
+    ---@type table
+    opleader = {
+      ---Line-comment keymap
+      line = 'gc',
+      ---Block-comment keymap
+      block = 'gb',
+    },
+  })
+end
 
-  -- Calling packloadall is not necessary, because it will be called after
-  -- running the init.lua anyway. Leaving here in case we want to load the plugins
-  -- earlier in the future.
-  -- vim.api.nvim_command('packloadall')
-
+local function configure_global_options()
   -- wo = window options
   -- bo = buffer options
   -- o = global options
-
-  configure_key_bindings()
-  configure_auto_format()
-  configure_default_spacing()
-  configure_auto_completion()
-
   vim.o.encoding = 'utf8'
 
   -- This is for intelligent merging of lines. Will handle comments for example.
@@ -364,21 +366,31 @@ local function configure()
   -- local colorscheme = "everforest"
 
   pcall(vim.cmd, "colorscheme " .. colorscheme)
+end
 
-  -- See https://github.com/numToStr/Comment.nvim#configuration-optional
-  require('Comment').setup({
-    padding = true,
+local function configure_nvim()
+  vim.api.nvim_command('syntax on')
 
-    ---LHS of operator-pending mappings in NORMAL + VISUAL mode
-    ---@type table
-    opleader = {
-      ---Line-comment keymap
-      line = 'gc',
-      ---Block-comment keymap
-      block = 'gb',
-    },
-  })
+  -- Enable filetype detection
+  vim.cmd [[
+    filetype plugin on
+    filetype plugin indent on
+  ]]
 
+  -- Calling packloadall is not necessary, because it will be called after
+  -- running the init.lua anyway. Leaving here in case we want to load the plugins
+  -- earlier in the future.
+  -- vim.api.nvim_command('packloadall')
+end
+
+local function configure()
+  configure_nvim()
+  configure_global_options()
+  configure_key_bindings()
+  configure_auto_format()
+  configure_default_spacing()
+  configure_auto_completion()
+  configure_commenting()
   configure_status_bar()
   configure_lsp()
 end
