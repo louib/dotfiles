@@ -265,6 +265,9 @@ local function configure_lsp()
 end
 
 local function configure_key_bindings()
+  -- See all the available modes here https://github.com/nanotee/nvim-lua-guide#defining-mappings
+  -- See all the available options here https://neovim.io/doc/user/map.html#:map-arguments
+
   -- Window navigation and creation
   vim.api.nvim_set_keymap("n", "<Space>s", "<C-w>s", { silent = true, noremap = true })
   vim.api.nvim_set_keymap("n", "<Space>v", "<C-w>v", { silent = true, noremap = true })
@@ -291,7 +294,7 @@ local function configure_key_bindings()
   vim.api.nvim_set_keymap("n", "<CR>", ":noh<CR><CR>", { silent = false, noremap = true })
 
   -- FIXME can't make this one work :(
-  -- vim.api.nvim_set_keymap("n", "<C-c>", "\"+y", { silent = false, noremap = false })
+  vim.api.nvim_set_keymap("", "<C-c>", "\"+y", { silent = false, noremap = false })
 end
 
 local function configure()

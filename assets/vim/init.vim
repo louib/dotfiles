@@ -4,9 +4,6 @@
 " space+q !!!
 nnoremap <Space>q @q
 
-" This will copy the visual selection to the clipboard on Ctrl-C.
-map <C-c> "+y
-
 augroup quickfix
     autocmd!
     autocmd QuickFixCmdPost [^l]* cwindow
