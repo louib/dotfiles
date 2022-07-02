@@ -263,6 +263,10 @@ local function configure_key_bindings()
   vim.api.nvim_set_keymap("n", "<Space>c", "<C-w>c", { silent = true, noremap = true })
   vim.api.nvim_set_keymap("n", "<Space>j", "<C-w>j", { silent = true, noremap = true })
   vim.api.nvim_set_keymap("n", "<Space>k", "<C-w>k", { silent = true, noremap = true })
+
+  -- This unsets the "last search pattern" register by hitting return
+  -- Credits to https://stackoverflow.com/a/662914
+  vim.api.nvim_set_keymap("n", "<CR>", ":noh<CR><CR>", { silent = true, noremap = true })
 end
 
 local function configure()

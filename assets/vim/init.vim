@@ -28,10 +28,6 @@ nnoremap <Space>9 :e #9<Enter>
 " space+q !!!
 nnoremap <Space>q @q
 
-" This unsets the "last search pattern" register by hitting return
-" Credits to https://stackoverflow.com/a/662914
-nnoremap <CR> :noh<CR><CR>
-
 " This will copy the visual selection to the clipboard on Ctrl-C.
 map <C-c> "+y
 
