@@ -95,6 +95,10 @@ function gcd () {
     default_branch=$(git remote show origin | grep "HEAD branch" | cut -d ":" -f 2 | xargs)
     git checkout "$default_branch"
 }
+# git commit amend
+function gca () {
+    git commit --amend --no-edit
+}
 function gnb () {
     git checkout -b "$1"
 }
