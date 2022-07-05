@@ -79,12 +79,13 @@ fi
 
 ##### Custom configuration section #####
 set -o vi
-export VISUAL=vi
 
 alias vi="nvim"
 alias vim="nvim"
-
 alias nvim="FLATPAK_ENABLE_SDK_EXT=rust-stable,llvm12 flatpak run --user io.neovim.nvim 2> /dev/null"
+# The VISUAL env var cannot use the alias because the aliases won't be defined when git uses the variable.
+export VISUAL="FLATPAK_ENABLE_SDK_EXT=rust-stable,llvm12 flatpak run --user io.neovim.nvim 2> /dev/null"
+
 alias keepassxc-cli="flatpak run --user org.keepassxc.KeePassXC cli"
 
 # checkout the default git branch.
@@ -241,13 +242,3 @@ function sp () {
 function far () {
     find . -type f -exec sed -i "$1" {} +
 }
-
-# FIXME this is because of a bug in Ubuntu 20.04 where the mapping Caps Lock -> Esc does not work.
-# Remove once I know for sure that the bug was fixed in 22.04
-# function rmap () {
-#     if command -v dconf &> /dev/null; then
-#         dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:swapescape', 'grp:win_space_toggle']"
-#         dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:escape', 'grp:win_space_toggle']"
-#     fi
-# }
-# rmap
