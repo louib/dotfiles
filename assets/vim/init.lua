@@ -381,6 +381,32 @@ local function configure_nvim()
   -- running the init.lua anyway. Leaving here in case we want to load the plugins
   -- earlier in the future.
   -- vim.api.nvim_command('packloadall')
+  --
+
+  vim.cmd [[
+    augroup quickfix
+        autocmd!
+        autocmd QuickFixCmdPost [^l]* cwindow
+        autocmd QuickFixCmdPost l* lwindow
+    augroup END
+  ]]
+
+  -- Running spell checking by default on specific text files.
+  -- See https://vimtricks.com/p/vimtrick-spell-checking-in-vim/ for
+  -- the spell checking shortcuts.
+  vim.cmd [[
+    autocmd FileType tex :setlocal spell
+    autocmd FileType markdown :setlocal spell
+  ]]
+
+  vim.cmd [[
+    autocmd FileType sh :set tabstop=4
+    autocmd FileType sh :set shiftwidth=4
+    autocmd FileType cpp :set tabstop=4
+    autocmd FileType cpp :set shiftwidth=4
+    autocmd FileType python :set tabstop=4
+    autocmd FileType python :set shiftwidth=4
+  ]]
 end
 
 local function configure()
