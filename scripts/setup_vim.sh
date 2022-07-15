@@ -54,21 +54,7 @@ else
     echo "✔️ Configured NeoVim"
 fi
 
-if [[ ! -f "$HOME/.config/nvim/init.vim" ]]; then
-    cp "$SCRIPT_DIR/../assets/vim/init.vim" ~/.config/nvim/
-    echo "✔️ Configured vim init file."
-elif [[ -n $(diff "$SCRIPT_DIR/../assets/vim/init.vim" "$HOME/.config/nvim/init.vim") ]]; then
-    cp "$SCRIPT_DIR/../assets/vim/init.vim" ~/.config/nvim/
-    echo "✔️ Updated vim init file."
-else
-    echo "✔️ vim init file already configured, skipping."
-fi
-
-# We don't place the init.lua file at the root of the config
-# because nvim does not support both an init.vim and an init.lua.
-# We could move it to the root once (if) the init.vim
-# gets completely deprecated.
-INIT_LUA_DESTINATION_DIR="$HOME/.config/nvim/lua"
+INIT_LUA_DESTINATION_DIR="$HOME/.config/nvim"
 INIT_LUA_DESTINATION_PATH="$INIT_LUA_DESTINATION_DIR/init.lua"
 if [[ ! -f "$INIT_LUA_DESTINATION_PATH" ]]; then
     mkdir -p "$INIT_LUA_DESTINATION_DIR"
@@ -81,7 +67,7 @@ else
     echo "✔️ nvim init.lua file already configured, skipping."
 fi
 
-if [[ ! -f "/home/${USER}/.var/app/io.neovim.nvim/config/nvim/init.vim" ]]; then
+if [[ ! -f "/home/${USER}/.var/app/io.neovim.nvim/config/nvim/init.lua" ]]; then
     echo "Linking nvim config to Flatpak sandbox."
 
     # If neovim was installed through flatpak, we need this alias

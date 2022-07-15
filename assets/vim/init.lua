@@ -421,6 +421,4 @@ local function configure()
   configure_lsp()
 end
 
-return {
-  configure = configure
-}
+configure()
