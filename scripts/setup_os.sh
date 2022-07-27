@@ -22,13 +22,8 @@ if ! command -v shellcheck &> /dev/null; then
       git-core \
       dconf-cli \
       dconf-editor \
-      neovim \
       net-tools \
-      python3 \
-      python3-pip \
-      python3-venv \
       pwgen \
-      ripgrep \
       shellcheck \
       thunderbird \
       ttf-bitstream-vera \

@@ -66,14 +66,3 @@ elif [[ -n $(diff "$SCRIPT_DIR/../assets/vim/init.lua" "$INIT_LUA_DESTINATION_PA
 else
     echo "✔️ nvim init.lua file already configured, skipping."
 fi
-
-if [[ ! -f "/home/${USER}/.var/app/io.neovim.nvim/config/nvim/init.lua" ]]; then
-    echo "Linking nvim config to Flatpak sandbox."
-
-    # If neovim was installed through flatpak, we need this alias
-    mkdir -p "/home/${USER}/.var/app/io.neovim.nvim/config"
-    ln -v -s "$HOME/.config/nvim" "/home/${USER}/.var/app/io.neovim.nvim/config"
-    rm -r "/home/${USER}/.var/app/io.neovim.nvim/data"
-    mkdir -p "/home/${USER}/.var/app/io.neovim.nvim/data"
-    ln -v -s "$HOME/.local/share/nvim" "/home/${USER}/.var/app/io.neovim.nvim/data"
-fi

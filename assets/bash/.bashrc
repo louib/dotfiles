@@ -78,9 +78,7 @@ set -o vi
 
 alias vi="nvim"
 alias vim="nvim"
-alias nvim="FLATPAK_ENABLE_SDK_EXT=rust-stable,llvm12 flatpak run --user io.neovim.nvim 2> /dev/null"
-# The VISUAL env var cannot use the alias because the aliases won't be defined when git uses the variable.
-export VISUAL="FLATPAK_ENABLE_SDK_EXT=rust-stable,llvm12 flatpak run --user io.neovim.nvim 2> /dev/null"
+export VISUAL="nvim"
 
 alias keepassxc-cli="flatpak run --user org.keepassxc.KeePassXC cli"
 
