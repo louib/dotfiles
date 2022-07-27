@@ -10,6 +10,27 @@ local function get_project_name()
   return last_dir_name
 end
 
+local function set_filetype_options()
+  local buffer_number = vim.api.nvim_get_current_buf()
+  local filetype = vim.api.nvim_buf_get_option(buffer_number, "filetype")
+
+  if filetype == "sh" then
+    vim.bo.makeprg = "shellcheck -f gcc %"
+    vim.bo.tabstop = 4
+    vim.bo.shiftwidth = 4
+  end
+
+  if filetype == "cpp" then
+    vim.bo.tabstop = 4
+    vim.bo.shiftwidth = 4
+  end
+
+  if filetype == "python" then
+    vim.bo.tabstop = 4
+    vim.bo.shiftwidth = 4
+  end
+end
+
 local function escape_termcode(raw_termcode)
   -- Adjust boolean arguments as needed
   return vim.api.nvim_replace_termcodes(raw_termcode, true, true, true)
@@ -24,6 +45,15 @@ end
 
 
 local function configure_auto_format()
+  if not pcall(require, "formatter") then
+    print("formatter is not installed.")
+    return
+  end
+  if not pcall(require, "formatter.util") then
+    print("formatter.util is not installed.")
+    return
+  end
+
   -- Utilities for creating configurations
   local formatter_util = require "formatter.util"
 
@@ -73,6 +103,11 @@ end
 
 local function configure_auto_completion()
   vim.go.omnifunc = "syntaxcomplete#Complete"
+
+  if not pcall(require, "cmp") then
+    print("cmp is not installed.")
+    return
+  end
 
   -- Setup nvim-cmp.
   local cmp = require('cmp')
@@ -188,6 +223,11 @@ local function configure_status_bar()
 end
 
 local function configure_lsp()
+  if not pcall(require, "lspconfig") then
+    print("lspconfig is not installed.")
+    return
+  end
+
   local custom_lsp_attach = function(client, buffer_number)
     -- Use LSP as the handler for omnifunc.
     --    See `:help omnifunc` and `:help ins-completion` for more information.
@@ -297,6 +337,11 @@ local function configure_key_bindings()
 end
 
 local function configure_commenting()
+  if not pcall(require, "Comment") then
+    print("Comment is not installed.")
+    return
+  end
+
   -- See https://github.com/numToStr/Comment.nvim#configuration-optional
   require('Comment').setup({
     padding = true,
@@ -383,6 +428,13 @@ local function configure_nvim()
   -- vim.api.nvim_command('packloadall')
   --
 
+  vim.api.nvim_create_autocmd("FileType", {
+    pattern = "*",
+    callback = function()
+      vim.schedule(set_filetype_options)
+    end,
+  })
+
   vim.cmd [[
     augroup quickfix
         autocmd!
@@ -397,15 +449,6 @@ local function configure_nvim()
   vim.cmd [[
     autocmd FileType tex :setlocal spell
     autocmd FileType markdown :setlocal spell
-  ]]
-
-  vim.cmd [[
-    autocmd FileType sh :set tabstop=4
-    autocmd FileType sh :set shiftwidth=4
-    autocmd FileType cpp :set tabstop=4
-    autocmd FileType cpp :set shiftwidth=4
-    autocmd FileType python :set tabstop=4
-    autocmd FileType python :set shiftwidth=4
   ]]
 end
 
