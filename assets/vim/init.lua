@@ -14,20 +14,41 @@ local function set_filetype_options()
   local buffer_number = vim.api.nvim_get_current_buf()
   local filetype = vim.api.nvim_buf_get_option(buffer_number, "filetype")
 
+  -- Default if we cannot detect the filetype.
+  vim.wo.spell = false
+  vim.bo.tabstop = 2
+  vim.bo.shiftwidth = 2
+  vim.bo.expandtab = true
+
   if filetype == "sh" then
     vim.bo.makeprg = "shellcheck -f gcc %"
     vim.bo.tabstop = 4
     vim.bo.shiftwidth = 4
+    return
   end
 
   if filetype == "cpp" then
     vim.bo.tabstop = 4
     vim.bo.shiftwidth = 4
+    return
   end
 
   if filetype == "python" then
     vim.bo.tabstop = 4
     vim.bo.shiftwidth = 4
+    return
+  end
+
+  -- Running spell checking by default on specific text files.
+  -- See https://vimtricks.com/p/vimtrick-spell-checking-in-vim/ for
+  -- the spell checking shortcuts.
+  if filetype == "tex" then
+    vim.wo.spell = true
+    return
+  end
+  if filetype == "markdown" then
+    vim.wo.spell = true
+    return
   end
 end
 
@@ -35,14 +56,6 @@ local function escape_termcode(raw_termcode)
   -- Adjust boolean arguments as needed
   return vim.api.nvim_replace_termcodes(raw_termcode, true, true, true)
 end
-
-local function configure_default_spacing()
-  -- Default if we did not customize the filetype
-  vim.o.tabstop = 2
-  vim.o.shiftwidth = 2
-  vim.o.expandtab = true
-end
-
 
 local function configure_auto_format()
   if not pcall(require, "formatter") then
@@ -442,14 +455,6 @@ local function configure_nvim()
         autocmd QuickFixCmdPost l* lwindow
     augroup END
   ]]
-
-  -- Running spell checking by default on specific text files.
-  -- See https://vimtricks.com/p/vimtrick-spell-checking-in-vim/ for
-  -- the spell checking shortcuts.
-  vim.cmd [[
-    autocmd FileType tex :setlocal spell
-    autocmd FileType markdown :setlocal spell
-  ]]
 end
 
 local function configure()
@@ -457,7 +462,6 @@ local function configure()
   configure_global_options()
   configure_key_bindings()
   configure_auto_format()
-  configure_default_spacing()
   configure_auto_completion()
   configure_commenting()
   configure_status_bar()
