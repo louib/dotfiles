@@ -62,10 +62,6 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -143,6 +139,8 @@ function mei () {
     ninja -C _build install
 }
 
+alias nix-search="nix-env -qa"
+
 # Setting the current directory as the tab's title.
 # See https://wiki.archlinux.org/title/Bash/Prompt_customization#Prompts
 # for additional Bash customizations.
@@ -160,9 +158,11 @@ export GIT_PS1_SHOWDIRTYSTATE=1
 
 get_prompt () {
     PS1=""
-    FENV_PROMPT=""
+    SUBSHELL=""
     if [[ -n "$FENV_IS_IN_SANDBOX" ]]; then
-        FENV_PROMPT="[fenv]"
+        SUBSHELL="[fenv]"
+    elif [[ -n "$IN_NIX_SHELL" ]]; then
+        SUBSHELL="[nix]"
     fi
     # This adds the time as [22:22:22]
     PS1="${PS1}\[\e[m\]\[\e[35m\][\[\e[m\]\t\[\e[35m\]]"
@@ -171,7 +171,7 @@ get_prompt () {
     # This adds the git prompt as [branch_name *]
     PS1="${PS1}\[\e[m\]\[\e[95m\]$(__git_ps1 '[%s]')"
     # This adds the fenv sandbox prompt
-    PS1="${PS1}\[\e[m\]\[\e[32m\]$FENV_PROMPT"
+    PS1="${PS1}\[\e[m\]\[\e[32m\]$SUBSHELL"
     # This adds the ending $ char.
     PS1="${PS1}\[\e[m\]\[\e[91m\]\\$\[\e[m\] "
 
@@ -242,3 +242,7 @@ function sp () {
 function far () {
     find . -type f -exec sed -i "$1" {} +
 }
+
+if [[ -f "$HOME/.bash_profile" ]]; then
+    . "$HOME/.bash_profile"
+fi
