@@ -42,6 +42,7 @@ else
 
     git clone --recursive https://github.com/leafgarland/typescript-vim.git ~/.local/share/nvim/site/pack/languages/start/typescript
     git clone --recursive https://github.com/rust-lang/rust.vim.git ~/.local/share/nvim/site/pack/languages/start/rust.vim
+    git clone --recursive https://github.com/LnL7/vim-nix.git ~/.local/share/nvim/site/pack/languages/start/vim-nix
 
     git clone --recursive https://github.com/sainnhe/everforest.git ~/.local/share/nvim/site/pack/colorschemes/start/everforest
     git clone --recursive https://github.com/sainnhe/sonokai.git ~/.local/share/nvim/site/pack/colorschemes/start/sonokai
