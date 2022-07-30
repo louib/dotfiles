@@ -71,7 +71,14 @@ local function configure_auto_format()
   local formatter_util = require "formatter.util"
 
   -- Provides the Format and FormatWrite commands
+  -- See https://github.com/mhartington/formatter.nvim#configuration-specification
+  -- for all the configuration options.
   require('formatter').setup {
+    -- Enable or disable logging
+    logging = true,
+    -- Set the log level
+    log_level = vim.log.levels.WARN,
+
     -- All formatter configurations are opt-in
     filetype = {
       cpp = {
@@ -111,6 +118,14 @@ local function configure_auto_format()
       }
     }
   }
+
+  -- this will format and write the buffer after saving.
+  vim.cmd[[
+    augroup FormatAutogroup
+      autocmd!
+      autocmd BufWritePost * FormatWrite
+    augroup END
+  ]]
 end
 
 
