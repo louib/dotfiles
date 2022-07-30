@@ -20,6 +20,9 @@ local function set_filetype_options()
   vim.bo.shiftwidth = 2
   vim.bo.expandtab = true
 
+  -- TODO not sure that this makes sense just yet.
+  vim.wo.colorcolumn = "100"
+
   if filetype == "sh" then
     vim.bo.makeprg = "shellcheck -f gcc %"
     vim.bo.tabstop = 4
@@ -36,6 +39,11 @@ local function set_filetype_options()
   if filetype == "python" then
     vim.bo.tabstop = 4
     vim.bo.shiftwidth = 4
+    return
+  end
+
+  if filetype == "gitcommit" then
+    vim.wo.colorcolumn = "50"
     return
   end
 
@@ -420,9 +428,6 @@ local function configure_global_options()
   vim.wo.number = true
   vim.wo.relativenumber = true
   vim.wo.cursorline = true
-
-  -- TODO not sure that this makes sense just yet.
-  vim.wo.colorcolumn = "100"
 
   -- TODO configure vim.o.wildignore ??
 
