@@ -216,11 +216,13 @@ local function configure_status_bar()
     return
   end
 
+  -- https://github.com/nvim-lualine/lualine.nvim#available-components
+  -- for the available components.
   require('lualine').setup {
     options = {
       -- FIXME what do I need to enable the icons?
       icons_enabled = false,
-      theme = 'auto',
+      theme = 'dracula',
       component_separators = { left = '', right = ''},
       section_separators = { left = '', right = ''},
       disabled_filetypes = {},

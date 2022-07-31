@@ -24,11 +24,9 @@ else
     # managing the nvim packages.
 
     # TODO check out https://github.com/akinsho/toggleterm.nvim
-    # TODO check out https://github.com/akinsho/bufferline.nvim
     # TODO check out https://github.com/ethanholz/nvim-lastplace to replace the snippet I had to return to the last edited line.
     # TODO check out https://github.com/kyazdani42/nvim-web-devicons.git
     # TODO check out https://github.com/L3MON4D3/LuaSnip
-    # TODO check out https://github.com/lewis6991/gitsigns.nvim.git
     git clone --recursive https://github.com/neovim/nvim-lspconfig.git ~/.local/share/nvim/site/pack/others/start/nvim-lspconfig
     git clone --recursive https://github.com/hrsh7th/nvim-cmp.git ~/.local/share/nvim/site/pack/others/start/nvim-cmp
     git clone --recursive https://github.com/hrsh7th/cmp-nvim-lsp.git ~/.local/share/nvim/site/pack/others/start/cmp-nvim-lsp
@@ -37,6 +35,8 @@ else
     # git clone --recursive https://github.com/hrsh7th/cmp-cmdline.git ~/.local/share/nvim/site/pack/others/start/cmp-cmdline
     git clone --recursive https://github.com/tpope/vim-surround.git ~/.local/share/nvim/site/pack/others/start/vim-surround
     git clone --recursive https://github.com/nvim-lualine/lualine.nvim.git ~/.local/share/nvim/site/pack/others/start/lualine.nvim
+    # TODO check out https://github.com/kdheepak/tabline.nvim.git or https://github.com/akinsho/bufferline.nvim
+
     git clone --recursive https://github.com/numToStr/Comment.nvim.git ~/.local/share/nvim/site/pack/others/start/Comment.nvim
     git clone --recursive https://github.com/mhartington/formatter.nvim.git ~/.local/share/nvim/site/pack/others/start/formatter.nvim
 
