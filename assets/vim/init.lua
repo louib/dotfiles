@@ -105,6 +105,18 @@ local function configure_auto_format()
           }
         end,
       },
+      nix = {
+        function()
+          return {
+            exe = 'alejandra',
+            stdin = true,
+            args = {
+              '-q',
+              '-',
+            },
+          }
+        end,
+      },
       lua = {
         -- Pick from defaults:
         require('formatter.filetypes.lua').stylua,
