@@ -1,3 +1,5 @@
+local LSP_ENABLED_VAR_NAME = 'LSP_ENABLED'
+
 local function get_project_name()
   local current_dir = vim.fn.getcwd()
 
@@ -118,9 +120,6 @@ local function configure_auto_format()
         end,
       },
       lua = {
-        -- Pick from defaults:
-        require('formatter.filetypes.lua').stylua,
-
         -- ,or define your own:
         function()
           return {
@@ -255,7 +254,19 @@ local function configure_status_bar()
           padding = 2,
         },
       },
-      lualine_x = { 'encoding', 'fileformat', 'filetype' },
+      lualine_x = {
+        'encoding',
+        'fileformat',
+        'filetype',
+        function()
+          local success, response = pcall(vim.api.nvim_buf_get_var, 0, LSP_ENABLED_VAR_NAME)
+          if not success or not response then
+            return '[LSP disabled]'
+          end
+
+          return '[LSP enabled]'
+        end,
+      },
       lualine_y = { 'progress' },
       lualine_z = { 'location' },
     },
@@ -296,6 +307,8 @@ local function configure_lsp()
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, mapping_options)
 
     vim.keymap.set('n', '<C-s>', vim.lsp.buf.signature_help, mapping_options)
+
+    vim.api.nvim_buf_set_var(buffer_number, LSP_ENABLED_VAR_NAME, true)
   end
 
   local lsp_flags = {
@@ -497,8 +510,8 @@ local function configure()
   configure_auto_format()
   configure_auto_completion()
   configure_commenting()
-  configure_status_bar()
   configure_lsp()
+  configure_status_bar()
 end
 
 configure()
