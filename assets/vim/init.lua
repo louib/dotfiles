@@ -85,7 +85,7 @@ local function configure_auto_format()
   -- for all the configuration options.
   require('formatter').setup({
     -- Enable or disable logging
-    logging = true,
+    logging = false,
     -- Set the log level
     log_level = vim.log.levels.WARN,
 
@@ -120,7 +120,6 @@ local function configure_auto_format()
         end,
       },
       lua = {
-        -- ,or define your own:
         function()
           return {
             exe = 'stylua',
@@ -177,7 +176,9 @@ local function configure_auto_completion()
       ['<C-f>'] = cmp.mapping.scroll_docs(4),
       ['<C-Space>'] = cmp.mapping.complete(),
       ['<C-e>'] = cmp.mapping.abort(),
-      -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+      -- Require Tab to accept a suggestion without conirmation, but Enter to
+      -- accept if explicitely selected.
+      ['<Tab>'] = cmp.mapping.confirm({ select = true }),
       ['<CR>'] = cmp.mapping.confirm({ select = false }),
     }),
     sources = cmp.config.sources({
