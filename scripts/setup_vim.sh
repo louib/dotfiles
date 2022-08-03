@@ -4,6 +4,13 @@ set -e
 SCRIPT_DIR=$(realpath "$0")
 SCRIPT_DIR=$(dirname "$SCRIPT_DIR")
 
+# nix-env -i rust-analyzer
+# nix-env -i rustfmt
+# nix-env -i stylua
+# nix-env -i alejandra
+# nix-env -i shellcheck
+# nix-env -i clang-format
+
 if [ -d "$HOME/.config/nvim" ]; then
     echo "✔️ NeoVim is already configured."
 else
