@@ -24,12 +24,11 @@ else
     mkdir -p ~/.local/share/nvim/site/pack/languages/start
     mkdir -p ~/.local/share/nvim/site/pack/colorschemes/start
     mkdir -p ~/.local/share/nvim/site/pack/others/start
+    # TODO install plugins with Nix.
+    # See https://nixos.wiki/wiki/Overlays#Overriding_a_package_inside_an_attribute_set
 
     # TODO have a look at telescope, replaces ctrl-p and fzf
     #
-    # TODO migrate to packer https://github.com/wbthomason/packer.nvim.git for installing and
-    # managing the nvim packages.
-
     # TODO check out https://github.com/akinsho/toggleterm.nvim
     # TODO check out https://github.com/ethanholz/nvim-lastplace to replace the snippet I had to return to the last edited line.
     # TODO check out https://github.com/kyazdani42/nvim-web-devicons.git
