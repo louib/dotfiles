@@ -34,6 +34,8 @@ local function set_filetype_options()
 
   if filetype == 'rust' then
     vim.bo.makeprg = 'cargo build -q --message-format short'
+    vim.bo.tabstop = 4
+    vim.bo.shiftwidth = 4
     return
   end
 
