@@ -33,6 +33,7 @@ else
     # TODO check out https://github.com/ethanholz/nvim-lastplace to replace the snippet I had to return to the last edited line.
     # TODO check out https://github.com/kyazdani42/nvim-web-devicons.git
     # TODO check out https://github.com/L3MON4D3/LuaSnip
+    # TODO check out https://github.com/zakharykaplan/nvim-retrail
     git clone --recursive https://github.com/neovim/nvim-lspconfig.git ~/.local/share/nvim/site/pack/others/start/nvim-lspconfig
     git clone --recursive https://github.com/hrsh7th/nvim-cmp.git ~/.local/share/nvim/site/pack/others/start/nvim-cmp
     git clone --recursive https://github.com/hrsh7th/cmp-nvim-lsp.git ~/.local/share/nvim/site/pack/others/start/cmp-nvim-lsp

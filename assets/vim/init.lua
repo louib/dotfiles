@@ -56,6 +56,16 @@ local function set_filetype_options()
     return
   end
 
+  if filetype == 'xml' then
+    -- vim.g['xml_syntax_folding'] = 1
+    -- TODO syntax folding would be better, but for that I would need an XML syntax
+    -- file.
+    vim.wo.foldmethod = 'indent'
+    vim.wo.foldnestmax = 1
+    vim.wo.foldminlines = 0
+    return
+  end
+
   -- Running spell checking by default on specific text files.
   -- See https://vimtricks.com/p/vimtrick-spell-checking-in-vim/ for
   -- the spell checking shortcuts.
@@ -477,9 +487,6 @@ local function configure_global_options()
   -- Always show the status line
   vim.o.laststatus = 2
 
-  -- Do not fold any of the block dy default.
-  vim.o.foldlevel = 99
-
   vim.o.background = 'dark'
   vim.o.termguicolors = true
 
@@ -492,6 +499,12 @@ local function configure_global_options()
   vim.wo.number = true
   vim.wo.relativenumber = true
   vim.wo.cursorline = true
+
+  -- Not sure why but foldlevelstart is a global option, and the
+  -- option folding options are at the window level...
+  vim.o.foldlevelstart = 999
+  -- Do not fold any of the block dy default.
+  vim.o.foldlevel = 99
 
   -- TODO configure vim.o.wildignore ??
 
