@@ -116,7 +116,7 @@ function gp () {
 }
 function gpf () {
     current_branch=$(git rev-parse --abbrev-ref HEAD)
-    git push -f origin "$current_branch"
+    git push --force-with-lease origin "$current_branch"
 }
 
 # Cargo stuff
