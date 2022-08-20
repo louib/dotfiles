@@ -286,9 +286,47 @@ local function configure_status_bar()
       lualine_y = {},
       lualine_z = {},
     },
-    tabline = {},
+    tabline = {
+      lualine_a = {
+        {
+          'buffers',
+          show_modified_status = true,
+
+          -- 0: Shows buffer name
+          -- 1: Shows buffer index
+          -- 2: Shows buffer name + buffer index
+          -- 3: Shows buffer number
+          -- 4: Shows buffer name + buffer number
+          mode = 2,
+
+          symbols = {
+            -- Text to show when the buffer is modified
+            modified = ' ●',
+            -- Text to show to identify the alternate file
+            alternate_file = '',
+            -- Text to show when the buffer is a directory
+            directory = '📁',
+          },
+        },
+      },
+      lualine_b = {},
+      lualine_c = {},
+      lualine_x = {},
+      lualine_y = {},
+      lualine_z = {},
+    },
     extensions = {},
   })
+
+  vim.api.nvim_set_keymap('n', '<Space>1', ':LualineBuffersJump 1<Enter>', { silent = false, noremap = true })
+  vim.api.nvim_set_keymap('n', '<Space>2', ':LualineBuffersJump 2<Enter>', { silent = false, noremap = true })
+  vim.api.nvim_set_keymap('n', '<Space>3', ':LualineBuffersJump 3<Enter>', { silent = false, noremap = true })
+  vim.api.nvim_set_keymap('n', '<Space>4', ':LualineBuffersJump 4<Enter>', { silent = false, noremap = true })
+  vim.api.nvim_set_keymap('n', '<Space>5', ':LualineBuffersJump 5<Enter>', { silent = false, noremap = true })
+  vim.api.nvim_set_keymap('n', '<Space>6', ':LualineBuffersJump 6<Enter>', { silent = false, noremap = true })
+  vim.api.nvim_set_keymap('n', '<Space>7', ':LualineBuffersJump 7<Enter>', { silent = false, noremap = true })
+  vim.api.nvim_set_keymap('n', '<Space>8', ':LualineBuffersJump 8<Enter>', { silent = false, noremap = true })
+  vim.api.nvim_set_keymap('n', '<Space>9', ':LualineBuffersJump 9<Enter>', { silent = false, noremap = true })
 end
 
 local function configure_lsp()
@@ -373,25 +411,17 @@ local function configure_key_bindings()
   -- See all the available options here https://neovim.io/doc/user/map.html#:map-arguments
 
   -- Window navigation and creation
+  -- I no longer support vertical splits, only horizontal splits.
   vim.api.nvim_set_keymap('n', '<Space>s', '<C-w>s', { silent = true, noremap = true })
-  vim.api.nvim_set_keymap('n', '<Space>v', '<C-w>v', { silent = true, noremap = true })
   vim.api.nvim_set_keymap('n', '<Space>c', '<C-w>c', { silent = true, noremap = true })
   vim.api.nvim_set_keymap('n', '<Space>j', '<C-w>j', { silent = true, noremap = true })
   vim.api.nvim_set_keymap('n', '<Space>k', '<C-w>k', { silent = true, noremap = true })
 
-  -- Buffer navigation and management
-  vim.api.nvim_set_keymap('n', '<Space>w', ':bdelete<Enter>', { silent = false, noremap = true })
+  -- Buffer management
+  -- Buffer navigation is now handled by lualine.
+  vim.api.nvim_set_keymap('n', '<Space>d', ':bdelete<Enter>', { silent = false, noremap = true })
   vim.api.nvim_set_keymap('n', '<Space>h', ':bprevious<Enter>', { silent = false, noremap = true })
   vim.api.nvim_set_keymap('n', '<Space>l', ':bnext<Enter>', { silent = false, noremap = true })
-  vim.api.nvim_set_keymap('n', '<Space>1', ':bfirst<Enter>', { silent = false, noremap = true })
-  vim.api.nvim_set_keymap('n', '<Space>2', ':e #2<Enter>', { silent = false, noremap = true })
-  vim.api.nvim_set_keymap('n', '<Space>3', ':e #3<Enter>', { silent = false, noremap = true })
-  vim.api.nvim_set_keymap('n', '<Space>4', ':e #4<Enter>', { silent = false, noremap = true })
-  vim.api.nvim_set_keymap('n', '<Space>5', ':e #5<Enter>', { silent = false, noremap = true })
-  vim.api.nvim_set_keymap('n', '<Space>6', ':e #6<Enter>', { silent = false, noremap = true })
-  vim.api.nvim_set_keymap('n', '<Space>7', ':e #7<Enter>', { silent = false, noremap = true })
-  vim.api.nvim_set_keymap('n', '<Space>8', ':e #8<Enter>', { silent = false, noremap = true })
-  vim.api.nvim_set_keymap('n', '<Space>9', ':e #9<Enter>', { silent = false, noremap = true })
 
   -- This unsets the "last search pattern" register by hitting return
   -- Credits to https://stackoverflow.com/a/662914
