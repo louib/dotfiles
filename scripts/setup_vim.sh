@@ -10,6 +10,8 @@ SCRIPT_DIR=$(dirname "$SCRIPT_DIR")
 # nix-env -i alejandra
 # nix-env -i shellcheck
 # nix-env -i clang-format
+# This one is for clangd, the LSP for C and C++
+# nix-env -i clang-tools
 
 if [ -d "$HOME/.config/nvim" ]; then
     echo "✔️ NeoVim is already configured."
