@@ -244,3 +244,5 @@ function far () {
 if [[ -f "$HOME/.bash_profile" ]]; then
     . "$HOME/.bash_profile"
 fi
+
+export SSH_AUTH_SOCK=/var/run/user/$(id -u)/gnupg/S.gpg-agent.ssh
