@@ -11,21 +11,19 @@ if ! command -v shellcheck &> /dev/null; then
     apt-get install -y \
       bash-completion \
       build-essential \
-      meson \
       cryptsetup \
       curl \
       gnome-tweaks \
       gnome-terminal \
       flatpak \
       keepassxc \
-      flatpak-builder \
       git \
       git-core \
       dconf-cli \
       dconf-editor \
       net-tools \
       pwgen \
-      shellcheck \
+      scdaemon \
       thunderbird \
       ttf-bitstream-vera \
       wl-clipboard

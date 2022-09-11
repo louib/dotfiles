@@ -4,13 +4,13 @@ set -e
 SCRIPT_DIR=$(realpath "$0")
 SCRIPT_DIR=$(dirname "$SCRIPT_DIR")
 
+# nix-env -i neovim
 # nix-env -i rust-analyzer
 # nix-env -i rustfmt
 # nix-env -i stylua
 # nix-env -i alejandra
 # nix-env -i shellcheck
-# nix-env -i clang-format
-# This one is for clangd, the LSP for C and C++
+# This one is for clangd, the LSP for C and C++, and for clang-format
 # nix-env -i clang-tools
 
 if [ -d "$HOME/.config/nvim" ]; then
