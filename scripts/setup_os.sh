@@ -17,6 +17,7 @@ if ! command -v shellcheck &> /dev/null; then
       gnome-tweaks \
       gnome-terminal \
       flatpak \
+      keepassxc \
       flatpak-builder \
       git \
       git-core \
@@ -47,14 +48,4 @@ if ! command -v emojify &> /dev/null; then
     echo "✔️ Installed emojify from GitHub"
 else
     echo "✔️ emojify is already installed."
-fi
-
-if ! command -v keepassxc-cli &> /dev/null; then
-    # FIXME this could be installed at the user level.
-    echo "#!/usr/bin/env bash" > /usr/local/bin/keepassxc-cli
-    echo 'flatpak run --user org.keepassxc.KeePassXC cli "$@"' >> /usr/local/bin/keepassxc-cli
-    chmod +x /usr/local/bin/keepassxc-cli
-    echo "✔️ Installing alias for keepassxc-cli."
-else
-    echo "✔️ alias for keepassxc-cli already installed."
 fi
