@@ -309,6 +309,8 @@ local function configure_status_bar()
           -- 4: Shows buffer name + buffer number
           mode = 2,
 
+          max_length = vim.o.columns,
+
           symbols = {
             -- Text to show when the buffer is modified
             modified = ' ●',
