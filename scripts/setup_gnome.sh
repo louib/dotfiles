@@ -50,9 +50,9 @@ dconf write /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6
 dconf write /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/use-transparent-background false
 dconf write /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/use-theme-transparency false
 dconf write /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/background-transparency-percent "0"
-dconf write /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/background-color "'rgb(42,47,48)'"
-dconf write /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/foreground-color "'#d1d1ddddeaea'"
-dconf write /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/palette "'#21212d2d3a3a:#686835353838:#383868683535:#686866663535:#353538386868:#666635356868:#353568686666:#90909d9da9a9:#565662626f6f:#e1e1c4c4c5c5:#c5c5e1e1c4c4:#e1e1dfdfc4c4:#c4c4c5c5e1e1:#dfdfc4c4e1e1:#c4c4e1e1dfdf:#d1d1ddddeaea'"
+dconf write /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/background-color "'#262626262626'"
+dconf write /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/foreground-color "'#ffffffffffff'"
+dconf write /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/palette "'#000000000000:#b1b186867171:#8080b7b77171:#b1b1b7b77171:#80808686a2a2:#b1b18686a2a2:#8080b7b7a2a2:#d9d9d9d9d9d9:#262626262626:#cdcdbbbba6a6:#b5b5d3d3a6a6:#cdcdd3d3a6a6:#b5b5bbbbbebe:#cdcdbbbbbebe:#b5b5d3d3bebe:#ffffffffffff'"
 echo "✔️ Configured Gnome terminal"
 
 # Configuring gnome light mode.
