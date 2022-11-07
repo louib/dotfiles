@@ -134,7 +134,10 @@ function mei () {
     ninja -C _build install
 }
 
+# Nix stuff
 alias nix-search="nix-env -qa"
+alias ndv="nix develop ."
+alias nfc="nix flake check"
 
 # Setting the current directory as the tab's title.
 # See https://wiki.archlinux.org/title/Bash/Prompt_customization#Prompts
