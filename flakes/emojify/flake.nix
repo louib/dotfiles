@@ -1,5 +1,5 @@
 {
-  description = "My neovim configuration";
+  description = "Emoji on the command line 😱";
 
   inputs = {
     nixpkgs = {
