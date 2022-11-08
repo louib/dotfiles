@@ -19,8 +19,18 @@
       system: (
         let
           pkgs = nixpkgs.legacyPackages.${system};
+          languageServers = with pkgs; [
+            rust-analyzer
+            rustfmt
+            stylua
+            alejandra
+            shellcheck
+            # This one is for clangd, the LSP for C and C++, and for clang-format
+            clang-tools
+          ];
         in {
           packages = {
+            # TODO export the language servers
             neovim-louib = pkgs.neovim.override {
               # vimAlias = true;
               configure = {
