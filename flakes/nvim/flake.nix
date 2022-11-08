@@ -21,7 +21,20 @@
           pkgs = nixpkgs.legacyPackages.${system};
         in {
           packages = {
-            neovim-louib = pkgs.neovim;
+            neovim-louib = pkgs.neovim.override {
+              # vimAlias = true;
+              configure = {
+                packages.myPlugins = with pkgs.vimPlugins; {
+                  start = [
+                    vim-nix
+                    nvim-lspconfig
+                  ];
+                  opt = [];
+                };
+                # customRC = "";
+                # TODO plug in the LUA config.
+              };
+            };
           };
         }
       )
