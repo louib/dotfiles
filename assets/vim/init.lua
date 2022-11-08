@@ -399,6 +399,12 @@ local function configure_lsp()
     },
   })
 
+  -- Documented at https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#rnix
+  require('lspconfig').rnix.setup({
+    on_attach = custom_lsp_attach,
+    flags = lsp_flags,
+  })
+
   require('lspconfig').clangd.setup({
     on_attach = custom_lsp_attach,
     flags = lsp_flags,
