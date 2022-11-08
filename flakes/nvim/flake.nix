@@ -27,7 +27,20 @@
                 packages.myPlugins = with pkgs.vimPlugins; {
                   start = [
                     vim-nix
+                    vim-surround
+                    lualine-nvim
+                    comment-nvim
+                    formatter-nvim
+                    typescript-vim
+                    rust-vim
                     nvim-lspconfig
+                    nvim-cmp
+                    cmp-nvim-lsp
+                    cmp-buffer
+
+                    # Colorschemes
+                    everforest
+                    sonokai
                   ];
                   opt = [];
                 };
