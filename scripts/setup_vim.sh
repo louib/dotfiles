@@ -4,6 +4,7 @@ set -e
 SCRIPT_DIR=$(realpath "$0")
 SCRIPT_DIR=$(dirname "$SCRIPT_DIR")
 
+# nix-env -i rnix-lsp
 # nix-env -i neovim
 # nix-env -i rust-analyzer
 # nix-env -i rustfmt
