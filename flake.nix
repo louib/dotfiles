@@ -5,6 +5,9 @@
     nixpkgs = {
       url = "github:NixOS/nixpkgs";
     };
+    statics = {
+      url = "github:louib/dotfiles?dir=flakes/statics";
+    };
     flake-utils = {
       url = "github:numtide/flake-utils";
     };
@@ -13,9 +16,10 @@
   outputs = {
     self,
     nixpkgs,
+    statics,
     flake-utils,
   }: (
-    flake-utils.lib.eachDefaultSystem (
+    flake-utils.lib.eachSystem statics.lib.defaultSystems (
       system: (
         let
           pkgs = nixpkgs.legacyPackages.${system};
@@ -39,7 +43,7 @@
               # git-core
               # pwgen
               # scdaemon
-              # thunderbird
+              thunderbird
               # ttf-bitstream-vera
               # wl-clipboard
             ];
