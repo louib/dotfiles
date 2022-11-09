@@ -3,6 +3,6 @@
 ![Nix job status](https://github.com/louib/dotfiles/workflows/nix/badge.svg)
 
 Configuration files for my main systems. This is currently composed of:
-* Nix flakes for applications that require specific treatment
+* Nix flakes for applications that require special treatment
 * Some Lua for my NeoVim config
 * Bash scripts to tie it all together
