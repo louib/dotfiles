@@ -1,5 +1,5 @@
 ---
-name: nix flake check
+name: nix
 
 on: [push, pull_request]
 
