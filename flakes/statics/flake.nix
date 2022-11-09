@@ -13,6 +13,9 @@
         "aarch64-linux"
         "x86_64-linux"
       ];
+
+      defaultUsername = "louib";
+      # TODO should I have my GPG public key here?
     };
   };
 }
