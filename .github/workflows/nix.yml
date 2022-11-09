@@ -14,5 +14,5 @@ jobs:
 
     - uses: cachix/install-nix-action@v18
 
-    - name: running shellcheck on shell scripts
+    - name: Running `nix flake check` on flakes
       run: find . -name '*flake.nix' -exec nix flake check {} \;

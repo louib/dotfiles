@@ -9,10 +9,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v3
+
     - name: updating available system dependencies
       run: sudo apt-get update
+
     - name: installing shellcheck
       run: sudo apt-get install -y shellcheck
+
     - name: running shellcheck on shell scripts
       run: shellcheck scripts/*.sh
