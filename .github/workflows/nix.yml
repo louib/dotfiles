@@ -9,7 +9,7 @@ jobs:
     name: nix flake check
 
     steps:
-      uses: actions/checkout@v3
+    - uses: actions/checkout@v3
     - uses: cachix/install-nix-action@v18
 
     - name: Running `nix flake check` on flakes
@@ -17,6 +17,7 @@ jobs:
 
   formatting:
     runs-on: ubuntu-latest
+    name: alejandra
 
     steps:
     - uses: actions/checkout@v3
