@@ -18,5 +18,5 @@ jobs:
       # exactly the same style locally and in the CI.
       run: nix profile install .#stylua
 
-    - name: running stylua on shell scripts
+    - name: running stylua on lua scripts
       run: find . -name '*.lua' -exec stylua --check {} \;
