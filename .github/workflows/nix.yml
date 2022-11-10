@@ -9,10 +9,23 @@ jobs:
     name: nix flake check
 
     steps:
-    - name: Checkout
       uses: actions/checkout@v3
-
     - uses: cachix/install-nix-action@v18
 
     - name: Running `nix flake check` on flakes
       run: find . -name '*flake.nix' -exec nix flake check {} \;
+
+  formatting:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - uses: cachix/install-nix-action@v18
+
+    - name: installing alejandra
+      # We're reusing the version from the neovim configuration so that we get expect
+      # exactly the same style locally and in the CI.
+      run: nix profile install .#alejandra
+
+    - name: running alejandra on nix scripts
+      run: find . -name '*.nix' -exec alejandra --check {} \;

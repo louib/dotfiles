@@ -4,7 +4,7 @@ name: stylua
 on: [push, pull_request]
 
 jobs:
-  shellcheck:
+  stylua:
 
     runs-on: ubuntu-latest
 
