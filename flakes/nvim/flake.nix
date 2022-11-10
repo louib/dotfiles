@@ -28,7 +28,7 @@
             inherit shellcheck;
             # This one is for clangd, the LSP for C and C++, and for clang-format
             inherit clang-tools;
-            # inherit typescript-language-server;
+            typescript-language-server = nodePackages.typescript-language-server;
           };
           # FIXME this is ugly and the lua config should be moved inside the flake.
           neovimLuaConfig = builtins.readFile (./. + "../../../assets/vim/init.lua");
