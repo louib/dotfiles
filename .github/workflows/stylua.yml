@@ -1,0 +1,22 @@
+---
+name: stylua
+
+on: [push, pull_request]
+
+jobs:
+  shellcheck:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - uses: cachix/install-nix-action@v18
+
+    - name: installing stylua
+      # We're reusing the version from the neovim configuration so that we get expect
+      # exactly the same style locally and in the CI.
+      run: nix profile install .#stylua
+
+    - name: running stylua on shell scripts
+      run: find . -name '*.lua' -exec stylua --check {} \;
