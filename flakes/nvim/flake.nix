@@ -28,7 +28,10 @@
             inherit shellcheck;
             # This one is for clangd, the LSP for C and C++, and for clang-format
             inherit clang-tools;
+            # inherit typescript-language-server;
           };
+          # FIXME this is ugly and the lua config should be moved inside the flake.
+          neovimLuaConfig = builtins.readFile (./. + "../../../assets/vim/init.lua");
           customNeovim = pkgs.neovim.override {
             # vimAlias = true;
             configure = {
@@ -52,8 +55,14 @@
                 ];
                 opt = [];
               };
-              # customRC = "";
-              # TODO plug in the LUA config.
+
+              # There's no way to provide the Lua config directly, but we can embed it in the
+              # traditional Vim config file.
+              customRC = ''
+                lua <<EOF
+                ${neovimLuaConfig}
+                EOF
+              '';
             };
           };
         in {
