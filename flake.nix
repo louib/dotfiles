@@ -35,6 +35,7 @@
         let
           pkgs = nixpkgs.legacyPackages.${system};
           neovimPackages = neovim.packages.${system};
+          emojifyPackages = emojify.packages.${system};
 
           # Other packages that I want to be available, but I don't necessarily use day to day.
           miscPackages = with pkgs; {
@@ -117,7 +118,8 @@
             {
               inherit hostPackages;
             }
-            // neovimPackages;
+            // neovimPackages
+            // emojifyPackages;
         }
       )
     )
