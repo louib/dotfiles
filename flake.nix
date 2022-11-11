@@ -11,6 +11,7 @@
     neovim = {
       url = "github:louib/dotfiles?dir=flakes/nvim";
       inputs.flake-utils.follows = "flake-utils";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     emojify = {
       url = "github:louib/dotfiles?dir=flakes/emojify";
