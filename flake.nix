@@ -41,6 +41,7 @@
           # Other packages that I want to be available, but I don't necessarily use day to day.
           miscPackages = with pkgs; {
             inherit gnome-clocks;
+            inherit fractal;
             inherit vlc;
             inherit phosh;
             inherit phoc;
@@ -95,8 +96,10 @@
             # TODO add neovim packages.
             paths = with pkgs; [
               evince
-              # gnome-tweaks
+              gnome.gnome-tweaks
               gnome.gnome-terminal
+              gnome.geary
+              # kmail if geary does not work
               bash-completion
               # keepassxc
               zotero
