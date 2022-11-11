@@ -12,6 +12,11 @@
       url = "github:louib/dotfiles?dir=flakes/nvim";
       inputs.flake-utils.follows = "flake-utils";
     };
+    emojify = {
+      url = "github:louib/dotfiles?dir=flakes/emojify";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     flake-utils = {
       url = "github:numtide/flake-utils";
     };
@@ -22,6 +27,7 @@
     nixpkgs,
     statics,
     neovim,
+    emojify,
     flake-utils,
   }: (
     flake-utils.lib.eachSystem statics.lib.defaultSystems (
@@ -40,9 +46,26 @@
             # flatpak-builder
           };
 
+          containerPackages = with pkgs; {
+            # inherit runc;
+            # inherit podman;
+          };
+
           devPackages = with pkgs; {
             inherit nmap;
             inherit net-tools;
+            # bison
+            # cmake
+            # ninja
+            # meson
+            # attr
+            # gettext
+            # autopoint ??
+            # dbus
+            # iptables
+            # libtool
+            # btrfs-progs
+            # pkg-config
           };
 
           hostPackages = pkgs.buildEnv {
