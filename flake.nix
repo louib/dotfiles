@@ -55,7 +55,26 @@
           devPackages = with pkgs; {
             inherit nmap;
             inherit net-tools;
-            # bison
+            # binutils (https://sourceware.org/git/binutils-gdb.git)
+            # coreutils (https://github.com/coreutils/coreutils.git)
+            # bison (https://git.savannah.gnu.org/git/bison.git)
+            # autoconf/autotools (https://git.sv.gnu.org/r/autoconf.git)
+            # automake (https://git.savannah.gnu.org/cgit/automake.git)
+            # bash (https://git.savannah.gnu.org/git/bash.git)
+            # bc (https://git.yzena.com/gavin/bc.git)
+            # bzip (https://sourceware.org/git/bzip2.git)
+            # check (https://github.com/libcheck/check.git)
+            # dejagnu (https://git.savannah.gnu.org/git/dejagnu.git)
+            # diffutils (https://git.savannah.gnu.org/git/diffutils.git)
+            # e2fs (https://git.kernel.org/pub/scm/fs/ext2/e2fsprogs.git)
+            # TODO add other filesystems!!
+            # elfutils (https://sourceware.org/git/elfutils.git)
+            # patchelf (https://github.com/NixOS/patchelf.git)
+            # eudev (https://anongit.gentoo.org/git/proj/eudev.git)
+            # libexpat (https://github.com/libexpat/libexpat.git)
+            # file (https://github.com/file/file.git)
+            # glibc
+            # acl (https://git.savannah.nongnu.org/git/acl.git)
             # cmake
             # ninja
             # meson
