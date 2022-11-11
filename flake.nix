@@ -33,6 +33,9 @@
           # Other packages that I want to be available, but I don't necessarily use day to day.
           miscPackages = with pkgs; {
             inherit gnome-clocks;
+            inherit vlc;
+            inherit phosh;
+            inherit phoc;
             # flatpak
             # flatpak-builder
           };
