@@ -10,6 +10,7 @@
     };
     neovim = {
       url = "github:louib/dotfiles?dir=flakes/nvim";
+      inputs.flake-utils.follows = "flake-utils";
     };
     flake-utils = {
       url = "github:numtide/flake-utils";
@@ -29,6 +30,11 @@
           pkgs = nixpkgs.legacyPackages.${system};
           neovimPackages = neovim.packages.${system};
 
+          # Other packages that I want to be available, but I don't necessarily use day to day.
+          miscPackages = with pkgs; {
+            inherit gnome-clocks;
+          };
+
           hostPackages = pkgs.buildEnv {
             name = "";
             # TODO add neovim packages.
@@ -41,6 +47,7 @@
               # bash-completion
               # keepassxc
               # dconf-cli
+              zotero
               # dconf-editor
               # build-essential
               # cryptsetup
