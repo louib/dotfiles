@@ -33,6 +33,13 @@
           # Other packages that I want to be available, but I don't necessarily use day to day.
           miscPackages = with pkgs; {
             inherit gnome-clocks;
+            # flatpak
+            # flatpak-builder
+          };
+
+          devPackages = with pkgs; {
+            inherit nmap;
+            inherit net-tools;
           };
 
           hostPackages = pkgs.buildEnv {
@@ -41,20 +48,16 @@
             paths = with pkgs; [
               evince
               # gnome-tweaks
-              # gnome-terminal
-              # flatpak
-              # nmap
-              # net-tools
+              gnome.gnome-terminal
               bash-completion
               # keepassxc
-              # dconf-cli
               zotero
+              # dconf-cli
               # dconf-editor
               # build-essential
               # cryptsetup
               curl
               git
-              # git-core
               pwgen
               # scdaemon
               thunderbird

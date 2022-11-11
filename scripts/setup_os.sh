@@ -6,32 +6,6 @@ die() { echo "$*" 1>&2 ; exit 1; }
 SCRIPT_DIR=$(realpath "$0")
 SCRIPT_DIR=$(dirname "$SCRIPT_DIR")
 
-if ! command -v shellcheck &> /dev/null; then
-    # Main programs.
-    apt-get install -y \
-      bash-completion \
-      build-essential \
-      cryptsetup \
-      curl \
-      gnome-tweaks \
-      gnome-terminal \
-      flatpak \
-      keepassxc \
-      git \
-      git-core \
-      dconf-cli \
-      dconf-editor \
-      net-tools \
-      pwgen \
-      scdaemon \
-      thunderbird \
-      ttf-bitstream-vera \
-      wl-clipboard
-    echo "✔️  Installed main OS packages."
-else
-    echo "✔️  Main OS packages already installed."
-fi
-
 if ! command -v emojify &> /dev/null; then
     echo "✔️ Installing emojify from GitHub"
     curl https://raw.githubusercontent.com/mrowa44/emojify/6dc2c1df9a484cf01e7f48e25a1e36e328c32816/emojify -o ./emojify

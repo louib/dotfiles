@@ -77,8 +77,6 @@ alias vi="nvim"
 alias vim="nvim"
 export VISUAL="nvim"
 
-alias keepassxc-cli="flatpak run --user org.keepassxc.KeePassXC cli"
-
 # checkout the default git branch.
 # (git checkout default)
 function gcd () {
@@ -225,7 +223,6 @@ function sp () {
         --line-number \
         --color=always \
         --exclude-dir=.git/ \
-        --exclude-dir=.flatpak-builder/ \
         --exclude-dir=node_modules/ \
         --exclude-dir=target/ \
         --exclude-dir=dist/ \
