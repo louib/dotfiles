@@ -39,12 +39,13 @@
             name = "";
             # TODO add neovim packages.
             paths = with pkgs; [
+              evince
               # gnome-tweaks
               # gnome-terminal
               # flatpak
               # nmap
               # net-tools
-              # bash-completion
+              bash-completion
               # keepassxc
               # dconf-cli
               zotero
@@ -54,7 +55,7 @@
               curl
               git
               # git-core
-              # pwgen
+              pwgen
               # scdaemon
               thunderbird
               # ttf-bitstream-vera
