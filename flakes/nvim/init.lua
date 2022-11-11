@@ -21,6 +21,7 @@ local function set_filetype_options()
   vim.bo.tabstop = 2
   vim.bo.shiftwidth = 2
   vim.bo.expandtab = true
+  vim.bo.makeprg = 'echo "Make is disabled for this filetype."'
 
   -- TODO not sure that this makes sense just yet.
   vim.wo.colorcolumn = '100'
@@ -36,6 +37,11 @@ local function set_filetype_options()
     vim.bo.makeprg = 'cargo build -q --message-format short'
     vim.bo.tabstop = 4
     vim.bo.shiftwidth = 4
+    return
+  end
+
+  if filetype == 'nix' then
+    vim.bo.makeprg = 'nix flake check %'
     return
   end
 
