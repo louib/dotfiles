@@ -49,6 +49,7 @@
           containerPackages = with pkgs; {
             # inherit runc;
             # inherit podman;
+            # inherit conmon;
           };
 
           devPackages = with pkgs; {
