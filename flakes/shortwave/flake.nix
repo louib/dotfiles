@@ -5,19 +5,31 @@
     nixpkgs = {
       url = "github:NixOS/nixpkgs";
     };
-    flake-compat = {
-      url = "github:edolstra/flake-compat";
-      flake = false;
+    flake-utils = {
+      url = "github:numtide/flake-utils";
+    };
+    statics = {
+      url = "github:louib/dotfiles?dir=flakes/statics";
     };
   };
 
   outputs = {
     self,
     nixpkgs,
-    flake-compat,
-  }: {
-    packages.x86_64-linux.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
-
-    packages.x86_64-linux.default = self.packages.x86_64-linux.hello;
-  };
+    statics,
+    flake-utils,
+  }: (
+    flake-utils.lib.eachSystem statics.lib.defaultSystems (
+      system: (
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+          customShortwave = pkgs.shortwave;
+        in {
+          packages = {
+            inherit customShortwave;
+          };
+        }
+      )
+    )
+  );
 }
