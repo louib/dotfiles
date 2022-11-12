@@ -28,6 +28,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.statics.follows = "statics";
     };
+    kp2vcard = {
+      url = "github:louib/kp2vcard";
+      inputs.flake-utils.follows = "flake-utils";
+    };
     flake-utils = {
       url = "github:numtide/flake-utils";
     };
@@ -40,6 +44,7 @@
     neovim,
     emojify,
     keepassxc,
+    kp2vcard,
     flake-utils,
   }: (
     flake-utils.lib.eachSystem statics.lib.defaultSystems (
@@ -49,6 +54,7 @@
           neovimPackages = neovim.packages.${system};
           emojifyPackages = emojify.packages.${system};
           keepassxcPackages = keepassxc.packages.${system};
+          kp2vcardPackages = kp2vcard.packages.${system};
 
           # Other packages that I want to be available, but I don't necessarily use day to day.
           miscPackages = with pkgs; {
@@ -141,6 +147,7 @@
             }
             // neovimPackages
             // keepassxcPackages
+            // kp2vcardPackages
             // emojifyPackages;
         }
       )
