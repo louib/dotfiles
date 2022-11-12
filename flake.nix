@@ -101,6 +101,9 @@
             # libtool
             # btrfs-progs
             # pkg-config
+            # cargo
+            # rustc
+            # lua
           };
 
           hostPackages = pkgs.buildEnv {
