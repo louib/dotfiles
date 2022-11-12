@@ -24,6 +24,9 @@
         let
           pkgs = nixpkgs.legacyPackages.${system};
         in {
+          packages = {
+            keepassxc = pkgs.keepassxc;
+          };
           devShells = {
             default = pkgs.mkShell {
               buildInputs = with pkgs; [
