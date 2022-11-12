@@ -12,11 +12,21 @@
       url = "github:louib/dotfiles?dir=flakes/nvim";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.statics.follows = "statics";
+    };
+    keepassxc = {
+      url = "github:louib/dotfiles?dir=flakes/keepassxc";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.statics.follows = "statics";
+      # I do active development on this one, so I might be tempted to freeze the
+      # nixpkgs version?
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
     emojify = {
       url = "github:louib/dotfiles?dir=flakes/emojify";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.statics.follows = "statics";
     };
     flake-utils = {
       url = "github:numtide/flake-utils";
@@ -29,6 +39,7 @@
     statics,
     neovim,
     emojify,
+    keepassxc,
     flake-utils,
   }: (
     flake-utils.lib.eachSystem statics.lib.defaultSystems (
@@ -37,6 +48,7 @@
           pkgs = nixpkgs.legacyPackages.${system};
           neovimPackages = neovim.packages.${system};
           emojifyPackages = emojify.packages.${system};
+          keepassxcPackages = keepassxc.packages.${system};
 
           # Other packages that I want to be available, but I don't necessarily use day to day.
           miscPackages = with pkgs; {
@@ -94,6 +106,7 @@
           hostPackages = pkgs.buildEnv {
             name = "";
             # TODO add neovim packages.
+            # TODO add keepassxc
             paths = with pkgs; [
               evince
               gnome.gnome-tweaks
@@ -124,6 +137,7 @@
               inherit hostPackages;
             }
             // neovimPackages
+            // keepassxcPackages
             // emojifyPackages;
         }
       )
