@@ -65,6 +65,7 @@
             inherit phoc;
             # flatpak
             # flatpak-builder
+            # age (as a future replacement of pgp)
           };
 
           containerPackages = with pkgs; {
@@ -116,6 +117,7 @@
             name = "";
             # TODO add neovim packages.
             # TODO add keepassxc
+            # TODO add gpg
             paths = with pkgs; [
               evince
               gnome.gnome-tweaks
@@ -135,6 +137,7 @@
               pwgen
               # scdaemon
               thunderbird
+              firefox
               # ttf-bitstream-vera
               # wl-clipboard
             ];
