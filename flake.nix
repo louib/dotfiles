@@ -121,6 +121,7 @@
             paths = with pkgs; [
               evince
               gnome.gnome-tweaks
+              # gnome-disks
               gnome.gnome-terminal
               gnome.geary
               # gnome-feeds
