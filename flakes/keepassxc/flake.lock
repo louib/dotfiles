@@ -17,22 +17,41 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1663175074,
-        "narHash": "sha256-pmujinSiECRsgOWpGlKtTwPEtCv8Y7OYYHgfg/tYdJw=",
+        "lastModified": 1668266813,
+        "narHash": "sha256-AgWqxDTlEkdYcuXlVqg8VP0huhwIJ/ZWTAf9l0AOYj0=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "ee55809e3162f9157a7579b59d4b9caf6e931686",
+        "rev": "7fe75fdd525cb5df25f7a37a34051ec8c9588eb4",
         "type": "github"
       },
       "original": {
-        "id": "nixpkgs",
-        "type": "indirect"
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "type": "github"
       }
     },
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "statics": "statics"
+      }
+    },
+    "statics": {
+      "locked": {
+        "dir": "flakes/statics",
+        "lastModified": 1668266539,
+        "narHash": "sha256-gANv84fRtdld8ZfHT67J2AgiT8fUvn0MVlc2lx2ugF8=",
+        "owner": "louib",
+        "repo": "dotfiles",
+        "rev": "5283155ed6cbb9751f13207a31635e385737bbc4",
+        "type": "github"
+      },
+      "original": {
+        "dir": "flakes/statics",
+        "owner": "louib",
+        "repo": "dotfiles",
+        "type": "github"
       }
     }
   },
