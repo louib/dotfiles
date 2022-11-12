@@ -23,6 +23,7 @@
       system: (
         let
           pkgs = nixpkgs.legacyPackages.${system};
+          # TODO use the branch resume_playback_on_failure
           customShortwave = pkgs.shortwave;
         in {
           packages = {
