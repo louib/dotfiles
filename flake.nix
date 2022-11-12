@@ -99,6 +99,7 @@
               gnome.gnome-tweaks
               gnome.gnome-terminal
               gnome.geary
+              # gnome-feeds
               # kmail if geary does not work
               bash-completion
               # keepassxc
