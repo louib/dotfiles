@@ -41,7 +41,12 @@ local function set_filetype_options()
   end
 
   if filetype == 'nix' then
-    vim.bo.makeprg = 'nix flake check %'
+    -- see :help filename-modifiers
+    -- :p means the full path
+    -- :h means the head (last component) removed.
+    -- nix check flake requires the directory in which the flake resides, not the
+    -- path to the flake itself.
+    vim.bo.makeprg = 'nix flake check %:p:h'
     return
   end
 
