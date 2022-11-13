@@ -137,6 +137,7 @@
               # scdaemon
               thunderbird
               firefox
+              # epiphany
               # ttf-bitstream-vera
               # wl-clipboard
             ];
