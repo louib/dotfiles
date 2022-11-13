@@ -12,7 +12,6 @@
       url = "github:louib/dotfiles?dir=flakes/nvim";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.statics.follows = "statics";
     };
     keepassxc = {
       url = "github:louib/dotfiles?dir=flakes/keepassxc";
@@ -26,7 +25,6 @@
       url = "github:louib/dotfiles?dir=flakes/emojify";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.statics.follows = "statics";
     };
     kp2vcard = {
       url = "github:louib/kp2vcard";
