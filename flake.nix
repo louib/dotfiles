@@ -138,7 +138,9 @@
               thunderbird
               firefox
               # epiphany
-              # ttf-bitstream-vera
+              chatty
+              megapixels
+              ttf-bitstream-vera
               # wl-clipboard
             ];
           };
