@@ -119,7 +119,6 @@ alias ci="cargo install --force --path ."
 alias cb="cargo build"
 alias ct="cargo test"
 alias cf="find . -name '*.rs' -exec rustfmt {} \;"
-export PATH="$PATH:$HOME/.cargo/bin"
 export RUSTFLAGS="$RUSTFLAGS -A warnings"
 # Default commands for a meson and ninja build.
 function meb () {
