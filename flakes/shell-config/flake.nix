@@ -3,8 +3,19 @@
 
   outputs = {self}: {
     lib = rec {
+      # The top-level environment variables that should be defined in my shell.
+      VARIABLES = {
+        VISUAL = "nvim";
+        EDITOR = "nvim";
+      };
       # This is the extra configuration that can only be defined in an RC (like ~/.bashrc) file.
       RC_CONFIG = ''
+        # If not running interactively, don't do anything
+        case $- in
+            *i*) ;;
+              *) return;;
+        esac
+
         set -o vi
 
         # don't put duplicate lines or lines starting with space in the history.
