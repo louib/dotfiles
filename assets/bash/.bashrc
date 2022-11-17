@@ -117,6 +117,14 @@ set_title () {
     CURRENT_DIR=$(basename "$PWD")
     PS1="${PS1}\[\e]2;$CURRENT_DIR\a\]"
 }
+# See https://starship.rs/advanced-config/#change-window-title
+# for documentation.
+set_title_starship () {
+    CURRENT_DIR=$(basename "$PWD")
+    echo -ne "\033]0; $CURRENT_DIR \007"
+}
+starship_precmd_user_func="set_title_starship"
+
 
 get_prompt () {
     PS1=""
