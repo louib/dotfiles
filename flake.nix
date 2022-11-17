@@ -125,6 +125,8 @@
               # gnome-feeds
               # kmail if geary does not work
               bash-completion
+              # FIXME maybe starship should go into the shell-config?
+              starship
               # keepassxc
               zotero
               # dconf-cli
