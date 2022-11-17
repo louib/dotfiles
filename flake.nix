@@ -127,6 +127,9 @@
               bash-completion
               # FIXME maybe starship should go into the shell-config?
               starship
+              # nerdfonts is not installed as a dependency of startship, because
+              # only some themes use it.
+              nerdfonts
               # keepassxc
               zotero
               # dconf-cli

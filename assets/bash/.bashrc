@@ -118,13 +118,6 @@ set_title () {
     PS1="${PS1}\[\e]2;$CURRENT_DIR\a\]"
 }
 
-source ~/git-prompt.sh
-# From https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh:
-# In addition, if you set GIT_PS1_SHOWDIRTYSTATE to a nonempty value,
-# unstaged (*) and staged (+) changes will be shown next to the branch
-# name.
-export GIT_PS1_SHOWDIRTYSTATE=1
-
 get_prompt () {
     PS1=""
     SUBSHELL=""
@@ -137,8 +130,6 @@ get_prompt () {
     PS1="${PS1}\[\e[m\]\[\e[35m\][\[\e[m\]\t\[\e[35m\]]"
     # This adds the directory as [~/Projects/fenv]
     PS1="${PS1}\[\e[m\]\[\e[35m\][\[\e[m\]\w\[\e[35m\]]"
-    # This adds the git prompt as [branch_name *]
-    PS1="${PS1}\[\e[m\]\[\e[95m\]$(__git_ps1 '[%s]')"
     # This adds the fenv sandbox prompt
     PS1="${PS1}\[\e[m\]\[\e[32m\]$SUBSHELL"
     # This adds the ending $ char.
