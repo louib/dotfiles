@@ -19,6 +19,7 @@ $java\
 $julia\
 $nodejs\
 $nim\
+$nix_shell\
 $rust\
 $scala\
 [](fg:#86BBD8 bg:#06969A)\
@@ -113,6 +114,10 @@ format = '[ $symbol ($version) ]($style)'
 
 [nim]
 symbol = " "
+style = "bg:#86BBD8"
+format = '[ $symbol ($version) ]($style)'
+
+[nix_shell]
 style = "bg:#86BBD8"
 format = '[ $symbol ($version) ]($style)'
 
