@@ -26,7 +26,7 @@ $time\
 show_always = true
 style_user = "bg:#9A348E"
 style_root = "bg:#9A348E"
-format = '[$user ]($style)'
+format = '[ $user ]($style)'
 
 [directory]
 style = "bg:#DA627D"
@@ -51,7 +51,7 @@ diverged = "<>"
 renamed = "r"
 deleted = "x"
 style = "bg:#FCA17D"
-format = '[$all_status$ahead_behind ]($style)'
+format = '[ $all_status$ahead_behind ]($style)'
 
 [nix_shell]
 style = "bg:#86BBD8"
