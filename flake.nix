@@ -128,8 +128,9 @@
               # FIXME maybe starship should go into the shell-config?
               starship
               # nerdfonts is not installed as a dependency of startship, because
-              # only some themes use it.
-              nerdfonts
+              # only some themes use it. I stopped using the fonts for the moment
+              # because I was not able to install them with Nix on Ubuntu.
+              # nerdfonts
               # keepassxc
               zotero
               # dconf-cli
