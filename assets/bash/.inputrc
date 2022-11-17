@@ -1,4 +1,7 @@
-set show-mode-in-prompt on
+# Commenting the mode display in prompt
+# for now because it really doesn't fit with
+# the rest of my shell and it isn't configurable.
+# set show-mode-in-prompt on
 set show-all-if-ambiguous on
 
 $if mode=vi

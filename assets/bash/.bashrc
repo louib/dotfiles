@@ -207,3 +207,5 @@ if [[ -f "$HOME/.bash_profile" ]]; then
 fi
 
 [ -x "$(command -v id)" ] && export SSH_AUTH_SOCK=/var/run/user/$(id -u)/gnupg/S.gpg-agent.ssh
+
+eval "$(starship init bash)"
