@@ -125,7 +125,6 @@ set_title_starship () {
 }
 starship_precmd_user_func="set_title_starship"
 
-
 get_prompt () {
     PS1=""
     SUBSHELL=""
@@ -216,4 +215,6 @@ fi
 
 [ -x "$(command -v id)" ] && export SSH_AUTH_SOCK=/var/run/user/$(id -u)/gnupg/S.gpg-agent.ssh
 
-eval "$(starship init bash)"
+if [ -x "$(command -v starship)" ]; then
+    eval "$(starship init bash)"
+fi
