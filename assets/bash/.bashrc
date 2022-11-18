@@ -63,8 +63,13 @@ function gcd () {
 function gca () {
     git commit --amend --no-edit
 }
+# git new branch
 function gnb () {
     git checkout -b "$1"
+}
+# a simple git checkout
+function gco () {
+    git checkout "$1"
 }
 alias gst="git status"
 alias gdf="git diff"
