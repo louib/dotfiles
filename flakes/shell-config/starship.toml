@@ -49,9 +49,14 @@ ahead = ">"
 behind = "<"
 diverged = "<>"
 renamed = "r"
-deleted = "x"
+deleted = "-"
+up_to_date = "✓"
+# I don't really care about stashed changes.
+stashed = ""
 style = "bg:#349A76"
-format = '[ $all_status$ahead_behind ]($style)'
+# No space before the status because we are in the same
+# "section" as the git branch.
+format = '[$all_status$ahead_behind ]($style)'
 
 [nix_shell]
 style = "bg:#86BBD8"
@@ -60,6 +65,8 @@ format = '[ $symbol ]($style)'
 
 [time]
 disabled = false
-time_format = "%R" # Hour:Minute Format
+# See https://docs.rs/chrono/0.4.7/chrono/format/strftime/index.html for
+# all the formats
+time_format = "%X"
 style = "bg:#33658A"
-format = '[ ♥ $time ]($style)'
+format = '[ $time ]($style)'
