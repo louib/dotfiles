@@ -474,6 +474,11 @@ local function configure_key_bindings()
   -- Stop recording with `q`.
   -- Apply with space+q !!!
   vim.api.nvim_set_keymap('n', '<Space>q', '@q', { silent = false, noremap = true })
+
+  -- When in terminal mode, I don't want to remap Esc to exit, because the terminal
+  -- line cannot be modified from the nvim buffer. I might want to use the vi mode from bash
+  -- to edit the line by pressing Esc instead.
+  vim.api.nvim_set_keymap('t', '<Tab>' '<C-\><C-n>', { silent = false, noremap = true })
 end
 
 local function configure_commenting()
