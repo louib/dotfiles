@@ -18,6 +18,8 @@ $time\
 [ ](fg:#33658A)\
 """
 
+add_newline = false
+
 # Disable the blank line at the start of the prompt
 # add_newline = false
 
