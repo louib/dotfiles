@@ -1,7 +1,4 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
-
+# shellcheck shell=bash
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -29,16 +26,6 @@ shopt -s checkwinsize
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x "$(command -v lesspipe)" ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-# enable color support of ls and also add handy aliases
-if [ -x "$(command -v dircolors)" ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
 
 # some more ls aliases
 alias ll='ls -alF'
@@ -128,7 +115,7 @@ set_title_starship () {
     CURRENT_DIR=$(basename "$PWD")
     echo -ne "\033]0; $CURRENT_DIR \007"
 }
-starship_precmd_user_func="set_title_starship"
+export starship_precmd_user_func="set_title_starship"
 
 get_prompt () {
     PS1=""
@@ -156,7 +143,7 @@ PROMPT_COMMAND=get_prompt
 # changing the directory.
 function cd () {
   if [ $# -eq 1 ]; then
-    command cd -- "$1"
+    command cd -- "$1" || return
     set_title
   else
     echo "Need a directory to cd to!"
@@ -218,7 +205,10 @@ if [[ -f "$HOME/.bash_profile" ]]; then
     . "$HOME/.bash_profile"
 fi
 
-[ -x "$(command -v id)" ] && export SSH_AUTH_SOCK=/var/run/user/$(id -u)/gnupg/S.gpg-agent.ssh
+if [ -x "$(command -v id)" ]; then
+    user_id=$(id -u)
+    export SSH_AUTH_SOCK=/var/run/user/${user_id}/gnupg/S.gpg-agent.ssh
+fi
 
 if [ -x "$(command -v starship)" ]; then
     eval "$(starship init bash)"
