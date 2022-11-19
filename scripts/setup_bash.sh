@@ -4,7 +4,7 @@ set -e
 SCRIPT_DIR=$(realpath "$0")
 SCRIPT_DIR=$(dirname "$SCRIPT_DIR")
 
-input_rc_path="$SCRIPT_DIR/../assets/bash/.inputrc"
+input_rc_path="$SCRIPT_DIR/../flakes/shell-config/.inputrc"
 if [[ -n $(diff "$input_rc_path" "$HOME/.inputrc") ]]; then
     cp "$input_rc_path" "$HOME/.inputrc"
     echo "✔️ Configured inputrc for readline."
