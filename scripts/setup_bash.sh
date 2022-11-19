@@ -11,8 +11,9 @@ else
     echo "✔️ Readline is already configured."
 fi
 
-if [[ -n $(diff "$SCRIPT_DIR/../assets/bash/.bashrc" "$HOME/.bashrc") ]]; then
-    cp "$SCRIPT_DIR/../assets/bash/.bashrc" ~/.bashrc
+bash_rc_path="$SCRIPT_DIR/../assets/bash/bashrc.sh"
+if [[ -n $(diff "$bash_rc_path" "$HOME/.bashrc") ]]; then
+    cp "$bash_rc_path" ~/.bashrc
     echo "✔️ Configured bashrc."
 else
     echo "✔️ bashrc is already configured."
