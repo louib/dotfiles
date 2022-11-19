@@ -20,7 +20,7 @@ else
     echo "✔️ Starship is already configured."
 fi
 
-bash_rc_path="$SCRIPT_DIR/../assets/bash/bashrc.sh"
+bash_rc_path="$SCRIPT_DIR/../flakes/shell-config/bashrc.sh"
 if [[ -n $(diff "$bash_rc_path" "$HOME/.bashrc") ]]; then
     cp "$bash_rc_path" ~/.bashrc
     echo "✔️ Configured bashrc."
