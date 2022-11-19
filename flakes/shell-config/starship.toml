@@ -53,6 +53,8 @@ diverged = "<>"
 renamed = "r"
 deleted = "-"
 up_to_date = "✓"
+modified = "*"
+staged = "*"
 # I don't really care about stashed changes.
 stashed = ""
 style = "bg:#429bf5"

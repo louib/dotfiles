@@ -14,7 +14,7 @@ fi
 
 starship_config_path="$SCRIPT_DIR/../flakes/shell-config/starship.toml"
 starship_config_destination="$HOME/.config/starship.toml"
-if [[ -n $(diff "$starship_config_path" "$starship_config_destination") ]]; then
+if [[ ! -f "$starship_config_destination" ]] || [[ -n $(diff "$starship_config_path" "$starship_config_destination") ]]; then
     cp "$starship_config_path" "$starship_config_destination"
     echo "✔️ Configured starship."
 else
