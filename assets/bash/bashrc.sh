@@ -202,6 +202,8 @@ function far () {
 }
 
 if [[ -f "$HOME/.bash_profile" ]]; then
+    # Taken from https://www.shellcheck.net/wiki/SC1090
+    # shellcheck source=/dev/null
     . "$HOME/.bash_profile"
 fi
 
