@@ -4,7 +4,7 @@
 format = """
 [](#9A348E)\
 $username\
-[](bg:#DA627D fg:#9A348E)\
+[](fg:#9A348E bg:#DA627D)\
 $directory\
 [](fg:#DA627D bg:#FCA17D)\
 $git_branch\
@@ -29,7 +29,7 @@ style_root = "bg:#9A348E"
 format = '[ $user ]($style)'
 
 [directory]
-style = "bg:#DA627D"
+style = "bg:#7A349A"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
@@ -41,7 +41,7 @@ format = '[ $symbol $context ]($style) $path'
 
 [git_branch]
 symbol = ""
-style = "bg:#FCA17D"
+style = "bg:#349A76"
 format = '[ $symbol $branch ]($style)'
 
 [git_status]
@@ -50,13 +50,13 @@ behind = "<"
 diverged = "<>"
 renamed = "r"
 deleted = "x"
-style = "bg:#FCA17D"
+style = "bg:#349A76"
 format = '[ $all_status$ahead_behind ]($style)'
 
 [nix_shell]
 style = "bg:#86BBD8"
 symbol = "nix"
-format = '[ $symbol ($version) ]($style)'
+format = '[ $symbol ]($style)'
 
 [time]
 disabled = false
