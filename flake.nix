@@ -133,6 +133,7 @@
               # nerdfonts
               # keepassxc
               zotero
+              zola
               # dconf-cli
               # dconf-editor
               # build-essential
