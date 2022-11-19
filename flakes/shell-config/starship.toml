@@ -2,20 +2,13 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
-[](#9A348E)\
 $username\
-[](fg:#9A348E bg:#DA627D)\
+$time\
 $directory\
-[](fg:#DA627D bg:#FCA17D)\
 $git_branch\
 $git_status\
-[](fg:#FCA17D bg:#86BBD8)\
 $nix_shell\
-[](fg:#86BBD8 bg:#06969A)\
-$docker_context\
-[](fg:#06969A bg:#33658A)\
-$time\
-[ ](fg:#33658A)\
+[ ]()\
 """
 
 add_newline = false
@@ -31,15 +24,10 @@ style_root = "bg:#9A348E"
 format = '[ $user ]($style)'
 
 [directory]
-style = "bg:#7A349A"
 format = "[ $path ]($style)"
+style = "bg:#33658A"
 truncation_length = 3
 truncation_symbol = "…/"
-
-[docker_context]
-symbol = "docker "
-style = "bg:#06969A"
-format = '[ $symbol $context ]($style) $path'
 
 [git_branch]
 symbol = ""
@@ -72,5 +60,5 @@ disabled = false
 # See https://docs.rs/chrono/0.4.7/chrono/format/strftime/index.html for
 # all the formats
 time_format = "%X"
-style = "bg:#33658A"
+style = "bg:#7A349A"
 format = '[ $time ]($style)'
