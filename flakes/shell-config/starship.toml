@@ -43,7 +43,7 @@ format = '[ $symbol $context ]($style) $path'
 
 [git_branch]
 symbol = ""
-style = "bg:#349A76"
+style = "bg:#429bf5"
 format = '[ $symbol $branch ]($style)'
 
 [git_status]
@@ -55,7 +55,7 @@ deleted = "-"
 up_to_date = "✓"
 # I don't really care about stashed changes.
 stashed = ""
-style = "bg:#349A76"
+style = "bg:#429bf5"
 # No space before the status because we are in the same
 # "section" as the git branch.
 format = '[$all_status$ahead_behind ]($style)'
