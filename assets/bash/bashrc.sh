@@ -20,18 +20,10 @@ HISTFILESIZE=2000
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# If set, the pattern "**" used in a pathname expansion context will
-# match all files and zero or more directories and subdirectories.
-#shopt -s globstar
-
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x "$(command -v lesspipe)" ] && eval "$(SHELL=/bin/sh lesspipe)"
-
 # some more ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
 
-##### Custom configuration section #####
 set -o vi
 
 alias vi="nvim"
