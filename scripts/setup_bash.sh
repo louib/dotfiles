@@ -4,8 +4,9 @@ set -e
 SCRIPT_DIR=$(realpath "$0")
 SCRIPT_DIR=$(dirname "$SCRIPT_DIR")
 
-if [[ -n $(diff "$SCRIPT_DIR/../assets/bash/.inputrc" "$HOME/.inputrc") ]]; then
-    cp "$SCRIPT_DIR/../assets/bash/.inputrc" "$HOME/.inputrc"
+input_rc_path="$SCRIPT_DIR/../assets/bash/.inputrc"
+if [[ -n $(diff "$input_rc_path" "$HOME/.inputrc") ]]; then
+    cp "$input_rc_path" "$HOME/.inputrc"
     echo "✔️ Configured inputrc for readline."
 else
     echo "✔️ Readline is already configured."
