@@ -11,11 +11,11 @@
       },
       "locked": {
         "dir": "flakes/emojify",
-        "lastModified": 1668371306,
-        "narHash": "sha256-JwHgiRNRXOOS8FWQZ5r3v4mzPov9zSWP5aO0n+G/RzQ=",
+        "lastModified": 1668881301,
+        "narHash": "sha256-awD4L4cDzCJ4+mpLXfNhR4GjZzAO+SbKdZM9swWncbk=",
         "owner": "louib",
         "repo": "dotfiles",
-        "rev": "ff0c0e93ee11abe88d2b0638b254e2507c133d61",
+        "rev": "7610ab3bba38fb16adab3e4dc26df371e3934852",
         "type": "github"
       },
       "original": {
@@ -52,11 +52,11 @@
       },
       "locked": {
         "dir": "flakes/keepassxc",
-        "lastModified": 1668371306,
-        "narHash": "sha256-JwHgiRNRXOOS8FWQZ5r3v4mzPov9zSWP5aO0n+G/RzQ=",
+        "lastModified": 1668881301,
+        "narHash": "sha256-awD4L4cDzCJ4+mpLXfNhR4GjZzAO+SbKdZM9swWncbk=",
         "owner": "louib",
         "repo": "dotfiles",
-        "rev": "ff0c0e93ee11abe88d2b0638b254e2507c133d61",
+        "rev": "7610ab3bba38fb16adab3e4dc26df371e3934852",
         "type": "github"
       },
       "original": {
@@ -98,11 +98,11 @@
       },
       "locked": {
         "dir": "flakes/nvim",
-        "lastModified": 1668371306,
-        "narHash": "sha256-JwHgiRNRXOOS8FWQZ5r3v4mzPov9zSWP5aO0n+G/RzQ=",
+        "lastModified": 1668881301,
+        "narHash": "sha256-awD4L4cDzCJ4+mpLXfNhR4GjZzAO+SbKdZM9swWncbk=",
         "owner": "louib",
         "repo": "dotfiles",
-        "rev": "ff0c0e93ee11abe88d2b0638b254e2507c133d61",
+        "rev": "7610ab3bba38fb16adab3e4dc26df371e3934852",
         "type": "github"
       },
       "original": {
@@ -144,11 +144,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1668008841,
-        "narHash": "sha256-qIsDDBasH/kQQuWHSNr+Mcbck3Wp5VFpiMfm+JkEcTk=",
+        "lastModified": 1668880089,
+        "narHash": "sha256-o6DlEzw+fwK5LdyeuidBo6r1WvaKLEE77+gB6LPUGtU=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "60762c6576cc8b9e2d615ea9bd8c59ffe34174a1",
+        "rev": "e9b195248c6cd7961a453b10294aea9ab58e01b4",
         "type": "github"
       },
       "original": {
@@ -171,11 +171,11 @@
     "statics": {
       "locked": {
         "dir": "flakes/statics",
-        "lastModified": 1668371306,
-        "narHash": "sha256-JwHgiRNRXOOS8FWQZ5r3v4mzPov9zSWP5aO0n+G/RzQ=",
+        "lastModified": 1668881301,
+        "narHash": "sha256-awD4L4cDzCJ4+mpLXfNhR4GjZzAO+SbKdZM9swWncbk=",
         "owner": "louib",
         "repo": "dotfiles",
-        "rev": "ff0c0e93ee11abe88d2b0638b254e2507c133d61",
+        "rev": "7610ab3bba38fb16adab3e4dc26df371e3934852",
         "type": "github"
       },
       "original": {
