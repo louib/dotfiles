@@ -22,6 +22,8 @@
           languageTools = with pkgs; {
             inherit rnix-lsp;
             inherit rust-analyzer;
+            inherit cargo;
+            inherit rustc;
             inherit rustfmt;
             inherit stylua;
             inherit alejandra;
