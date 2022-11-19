@@ -18,4 +18,4 @@ jobs:
       run: sudo apt-get install -y shellcheck
 
     - name: running shellcheck on shell scripts
-      run: shellcheck scripts/*.sh
+      run: find . -name '*.sh' -exec shellcheck {} \;
