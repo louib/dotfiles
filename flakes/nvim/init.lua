@@ -478,7 +478,7 @@ local function configure_key_bindings()
   -- When in terminal mode, I don't want to remap Esc to exit, because the terminal
   -- line cannot be modified from the nvim buffer. I might want to use the vi mode from bash
   -- to edit the line by pressing Esc instead.
-  vim.api.nvim_set_keymap('t', '<Tab>' '<C-\><C-n>', { silent = false, noremap = true })
+  vim.api.nvim_set_keymap('t', '<Space><Esc>', '<C-\\><C-n>', { silent = false, noremap = true })
 end
 
 local function configure_commenting()
