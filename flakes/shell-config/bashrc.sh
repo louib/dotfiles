@@ -193,6 +193,8 @@ function far () {
     find . -type f -exec sed -i "$1" {} +
 }
 
+# TODO rename this file .shell-variables, so that it doesn't have a bash-specific
+# name, and isn't part of the bash rc config file loading.
 if [[ -f "$HOME/.bash_profile" ]]; then
     # Taken from https://www.shellcheck.net/wiki/SC1090
     # shellcheck source=/dev/null
