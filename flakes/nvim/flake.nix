@@ -32,7 +32,6 @@
             inherit clang-tools;
             typescript-language-server = nodePackages.typescript-language-server;
           };
-          # FIXME this is ugly and the lua config should be moved inside the flake.
           neovimLuaConfig = builtins.readFile (./. + "/init.lua");
           customNeovim = pkgs.neovim.override {
             # vimAlias = true;

@@ -1,5 +1,5 @@
 {
-  description = "Collection of functions that define my shell (bash/fish) configuration";
+  description = "Collection of functions that define my shell (bash/zsh) configuration";
 
   outputs = {self}: {
     lib = rec {
@@ -8,8 +8,21 @@
         VISUAL = "nvim";
         EDITOR = "nvim";
       };
+      ZSH_CONFIG = ''
+        # Have a look at https://github.com/softmoth/zsh-vim-mode at some point, to get better
+        # bindings for vim zsh.
+        bindkey -v
+
+        # Have a look at all the bindings at https://zsh.sourceforge.io/Doc/Release/Zsh-Line-Editor.html#Standard-Widgets
+        bindkey ^R history-incremental-search-backward
+        bindkey ^S history-incremental-search-forward
+
+        if [ -x "$(command -v starship)" ]; then
+            eval "$(starship init zsh)"
+        fi
+      '';
       # This is the extra configuration that can only be defined in an RC (like ~/.bashrc) file.
-      RC_CONFIG = ''
+      BASH_CONFIG = ''
         # If not running interactively, don't do anything
         case $- in
             *i*) ;;
@@ -29,6 +42,8 @@
         HISTSIZE=1000
         HISTFILESIZE=2000
       '';
+
+      STARSHIP_CONFIG = builtins.fromTOML (./. + "/starship.toml");
       SHELL_ALIASES = [
         # Defaults from template .bashrc config
         {
