@@ -43,7 +43,7 @@
         HISTFILESIZE=2000
       '';
 
-      STARSHIP_CONFIG = builtins.fromTOML builtins.readFile (./. + "/starship.toml");
+      STARSHIP_CONFIG = builtins.fromTOML (builtins.readFile (./. + "/starship.toml"));
       SHELL_ALIASES = [
         # Defaults from template .bashrc config
         {
