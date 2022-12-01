@@ -29,6 +29,9 @@
           };
           devShells = {
             default = pkgs.mkShell {
+              shellHook = ''
+                export QT_LOGGING_RULES="*.debug=false"
+              '';
               buildInputs = with pkgs; [
                 gnumake
                 cmake
