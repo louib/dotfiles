@@ -142,8 +142,6 @@ function cd () {
   fi
 }
 
-export QT_LOGGING_RULES="*.debug=false"
-
 # function to send an emojified message to git commit
 function emocommit () { emojify "$1" | git commit -n -F -; }
 # function to search emojies
