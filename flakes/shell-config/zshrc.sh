@@ -1,4 +1,4 @@
-# shellcheck shell=zsh
+# shellcheck shell=bash
 
 # Have a look at https://github.com/softmoth/zsh-vim-mode at some point, to get better
 # bindings for vim zsh.
