@@ -22,9 +22,6 @@ else
 fi
 
 bash_rc_path="$SCRIPT_DIR/../flakes/shell-config/bashrc.sh"
-if [[ -n $(diff "$bash_rc_path" "$HOME/.bashrc") ]]; then
-    cp "$bash_rc_path" ~/.bashrc
-    echo "✔️ Configured bashrc."
-else
-    echo "✔️ bashrc is already configured."
-fi
+shell_config_path="$SCRIPT_DIR/../flakes/shell-config/shell-init.sh"
+cat "$bash_rc_path" "$shell_config_path" > "$HOME/.bashrc"
+echo "✔️ Configured bashrc."

@@ -8,6 +8,8 @@
         VISUAL = "nvim";
         EDITOR = "nvim";
       };
+      SHELL_CONFIG = builtins.readFile (./. "/shell-init.sh");
+      BASH_CONFIG = (builtins.readFile (./. "/bashrc.sh")) + SHELL_CONFIG;
       ZSH_CONFIG = ''
         # Have a look at https://github.com/softmoth/zsh-vim-mode at some point, to get better
         # bindings for vim zsh.
@@ -22,26 +24,6 @@
         fi
       '';
       # This is the extra configuration that can only be defined in an RC (like ~/.bashrc) file.
-      BASH_CONFIG = ''
-        # If not running interactively, don't do anything
-        case $- in
-            *i*) ;;
-              *) return;;
-        esac
-
-        set -o vi
-
-        # don't put duplicate lines or lines starting with space in the history.
-        # See bash(1) for more options
-        HISTCONTROL=ignoreboth
-
-        # append to the history file, don't overwrite it
-        shopt -s histappend
-
-        # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-        HISTSIZE=1000
-        HISTFILESIZE=2000
-      '';
 
       STARSHIP_CONFIG = builtins.fromTOML (builtins.readFile (./. + "/starship.toml"));
       SHELL_ALIASES = [
