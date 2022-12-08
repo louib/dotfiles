@@ -8,9 +8,9 @@
         VISUAL = "nvim";
         EDITOR = "nvim";
       };
-      SHELL_CONFIG = builtins.readFile (./. "/shell-init.sh");
-      BASH_CONFIG = (builtins.readFile (./. "/bashrc.sh")) + SHELL_CONFIG;
-      ZSH_CONFIG = (builtins.readFile (./. "/zshrc.sh")) + SHELL_CONFIG;
+      SHELL_CONFIG = builtins.readFile (./. + "/shell-init.sh");
+      BASH_CONFIG = (builtins.readFile (./. + "/bashrc.sh")) + SHELL_CONFIG;
+      ZSH_CONFIG = (builtins.readFile (./. + "/zshrc.sh")) + SHELL_CONFIG;
       STARSHIP_CONFIG = builtins.fromTOML (builtins.readFile (./. + "/starship.toml"));
       SHELL_ALIASES = [
         # Defaults from template .bashrc config
