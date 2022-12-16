@@ -8,15 +8,19 @@ $directory\
 $git_branch\
 $git_status\
 $nix_shell\
-[ ]()\
+$character\
 """
 
+# Disable the blank line at the start of the prompt
 add_newline = false
 
-# Disable the blank line at the start of the prompt
-# add_newline = false
+[character]
+success_symbol = "[ ](bg:green)"
+error_symbol = "[ ](bg:red)"
+# FIXME vicmd_symbol is not supported on bash :(
+# https://starship.rs/config/#character
+# vicmd_symbol = "[ ](bg:green)"
 
-# You can also replace your username with a neat symbol like  to save some space
 [username]
 show_always = true
 style_user = "bg:#9A348E"

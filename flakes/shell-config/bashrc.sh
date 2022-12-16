@@ -40,16 +40,14 @@ export starship_precmd_user_func="set_title_starship"
 get_prompt () {
     PS1=""
     SUBSHELL=""
-    if [[ -n "$FENV_IS_IN_SANDBOX" ]]; then
-        SUBSHELL="[fenv]"
-    elif [[ -n "$IN_NIX_SHELL" ]]; then
+    if [[ -n "$IN_NIX_SHELL" ]]; then
         SUBSHELL="[nix]"
     fi
     # This adds the time as [22:22:22]
     PS1="${PS1}\[\e[m\]\[\e[35m\][\[\e[m\]\t\[\e[35m\]]"
-    # This adds the directory as [~/Projects/fenv]
+    # This adds the directory as [~/Projects/dir]
     PS1="${PS1}\[\e[m\]\[\e[35m\][\[\e[m\]\w\[\e[35m\]]"
-    # This adds the fenv sandbox prompt
+    # This adds the subshells (nix, venv, etc) to the prompt
     PS1="${PS1}\[\e[m\]\[\e[32m\]$SUBSHELL"
     # This adds the ending $ char.
     PS1="${PS1}\[\e[m\]\[\e[91m\]\\$\[\e[m\] "
