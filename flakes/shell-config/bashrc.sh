@@ -83,14 +83,6 @@ function cd () {
   fi
 }
 
-# TODO rename this file .shell-variables, so that it doesn't have a bash-specific
-# name, and isn't part of the bash rc config file loading.
-if [[ -f "$HOME/.bash_profile" ]]; then
-    # Taken from https://www.shellcheck.net/wiki/SC1090
-    # shellcheck source=/dev/null
-    . "$HOME/.bash_profile"
-fi
-
 if [ -x "$(command -v id)" ]; then
     user_id=$(id -u)
     export SSH_AUTH_SOCK=/var/run/user/${user_id}/gnupg/S.gpg-agent.ssh
