@@ -119,3 +119,9 @@ sp () {
 far () {
     find . -type f -exec sed -i "$1" {} +
 }
+
+if [ -f "$HOME/.shell-extras" ]; then
+    # Taken from https://www.shellcheck.net/wiki/SC1090
+    # shellcheck source=/dev/null
+    . "$HOME/.shell-extras"
+fi
