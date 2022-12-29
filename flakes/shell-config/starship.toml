@@ -3,6 +3,7 @@
 
 format = """
 $username\
+$hostname\
 $time\
 $directory\
 $git_branch\
@@ -26,6 +27,11 @@ show_always = true
 style_user = "bg:#9A348E"
 style_root = "bg:#9A348E"
 format = '[ $user ]($style)'
+
+[hostname]
+ssh_only = true
+format = '[ $ssh_symbol$hostname ]($style)'
+style = 'bold dimmed orange'
 
 [directory]
 format = "[ $path ]($style)"
