@@ -17,7 +17,15 @@ jobs:
     - uses: cachix/install-nix-action@v18
 
     - name: Running `nix flake check` on flakes
-      run: find . -name '*flake.nix' -exec nix flake check {} \;
+      run: |
+        files=$(find . -name '*flake.nix')
+        IFS=$'\n'; for file in $files; do
+          if [[ -d "$file" ]]; then
+              continue
+          fi
+
+          nix flake check "$file"
+        done
 
   formatting:
     runs-on: ubuntu-latest
