@@ -2,7 +2,7 @@
   description = "Static values in my Nix configuration";
 
   outputs = {self}: {
-    lib = {
+    lib = rec {
       # This list is derived from https://github.com/numtide/flake-utils/blob/5aed5285a952e0b949eb3ba02c12fa4fcfef535f/default.nix#L3
       # from which I removed the Darwin systems.
       defaultSystems = [
