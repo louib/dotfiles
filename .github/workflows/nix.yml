@@ -20,7 +20,8 @@ jobs:
       run: |
         files=$(find . -name '*flake.nix')
         IFS=$'\n'; for file in $files; do
-          nix flake check "$file"
+          flake_dir=$(dirname "$file")
+          nix flake check "$flake_dir"
         done
 
   formatting:
