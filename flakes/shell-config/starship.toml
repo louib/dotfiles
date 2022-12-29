@@ -31,7 +31,7 @@ format = '[ $user ]($style)'
 [hostname]
 ssh_only = true
 format = '[ $ssh_symbol$hostname ]($style)'
-style = 'bold dimmed orange'
+style = 'bold dimmed red'
 
 [directory]
 format = "[ $path ]($style)"
