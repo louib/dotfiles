@@ -147,7 +147,7 @@
               # epiphany
               chatty
               megapixels
-              ttf-bitstream-vera
+              # ttf-bitstream-vera
               # wl-clipboard
             ];
           };
