@@ -10,6 +10,19 @@
         "x86_64-linux"
       ];
 
+      defaultLocale = {
+        name = "en_CA.UTF-8";
+        ticker = "en";
+      };
+
+      locales = [
+        defaultLocale
+        {
+          name = "fr_CA.utf8";
+          ticker = "ca";
+        }
+      ];
+
       defaultUsername = "louib";
       # TODO should I have my GPG public key here?
       # TODO should I have my SSH public key here?
