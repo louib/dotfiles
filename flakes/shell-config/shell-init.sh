@@ -66,9 +66,18 @@ mei () {
 }
 
 # Nix stuff
-alias nix-search="nix-env -qa"
+alias nsc="nix search nixpkgs"
 alias ndv="nix develop ."
 alias nfc="nix flake check"
+nfu () {
+    input_name=$1
+    # If no input name is provided, we update all the inputs.
+    if [ -z "$input_name" ]; then
+        nix flake update
+    else
+        nix flake lock --update-input "$input_name"
+    fi
+}
 
 # function to send an emojified message to git commit
 emocommit () { emojify "$1" | git commit -n -F -; }
