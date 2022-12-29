@@ -20,10 +20,6 @@ jobs:
       run: |
         files=$(find . -name '*flake.nix')
         IFS=$'\n'; for file in $files; do
-          if [[ -d "$file" ]]; then
-              continue
-          fi
-
           nix flake check "$file"
         done
 
