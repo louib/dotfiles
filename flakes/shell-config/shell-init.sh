@@ -67,8 +67,16 @@ mei () {
 
 # Nix stuff
 alias nsc="nix search nixpkgs"
-alias ndv="nix develop ."
 alias nfc="nix flake check"
+ndv () {
+    flake_path=$1
+    # If no path is provided, use the current directory
+    if [ -z "$flake_path" ]; then
+        nix develop .
+    else
+        nix develop "$flake_path"
+    fi
+}
 nfu () {
     input_name=$1
     # If no input name is provided, we update all the inputs.
