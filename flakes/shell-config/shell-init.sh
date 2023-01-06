@@ -22,9 +22,15 @@ gca () {
 gnb () {
     git checkout -b "$1"
 }
-# a simple git checkout
+# git checkout
 gco () {
-    git checkout "$1"
+    branch_name=$1
+    # If no branch name is provided, checkout the HEAD
+    if [ -z "$branch_name" ]; then
+        git checkout .
+    else
+        git checkout "$1"
+    fi
 }
 alias gst="git status"
 alias gdf="git diff"
