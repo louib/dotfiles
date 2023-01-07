@@ -24,8 +24,6 @@
       ];
 
       defaultUsername = "louib";
-      # TODO should I have my GPG public key here?
-      # TODO should I have my SSH public key here?
     };
   };
 }
