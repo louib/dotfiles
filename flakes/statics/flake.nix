@@ -18,7 +18,7 @@
       locales = [
         defaultLocale
         {
-          name = "fr_CA.utf8";
+          name = "fr_CA.UTF-8";
           ticker = "ca";
         }
       ];
