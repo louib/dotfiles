@@ -8,6 +8,7 @@
         VISUAL = "nvim";
         EDITOR = "nvim";
       };
+      READLINE_CONFIG = builtins.readFile (./. + "/.inputrc");
       SHELL_CONFIG = builtins.readFile (./. + "/shell-init.sh");
       BASH_CONFIG = (builtins.readFile (./. + "/bashrc.sh")) + SHELL_CONFIG;
       ZSH_CONFIG = (builtins.readFile (./. + "/zshrc.sh")) + SHELL_CONFIG;

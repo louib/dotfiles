@@ -1,8 +1,11 @@
-# Commenting the mode display in prompt
-# for now because it really doesn't fit with
-# the rest of my shell and it isn't configurable.
-# set show-mode-in-prompt on
 set show-all-if-ambiguous on
+set expand-tilde on
+
+# This used to be enabled, but doesn't play well with
+# starship. There is a mode option in starship, but it's
+# not supported when using bash. I think the next best
+# option is to migrate away from bash.
+# set show-mode-in-prompt on
 
 $if mode=vi
     # normal mode
