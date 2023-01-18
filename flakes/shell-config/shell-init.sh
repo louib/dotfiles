@@ -18,6 +18,10 @@ gcd () {
 gca () {
     git commit --amend --no-edit
 }
+# git commit amend, but without the commit hooks
+gcan () {
+    git commit --amend --no-edit -n
+}
 # git new branch
 gnb () {
     git checkout -b "$1"
