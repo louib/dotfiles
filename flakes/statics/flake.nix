@@ -28,27 +28,28 @@
           "xkb-options" = ["caps:escape" "grp:win_space_toggle"];
         };
 
-        # Gnome terminal options
-        "org/gnome/terminal/legacy" = {
-          "default-show-menubar" = false;
-        };
-        "org/gnome/terminal/legacy" = {
-          "theme-variant" = "dark";
-        };
-        "org/gnome/terminal/legacy" = {
-          "prev-tab" = "<Primary>h";
-        };
-        "org/gnome/terminal/legacy" = {
-          "next-tab" = "<Primary>l";
-        };
-        "org/gnome/terminal/legacy" = {
-          "new-tab" = "<Primary>t";
-        };
-        "org/gnome/terminal/legacy" = {
-          "full-screen" = "<Primary>f";
-        };
         "org/gnome/desktop/peripherals/touchpad" = {
           "natural-scroll" = false;
+        };
+
+        # Gnome terminal options
+        "org/gnome/terminal/legacy/keybindings" = {
+          "default-show-menubar" = false;
+        };
+        "org/gnome/terminal/legacy/keybindings" = {
+          "theme-variant" = "dark";
+        };
+        "org/gnome/terminal/legacy/keybindings" = {
+          "prev-tab" = "<Primary>h";
+        };
+        "org/gnome/terminal/legacy/keybindings" = {
+          "next-tab" = "<Primary>l";
+        };
+        "org/gnome/terminal/legacy/keybindings" = {
+          "new-tab" = "<Primary>t";
+        };
+        "org/gnome/terminal/legacy/keybindings" = {
+          "full-screen" = "<Primary>f";
         };
       };
 
