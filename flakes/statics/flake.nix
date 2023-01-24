@@ -23,6 +23,12 @@
         }
       ];
 
+      DCONF_SETTINGS = {
+        "/org/gnome/desktop/input-sources" = {
+          "xkb-options" = ["caps:escape" "grp:win_space_toggle"];
+        };
+      };
+
       defaultUsername = "louib";
     };
   };
