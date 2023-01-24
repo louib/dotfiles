@@ -48,6 +48,22 @@
         "org/gnome/terminal/legacy/keybindings" = {
           "full-screen" = "<Primary>f";
         };
+        "org/gnome/terminal/legacy" = {
+          "theme-variant" = "dark";
+        };
+
+        "org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9" = {
+          "use-system-font" = false;
+        };
+        "org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9" = {
+          "font" = "Monospace 14";
+        };
+        "org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9" = {
+          "audible-bell" = false;
+        };
+        "org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9" = {
+          "scrollback-unlimited" = true;
+        };
       };
 
       defaultUsername = "louib";
