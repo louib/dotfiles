@@ -27,6 +27,29 @@
         "org/gnome/desktop/input-sources" = {
           "xkb-options" = ["caps:escape" "grp:win_space_toggle"];
         };
+
+        # Gnome terminal options
+        "org/gnome/terminal/legacy" = {
+          "default-show-menubar" = false;
+        };
+        "org/gnome/terminal/legacy" = {
+          "theme-variant" = "dark";
+        };
+        "org/gnome/terminal/legacy" = {
+          "prev-tab" = "<Primary>h";
+        };
+        "org/gnome/terminal/legacy" = {
+          "next-tab" = "<Primary>l";
+        };
+        "org/gnome/terminal/legacy" = {
+          "new-tab" = "<Primary>t";
+        };
+        "org/gnome/terminal/legacy" = {
+          "full-screen" = "<Primary>f";
+        };
+        "org/gnome/desktop/peripherals/touchpad" = {
+          "natural-scroll" = false;
+        };
       };
 
       defaultUsername = "louib";

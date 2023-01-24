@@ -18,9 +18,6 @@ dconf write /org/gnome/desktop/wm/keybindings/switch-applications-backward "['<S
 dconf write /org/gnome/desktop/wm/keybindings/switch-windows "@as []"
 dconf write /org/gnome/desktop/wm/keybindings/switch-windows-backward "@as []"
 
-# FIXME this does not work so far...
-dconf write /org/gnome/desktop/media-handling/autorun-never true
-
 # FIXME I think this is broken, the --maximize option no longer exists...
 if [[ ! -f "$HOME/.local/share/applications/org.gnome.Terminal.desktop" ]]; then
     mkdir -p ~/.local/share/applications/
