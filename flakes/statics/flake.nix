@@ -64,6 +64,27 @@
         "org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9" = {
           "scrollback-unlimited" = true;
         };
+
+        "org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9" = {
+          "palette" = [
+            "rgb(0,0,0)"
+            "rgb(170,0,0)"
+            "rgb(0,170,0)"
+            "rgb(170,85,0)"
+            "rgb(181,162,250)"
+            "rgb(170,0,170)"
+            "rgb(0,170,170)"
+            "rgb(206,105,105)"
+            "rgb(201,109,109)"
+            "rgb(255,85,85)"
+            "rgb(85,255,85)"
+            "rgb(255,255,85)"
+            "rgb(85,85,255)"
+            "rgb(255,85,255)"
+            "rgb(85,255,255)"
+            "rgb(185,78,78)"
+          ];
+        };
       };
 
       defaultUsername = "louib";
