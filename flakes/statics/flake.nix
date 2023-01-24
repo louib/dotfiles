@@ -37,9 +37,6 @@
           "default-show-menubar" = false;
         };
         "org/gnome/terminal/legacy/keybindings" = {
-          "theme-variant" = "dark";
-        };
-        "org/gnome/terminal/legacy/keybindings" = {
           "prev-tab" = "<Primary>h";
         };
         "org/gnome/terminal/legacy/keybindings" = {
