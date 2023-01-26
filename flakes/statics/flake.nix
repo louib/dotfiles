@@ -24,12 +24,36 @@
       ];
 
       DCONF_SETTINGS = {
+        "org/gnome/settings-daemon/plugins/color" = {
+          "night-light-enabled" = true;
+        };
+        "org/gnome/settings-daemon/plugins/color" = {
+          "night-light-schedule-automatic" = false;
+        };
+        "org/gnome/settings-daemon/plugins/color" = {
+          "night-light-schedule-from" = 0.0;
+        };
+        "org/gnome/settings-daemon/plugins/color" = {
+          "night-light-schedule-to" = 0.0;
+        };
+        "org/gnome/settings-daemon/plugins/color" = {
+          "night-light-temperature" = 2200;
+        };
+
         "org/gnome/desktop/input-sources" = {
           "xkb-options" = ["caps:escape" "grp:win_space_toggle"];
         };
 
         "org/gnome/desktop/peripherals/touchpad" = {
           "natural-scroll" = false;
+        };
+
+        # FIXME this should use the locales defined above.
+        "org/gnome/desktop/input-sources" = {
+          "sources" = [
+            ["xkb" "us"]
+            ["xkb" "ca"]
+          ];
         };
 
         # Gnome terminal options
