@@ -18,21 +18,6 @@ dconf write /org/gnome/desktop/wm/keybindings/switch-applications-backward "['<S
 dconf write /org/gnome/desktop/wm/keybindings/switch-windows "@as []"
 dconf write /org/gnome/desktop/wm/keybindings/switch-windows-backward "@as []"
 
-# FIXME I think this is broken, the --maximize option no longer exists...
-if [[ ! -f "$HOME/.local/share/applications/org.gnome.Terminal.desktop" ]]; then
-    mkdir -p ~/.local/share/applications/
-    cp /usr/share/applications/org.gnome.Terminal.desktop ~/.local/share/applications/
-    # Note that you must not change the TryExec value, as it's used for different purposes that might
-    # make the desktop application unavailable. aka if the app fails the TryExec, the app won't be
-    # displayed to the user.
-    sed -i "s/^Exec=gnome-terminal$/Exec=gnome-terminal --maximize/g" ~/.local/share/applications/org.gnome.Terminal.desktop
-    desktop-file-validate ~/.local/share/applications/org.gnome.Terminal.desktop
-    update-desktop-database ~/.local/share/applications
-    echo "✔️ Gnome terminal is now configured to open maximized"
-else
-    echo "✔️ Gnome terminal is already configured to open maximized"
-fi
-
 # TODO for some reason the profile name is always the same.
 # If it ever changes, it would be possible to get it using
 # dconf dump / | grep legacy/profiles
