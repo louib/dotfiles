@@ -48,6 +48,10 @@
           "natural-scroll" = false;
         };
 
+        "org/gnome/desktop/interface" = {
+          "show-battery-percentage" = true;
+        };
+
         # FIXME this should use the locales defined above.
         "org/gnome/desktop/input-sources" = {
           "sources" = [
