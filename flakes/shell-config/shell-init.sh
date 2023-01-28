@@ -146,6 +146,14 @@ sp () {
 far () {
     find . -type f -exec sed -i "$1" {} +
 }
+# Find a file
+ff () {
+    if [ -z "$1" ]; then
+        echo "Please provide a file name."
+    else
+        find . -name "*$1*"
+    fi
+}
 
 if [ -f "$HOME/.shell-extras" ]; then
     # Taken from https://www.shellcheck.net/wiki/SC1090
