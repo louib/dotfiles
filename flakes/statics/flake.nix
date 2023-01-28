@@ -60,6 +60,16 @@
           ];
         };
 
+        "org/gnome/shell" = {
+          "favorite-apps" = [
+            "org.gnome.Nautilus.desktop"
+            "org.keepassxc.KeePassXC.desktop"
+            "firefox.desktop"
+            "thunderbird.desktop"
+            "org.gnome.Terminal.desktop"
+          ];
+        };
+
         # Gnome terminal options
         "org/gnome/terminal/legacy/keybindings" = {
           "default-show-menubar" = false;
