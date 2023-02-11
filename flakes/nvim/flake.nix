@@ -1,5 +1,5 @@
 {
-  description = "My neovim configuration";
+  description = "My Neovim configuration";
 
   inputs = {
     nixpkgs = {
@@ -44,6 +44,7 @@
                   # TODO check out https://github.com/kyazdani42/nvim-web-devicons.git
                   # TODO check out https://github.com/L3MON4D3/LuaSnip
                   # TODO check out https://github.com/zakharykaplan/nvim-retrail
+                  # TODO check out https://github.com/f-person/git-blame.nvim
                   vim-nix
                   vim-surround
                   lualine-nvim
