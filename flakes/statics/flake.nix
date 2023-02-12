@@ -52,14 +52,6 @@
           "show-battery-percentage" = true;
         };
 
-        # FIXME this should use the locales defined above.
-        "org/gnome/desktop/input-sources" = {
-          "sources" = [
-            ["xkb" "us"]
-            ["xkb" "ca"]
-          ];
-        };
-
         "org/gnome/shell" = {
           "favorite-apps" = [
             "org.gnome.Nautilus.desktop"
