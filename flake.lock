@@ -15,31 +15,6 @@
         "type": "github"
       }
     },
-    "neovim": {
-      "inputs": {
-        "flake-utils": [
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "dir": "flakes/nvim",
-        "lastModified": 1668881301,
-        "narHash": "sha256-awD4L4cDzCJ4+mpLXfNhR4GjZzAO+SbKdZM9swWncbk=",
-        "owner": "louib",
-        "repo": "dotfiles",
-        "rev": "7610ab3bba38fb16adab3e4dc26df371e3934852",
-        "type": "github"
-      },
-      "original": {
-        "dir": "flakes/nvim",
-        "owner": "louib",
-        "repo": "dotfiles",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1668880089,
@@ -58,7 +33,6 @@
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
-        "neovim": "neovim",
         "nixpkgs": "nixpkgs"
       }
     }

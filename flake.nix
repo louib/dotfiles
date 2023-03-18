@@ -5,11 +5,6 @@
     nixpkgs = {
       url = "github:NixOS/nixpkgs";
     };
-    neovim = {
-      url = "github:louib/dotfiles?dir=flakes/nvim";
-      inputs.flake-utils.follows = "flake-utils";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     flake-utils = {
       url = "github:numtide/flake-utils";
     };
@@ -18,7 +13,6 @@
   outputs = {
     self,
     nixpkgs,
-    neovim,
     flake-utils,
   }: let
     consts = import ./consts.nix;
@@ -28,7 +22,6 @@
         system: (
           let
             pkgs = nixpkgs.legacyPackages.${system};
-            neovimPackages = neovim.packages.${system};
 
             # Other packages that I want to be available, but I don't necessarily use day to day.
             miscPackages = with pkgs; {
@@ -129,11 +122,9 @@
             };
             # TODO add the vim language servers and tools to the host packages.
           in {
-            packages =
-              {
-                inherit hostPackages;
-              }
-              // neovimPackages;
+            packages = {
+              inherit hostPackages;
+            };
           }
         )
       )
