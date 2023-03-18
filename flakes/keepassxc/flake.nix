@@ -8,18 +8,16 @@
     flake-utils = {
       url = "github:numtide/flake-utils";
     };
-    statics = {
-      url = "github:louib/dotfiles?dir=flakes/statics";
-    };
   };
 
   outputs = {
     self,
     nixpkgs,
     flake-utils,
-    statics,
-  }: (
-    flake-utils.lib.eachSystem statics.lib.DEFAULT_SYSTEMS (
+  }: let
+    consts = import ./../../consts.nix;
+  in (
+    flake-utils.lib.eachSystem consts.DEFAULT_SYSTEMS (
       system: (
         let
           pkgs = nixpkgs.legacyPackages.${system};

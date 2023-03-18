@@ -33,25 +33,7 @@
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs",
-        "statics": "statics"
-      }
-    },
-    "statics": {
-      "locked": {
-        "dir": "flakes/statics",
-        "lastModified": 1679100742,
-        "narHash": "sha256-oCpdFJIZV0Ef+J04MZ2kbs9FqTAwAOGpkj7iwatt0vk=",
-        "owner": "louib",
-        "repo": "dotfiles",
-        "rev": "4baf8677ac64c8f3429e78e82bf380df8747f9d1",
-        "type": "github"
-      },
-      "original": {
-        "dir": "flakes/statics",
-        "owner": "louib",
-        "repo": "dotfiles",
-        "type": "github"
+        "nixpkgs": "nixpkgs"
       }
     }
   },

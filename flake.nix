@@ -5,24 +5,8 @@
     nixpkgs = {
       url = "github:NixOS/nixpkgs";
     };
-    statics = {
-      url = "github:louib/dotfiles?dir=flakes/statics";
-    };
     neovim = {
       url = "github:louib/dotfiles?dir=flakes/nvim";
-      inputs.flake-utils.follows = "flake-utils";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    keepassxc = {
-      url = "github:louib/dotfiles?dir=flakes/keepassxc";
-      inputs.flake-utils.follows = "flake-utils";
-      inputs.statics.follows = "statics";
-      # I do active development on this one, so I might be tempted to freeze the
-      # nixpkgs version?
-      # inputs.nixpkgs.follows = "nixpkgs";
-    };
-    emojify = {
-      url = "github:louib/dotfiles?dir=flakes/emojify";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -34,19 +18,16 @@
   outputs = {
     self,
     nixpkgs,
-    statics,
     neovim,
-    emojify,
-    keepassxc,
     flake-utils,
-  }: (
-    flake-utils.lib.eachSystem statics.lib.DEFAULT_SYSTEMS (
+  }: let
+    consts = import ./consts.nix;
+  in (
+    flake-utils.lib.eachSystem consts.DEFAULT_SYSTEMS (
       system: (
         let
           pkgs = nixpkgs.legacyPackages.${system};
           neovimPackages = neovim.packages.${system};
-          emojifyPackages = emojify.packages.${system};
-          keepassxcPackages = keepassxc.packages.${system};
 
           # Other packages that I want to be available, but I don't necessarily use day to day.
           miscPackages = with pkgs; {
@@ -151,9 +132,7 @@
             {
               inherit hostPackages;
             }
-            // neovimPackages
-            // keepassxcPackages
-            // emojifyPackages;
+            // neovimPackages;
         }
       )
     )
