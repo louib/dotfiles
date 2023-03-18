@@ -40,11 +40,11 @@
     "statics": {
       "locked": {
         "dir": "flakes/statics",
-        "lastModified": 1668211653,
-        "narHash": "sha256-xRTNHPbE3J+DaBT525AgDnOQjs0ZYxmKUUhXqeD+/Cg=",
+        "lastModified": 1679100742,
+        "narHash": "sha256-oCpdFJIZV0Ef+J04MZ2kbs9FqTAwAOGpkj7iwatt0vk=",
         "owner": "louib",
         "repo": "dotfiles",
-        "rev": "da0b3a1dd0a41da9a2f0e28ae1d37a1d98a9a12f",
+        "rev": "4baf8677ac64c8f3429e78e82bf380df8747f9d1",
         "type": "github"
       },
       "original": {
