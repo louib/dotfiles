@@ -20,7 +20,7 @@ jobs:
     - name: installing stylua
       # We're reusing the version from the neovim configuration so that we get expect
       # exactly the same style locally and in the CI.
-      run: nix profile install .#stylua
+      run: nix profile install ./flakes/nvim/#stylua
 
     - name: running stylua on lua scripts
       run: find . -name '*.lua' -exec stylua --check {} \;

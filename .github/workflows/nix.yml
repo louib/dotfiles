@@ -35,7 +35,7 @@ jobs:
     - name: installing alejandra
       # We're reusing the version from the neovim configuration so that we get expect
       # exactly the same style locally and in the CI.
-      run: nix profile install .#alejandra
+      run: nix profile install ./flakes/nvim/#alejandra
 
     - name: running alejandra on nix scripts
       run: find . -name '*.nix' -exec alejandra --check {} \;
