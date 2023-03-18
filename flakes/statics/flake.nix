@@ -5,18 +5,18 @@
     lib = rec {
       # This list is derived from https://github.com/numtide/flake-utils/blob/5aed5285a952e0b949eb3ba02c12fa4fcfef535f/default.nix#L3
       # from which I removed the Darwin systems.
-      defaultSystems = [
+      DEFAULT_SYSTEMS = [
         "aarch64-linux"
         "x86_64-linux"
       ];
 
-      defaultLocale = {
+      DEFAULT_LOCALE = {
         name = "en_CA.UTF-8";
         ticker = "en";
       };
 
-      locales = [
-        defaultLocale
+      LOCALES = [
+        DEFAULT_LOCALE
         {
           name = "fr_CA.UTF-8";
           ticker = "ca";
@@ -120,7 +120,7 @@
         };
       };
 
-      defaultUsername = "louib";
+      DEFAULT_USERNAME = "louib";
     };
   };
 }

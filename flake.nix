@@ -40,7 +40,7 @@
     keepassxc,
     flake-utils,
   }: (
-    flake-utils.lib.eachSystem statics.lib.defaultSystems (
+    flake-utils.lib.eachSystem statics.lib.DEFAULT_SYSTEMS (
       system: (
         let
           pkgs = nixpkgs.legacyPackages.${system};
