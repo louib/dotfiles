@@ -40,25 +40,27 @@ truncation_length = 3
 truncation_symbol = "…/"
 
 [git_branch]
-symbol = ""
+format = "[ $branch]($style)"
 style = "bg:#429bf5"
-format = '[ $symbol $branch ]($style)'
+symbol = ""
 
 [git_status]
 ahead = ">"
 behind = "<"
-diverged = "<>"
-renamed = "r"
 deleted = "-"
-up_to_date = "✓"
+diverged = "<>"
+format = "[ $all_status$ahead_behind ]($style)"
 modified = "*"
-staged = "*"
-# I don't really care about stashed changes.
+renamed = "r"
+staged = "+"
+conflicted = "!"
 stashed = ""
 style = "bg:#429bf5"
-# No space before the status because we are in the same
-# "section" as the git branch.
-format = '[$all_status$ahead_behind ]($style)'
+up_to_date = "✓"
+
+[git_state]
+style = "bg:#429bf5"
+format = "[ $state ]($style)"
 
 [nix_shell]
 style = "bg:#86BBD8"
