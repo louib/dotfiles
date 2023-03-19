@@ -22,6 +22,7 @@
               cargo
               rustc
               rustfmt
+              rustup
             ];
           };
         }
