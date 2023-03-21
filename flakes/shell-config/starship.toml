@@ -7,6 +7,7 @@ $hostname\
 $time\
 $directory\
 $git_branch\
+$git_state\
 $git_status\
 $nix_shell\
 $character\
@@ -40,16 +41,16 @@ truncation_length = 3
 truncation_symbol = "…/"
 
 [git_branch]
-format = "[ $branch]($style)"
+format = "[( $branch)]($style)"
 style = "bg:#429bf5"
 symbol = ""
 
 [git_status]
+format = "[( $all_status$ahead_behind) ]($style)"
 ahead = ">"
 behind = "<"
 deleted = "-"
 diverged = "<>"
-format = "[ $all_status$ahead_behind ]($style)"
 modified = "*"
 renamed = "r"
 staged = "+"
@@ -59,8 +60,8 @@ style = "bg:#429bf5"
 up_to_date = "✓"
 
 [git_state]
+format = "[( $state)]($style)"
 style = "bg:#429bf5"
-format = "[ $state ]($style)"
 
 [nix_shell]
 style = "bg:#86BBD8"
