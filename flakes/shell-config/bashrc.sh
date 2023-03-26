@@ -50,7 +50,6 @@ set_title_starship () {
     CURRENT_DIR=$(basename "$PWD")
     echo -ne "\033]0; $CURRENT_DIR \007"
 }
-export starship_precmd_user_func="set_title_starship"
 
 get_prompt () {
     PS1=""
@@ -70,7 +69,6 @@ get_prompt () {
     # Setting the terminal title everytime the prompt gets updated.
     set_title
 }
-PROMPT_COMMAND=get_prompt
 
 # Replace cd by an alias that will also update the title after
 # changing the directory.
@@ -90,4 +88,7 @@ fi
 
 if [ -x "$(command -v starship)" ]; then
     eval "$(starship init bash)"
+    export starship_precmd_user_func="set_title_starship"
+else
+    PROMPT_COMMAND=get_prompt
 fi
