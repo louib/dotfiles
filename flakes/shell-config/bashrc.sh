@@ -87,8 +87,11 @@ if [ -x "$(command -v id)" ]; then
 fi
 
 if [ -x "$(command -v starship)" ]; then
-    eval "$(starship init bash)"
     export starship_precmd_user_func="set_title_starship"
+    # Here we use the PROMPT_COMMAND not to set the prompt, but to set the title
+    # of the terminal.
+    PROMPT_COMMAND=set_title_starship
+    eval "$(starship init bash)"
 else
     PROMPT_COMMAND=get_prompt
 fi
