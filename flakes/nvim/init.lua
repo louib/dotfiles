@@ -587,6 +587,11 @@ local function configure_nvim()
         autocmd QuickFixCmdPost l* lwindow
     augroup END
   ]])
+
+  -- Used to close all the buffers except the current buffer.
+  vim.cmd([[
+    command! BufOnly silent! execute "%bd|e#|bd#"
+  ]])
 end
 
 local function configure()
