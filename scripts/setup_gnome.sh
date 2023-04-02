@@ -15,7 +15,6 @@ dconf write /org/gnome/desktop/wm/keybindings/switch-windows-backward "@as []"
 dconf write /org/gnome/desktop/interface/gtk-theme "'Adwaita-dark'"
 echo "✔️ Configured gtk dark theme"
 
-dconf write /org/gnome/settings-daemon/plugins/power/sleep-inactive-ac-type "'nothing'"
 dconf write /org/gnome/desktop/screensaver/logout-delay 7200
 
 # For some reason the "Power Off" mode is not called "power-off" or "poweroff" in dconf,
