@@ -40,6 +40,14 @@ local function set_filetype_options()
     return
   end
 
+  if filetype == 'go' then
+    vim.bo.tabstop = 2
+    vim.bo.shiftwidth = 2
+    -- Apparently using tabs is a convention for Go code?
+    vim.bo.expandtab = false
+    return
+  end
+
   if filetype == 'nix' then
     -- see :help filename-modifiers
     -- :p means the full path
