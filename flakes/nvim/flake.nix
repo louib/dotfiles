@@ -33,6 +33,7 @@
             # This one is for clangd, the LSP for C and C++, and for clang-format
             inherit clang-tools;
             typescript-language-server = nodePackages.typescript-language-server;
+            yaml-language-server = nodePackages.yaml-language-server;
           };
           neovimLuaConfig = builtins.readFile (./. + "/init.lua");
           customNeovim = pkgs.neovim.override {

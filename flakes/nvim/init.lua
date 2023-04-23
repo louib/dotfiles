@@ -438,20 +438,32 @@ local function configure_lsp()
     },
   })
 
+  -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#yamlls
+  require('lspconfig').yamlls.setup({
+    on_attach = custom_lsp_attach,
+    flags = lsp_flags,
+    settings = {
+      ['yaml'] = {
+        -- Name has to be in camelCase because this is what the yaml-language-server uses.
+        keyOrdering = false,
+        redhat = {
+          telemetry = {
+            enabled = false,
+          },
+        },
+      },
+    },
+  })
+
   -- See https://github.com/neovim/nvim-lspconfig#suggested-configuration for
   -- the suggested top-level configuration and https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
   -- for a list of all the available language servers.
 
-  -- add sumneko_lua support.
-  -- require'lspconfig'.tsserver.setup{}
+  -- TODO add sumneko_lua support.
   -- TODO add eslint support?
-  -- add vanilla JS support?
-  -- add dockerfile support?
-  -- add python support
-  -- add bash support (apparently there's a bash language server)
-  -- require'lspconfig'.bashls.setup{}
-  -- add YAML language server support?
-  -- https://github.com/redhat-developer/yaml-language-server
+  -- TODO add vanilla JS support?
+  -- TODO add dockerfile support?
+  -- TODO add python support
 end
 
 local function configure_key_bindings()
