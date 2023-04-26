@@ -62,7 +62,7 @@
                   cmp-nvim-lsp
                   cmp-buffer
                   cmp-path
-                  # TODO check out https://github.com/hrsh7th/cmp-cmdline.git
+                  cmp-cmdline
 
                   # Colorschemes
                   everforest
