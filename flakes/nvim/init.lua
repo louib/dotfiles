@@ -252,6 +252,11 @@ local function configure_auto_completion()
       -- { name = 'snippy' }, -- For snippy users.
     }, {
       { name = 'buffer' },
+    }, {
+      -- This uses cmp-path
+      -- See https://github.com/hrsh7th/cmp-path#configuration for details
+      -- on how to configure.
+      { name = 'path' },
     }),
   })
 
