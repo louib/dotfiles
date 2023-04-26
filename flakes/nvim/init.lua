@@ -1,4 +1,8 @@
 local LSP_ENABLED_VAR_NAME = 'LSP_ENABLED'
+local ENABLED_FORMATTING_TOOL_VAR_NAME = 'ENABLED_FORMATTING_TOOL'
+local ENABLED_LINTING_TOOL_VAR_NAME = 'ENABLED_LINTING_TOOL'
+local DISABLED_EMOJI = '🚫'
+local ERRORS_EMOJI = '❗'
 
 local function get_project_name()
   local current_dir = vim.fn.getcwd()
@@ -15,6 +19,8 @@ end
 local function set_filetype_options()
   local buffer_number = vim.api.nvim_get_current_buf()
   local filetype = vim.api.nvim_buf_get_option(buffer_number, 'filetype')
+  -- Apparently this is the only way to get the path associated with a buffer.
+  local buffer_path = vim.api.nvim_buf_get_name(buffer_number)
 
   -- Default if we cannot detect the filetype.
   vim.wo.spell = false
@@ -28,6 +34,7 @@ local function set_filetype_options()
 
   if filetype == 'sh' then
     vim.bo.makeprg = 'shellcheck -f gcc %'
+    vim.api.nvim_buf_set_var(buffer_number, ENABLED_LINTING_TOOL_VAR_NAME, 'shellcheck')
     vim.bo.tabstop = 4
     vim.bo.shiftwidth = 4
     return
@@ -35,6 +42,7 @@ local function set_filetype_options()
 
   if filetype == 'rust' then
     vim.bo.makeprg = 'cargo build -q --message-format short'
+    vim.api.nvim_buf_set_var(buffer_number, ENABLED_LINTING_TOOL_VAR_NAME, 'cargo')
     vim.bo.tabstop = 4
     vim.bo.shiftwidth = 4
     return
@@ -54,7 +62,10 @@ local function set_filetype_options()
     -- :h means the head (last component) removed.
     -- nix check flake requires the directory in which the flake resides, not the
     -- path to the flake itself.
-    vim.bo.makeprg = 'nix flake check %:p:h'
+    if string.match(buffer_path, 'flake.nix') then
+      vim.bo.makeprg = 'nix flake check %:p:h'
+      vim.api.nvim_buf_set_var(buffer_number, ENABLED_LINTING_TOOL_VAR_NAME, 'nix flake check')
+    end
     return
   end
 
@@ -83,6 +94,14 @@ local function set_filetype_options()
     vim.wo.foldnestmax = 1
     vim.wo.foldminlines = 0
     return
+  end
+
+  if filetype == 'yaml' then
+    if string.match(buffer_path, '.github/workflows/') then
+      vim.bo.makeprg = 'actionlint %:p:h'
+      vim.api.nvim_buf_set_var(buffer_number, ENABLED_LINTING_TOOL_VAR_NAME, 'actionlint')
+      return
+    end
   end
 
   -- Running spell checking by default on specific text files.
@@ -129,6 +148,8 @@ local function configure_auto_format()
     filetype = {
       cpp = {
         function()
+          local buffer_number = vim.api.nvim_get_current_buf()
+          vim.api.nvim_buf_set_var(buffer_number, ENABLED_FORMATTING_TOOL_VAR_NAME, 'clang-format')
           return {
             exe = 'clang-format',
             stdin = true,
@@ -137,6 +158,8 @@ local function configure_auto_format()
       },
       rust = {
         function()
+          local buffer_number = vim.api.nvim_get_current_buf()
+          vim.api.nvim_buf_set_var(buffer_number, ENABLED_FORMATTING_TOOL_VAR_NAME, 'rustfmt')
           return {
             exe = 'rustfmt',
             stdin = true,
@@ -145,6 +168,8 @@ local function configure_auto_format()
       },
       nix = {
         function()
+          local buffer_number = vim.api.nvim_get_current_buf()
+          vim.api.nvim_buf_set_var(buffer_number, ENABLED_FORMATTING_TOOL_VAR_NAME, 'alejandra')
           return {
             exe = 'alejandra',
             stdin = true,
@@ -157,6 +182,8 @@ local function configure_auto_format()
       },
       lua = {
         function()
+          local buffer_number = vim.api.nvim_get_current_buf()
+          vim.api.nvim_buf_set_var(buffer_number, ENABLED_FORMATTING_TOOL_VAR_NAME, 'stylua')
           return {
             exe = 'stylua',
             args = {
@@ -297,16 +324,31 @@ local function configure_status_bar()
         },
       },
       lualine_x = {
-        'encoding',
-        'fileformat',
-        'filetype',
+        -- 'encoding',
+        -- 'fileformat',
         function()
           local success, response = pcall(vim.api.nvim_buf_get_var, 0, LSP_ENABLED_VAR_NAME)
           if not success or not response then
-            return '[LSP disabled]'
+            return string.format('[LSP: %s]', DISABLED_EMOJI)
           end
 
-          return '[LSP enabled]'
+          return '[LSP: enabled]'
+        end,
+        function()
+          local success, response = pcall(vim.api.nvim_buf_get_var, 0, ENABLED_LINTING_TOOL_VAR_NAME)
+          if not success or not response then
+            return string.format('[Linter: %s]', DISABLED_EMOJI)
+          end
+
+          return string.format('[Linter: %s]', response)
+        end,
+        function()
+          local success, response = pcall(vim.api.nvim_buf_get_var, 0, ENABLED_FORMATTING_TOOL_VAR_NAME)
+          if not success or not response then
+            return string.format('[Formatter: %s]', DISABLED_EMOJI)
+          end
+
+          return string.format('[Formatter: %s]', response)
         end,
       },
       lualine_y = { 'progress' },
