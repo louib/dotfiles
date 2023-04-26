@@ -43,8 +43,14 @@ local function set_filetype_options()
   if filetype == 'rust' then
     vim.bo.makeprg = 'cargo build -q --message-format short'
     vim.api.nvim_buf_set_var(buffer_number, ENABLED_LINTING_TOOL_VAR_NAME, 'cargo')
+    vim.api.nvim_buf_set_var(buffer_number, ENABLED_FORMATTING_TOOL_VAR_NAME, 'rustfmt')
     vim.bo.tabstop = 4
     vim.bo.shiftwidth = 4
+    return
+  end
+
+  if filetype == 'lua' then
+    vim.api.nvim_buf_set_var(buffer_number, ENABLED_FORMATTING_TOOL_VAR_NAME, 'stylua')
     return
   end
 
@@ -66,12 +72,14 @@ local function set_filetype_options()
       vim.bo.makeprg = 'nix flake check %:p:h'
       vim.api.nvim_buf_set_var(buffer_number, ENABLED_LINTING_TOOL_VAR_NAME, 'nix flake check')
     end
+    vim.api.nvim_buf_set_var(buffer_number, ENABLED_FORMATTING_TOOL_VAR_NAME, 'alejandra')
     return
   end
 
   if filetype == 'cpp' then
     vim.bo.tabstop = 4
     vim.bo.shiftwidth = 4
+    vim.api.nvim_buf_set_var(buffer_number, ENABLED_FORMATTING_TOOL_VAR_NAME, 'clang-format')
     return
   end
 
@@ -148,8 +156,6 @@ local function configure_auto_format()
     filetype = {
       cpp = {
         function()
-          local buffer_number = vim.api.nvim_get_current_buf()
-          vim.api.nvim_buf_set_var(buffer_number, ENABLED_FORMATTING_TOOL_VAR_NAME, 'clang-format')
           return {
             exe = 'clang-format',
             stdin = true,
@@ -158,8 +164,6 @@ local function configure_auto_format()
       },
       rust = {
         function()
-          local buffer_number = vim.api.nvim_get_current_buf()
-          vim.api.nvim_buf_set_var(buffer_number, ENABLED_FORMATTING_TOOL_VAR_NAME, 'rustfmt')
           return {
             exe = 'rustfmt',
             stdin = true,
@@ -168,8 +172,6 @@ local function configure_auto_format()
       },
       nix = {
         function()
-          local buffer_number = vim.api.nvim_get_current_buf()
-          vim.api.nvim_buf_set_var(buffer_number, ENABLED_FORMATTING_TOOL_VAR_NAME, 'alejandra')
           return {
             exe = 'alejandra',
             stdin = true,
@@ -182,8 +184,6 @@ local function configure_auto_format()
       },
       lua = {
         function()
-          local buffer_number = vim.api.nvim_get_current_buf()
-          vim.api.nvim_buf_set_var(buffer_number, ENABLED_FORMATTING_TOOL_VAR_NAME, 'stylua')
           return {
             exe = 'stylua',
             args = {
