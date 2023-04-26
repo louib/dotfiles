@@ -34,6 +34,7 @@
             inherit clang-tools;
             typescript-language-server = nodePackages.typescript-language-server;
             yaml-language-server = nodePackages.yaml-language-server;
+            bash-language-server = nodePackages.bash-language-server;
           };
           neovimLuaConfig = builtins.readFile (./. + "/init.lua");
           customNeovim = pkgs.neovim.override {
