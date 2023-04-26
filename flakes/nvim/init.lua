@@ -522,6 +522,20 @@ local function configure_commenting()
   })
 end
 
+local function configure_git_blame()
+  if not pcall(require, 'gitblame') then
+    print('gitblame is not installed.')
+    return
+  end
+
+  -- TODO add the git blame status to the status line
+  -- https://github.com/f-person/git-blame.nvim#statusline-integration
+
+  vim.cmd([[
+    let g:gitblame_date_format = '%Y-%m-%d %X (%r)'
+  ]])
+end
+
 local function configure_global_options()
   -- wo = window options
   -- bo = buffer options
@@ -621,6 +635,7 @@ local function configure()
   configure_auto_format()
   configure_auto_completion()
   configure_commenting()
+  configure_git_blame()
   configure_lsp()
   configure_status_bar()
 end
