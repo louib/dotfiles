@@ -498,6 +498,11 @@ local function configure_lsp()
     },
   })
 
+  require('lspconfig').bashls.setup({
+    on_attach = custom_lsp_attach,
+    flags = lsp_flags,
+  })
+
   -- See https://github.com/neovim/nvim-lspconfig#suggested-configuration for
   -- the suggested top-level configuration and https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
   -- for a list of all the available language servers.
