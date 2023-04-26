@@ -413,6 +413,21 @@ local function configure_status_bar()
   vim.api.nvim_set_keymap('n', '<Space>9', ':LualineBuffersJump 9<Enter>', { silent = false, noremap = true })
 end
 
+local function configure_lastplace()
+  if not pcall(require, 'nvim-lastplace') then
+    print('nvim-lastplace is not installed.')
+    return
+  end
+
+  -- Currently using the default settings. See
+  -- https://github.com/ethanholz/nvim-lastplace#installation
+  require('nvim-lastplace').setup({
+    lastplace_ignore_buftype = { 'quickfix', 'nofile', 'help' },
+    lastplace_ignore_filetype = { 'gitcommit', 'gitrebase', 'svn', 'hgcommit' },
+    lastplace_open_folds = true,
+  })
+end
+
 local function configure_lsp()
   if not pcall(require, 'lspconfig') then
     print('lspconfig is not installed.')
@@ -690,6 +705,7 @@ local function configure()
   configure_commenting()
   configure_git_blame()
   configure_lsp()
+  configure_lastplace()
   configure_status_bar()
 end
 
