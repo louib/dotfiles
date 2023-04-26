@@ -282,8 +282,6 @@ local function configure_auto_completion()
   cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
-      { name = 'path' },
-    }, {
       { name = 'cmdline' },
     }),
   })
