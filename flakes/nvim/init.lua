@@ -106,7 +106,8 @@ local function set_filetype_options()
 
   if filetype == 'yaml' then
     if string.match(buffer_path, '.github/workflows/') then
-      vim.bo.makeprg = 'actionlint %:p:h'
+      vim.bo.makeprg = 'actionlint -oneline -shellcheck shellcheck %'
+      vim.bo.errorformat = '%f:%l:%c: %m'
       vim.api.nvim_buf_set_var(buffer_number, ENABLED_LINTING_TOOL_VAR_NAME, 'actionlint')
       return
     end

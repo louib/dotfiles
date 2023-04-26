@@ -20,6 +20,7 @@
         let
           pkgs = nixpkgs.legacyPackages.${system};
           languageTools = with pkgs; {
+            inherit actionlint;
             # xclip (or wl-clipboard) is required to clip to the system clipboard.
             inherit xclip;
             inherit rnix-lsp;
