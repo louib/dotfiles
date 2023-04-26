@@ -61,7 +61,7 @@
                   nvim-cmp
                   cmp-nvim-lsp
                   cmp-buffer
-                  # TODO check out https://github.com/hrsh7th/cmp-path.git
+                  cmp-path
                   # TODO check out https://github.com/hrsh7th/cmp-cmdline.git
 
                   # Colorschemes
