@@ -33,6 +33,8 @@
             inherit shellcheck;
             # This one is for clangd, the LSP for C and C++, and for clang-format
             inherit clang-tools;
+            # I believe this is the same package as sumneko-lua-language-server
+            inherit lua-language-server;
             typescript-language-server = nodePackages.typescript-language-server;
             yaml-language-server = nodePackages.yaml-language-server;
             bash-language-server = nodePackages.bash-language-server;
