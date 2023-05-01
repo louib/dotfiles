@@ -527,6 +527,11 @@ local function configure_lsp()
     },
   })
 
+  require('lspconfig').jsonls.setup({
+    on_attach = custom_lsp_attach,
+    flags = lsp_flags,
+  })
+
   -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#yamlls
   require('lspconfig').yamlls.setup({
     on_attach = custom_lsp_attach,
