@@ -1,7 +1,7 @@
 local LSP_ENABLED_VAR_NAME = 'LSP_ENABLED'
 local ENABLED_FORMATTING_TOOL_VAR_NAME = 'ENABLED_FORMATTING_TOOL'
 local ENABLED_LINTING_TOOL_VAR_NAME = 'ENABLED_LINTING_TOOL'
-local DISABLED_EMOJI = '🚫'
+local DISABLED_MARKER = 'off'
 local ERRORS_EMOJI = '❗'
 
 local function get_project_name()
@@ -335,7 +335,7 @@ local function configure_status_bar()
         function()
           local success, response = pcall(vim.api.nvim_buf_get_var, 0, LSP_ENABLED_VAR_NAME)
           if not success or not response then
-            return string.format('[LSP: %s]', DISABLED_EMOJI)
+            return string.format('[LSP: %s]', DISABLED_MARKER)
           end
 
           return '[LSP: enabled]'
@@ -343,7 +343,7 @@ local function configure_status_bar()
         function()
           local success, response = pcall(vim.api.nvim_buf_get_var, 0, ENABLED_LINTING_TOOL_VAR_NAME)
           if not success or not response then
-            return string.format('[Linter: %s]', DISABLED_EMOJI)
+            return string.format('[Linter: %s]', DISABLED_MARKER)
           end
 
           return string.format('[Linter: %s]', response)
@@ -351,7 +351,7 @@ local function configure_status_bar()
         function()
           local success, response = pcall(vim.api.nvim_buf_get_var, 0, ENABLED_FORMATTING_TOOL_VAR_NAME)
           if not success or not response then
-            return string.format('[Formatter: %s]', DISABLED_EMOJI)
+            return string.format('[Formatter: %s]', DISABLED_MARKER)
           end
 
           return string.format('[Formatter: %s]', response)
