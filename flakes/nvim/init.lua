@@ -1,4 +1,5 @@
 local LSP_ENABLED_VAR_NAME = 'LSP_ENABLED'
+local COPILOT_ENABLED_VAR_NAME = 'COPILOT_ENABLED'
 local ENABLED_FORMATTING_TOOL_VAR_NAME = 'ENABLED_FORMATTING_TOOL'
 local ENABLED_LINTING_TOOL_VAR_NAME = 'ENABLED_LINTING_TOOL'
 local DISABLED_MARKER = 'off'
@@ -333,6 +334,15 @@ local function configure_status_bar()
         -- 'encoding',
         -- 'fileformat',
         function()
+          local success, response = pcall(vim.api.nvim_buf_get_var, 0, COPILOT_ENABLED_VAR_NAME)
+          if not success or not response then
+            -- For copilot, we simply don't display the string if disabled, to take less space.
+            return ''
+          end
+
+          return '[Copilot: enabled]'
+        end,
+        function()
           local success, response = pcall(vim.api.nvim_buf_get_var, 0, LSP_ENABLED_VAR_NAME)
           if not success or not response then
             return string.format('[LSP: %s]', DISABLED_MARKER)
@@ -621,6 +631,74 @@ local function configure_commenting()
   })
 end
 
+local function configure_copilot()
+  if not pcall(require, 'copilot') then
+    print('copilot is not installed.')
+    return
+  end
+
+  if os.getenv('NVIM_ENABLE_COPILOT') ~= 'true' then
+    print('Copilot is disabled.')
+    return
+  end
+
+  -- You still need to call :Copilot auth to authenticated the device for
+  -- the first time.
+
+  -- Default settings, as defined
+  -- here https://github.com/zbirenbaum/copilot.lua#setup-and-configuration
+  require('copilot').setup({
+    panel = {
+      enabled = true,
+      auto_refresh = false,
+      keymap = {
+        jump_prev = '[[',
+        jump_next = ']]',
+        accept = '<CR>',
+        refresh = 'gr',
+        open = '<M-CR>',
+      },
+      layout = {
+        position = 'bottom', -- | top | left | right
+        ratio = 0.4,
+      },
+    },
+    suggestion = {
+      enabled = true,
+      auto_trigger = false,
+      debounce = 75,
+      keymap = {
+        accept = '<M-l>',
+        accept_word = false,
+        accept_line = false,
+        next = '<M-]>',
+        prev = '<M-[>',
+        dismiss = '<C-]>',
+      },
+    },
+    filetypes = {
+      -- filetypes here can be boolean values or functions that return a boolean value.
+      -- See https://github.com/zbirenbaum/copilot.lua#filetypes
+      yaml = false,
+      markdown = false,
+      help = false,
+      gitcommit = false,
+      gitrebase = false,
+      hgcommit = false,
+      svn = false,
+      cvs = false,
+      ['.'] = false,
+    },
+    copilot_node_command = 'node', -- Node.js version must be > 16.x
+    server_opts_overrides = {},
+  })
+
+  local buffer_number = vim.api.nvim_get_current_buf()
+  vim.api.nvim_buf_set_var(buffer_number, COPILOT_ENABLED_VAR_NAME, true)
+
+  -- TODO also enable copilot-cmp
+end
+
 local function configure_git_blame()
   if not pcall(require, 'gitblame') then
     print('gitblame is not installed.')
@@ -735,6 +813,7 @@ local function configure()
   configure_auto_completion()
   configure_commenting()
   configure_git_blame()
+  configure_copilot()
   configure_lsp()
   configure_lastplace()
   configure_status_bar()

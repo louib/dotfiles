@@ -23,6 +23,8 @@
             inherit actionlint;
             # xclip (or wl-clipboard) is required to clip to the system clipboard.
             inherit xclip;
+            # Copilot requires a version of Node.js > 16.x
+            inherit nodejs-16_x;
             inherit rnix-lsp;
             inherit rust-analyzer;
             inherit cargo;
@@ -61,6 +63,13 @@
                   cmp-buffer
                   cmp-path
                   cmp-cmdline
+
+                  # both cmp-vsnip and vim-vsnip are required to add completion engine support
+                  # to nvim-cmp
+                  cmp-vsnip
+                  vim-vsnip
+
+                  copilot-lua
 
                   # Language-related plugins
                   vim-nix
