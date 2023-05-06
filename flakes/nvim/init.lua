@@ -315,7 +315,7 @@ local function configure_status_bar()
       lualine_a = {
         {
           'mode',
-          padding = 2,
+          padding = 1,
         },
       },
       lualine_b = { 'branch', 'diff', 'diagnostics' },
@@ -327,48 +327,74 @@ local function configure_status_bar()
           -- 2: Absolute path
           -- 3: Absolute path, with tilde as the home directory
           path = 1,
-          padding = 2,
+          padding = 0,
         },
       },
       lualine_x = {
         -- 'encoding',
         -- 'fileformat',
-        function()
-          local success, response = pcall(vim.api.nvim_buf_get_var, 0, COPILOT_ENABLED_VAR_NAME)
-          if not success or not response then
-            -- For copilot, we simply don't display the string if disabled, to take less space.
-            return ''
-          end
+        {
+          function()
+            local success, response = pcall(vim.api.nvim_buf_get_var, 0, COPILOT_ENABLED_VAR_NAME)
+            if not success or not response then
+              -- For copilot, we simply don't display the string if disabled, to take less space.
+              return ''
+            end
 
-          return '[Copilot: enabled]'
-        end,
-        function()
-          local success, response = pcall(vim.api.nvim_buf_get_var, 0, LSP_ENABLED_VAR_NAME)
-          if not success or not response then
-            return string.format('[LSP: %s]', DISABLED_MARKER)
-          end
+            return '[Copilot: enabled]'
+          end,
+          padding = 1,
+        },
+        {
+          function()
+            local success, response = pcall(vim.api.nvim_buf_get_var, 0, LSP_ENABLED_VAR_NAME)
+            if not success or not response then
+              return string.format('[LSP: %s]', DISABLED_MARKER)
+            end
 
-          return '[LSP: enabled]'
-        end,
-        function()
-          local success, response = pcall(vim.api.nvim_buf_get_var, 0, ENABLED_LINTING_TOOL_VAR_NAME)
-          if not success or not response then
-            return string.format('[Linter: %s]', DISABLED_MARKER)
-          end
+            return '[LSP: enabled]'
+          end,
+          padding = 0,
+        },
+        {
+          function()
+            local success, response = pcall(vim.api.nvim_buf_get_var, 0, ENABLED_LINTING_TOOL_VAR_NAME)
+            if not success or not response then
+              return string.format('[Linter: %s]', DISABLED_MARKER)
+            end
 
-          return string.format('[Linter: %s]', response)
-        end,
-        function()
-          local success, response = pcall(vim.api.nvim_buf_get_var, 0, ENABLED_FORMATTING_TOOL_VAR_NAME)
-          if not success or not response then
-            return string.format('[Formatter: %s]', DISABLED_MARKER)
-          end
+            return string.format('[Linter: %s]', response)
+          end,
+          padding = 1,
+        },
+        {
+          function()
+            local success, response = pcall(vim.api.nvim_buf_get_var, 0, ENABLED_FORMATTING_TOOL_VAR_NAME)
+            if not success or not response then
+              return string.format('[Formatter: %s]', DISABLED_MARKER)
+            end
 
-          return string.format('[Formatter: %s]', response)
-        end,
+            return string.format('[Formatter: %s]', response)
+          end,
+          padding = 0,
+        },
       },
-      lualine_y = { 'progress' },
-      lualine_z = { 'location' },
+      lualine_y = {
+        'progress',
+      },
+      lualine_z = {
+        {
+          function()
+            -- local current_buffer = vim.api.nvim_get_current_buf()
+            local cursor = vim.api.nvim_win_get_cursor(0)
+            local _, column = unpack(cursor)
+            -- The column returned by the vim API starts at 0,
+            -- so we increment it here.
+            return string.format('%s', column + 1)
+          end,
+          padding = 1,
+        },
+      },
     },
     inactive_sections = {
       lualine_a = {},
