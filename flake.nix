@@ -23,24 +23,6 @@
           let
             pkgs = nixpkgs.legacyPackages.${system};
 
-            # Other packages that I want to be available, but I don't necessarily use day to day.
-            miscPackages = with pkgs; {
-              inherit gnome-clocks;
-              inherit fractal;
-              inherit vlc;
-              inherit phosh;
-              inherit phoc;
-              # flatpak
-              # flatpak-builder
-              # age (as a future replacement of pgp)
-            };
-
-            containerPackages = with pkgs; {
-              # inherit runc;
-              # inherit podman;
-              # inherit conmon;
-            };
-
             devPackages = with pkgs; {
               inherit nmap;
               inherit net-tools;
@@ -82,45 +64,27 @@
 
             hostPackages = pkgs.buildEnv {
               name = "";
-              # TODO add neovim packages.
-              # TODO add keepassxc
-              # TODO add gpg
               paths = with pkgs; [
-                evince
                 gnome.gnome-tweaks
-                # gnome-disks
-                gnome.gnome-terminal
                 gnome.geary
                 # gnome-feeds
                 # kmail if geary does not work
-                bash-completion
-                # FIXME maybe starship should go into the shell-config?
-                starship
                 # nerdfonts is not installed as a dependency of startship, because
                 # only some themes use it. I stopped using the fonts for the moment
                 # because I was not able to install them with Nix on Ubuntu.
                 # nerdfonts
-                # keepassxc
                 zotero
-                zola
                 # dconf-cli
                 # dconf-editor
                 # build-essential
-                # cryptsetup
                 curl
-                git
                 pwgen
-                # scdaemon
-                thunderbird
-                firefox
                 # epiphany
-                chatty
                 megapixels
                 # ttf-bitstream-vera
                 # wl-clipboard
               ];
             };
-            # TODO add the vim language servers and tools to the host packages.
           in {
             packages = {
               inherit hostPackages;
