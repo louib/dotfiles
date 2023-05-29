@@ -2,7 +2,6 @@ local LSP_ENABLED_VAR_NAME = 'LSP_ENABLED'
 local COPILOT_ENABLED_VAR_NAME = 'COPILOT_ENABLED'
 local ENABLED_FORMATTING_TOOL_VAR_NAME = 'ENABLED_FORMATTING_TOOL'
 local ENABLED_LINTING_TOOL_VAR_NAME = 'ENABLED_LINTING_TOOL'
-local DISABLED_MARKER = 'off'
 local ERRORS_EMOJI = '❗'
 
 local function get_project_name()
@@ -318,7 +317,20 @@ local function configure_status_bar()
           padding = 1,
         },
       },
-      lualine_b = { 'branch', 'diff', 'diagnostics' },
+      lualine_b = {
+        {
+          'branch',
+          padding = 1,
+        },
+        {
+          'diff',
+          padding = 1,
+        },
+        {
+          'diagnostics',
+          padding = 1,
+        },
+      },
       lualine_c = {
         {
           'filename',
@@ -327,56 +339,60 @@ local function configure_status_bar()
           -- 2: Absolute path
           -- 3: Absolute path, with tilde as the home directory
           path = 1,
-          padding = 0,
+          padding = 1,
         },
       },
       lualine_x = {
-        -- 'encoding',
-        -- 'fileformat',
         {
           function()
-            local success, response = pcall(vim.api.nvim_buf_get_var, 0, COPILOT_ENABLED_VAR_NAME)
-            if not success or not response then
-              -- For copilot, we simply don't display the string if disabled, to take less space.
+            local tools = ''
+
+            local copilot_enabled, copilot_response = pcall(vim.api.nvim_buf_get_var, 0, COPILOT_ENABLED_VAR_NAME)
+            if copilot_enabled and copilot_response then
+              if string.len(tools) == 0 then
+                tools = 'copilot'
+              else
+                tools = tools .. ',copilot'
+              end
+            end
+
+            local lsp_enabled, lsp_tool_name = pcall(vim.api.nvim_buf_get_var, 0, LSP_ENABLED_VAR_NAME)
+            if lsp_enabled and lsp_tool_name then
+              if string.len(tools) == 0 then
+                tools = 'lsp'
+              else
+                tools = tools .. ',lsp'
+              end
+            end
+
+            local linter_enabled, linter_tool_name = pcall(vim.api.nvim_buf_get_var, 0, ENABLED_LINTING_TOOL_VAR_NAME)
+            if linter_enabled and linter_tool_name then
+              if string.len(tools) == 0 then
+                tools = linter_tool_name
+              else
+                tools = tools .. ',' .. linter_tool_name
+              end
+            end
+
+            local formatter_enabled, formatter_tool_name =
+              pcall(vim.api.nvim_buf_get_var, 0, ENABLED_FORMATTING_TOOL_VAR_NAME)
+            if formatter_enabled and formatter_tool_name then
+              if string.len(tools) == 0 then
+                tools = tools .. formatter_tool_name
+              else
+                tools = tools .. ',' .. formatter_tool_name
+              end
+            end
+
+            -- TODO add an emoji to indicate errors when configuring the tools.
+
+            if string.len(tools) == 0 then
               return ''
+            else
+              return string.format('[%s]', tools)
             end
-
-            return '[Copilot: enabled]'
           end,
           padding = 1,
-        },
-        {
-          function()
-            local success, response = pcall(vim.api.nvim_buf_get_var, 0, LSP_ENABLED_VAR_NAME)
-            if not success or not response then
-              return string.format('[LSP: %s]', DISABLED_MARKER)
-            end
-
-            return '[LSP: enabled]'
-          end,
-          padding = 0,
-        },
-        {
-          function()
-            local success, response = pcall(vim.api.nvim_buf_get_var, 0, ENABLED_LINTING_TOOL_VAR_NAME)
-            if not success or not response then
-              return string.format('[Linter: %s]', DISABLED_MARKER)
-            end
-
-            return string.format('[Linter: %s]', response)
-          end,
-          padding = 1,
-        },
-        {
-          function()
-            local success, response = pcall(vim.api.nvim_buf_get_var, 0, ENABLED_FORMATTING_TOOL_VAR_NAME)
-            if not success or not response then
-              return string.format('[Formatter: %s]', DISABLED_MARKER)
-            end
-
-            return string.format('[Formatter: %s]', response)
-          end,
-          padding = 0,
         },
       },
       lualine_y = {
