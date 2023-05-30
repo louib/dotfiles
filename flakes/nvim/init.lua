@@ -415,8 +415,18 @@ local function configure_status_bar()
     inactive_sections = {
       lualine_a = {},
       lualine_b = {},
-      lualine_c = { 'filename' },
-      lualine_x = { 'location' },
+      lualine_c = {
+        {
+          'filename',
+          -- 0: Just the filename
+          -- 1: Relative path
+          -- 2: Absolute path
+          -- 3: Absolute path, with tilde as the home directory
+          path = 1,
+          padding = 1,
+        },
+      },
+      lualine_x = {},
       lualine_y = {},
       lualine_z = {},
     },
