@@ -16,7 +16,7 @@ local function executable_is_available(executable_name)
   return false
 end
 
-local function get_js_formatting_config()
+local function get_prettier_formatting_config()
   if not pcall(require, 'formatter.util') then
     return {}
   end
@@ -72,10 +72,10 @@ local function set_filetype_options()
   -- TODO not sure that this makes sense just yet.
   vim.wo.colorcolumn = '100'
 
-  if filetype == 'typescript' or filetype == 'javascript' then
+  if filetype == 'typescript' or filetype == 'javascript' or filetype == 'yaml' then
     -- We call this function here because is has the side-effect of detecting which formatting
     -- tools are available at this time.
-    get_js_formatting_config()
+    get_prettier_formatting_config()
   end
 
   if filetype == 'sh' then
@@ -253,10 +253,13 @@ local function configure_auto_format()
         get_lua_config,
       },
       javascript = {
-        get_js_formatting_config,
+        get_prettier_formatting_config,
       },
       typescript = {
-        get_js_formatting_config,
+        get_prettier_formatting_config,
+      },
+      yaml = {
+        get_prettier_formatting_config,
       },
     },
   })
