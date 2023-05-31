@@ -270,6 +270,10 @@ local function configure_auto_format()
   ]])
 end
 
+local feedkey = function(key, mode)
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
+end
+
 local function configure_auto_completion()
   vim.go.omnifunc = 'syntaxcomplete#Complete'
 
@@ -296,18 +300,30 @@ local function configure_auto_completion()
       -- documentation = cmp.config.window.bordered(),
     },
     mapping = cmp.mapping.preset.insert({
+      ['<C-j>'] = cmp.mapping(function()
+        if cmp.visible() then
+          cmp.select_prev_item()
+        elseif vim.fn['vsnip#jumpable'](-1) == 1 then
+          feedkey('<Plug>(vsnip-jump-prev)', '')
+        end
+      end, { 'i', 's' }),
+      ['<C-k>'] = cmp.mapping(function()
+        if cmp.visible() then
+          cmp.select_next_item()
+        end
+      end, { 'i', 's' }),
       ['<C-b>'] = cmp.mapping.scroll_docs(-4),
       ['<C-f>'] = cmp.mapping.scroll_docs(4),
       ['<C-Space>'] = cmp.mapping.complete(),
       ['<C-e>'] = cmp.mapping.abort(),
-      -- Require Tab to accept a suggestion without conirmation, but Enter to
+      -- Require Tab to accept a suggestion without confirmation, but Enter to
       -- accept if explicitely selected.
       ['<Tab>'] = cmp.mapping.confirm({ select = true }),
       ['<CR>'] = cmp.mapping.confirm({ select = false }),
     }),
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
-      -- { name = 'vsnip' }, -- For vsnip users.
+      { name = 'vsnip' }, -- For vsnip users.
       -- { name = 'luasnip' }, -- For luasnip users.
       -- { name = 'ultisnips' }, -- For ultisnips users.
       -- { name = 'snippy' }, -- For snippy users.
