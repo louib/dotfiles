@@ -4,6 +4,46 @@ local ENABLED_FORMATTING_TOOL_VAR_NAME = 'ENABLED_FORMATTING_TOOL'
 local ENABLED_LINTING_TOOL_VAR_NAME = 'ENABLED_LINTING_TOOL'
 local ERRORS_EMOJI = '❗'
 
+local function executable_is_available(executable_name)
+  local handle = io.popen(string.format('which %s', executable_name))
+  local output = handle:read('*a')
+  handle:close()
+
+  if string.find(output, executable_name) then
+    return true
+  end
+
+  return false
+end
+
+local function get_js_formatting_config()
+  if not pcall(require, 'formatter.util') then
+    return {}
+  end
+
+  -- Utilities for creating configurations
+  local formatter_util = require('formatter.util')
+
+  if executable_is_available('prettier') then
+    local buffer_number = vim.api.nvim_get_current_buf()
+    vim.api.nvim_buf_set_var(buffer_number, ENABLED_FORMATTING_TOOL_VAR_NAME, 'prettier')
+
+    -- I do not install prettier on my host machines, which means that if prettier is installed,
+    -- I should probably be using it.
+    return {
+      exe = 'prettier',
+      args = {
+        '--stdin-filepath',
+        formatter_util.escape_path(formatter_util.get_current_buffer_file_path()),
+      },
+      stdin = true,
+    }
+  end
+
+  -- TODO about tslint
+  return {}
+end
+
 local function get_project_name()
   local current_dir = vim.fn.getcwd()
 
@@ -31,6 +71,12 @@ local function set_filetype_options()
 
   -- TODO not sure that this makes sense just yet.
   vim.wo.colorcolumn = '100'
+
+  if filetype == 'typescript' or filetype == 'javascript' then
+    -- We call this function here because is has the side-effect of detecting which formatting
+    -- tools are available at this time.
+    get_js_formatting_config()
+  end
 
   if filetype == 'sh' then
     vim.bo.makeprg = 'shellcheck -f gcc %'
@@ -144,6 +190,45 @@ local function configure_auto_format()
   -- Utilities for creating configurations
   local formatter_util = require('formatter.util')
 
+  local get_cpp_config = function()
+    return {
+      exe = 'clang-format',
+      stdin = true,
+    }
+  end
+
+  local get_nix_config = function()
+    return {
+      exe = 'alejandra',
+      stdin = true,
+      args = {
+        '-q',
+        '-',
+      },
+    }
+  end
+
+  local get_rust_config = function()
+    return {
+      exe = 'rustfmt',
+      stdin = true,
+    }
+  end
+
+  local get_lua_config = function()
+    return {
+      exe = 'stylua',
+      args = {
+        '--search-parent-directories',
+        '--stdin-filepath',
+        formatter_util.escape_path(formatter_util.get_current_buffer_file_path()),
+        '--',
+        '-',
+      },
+      stdin = true,
+    }
+  end
+
   -- Provides the Format and FormatWrite commands
   -- See https://github.com/mhartington/formatter.nvim#configuration-specification
   -- for all the configuration options.
@@ -156,47 +241,22 @@ local function configure_auto_format()
     -- All formatter configurations are opt-in
     filetype = {
       cpp = {
-        function()
-          return {
-            exe = 'clang-format',
-            stdin = true,
-          }
-        end,
+        get_cpp_config,
       },
       rust = {
-        function()
-          return {
-            exe = 'rustfmt',
-            stdin = true,
-          }
-        end,
+        get_rust_config,
       },
       nix = {
-        function()
-          return {
-            exe = 'alejandra',
-            stdin = true,
-            args = {
-              '-q',
-              '-',
-            },
-          }
-        end,
+        get_nix_config,
       },
       lua = {
-        function()
-          return {
-            exe = 'stylua',
-            args = {
-              '--search-parent-directories',
-              '--stdin-filepath',
-              formatter_util.escape_path(formatter_util.get_current_buffer_file_path()),
-              '--',
-              '-',
-            },
-            stdin = true,
-          }
-        end,
+        get_lua_config,
+      },
+      javascript = {
+        get_js_formatting_config,
+      },
+      typescript = {
+        get_js_formatting_config,
       },
     },
   })
