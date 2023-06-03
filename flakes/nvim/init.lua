@@ -303,14 +303,14 @@ local function configure_auto_completion()
       -- documentation = cmp.config.window.bordered(),
     },
     mapping = cmp.mapping.preset.insert({
-      ['<C-j>'] = cmp.mapping(function()
+      ['<C-k>'] = cmp.mapping(function()
         if cmp.visible() then
           cmp.select_prev_item()
         elseif vim.fn['vsnip#jumpable'](-1) == 1 then
           feedkey('<Plug>(vsnip-jump-prev)', '')
         end
       end, { 'i', 's' }),
-      ['<C-k>'] = cmp.mapping(function()
+      ['<C-j>'] = cmp.mapping(function()
         if cmp.visible() then
           cmp.select_next_item()
         end
