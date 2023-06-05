@@ -6,6 +6,10 @@ local ERRORS_EMOJI = '❗'
 
 local function executable_is_available(executable_name)
   local handle = io.popen(string.format('which %s', executable_name))
+  if not handle then
+    return false
+  end
+
   local output = handle:read('*a')
   handle:close()
 
