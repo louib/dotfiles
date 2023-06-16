@@ -39,8 +39,7 @@
             inherit lua-language-server;
             typescript-language-server = nodePackages.typescript-language-server;
             yaml-language-server = nodePackages.yaml-language-server;
-            # FIXME I think this one is installing vscode???
-            # docker-language-server = nodePackages.dockerfile-language-server-nodejs;
+            docker-language-server = nodePackages.dockerfile-language-server-nodejs;
             json-language-server = nodePackages.vscode-langservers-extracted;
             bash-language-server = nodePackages.bash-language-server;
             inherit taplo-lsp;
