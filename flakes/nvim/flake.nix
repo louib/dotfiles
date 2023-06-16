@@ -41,6 +41,7 @@
             yaml-language-server = nodePackages.yaml-language-server;
             json-language-server = nodePackages.vscode-langservers-extracted;
             bash-language-server = nodePackages.bash-language-server;
+            inherit taplo-lsp;
           };
           neovimLuaConfig = builtins.readFile (./. + "/init.lua");
           customNeovim = pkgs.neovim.override {
