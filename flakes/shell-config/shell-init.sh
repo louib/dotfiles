@@ -6,12 +6,25 @@ alias vi="nvim"
 alias vim="nvim"
 export VISUAL="nvim"
 
+GIT_DEFAULT_BRANCH_CACHE_KEY="cache.default-branch"
+
+# This function will use the git config file as a local cache for the default branch.
+get_default_git_branch () {
+    default_branch=$(git config --get "$GIT_DEFAULT_BRANCH_CACHE_KEY")
+    if [ -n "$default_branch" ]; then
+        echo "$default_branch"
+    else
+        # Taken from https://stackoverflow.com/questions/28666357/git-how-to-get-default-branch
+        default_branch=$(git remote show origin | grep "HEAD branch" | cut -d ":" -f 2 | xargs)
+        git config --add "$GIT_DEFAULT_BRANCH_CACHE_KEY" "$default_branch"
+        echo "$default_branch"
+    fi
+}
+
 # checkout the default git branch.
 # (git checkout default)
 gcd () {
-    # TODO I have this duplicated below. Should be extracted into a function.
-    # Taken from https://stackoverflow.com/questions/28666357/git-how-to-get-default-branch
-    default_branch=$(git remote show origin | grep "HEAD branch" | cut -d ":" -f 2 | xargs)
+    default_branch=$(get_default_git_branch)
     git checkout "$default_branch"
 }
 # git commit amend
@@ -45,8 +58,7 @@ grb () {
 }
 # Rebase on the default branch
 grm () {
-    # Taken from https://stackoverflow.com/questions/28666357/git-how-to-get-default-branch
-    default_branch=$(git remote show origin | grep "HEAD branch" | cut -d ":" -f 2 | xargs)
+    default_branch=$(get_default_git_branch)
     git pull --rebase origin "$default_branch"
 }
 gp () {
