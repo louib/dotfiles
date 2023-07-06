@@ -45,6 +45,10 @@ format = "[( $branch)]($style)"
 style = "bg:#429bf5"
 symbol = ""
 
+[git_state]
+format = "[( $state)]($style)"
+style = "bg:#429bf5"
+
 [git_status]
 format = "[( $all_status$ahead_behind) ]($style)"
 ahead = ">"
@@ -58,10 +62,6 @@ conflicted = "!"
 stashed = ""
 style = "bg:#429bf5"
 up_to_date = "✓"
-
-[git_state]
-format = "[( $state)]($style)"
-style = "bg:#429bf5"
 
 [nix_shell]
 style = "bg:#86BBD8"
