@@ -50,6 +50,12 @@ rec {
       "color-scheme" = "prefer-dark";
     };
 
+    # This will disable prompts when plugging in a USB key
+    "org/gnome/desktop/media-handling" = {
+      "automount" = false;
+      "automount-open" = false;
+    };
+
     "org/gnome/shell" = {
       "favorite-apps" = [
         "org.gnome.Nautilus.desktop"
