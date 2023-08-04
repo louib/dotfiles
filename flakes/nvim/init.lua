@@ -361,15 +361,17 @@ local function configure_auto_completion()
     },
   })
 
+  -- Commenting out this one for the moment since it breaks using the '%' as a shorthand
+  -- for the current buffer file path
   -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-  cmp.setup.cmdline(':', {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({
-      { name = 'cmdline' },
-    }, {
-      { name = 'path' },
-    }),
-  })
+  -- cmp.setup.cmdline(':', {
+  --   mapping = cmp.mapping.preset.cmdline(),
+  --   sources = cmp.config.sources({
+  --     { name = 'cmdline' },
+  --   }, {
+  --     { name = 'path' },
+  --   }),
+  -- })
 
   vim.o.completeopt = 'menu,menuone,noselect'
 end
