@@ -10,6 +10,7 @@ rec {
   DEFAULT_LOCALE = {
     name = "en_CA.UTF-8";
     ticker = "en";
+    gnome_input_name = "us";
   };
 
   LOCALES = [
@@ -17,8 +18,22 @@ rec {
     {
       name = "fr_CA.UTF-8";
       ticker = "ca";
+      gnome_input_name = "ca";
     }
   ];
+
+  # We need to call a home-manager function to generate the input sources
+  # in a valid format.
+  # The full dconf path is org/gnome/desktop/input-sources
+  GET_DCONF_INPUT_SOURCES = home-manager: {
+    "sources" =
+      builtins.map
+      (
+        locale: home-manager.lib.hm.gvariant.mkTuple ["xkb" locale.gnome_input_name]
+      )
+      LOCALES;
+    "xkb-options" = ["caps:escape" "grp:win_space_toggle"];
+  };
 
   DCONF_SETTINGS = {
     "org/gnome/settings-daemon/plugins/color" = {
@@ -35,10 +50,6 @@ rec {
     };
     "org/gnome/settings-daemon/plugins/color" = {
       "night-light-temperature" = 2200;
-    };
-
-    "org/gnome/desktop/input-sources" = {
-      "xkb-options" = ["caps:escape" "grp:win_space_toggle"];
     };
 
     "org/gnome/desktop/peripherals/touchpad" = {
