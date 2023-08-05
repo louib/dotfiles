@@ -24,15 +24,16 @@ rec {
 
   # We need to call a home-manager function to generate the input sources
   # in a valid format.
-  # The full dconf path is org/gnome/desktop/input-sources
   GET_DCONF_INPUT_SOURCES = home-manager: {
-    "sources" =
-      builtins.map
-      (
-        locale: home-manager.lib.hm.gvariant.mkTuple ["xkb" locale.gnome_input_name]
-      )
-      LOCALES;
-    "xkb-options" = ["caps:escape" "grp:win_space_toggle"];
+    "org/gnome/desktop/input-sources" = {
+      "sources" =
+        builtins.map
+        (
+          locale: home-manager.lib.hm.gvariant.mkTuple ["xkb" locale.gnome_input_name]
+        )
+        LOCALES;
+      "xkb-options" = ["caps:escape" "grp:win_space_toggle"];
+    };
   };
 
   DCONF_SETTINGS = {
