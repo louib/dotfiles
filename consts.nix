@@ -74,6 +74,7 @@ rec {
         "org.keepassxc.KeePassXC.desktop"
         "firefox.desktop"
         "thunderbird.desktop"
+        "com.gitlab.newsflash.desktop"
         "org.gnome.Terminal.desktop"
       ];
     };
