@@ -132,7 +132,8 @@
 
         # Markdown files and documentation
         "*.md=00;36"
-        "*LICENSE=00;36"
+        "*LICENSE*=00;36"
+        "*COPYING=00;36"
 
         # lock files
         "*Cargo.lock=00;31"
@@ -143,7 +144,11 @@
         # manifest files
         "*Cargo.toml=00;31"
         "*package.json=00;31"
+
+        # build files
         "*Dockerfile*=00;31"
+        "*Makefile=00;31"
+        "*CMakeLists.txt=00;31"
 
         # code
         "*.nix=00;33"
