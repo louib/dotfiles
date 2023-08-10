@@ -96,4 +96,15 @@ else
     PROMPT_COMMAND=get_prompt
 fi
 
-PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+# I use this to make sure that the history is synced across my terminal
+# tabs. The last exit code has to be preserved in order to feed to starship,
+# otherwise the success/failure character won't display correctly.
+function refresh_bash_history () {
+    last_exit_code=$?
+    history -a
+    history -c
+    history -r
+    return $last_exit_code
+}
+
+PROMPT_COMMAND="refresh_bash_history; $PROMPT_COMMAND"

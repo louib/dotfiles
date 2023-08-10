@@ -18,8 +18,8 @@ add_newline = false
 
 [username]
 show_always = true
-style_user = "bg:#9A348E"
-style_root = "bg:#9A348E"
+style_user = "bg:bright-red"
+style_root = "bg:bright-red"
 format = '[ $user ]($style)'
 
 [hostname]
@@ -32,23 +32,23 @@ disabled = false
 # See https://docs.rs/chrono/0.4.7/chrono/format/strftime/index.html for
 # all the formats
 time_format = "%X"
-style = "bg:#7A349A"
+style = "bg:purple"
 format = '[ $time ]($style)'
 
 [directory]
 format = "[ $path ]($style)"
-style = "bg:#33658A"
+style = "bg:bright-purple"
 truncation_length = 3
 truncation_symbol = "…/"
 
 [git_branch]
 format = "[( $branch)]($style)"
-style = "bg:#429bf5"
+style = "bg:blue"
 symbol = ""
 
 [git_state]
 format = "[( $state)]($style)"
-style = "bg:#429bf5"
+style = "bg:blue"
 
 [git_status]
 format = "[( $all_status$ahead_behind) ]($style)"
@@ -61,17 +61,17 @@ renamed = "r"
 staged = "+"
 conflicted = "!"
 stashed = ""
-style = "bg:#429bf5"
+style = "bg:blue"
 up_to_date = "✓"
 
 [nix_shell]
-style = "bg:#86BBD8"
+style = "bg:bright-blue"
 symbol = "nix"
 format = '[ $symbol ]($style)'
 
 [character]
-success_symbol = "[ ](bg:green)"
-error_symbol = "[ ](bg:red)"
+success_symbol = "[ ](bg:bright-cyan)"
+error_symbol = "[ ](bg:bright-red)"
 # FIXME vicmd_symbol is not supported on bash :(
 # https://starship.rs/config/#character
 # vicmd_symbol = "[ ](bg:green)"
