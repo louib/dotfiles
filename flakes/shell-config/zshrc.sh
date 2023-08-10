@@ -11,3 +11,5 @@ bindkey ^S history-incremental-search-forward
 if [ -x "$(command -v starship)" ]; then
     eval "$(starship init zsh)"
 fi
+
+export CLICOLOR=1
