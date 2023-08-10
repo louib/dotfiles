@@ -16,13 +16,6 @@ $character\
 # Disable the blank line at the start of the prompt
 add_newline = false
 
-[character]
-success_symbol = "[ ](bg:green)"
-error_symbol = "[ ](bg:red)"
-# FIXME vicmd_symbol is not supported on bash :(
-# https://starship.rs/config/#character
-# vicmd_symbol = "[ ](bg:green)"
-
 [username]
 show_always = true
 style_user = "bg:#9A348E"
@@ -33,6 +26,14 @@ format = '[ $user ]($style)'
 ssh_only = true
 format = '[ $hostname ]($style)'
 style = 'bg:red'
+
+[time]
+disabled = false
+# See https://docs.rs/chrono/0.4.7/chrono/format/strftime/index.html for
+# all the formats
+time_format = "%X"
+style = "bg:#7A349A"
+format = '[ $time ]($style)'
 
 [directory]
 format = "[ $path ]($style)"
@@ -68,10 +69,10 @@ style = "bg:#86BBD8"
 symbol = "nix"
 format = '[ $symbol ]($style)'
 
-[time]
-disabled = false
-# See https://docs.rs/chrono/0.4.7/chrono/format/strftime/index.html for
-# all the formats
-time_format = "%X"
-style = "bg:#7A349A"
-format = '[ $time ]($style)'
+[character]
+success_symbol = "[ ](bg:green)"
+error_symbol = "[ ](bg:red)"
+# FIXME vicmd_symbol is not supported on bash :(
+# https://starship.rs/config/#character
+# vicmd_symbol = "[ ](bg:green)"
+
