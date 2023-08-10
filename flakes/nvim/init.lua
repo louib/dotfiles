@@ -3,6 +3,7 @@ local COPILOT_ENABLED_VAR_NAME = 'COPILOT_ENABLED'
 local ENABLED_FORMATTING_TOOL_VAR_NAME = 'ENABLED_FORMATTING_TOOL'
 local ENABLED_LINTING_TOOL_VAR_NAME = 'ENABLED_LINTING_TOOL'
 local ERRORS_EMOJI = '❗'
+local COLORSCHEME = 'sonokai'
 
 local function executable_is_available(executable_name)
   local handle = io.popen(string.format('which %s', executable_name))
@@ -388,7 +389,7 @@ local function configure_status_bar()
     options = {
       -- FIXME what do I need to enable the icons?
       icons_enabled = false,
-      theme = 'dracula',
+      theme = COLORSCHEME,
       component_separators = { left = '', right = '' },
       section_separators = { left = '', right = '' },
       disabled_filetypes = {},
@@ -910,7 +911,7 @@ local function configure_global_options()
 
   -- The shusia, maia and espresso variants exist for the sonokai colorscheme
   -- FIXME how to change the colorscheme variant?
-  local colorscheme = 'sonokai'
+  local colorscheme = COLORSCHEME
   -- local colorscheme = "everforest"
 
   pcall(vim.cmd, 'colorscheme ' .. colorscheme)
