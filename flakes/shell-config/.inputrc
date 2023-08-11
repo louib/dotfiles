@@ -12,3 +12,6 @@ $if mode=vi
     set keymap vi-command
     "J": end-of-history
 $endif
+
+set colored-stats on
+set colored-completion-prefix on

@@ -96,6 +96,12 @@ else
     PROMPT_COMMAND=get_prompt
 fi
 
+# This is used to disable an annoying behavior of fzf.
+# See https://github.com/junegunn/fzf/issues/3008#issuecomment-1279974341
+# for details.
+bind -m vi-command '"\ec": nop'
+bind -m vi-insert '"\ec": nop'
+
 # I use this to make sure that the history is synced across my terminal
 # tabs. The last exit code has to be preserved in order to feed to starship,
 # otherwise the success/failure character won't display correctly.
