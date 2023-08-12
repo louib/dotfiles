@@ -134,4 +134,56 @@ rec {
   };
 
   DEFAULT_USERNAME = "louib";
+
+  # See https://github.com/junegunn/fzf/wiki/Color-schemes#base-scheme for
+  # the configuration of the base schemes.
+  FZF_COLOR_SCHEME = "16";
+
+  FZF_COLOR_CODES = {
+    base03 = "234";
+    base02 = "235";
+    base01 = "240";
+    base00 = "241";
+    base0 = "244";
+    base1 = "245";
+    base2 = "254";
+    base3 = "230";
+    yellow = "136";
+    orange = "166";
+    red = "160";
+    magenta = "125";
+    violet = "61";
+    blue = "33";
+    cyan = "37";
+    green = "64";
+  };
+
+  # See https://github.com/junegunn/fzf/wiki/Color-schemes#color-configuration
+  # for all the color configurations
+  # There's a color picker here https://minsw.github.io/fzf-color-picker/
+  FZF_COLORS = {
+    # highlighted substring
+    "hl" = FZF_COLOR_CODES.magenta;
+    # highlighted substring (current line)
+    "hl+" = FZF_COLOR_CODES.red;
+    # Background (current line)
+    "bg+" = FZF_COLOR_CODES.violet;
+    # gutter on the left
+    "gutter" = FZF_COLOR_CODES.blue;
+    "fg+" = FZF_COLOR_CODES.base2;
+    "info" = FZF_COLOR_CODES.cyan;
+    "prompt" = FZF_COLOR_CODES.cyan;
+    "spinner" = "108";
+    "pointer" = FZF_COLOR_CODES.violet;
+    # "marker" = FZF_COLOR_CODES.base02;
+    "marker" = FZF_COLOR_CODES.yellow;
+    "header" = FZF_COLOR_CODES.cyan;
+    "border" = FZF_COLOR_CODES.yellow;
+  };
+
+  GET_FZF_COLORS_FLATTENED = nixpkgs:
+    builtins.concatStringsSep ","
+    (nixpkgs.lib.mapAttrsToList (name: value: "${name}:${value}") FZF_COLORS);
+
+  GET_FZF_DEFAULT_OPTIONS = nixpkgs: "export FZF_DEFAULT_OPTS=\"$FZF_DEFAULT_OPTS --color ${FZF_COLOR_SCHEME},${GET_FZF_COLORS_FLATTENED nixpkgs}\"";
 }
