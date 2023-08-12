@@ -6,7 +6,7 @@ local ERRORS_EMOJI = '❗'
 local COLORSCHEME = 'sonokai'
 
 local function executable_is_available(executable_name)
-  local handle = io.popen(string.format('which %s', executable_name))
+  local handle = io.popen(string.format('which %s 2> /dev/null', executable_name))
   if not handle then
     return false
   end
