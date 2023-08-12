@@ -13,6 +13,10 @@ HISTCONTROL=ignoredups:erasedups
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+# FIXME I might want to use home-manager for that, otherwise the settings
+# are getting overwritten. 
+# See https://nix-community.github.io/home-manager/options.html#opt-programs.bash.historyFileSize
+# and https://nix-community.github.io/home-manager/options.html#opt-programs.bash.historySize
 HISTSIZE=20000
 HISTFILESIZE=$HISTSIZE
 
