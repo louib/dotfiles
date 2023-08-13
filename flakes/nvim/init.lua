@@ -2,8 +2,18 @@ local LSP_ENABLED_VAR_NAME = 'LSP_ENABLED'
 local COPILOT_ENABLED_VAR_NAME = 'COPILOT_ENABLED'
 local ENABLED_FORMATTING_TOOL_VAR_NAME = 'ENABLED_FORMATTING_TOOL'
 local ENABLED_LINTING_TOOL_VAR_NAME = 'ENABLED_LINTING_TOOL'
-local ERRORS_EMOJI = '❗'
-local COLORSCHEME = 'sonokai'
+local DEFAULT_COLORSCHEME = 'sonokai'
+
+local function get_colorscheme()
+  -- The shusia, maia and espresso variants exist for the sonokai colorscheme
+  -- FIXME how to change the colorscheme variant?
+  local custom_colorscheme = os.getenv('NVIM_COLORSCHEME')
+  if custom_colorscheme == nil then
+    return DEFAULT_COLORSCHEME
+  end
+  -- TODO validate the colorscheme
+  return custom_colorscheme
+end
 
 local function executable_is_available(executable_name)
   local handle = io.popen(string.format('which %s 2> /dev/null', executable_name))
@@ -389,7 +399,7 @@ local function configure_status_bar()
     options = {
       -- FIXME what do I need to enable the icons?
       icons_enabled = false,
-      theme = COLORSCHEME,
+      theme = get_colorscheme(),
       component_separators = { left = '', right = '' },
       section_separators = { left = '', right = '' },
       disabled_filetypes = {},
@@ -909,11 +919,7 @@ local function configure_global_options()
   -- vim.go.grepformat = "%f:%l:%c:%m"
   vim.go.grepprg = 'grep --binary-files=without-match --exclude-dir=target/ --exclude-dir=.git/ -rni'
 
-  -- The shusia, maia and espresso variants exist for the sonokai colorscheme
-  -- FIXME how to change the colorscheme variant?
-  local colorscheme = COLORSCHEME
-  -- local colorscheme = "everforest"
-
+  local colorscheme = get_colorscheme()
   pcall(vim.cmd, 'colorscheme ' .. colorscheme)
 end
 

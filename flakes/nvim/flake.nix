@@ -79,8 +79,8 @@
                   rust-vim
 
                   # Colorschemes
-                  everforest
                   sonokai
+                  vim-noctu
                 ];
                 opt = [];
               };
