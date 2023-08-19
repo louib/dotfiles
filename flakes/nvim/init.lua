@@ -48,6 +48,33 @@ local function get_prettier_formatting_config()
   return {}
 end
 
+local function get_terraform_formatting_config()
+  if not pcall(require, 'formatter.util') then
+    return {}
+  end
+
+  -- Utilities for creating configurations
+  local formatter_util = require('formatter.util')
+
+  if not executable_is_available('terraform') then
+    return {}
+  end
+
+  local buffer_number = vim.api.nvim_get_current_buf()
+  vim.api.nvim_buf_set_var(buffer_number, ENABLED_FORMATTING_TOOL_VAR_NAME, 'terraform fmt')
+
+  return {
+    exe = 'terraform',
+    args = {
+      'fmt',
+      '-write=true',
+      '-',
+      formatter_util.escape_path(formatter_util.get_current_buffer_file_path()),
+    },
+    stdin = true,
+  }
+end
+
 local function get_project_name()
   local current_dir = vim.fn.getcwd()
 
@@ -136,6 +163,13 @@ local function set_filetype_options()
   if filetype == 'python' then
     vim.bo.tabstop = 4
     vim.bo.shiftwidth = 4
+    return
+  end
+
+  if filetype == 'terraform' then
+    -- We call this function here because is has the side-effect of detecting which formatting
+    -- tools are available at this time.
+    get_terraform_formatting_config()
     return
   end
 
@@ -264,6 +298,9 @@ local function configure_auto_format()
       },
       yaml = {
         get_prettier_formatting_config,
+      },
+      terraform = {
+        get_terraform_formatting_config,
       },
     },
   })
