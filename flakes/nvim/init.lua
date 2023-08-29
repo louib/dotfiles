@@ -174,7 +174,7 @@ local function set_filetype_options()
   end
 
   if filetype == 'gitcommit' then
-    vim.wo.colorcolumn = '50'
+    vim.wo.colorcolumn = '72'
     return
   end
 
