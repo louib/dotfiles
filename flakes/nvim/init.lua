@@ -139,6 +139,11 @@ local function set_filetype_options()
     return
   end
 
+  if filetype == 'make' then
+    vim.bo.expandtab = false
+    return
+  end
+
   if filetype == 'nix' then
     -- see :help filename-modifiers
     -- :p means the full path
