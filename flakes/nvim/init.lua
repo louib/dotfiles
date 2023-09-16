@@ -216,7 +216,7 @@ local function set_filetype_options()
 end
 
 local function formatting_is_enabled()
-  if os.getenv('NVIM_DISABLE_FORMATTING') ~= 'true' then
+  if os.getenv('NVIM_DISABLE_FORMATTING') == 'true' then
     return false
   end
   return true
