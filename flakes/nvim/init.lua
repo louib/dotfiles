@@ -215,6 +215,13 @@ local function set_filetype_options()
   end
 end
 
+local function formatting_is_enabled()
+  if os.getenv('NVIM_DISABLE_FORMATTING') ~= 'true' then
+    return false
+  end
+  return true
+end
+
 local function escape_termcode(raw_termcode)
   -- Adjust boolean arguments as needed
   return vim.api.nvim_replace_termcodes(raw_termcode, true, true, true)
@@ -227,6 +234,10 @@ local function configure_auto_format()
   end
   if not pcall(require, 'formatter.util') then
     print('formatter.util is not installed.')
+    return
+  end
+
+  if not formatting_is_enabled() then
     return
   end
 
