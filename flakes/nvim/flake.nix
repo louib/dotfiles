@@ -42,6 +42,8 @@
             docker-language-server = nodePackages.dockerfile-language-server-nodejs;
             json-language-server = nodePackages.vscode-langservers-extracted;
             bash-language-server = nodePackages.bash-language-server;
+            # There is also terraform-lsp which I could try
+            inherit terraform-ls;
             inherit taplo-lsp;
           };
           neovimLuaConfig = builtins.readFile (./. + "/init.lua");
