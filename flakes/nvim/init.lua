@@ -103,6 +103,10 @@ local function set_filetype_options()
   -- TODO not sure that this makes sense just yet.
   vim.wo.colorcolumn = '100'
 
+  -- This is mainly to prevent netrw (the directory browser) from always keeping the
+  -- buffer hidden. This makes it difficult to close it.
+  vim.go.hidden = false
+
   if filetype == 'typescript' or filetype == 'javascript' or filetype == 'yaml' then
     -- We call this function here because is has the side-effect of detecting which formatting
     -- tools are available at this time.
