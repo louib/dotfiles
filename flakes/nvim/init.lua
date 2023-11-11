@@ -434,7 +434,8 @@ local function configure_auto_completion()
     }),
   })
 
-  vim.o.completeopt = 'menu,menuone,noselect'
+  -- vim.o.completeopt = 'menu,menuone,noselect'
+  vim.o.completeopt = 'menu,menuone,noselect,preview'
 end
 
 local function configure_status_bar()
@@ -925,8 +926,10 @@ local function configure_git_blame()
   -- TODO add the git blame status to the status line
   -- https://github.com/f-person/git-blame.nvim#statusline-integration
 
+  -- Add mappings for :GitBlameOpenFileURL and :GitBlameOpenCommitURL
   vim.cmd([[
-    let g:gitblame_date_format = '%Y-%m-%d %X (%r)'
+    let g:gitblame_message_template = '  <author> • <date> • <summary>'
+    let g:gitblame_date_format = '%Y-%m-%d (%r)'
   ]])
 end
 
@@ -1023,6 +1026,17 @@ local function configure_nvim()
   ]])
 end
 
+local function configure_fzf()
+  if not pcall(require, 'fzf-lua') then
+    print('fzf-lua is not installed.')
+    return
+  end
+
+  vim.keymap.set('n', '<c-P>', "<cmd>lua require('fzf-lua').files()<CR>", { silent = true })
+
+  require('fzf-lua').setup({ 'fzf-native' })
+end
+
 local function configure()
   if os.getenv('NVIM_DISABLE_CONFIG') == 'true' then
     print('Config is disabled.')
@@ -1036,6 +1050,7 @@ local function configure()
   configure_commenting()
   configure_git_blame()
   configure_copilot()
+  -- configure_fzf()
   configure_lsp()
   configure_lastplace()
   configure_status_bar()
