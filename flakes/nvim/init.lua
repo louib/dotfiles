@@ -1024,6 +1024,10 @@ local function configure_nvim()
 end
 
 local function configure()
+  if os.getenv('NVIM_DISABLE_CONFIG') == 'true' then
+    print('Config is disabled.')
+    return
+  end
   configure_nvim()
   configure_global_options()
   configure_key_bindings()
