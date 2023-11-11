@@ -341,6 +341,10 @@ end
 local function configure_auto_completion()
   vim.go.omnifunc = 'syntaxcomplete#Complete'
 
+  if os.getenv('NVIM_DISABLE_AUTO_COMPLETION') == 'true' then
+    return false
+  end
+
   if not pcall(require, 'cmp') then
     print('cmp is not installed.')
     return
