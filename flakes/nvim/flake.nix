@@ -55,6 +55,7 @@
               packages.myPlugins = with pkgs.vimPlugins; {
                 start = [
                   # TODO check out https://github.com/akinsho/toggleterm.nvim
+                  # TODO check out https://github.com/direnv/direnv.vim
                   git-blame-nvim
                   vim-surround
                   lualine-nvim
