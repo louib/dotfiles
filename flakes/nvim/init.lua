@@ -856,7 +856,6 @@ local function configure_copilot()
   end
 
   if os.getenv('NVIM_ENABLE_COPILOT') ~= 'true' then
-    print('Copilot is disabled.')
     return
   end
 
@@ -979,15 +978,16 @@ local function configure_global_options()
 
   -- TODO configure vim.o.wildignore ??
 
-  -- the grep related configuration is inspired by
-  -- https://gist.github.com/romainl/56f0c28ef953ffc157f36cc495947ab3
-  -- FIXME switch to rg when I installed it in the neovim container.
-  -- vim.go.grepprg = "rg --vimgrep"
-  -- vim.go.grepformat = "%f:%l:%c:%m"
-  vim.go.grepprg = 'grep --binary-files=without-match --exclude-dir=target/ --exclude-dir=.git/ -rni'
+  if executable_is_available('rg') then
+    vim.go.grepprg = 'rg --vimgrep'
+    vim.go.grepformat = '%f:%l:%c:%m'
+  else
+    -- the grep related configuration is inspired by
+    -- https://gist.github.com/romainl/56f0c28ef953ffc157f36cc495947ab3
+    vim.go.grepprg = 'grep --binary-files=without-match --exclude-dir=target/ --exclude-dir=.git/ -rni'
+  end
 
-  local colorscheme = DEFAULT_COLORSCHEME
-  pcall(vim.cmd, 'colorscheme ' .. colorscheme)
+  vim.cmd('colorscheme ' .. DEFAULT_COLORSCHEME)
 end
 
 local function configure_nvim()
