@@ -45,6 +45,8 @@
             # There is also terraform-lsp which I could try
             inherit terraform-ls;
             inherit taplo-lsp;
+
+            inherit ripgrep;
           };
           neovimLuaConfig = builtins.readFile (./. + "/init.lua");
           customNeovim = pkgs.neovim.override {
@@ -52,9 +54,7 @@
             configure = {
               packages.myPlugins = with pkgs.vimPlugins; {
                 start = [
-                  # TODO have a look at telescope, replaces ctrl-p and fzf
                   # TODO check out https://github.com/akinsho/toggleterm.nvim
-                  # TODO check out https://github.com/zakharykaplan/nvim-retrail
                   git-blame-nvim
                   vim-surround
                   lualine-nvim
@@ -74,6 +74,8 @@
                   vim-vsnip
 
                   copilot-lua
+
+                  fzf-lua
 
                   # Language-related plugins
                   vim-nix

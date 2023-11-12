@@ -1032,9 +1032,23 @@ local function configure_fzf()
     return
   end
 
-  vim.keymap.set('n', '<c-P>', "<cmd>lua require('fzf-lua').files()<CR>", { silent = true })
+  vim.keymap.set('n', '<c-P>', '<cmd>FzfLua files<CR>', { silent = true })
 
-  require('fzf-lua').setup({ 'fzf-native' })
+  -- See all the options here https://github.com/ibhagwan/fzf-lua#default-options
+  require('fzf-lua').setup({
+    winopts = {
+      height = 0.85,
+      width = 0.80,
+      row = 0.35,
+      col = 0.50,
+    },
+    previewers = {
+      cat = {
+        cmd = 'cat',
+        args = '--number',
+      },
+    },
+  })
 end
 
 local function configure()
@@ -1050,7 +1064,7 @@ local function configure()
   configure_commenting()
   configure_git_blame()
   configure_copilot()
-  -- configure_fzf()
+  configure_fzf()
   configure_lsp()
   configure_lastplace()
   configure_status_bar()
