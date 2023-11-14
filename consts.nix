@@ -120,6 +120,11 @@ rec {
     "org/gnome/terminal/legacy/keybindings" = {
       "full-screen" = "<Primary>f";
     };
+    # This is disabled because the default binding (<Primary>p) interferes
+    # with neovim bindings.
+    "/org/gnome/terminal/legacy/keybindings" = {
+      "find-previous" = "disabled";
+    };
     "org/gnome/terminal/legacy" = {
       "theme-variant" = "dark";
     };
