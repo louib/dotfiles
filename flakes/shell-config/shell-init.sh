@@ -94,9 +94,9 @@ ndv () {
     flake_path=$1
     # If no path is provided, use the current directory
     if [ -z "$flake_path" ]; then
-        nix develop .
+        nix develop . -c "$SHELL"
     else
-        nix develop "$flake_path"
+        nix develop "$flake_path" -c "$SHELL"
     fi
 }
 nfu () {
