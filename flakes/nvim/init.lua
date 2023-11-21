@@ -427,7 +427,37 @@ local function configure_auto_completion()
   -- for the current buffer file path
   -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
   cmp.setup.cmdline(':', {
-    mapping = cmp.mapping.preset.cmdline(),
+    -- Default mappings are defined here:
+    -- https://github.com/hrsh7th/nvim-cmp/blob/0b751f6beef40fd47375eaf53d3057e0bfa317e4/lua/cmp/config/mapping.lua#L74
+    mapping = cmp.mapping.preset.cmdline({
+      ['<C-j>'] = {
+        c = function()
+          if cmp.visible() then
+            cmp.select_next_item()
+          else
+            cmp.complete()
+          end
+        end,
+      },
+      ['<C-k>'] = {
+        c = function()
+          if cmp.visible() then
+            cmp.select_prev_item()
+          else
+            cmp.complete()
+          end
+        end,
+      },
+      ['<Tab>'] = {
+        c = function()
+          if cmp.visible() then
+            cmp.confirm({ select = true })
+          else
+            cmp.complete()
+          end
+        end,
+      },
+    }),
     sources = cmp.config.sources({
       { name = 'cmdline' },
     }, {
