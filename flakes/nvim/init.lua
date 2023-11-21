@@ -391,7 +391,8 @@ local function configure_auto_completion()
     }),
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
-      { name = 'vsnip' }, -- For vsnip users.
+      { name = 'vsnip' },
+      { name = 'copilot', group_index = 2 },
       -- { name = 'luasnip' }, -- For luasnip users.
       -- { name = 'ultisnips' }, -- For ultisnips users.
       -- { name = 'snippy' }, -- For snippy users.
@@ -863,44 +864,26 @@ local function configure_copilot()
     print('copilot is not installed.')
     return
   end
+  if not pcall(require, 'copilot_cmp') then
+    print('copilot_cmp is not installed.')
+    return
+  end
 
   if os.getenv('NVIM_ENABLE_COPILOT') ~= 'true' then
     return
   end
 
-  -- You still need to call :Copilot auth to authenticated the device for
+  -- You will need to call `:Copilot auth` to authenticate the device for
   -- the first time.
 
-  -- Default settings, as defined
-  -- here https://github.com/zbirenbaum/copilot.lua#setup-and-configuration
+  -- Settings are defined at https://github.com/zbirenbaum/copilot.lua#setup-and-configuration
   require('copilot').setup({
     panel = {
-      enabled = true,
-      auto_refresh = false,
-      keymap = {
-        jump_prev = '[[',
-        jump_next = ']]',
-        accept = '<CR>',
-        refresh = 'gr',
-        open = '<M-CR>',
-      },
-      layout = {
-        position = 'bottom', -- | top | left | right
-        ratio = 0.4,
-      },
+      enabled = false,
+      auto_refresh = true,
     },
     suggestion = {
-      enabled = true,
-      auto_trigger = false,
-      debounce = 75,
-      keymap = {
-        accept = '<M-l>',
-        accept_word = false,
-        accept_line = false,
-        next = '<M-]>',
-        prev = '<M-[>',
-        dismiss = '<C-]>',
-      },
+      enabled = false,
     },
     filetypes = {
       -- filetypes here can be boolean values or functions that return a boolean value.
@@ -915,14 +898,15 @@ local function configure_copilot()
       cvs = false,
       ['.'] = false,
     },
-    copilot_node_command = 'node', -- Node.js version must be > 16.x
+    copilot_node_command = 'node', -- Node.js version must be > 18.x
     server_opts_overrides = {},
   })
+  require('copilot_cmp').setup({})
+
+  -- vim.keymap.set('n', '<c-c>', '<cmd>Copilot panel<CR>', { silent = true })
 
   local buffer_number = vim.api.nvim_get_current_buf()
   vim.api.nvim_buf_set_var(buffer_number, COPILOT_ENABLED_VAR_NAME, true)
-
-  -- TODO also enable copilot-cmp
 end
 
 local function configure_git_blame()

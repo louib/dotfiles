@@ -75,6 +75,7 @@
                   vim-vsnip
 
                   copilot-lua
+                  copilot-cmp
 
                   fzf-lua
 
