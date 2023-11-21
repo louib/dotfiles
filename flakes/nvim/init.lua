@@ -494,6 +494,15 @@ local function configure_status_bar()
           function()
             local tools = ''
 
+            local nix_enabled = os.getenv('IN_NIX_SHELL') ~= ''
+            if nix_enabled then
+              if string.len(tools) == 0 then
+                tools = 'nix'
+              else
+                tools = tools .. ',nix'
+              end
+            end
+
             local copilot_enabled, copilot_response = pcall(vim.api.nvim_buf_get_var, 0, COPILOT_ENABLED_VAR_NAME)
             if copilot_enabled and copilot_response then
               if string.len(tools) == 0 then
