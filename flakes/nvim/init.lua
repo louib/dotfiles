@@ -1042,6 +1042,7 @@ local function configure_fzf()
   end
 
   vim.keymap.set('n', '<c-P>', '<cmd>FzfLua files<CR>', { silent = true })
+  vim.keymap.set('n', '<c-I>', '<cmd>FzfLua live_grep<CR>', { silent = true })
 
   -- See all the options here https://github.com/ibhagwan/fzf-lua#default-options
   require('fzf-lua').setup({
