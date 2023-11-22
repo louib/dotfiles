@@ -1002,7 +1002,7 @@ local function configure_global_options()
   -- TODO configure vim.o.wildignore ??
 
   if executable_is_available('rg') then
-    vim.go.grepprg = 'rg --vimgrep'
+    vim.go.grepprg = "rg --vimgrep --hidden --glob '!.git/'"
     vim.go.grepformat = '%f:%l:%c:%m'
   else
     -- the grep related configuration is inspired by
