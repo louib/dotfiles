@@ -1072,6 +1072,12 @@ local function configure_fzf()
         args = '--number',
       },
     },
+    files = {
+      rg_opts = "--color=never --files --hidden --follow -g '!.git'",
+    },
+    grep = {
+      rg_opts = "--hidden -g '!.git' --column --line-number --no-heading --color=always --smart-case --max-columns=4096 -e",
+    },
   })
 end
 
