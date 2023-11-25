@@ -525,7 +525,7 @@ local function configure_status_bar()
           function()
             local tools = ''
 
-            local nix_enabled = os.getenv('IN_NIX_SHELL') ~= ''
+            local nix_enabled = os.getenv('IN_NIX_SHELL') == 'impure'
             if nix_enabled then
               if string.len(tools) == 0 then
                 tools = 'nix'
