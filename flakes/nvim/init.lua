@@ -525,59 +525,35 @@ local function configure_status_bar()
           function()
             local tools = ''
 
-            local nix_enabled = os.getenv('IN_NIX_SHELL') == 'impure'
+            local nix_enabled = os.getenv('IN_NIX_SHELL'):gsub('^%s*(.-)%s*$', '%1') ~= ''
             if nix_enabled then
-              if string.len(tools) == 0 then
-                tools = 'nix'
-              else
-                tools = tools .. ',nix'
-              end
+              tools = tools .. '(nix)'
             end
 
             local copilot_enabled, copilot_response = pcall(vim.api.nvim_buf_get_var, 0, COPILOT_ENABLED_VAR_NAME)
             if copilot_enabled and copilot_response then
-              if string.len(tools) == 0 then
-                tools = 'copilot'
-              else
-                tools = tools .. ',copilot'
-              end
+              tools = tools .. '(copilot)'
             end
 
             local lsp_enabled, lsp_tool_name = pcall(vim.api.nvim_buf_get_var, 0, LSP_ENABLED_VAR_NAME)
             if lsp_enabled and lsp_tool_name then
-              if string.len(tools) == 0 then
-                tools = 'lsp'
-              else
-                tools = tools .. ',lsp'
-              end
+              tools = tools .. '(lsp)'
             end
 
             local linter_enabled, linter_tool_name = pcall(vim.api.nvim_buf_get_var, 0, ENABLED_LINTING_TOOL_VAR_NAME)
             if linter_enabled and linter_tool_name then
-              if string.len(tools) == 0 then
-                tools = linter_tool_name
-              else
-                tools = tools .. ',' .. linter_tool_name
-              end
+              tools = tools .. '(' .. linter_tool_name .. ')'
             end
 
             local formatter_enabled, formatter_tool_name =
               pcall(vim.api.nvim_buf_get_var, 0, ENABLED_FORMATTING_TOOL_VAR_NAME)
             if formatter_enabled and formatter_tool_name then
-              if string.len(tools) == 0 then
-                tools = tools .. formatter_tool_name
-              else
-                tools = tools .. ',' .. formatter_tool_name
-              end
+              tools = tools .. '(' .. formatter_tool_name .. ')'
             end
 
             -- TODO add an emoji to indicate errors when configuring the tools.
 
-            if string.len(tools) == 0 then
-              return ''
-            else
-              return string.format('[%s]', tools)
-            end
+            return tools
           end,
           padding = 1,
         },
