@@ -903,6 +903,13 @@ local function configure_copilot()
       svn = false,
       cvs = false,
       ['.'] = false,
+      [''] = false,
+      ['*'] = function()
+        local buffer_number = vim.api.nvim_get_current_buf()
+        vim.api.nvim_buf_set_var(buffer_number, COPILOT_ENABLED_VAR_NAME, true)
+
+        return true
+      end,
     },
     copilot_node_command = 'node', -- Node.js version must be > 18.x
     server_opts_overrides = {},
@@ -910,9 +917,6 @@ local function configure_copilot()
   require('copilot_cmp').setup({})
 
   -- vim.keymap.set('n', '<c-c>', '<cmd>Copilot panel<CR>', { silent = true })
-
-  local buffer_number = vim.api.nvim_get_current_buf()
-  vim.api.nvim_buf_set_var(buffer_number, COPILOT_ENABLED_VAR_NAME, true)
 end
 
 local function configure_git_blame()
