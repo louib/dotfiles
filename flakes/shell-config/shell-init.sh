@@ -69,6 +69,10 @@ gpf () {
     current_branch=$(git rev-parse --abbrev-ref HEAD)
     git push --force-with-lease origin "$current_branch"
 }
+# git fuzzy checkout
+gfo () {
+    git branch | fzf --height=40% --reverse --info=inline | xargs git checkout
+}
 
 # Cargo stuff
 alias ci="cargo install --force --path ."
