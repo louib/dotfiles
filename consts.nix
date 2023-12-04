@@ -122,7 +122,7 @@ rec {
     };
     # This is disabled because the default binding (<Primary>p) interferes
     # with neovim bindings.
-    "/org/gnome/terminal/legacy/keybindings" = {
+    "org/gnome/terminal/legacy/keybindings" = {
       "find-previous" = "disabled";
     };
     "org/gnome/terminal/legacy" = {
