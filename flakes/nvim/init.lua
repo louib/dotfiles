@@ -525,8 +525,8 @@ local function configure_status_bar()
           function()
             local tools = ''
 
-            local nix_enabled = os.getenv('IN_NIX_SHELL'):gsub('^%s*(.-)%s*$', '%1') ~= ''
-            if nix_enabled then
+            local nix_shell_var = os.getenv('IN_NIX_SHELL')
+            if nix_shell_var and nix_shell_var:gsub('^%s*(.-)%s*$', '%1') ~= '' then
               tools = tools .. '(nix)'
             end
 
