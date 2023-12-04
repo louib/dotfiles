@@ -4,6 +4,20 @@ local ENABLED_FORMATTING_TOOL_VAR_NAME = 'ENABLED_FORMATTING_TOOL'
 local ENABLED_LINTING_TOOL_VAR_NAME = 'ENABLED_LINTING_TOOL'
 local DEFAULT_COLORSCHEME = 'sonokai'
 
+-- Table to store the current state of auto-formatting
+-- for a filetype
+local AUTO_FORMATTING_ENABLED = {
+  cpp = false,
+  c = false,
+  yaml = false,
+  json = false,
+  nix = true,
+  javascript = true,
+  typescript = true,
+  lua = true,
+  rust = true,
+}
+
 local function executable_is_available(executable_name)
   local handle = io.popen(string.format('which %s 2> /dev/null', executable_name))
   if not handle then
@@ -27,6 +41,12 @@ local function get_prettier_formatting_config()
 
   -- Utilities for creating configurations
   local formatter_util = require('formatter.util')
+
+  local buffer_number = vim.api.nvim_get_current_buf()
+  local filetype = vim.api.nvim_buf_get_option(buffer_number, 'filetype')
+  if AUTO_FORMATTING_ENABLED[filetype] == false then
+    return nil
+  end
 
   if executable_is_available('prettier') then
     local buffer_number = vim.api.nvim_get_current_buf()
@@ -249,6 +269,10 @@ local function configure_auto_format()
   local formatter_util = require('formatter.util')
 
   local get_cpp_config = function()
+    if AUTO_FORMATTING_ENABLED['cpp'] == false then
+      return nil
+    end
+
     return {
       exe = 'clang-format',
       stdin = true,
@@ -256,6 +280,10 @@ local function configure_auto_format()
   end
 
   local get_nix_config = function()
+    if AUTO_FORMATTING_ENABLED['nix'] == false then
+      return nil
+    end
+
     return {
       exe = 'alejandra',
       stdin = true,
@@ -267,6 +295,10 @@ local function configure_auto_format()
   end
 
   local get_rust_config = function()
+    if AUTO_FORMATTING_ENABLED['rust'] == false then
+      return nil
+    end
+
     return {
       exe = 'rustfmt',
       stdin = true,
@@ -274,6 +306,10 @@ local function configure_auto_format()
   end
 
   local get_lua_config = function()
+    if AUTO_FORMATTING_ENABLED['lua'] == false then
+      return nil
+    end
+
     return {
       exe = 'stylua',
       args = {
@@ -332,6 +368,19 @@ local function configure_auto_format()
       autocmd BufWritePost * FormatWrite
     augroup END
   ]])
+
+  vim.keymap.set('n', '<c-A>', function()
+    local buffer_number = vim.api.nvim_get_current_buf()
+    local filetype = vim.api.nvim_buf_get_option(buffer_number, 'filetype')
+
+    if not AUTO_FORMATTING_ENABLED[filetype] then
+      AUTO_FORMATTING_ENABLED[filetype] = true
+    else
+      AUTO_FORMATTING_ENABLED[filetype] = false
+    end
+
+    require('lualine').refresh()
+  end, { silent = true })
 end
 
 local feedkey = function(key, mode)
@@ -549,6 +598,13 @@ local function configure_status_bar()
               pcall(vim.api.nvim_buf_get_var, 0, ENABLED_FORMATTING_TOOL_VAR_NAME)
             if formatter_enabled and formatter_tool_name then
               tools = tools .. '(' .. formatter_tool_name .. ')'
+
+              local buffer_number = vim.api.nvim_get_current_buf()
+              local filetype = vim.api.nvim_buf_get_option(buffer_number, 'filetype')
+              local auto_formatting_enabled = AUTO_FORMATTING_ENABLED[filetype]
+              if auto_formatting_enabled ~= false then
+                tools = tools .. '(autoformat)'
+              end
             end
 
             -- TODO add an emoji to indicate errors when configuring the tools.
