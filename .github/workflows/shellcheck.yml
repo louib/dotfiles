@@ -15,11 +15,17 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: updating available system dependencies
-      run: sudo apt-get update
+    - uses: DeterminateSystems/nix-installer-action@v9
 
     - name: installing shellcheck
-      run: sudo apt-get install -y shellcheck
+      # We're reusing the version from the neovim configuration so that we get expect
+      # exactly the same style locally and in the CI.
+      run: nix profile install ./flakes/nvim/#shellcheck
 
     - name: running shellcheck on shell scripts
-      run: find . -name '*.sh' -exec shellcheck {} +;
+      run: |
+        files=$(find . -name '*.sh')
+        IFS=$'\n'; for file in $files; do
+          echo "Running shellcheck on $file"
+          shellcheck "$file"
+        done

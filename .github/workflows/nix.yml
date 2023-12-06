@@ -14,13 +14,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - uses: cachix/install-nix-action@v18
+
+    - uses: DeterminateSystems/nix-installer-action@v9
 
     - name: Running `nix flake check` on flakes
       run: |
         files=$(find . -name '*flake.nix')
         IFS=$'\n'; for file in $files; do
           flake_dir=$(dirname "$file")
+          echo "Running nix flake check on $file"
           nix flake check "$flake_dir"
         done
 
@@ -30,7 +32,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - uses: cachix/install-nix-action@v18
+
+    - uses: DeterminateSystems/nix-installer-action@v9
 
     - name: installing alejandra
       # We're reusing the version from the neovim configuration so that we get expect
@@ -38,4 +41,9 @@ jobs:
       run: nix profile install ./flakes/nvim/#alejandra
 
     - name: running alejandra on nix scripts
-      run: find . -name '*.nix' -exec alejandra --check {} \;
+      run: |
+        files=$(find . -name '*.nix')
+        IFS=$'\n'; for file in $files; do
+          echo "Running alejandra on $file"
+          alejandra --check "$file"
+        done
