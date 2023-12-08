@@ -39,6 +39,12 @@ config.window_padding = {
   bottom = 0,
 }
 
+wezterm.on('gui-startup', function(_window)
+  local _tab, pane, window = wezterm.mux.spawn_window(cmd or {})
+  local gui_window = window:gui_window()
+  gui_window:perform_action(wezterm.action.ToggleFullScreen, pane)
+end)
+
 for i = 1, 8 do
   -- CTRL+ALT + number to activate that tab
   table.insert(config.keys, {
