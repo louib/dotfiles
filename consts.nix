@@ -100,6 +100,8 @@ rec {
         "firefox.desktop"
         "thunderbird.desktop"
         "com.gitlab.newsflash.desktop"
+        # New reverse DNS for newsflash??
+        # "io.gitlab.news_flash.NewsFlash.desktop"
         "org.wezfurlong.wezterm.desktop"
         "org.gnome.Terminal.desktop"
       ];
