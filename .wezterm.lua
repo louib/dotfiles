@@ -17,6 +17,7 @@ end
 -- config.color_scheme = 'Bespin (base16)'
 -- config.color_scheme = 'Black Metal (base16)'
 -- config.color_scheme = 'Brush Trees Dark (base16)'
+-- config.color_scheme = 'Zenburn'
 
 config.keys = {
   {
@@ -54,11 +55,17 @@ for i = 1, 8 do
   })
 end
 
-config.colors = {}
+config.colors = {
+  background = 'black',
+
+  -- The default text color
+  foreground = 'white',
+
+  cursor_bg = '#52ad70',
+}
 
 -- and finally, return
 --
-config.prefer_egl = false
-config.front_end = 'Software'
+config.prefer_egl = true
 
 return config
