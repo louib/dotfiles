@@ -100,6 +100,7 @@ rec {
         "firefox.desktop"
         "thunderbird.desktop"
         "com.gitlab.newsflash.desktop"
+        "org.wezfurlong.wezterm.desktop"
         "org.gnome.Terminal.desktop"
       ];
     };
