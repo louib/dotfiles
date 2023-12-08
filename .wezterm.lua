@@ -27,6 +27,17 @@ config.keys = {
   },
   { key = 'h', mods = 'CTRL', action = wezterm.action.ActivateTabRelative(-1) },
   { key = 'l', mods = 'CTRL', action = wezterm.action.ActivateTabRelative(1) },
+  { key = 's', mods = 'CTRL', action = wezterm.action.SplitVertical({ domain = 'CurrentPaneDomain' }) },
+  {
+    key = 'j',
+    mods = 'CTRL',
+    action = wezterm.action.ActivatePaneDirection('Down'),
+  },
+  {
+    key = 'k',
+    mods = 'CTRL',
+    action = wezterm.action.ActivatePaneDirection('Up'),
+  },
 }
 
 config.window_decorations = 'INTEGRATED_BUTTONS|RESIZE'
@@ -61,7 +72,8 @@ config.colors = {
   -- The default text color
   foreground = 'white',
 
-  cursor_bg = '#52ad70',
+  -- cursor_bg = '#52ad70',
+  cursor_fg = 'white',
 }
 
 -- and finally, return
