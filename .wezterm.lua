@@ -19,6 +19,25 @@ end
 -- config.color_scheme = 'Brush Trees Dark (base16)'
 -- config.color_scheme = 'Zenburn'
 
+local function url_decode(s)
+  s = string.gsub(s, '%%(%x%x)', function(h)
+    return string.char(tonumber(h, 16))
+  end)
+  return s
+end
+
+wezterm.on('newtab-cwd', function(window, pane)
+  local cwd = url_decode(pane:get_current_working_dir())
+  -- wezterm.log_info(pane:get_current_working_dir())
+  -- wezterm.log_info(cwd)
+  window:perform_action(
+    wezterm.action({ SpawnCommandInNewTab = {
+      args = { 'cmd', '/k', 'cd /d ' .. cwd },
+    } }),
+    pane
+  )
+end)
+
 config.leader = { key = 'Escape', mods = 'ALT', timeout_milliseconds = 1000 }
 config.keys = {
   -- Tabs shortcuts
