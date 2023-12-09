@@ -75,7 +75,7 @@ config.window_padding = {
 }
 
 wezterm.on('gui-startup', function(_window)
-  local _tab, pane, window = wezterm.mux.spawn_window(cmd or {})
+  local _tab, pane, window = wezterm.mux.spawn_window({})
   local gui_window = window:gui_window()
   gui_window:perform_action(wezterm.action.ToggleFullScreen, pane)
 end)
@@ -101,8 +101,9 @@ config.colors = {
   cursor_fg = 'white',
 }
 
--- and finally, return
---
+config.use_fancy_tab_bar = false
+config.hide_mouse_cursor_when_typing = false
+
 config.prefer_egl = true
 
 return config
