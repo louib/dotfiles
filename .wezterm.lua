@@ -19,7 +19,9 @@ end
 -- config.color_scheme = 'Brush Trees Dark (base16)'
 -- config.color_scheme = 'Zenburn'
 
+config.leader = { key = 'Escape', mods = 'ALT', timeout_milliseconds = 1000 }
 config.keys = {
+  -- Tabs shortcuts
   {
     key = 't',
     mods = 'CTRL',
@@ -27,15 +29,17 @@ config.keys = {
   },
   { key = 'h', mods = 'CTRL', action = wezterm.action.ActivateTabRelative(-1) },
   { key = 'l', mods = 'CTRL', action = wezterm.action.ActivateTabRelative(1) },
-  { key = 's', mods = 'CTRL', action = wezterm.action.SplitVertical({ domain = 'CurrentPaneDomain' }) },
+
+  -- Pane shortcuts
+  { key = 'n', mods = 'CTRL|SHIFT', action = wezterm.action.SplitVertical({ domain = 'CurrentPaneDomain' }) },
   {
     key = 'j',
-    mods = 'CTRL',
+    mods = 'CTRL|SHIFT',
     action = wezterm.action.ActivatePaneDirection('Down'),
   },
   {
     key = 'k',
-    mods = 'CTRL',
+    mods = 'CTRL|SHIFT',
     action = wezterm.action.ActivatePaneDirection('Up'),
   },
 }
