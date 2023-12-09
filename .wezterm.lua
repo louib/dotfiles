@@ -89,8 +89,10 @@ for i = 1, 8 do
   })
 end
 
+-- See https://user-images.githubusercontent.com/58662350/214389078-702babc1-fd73-40d7-9fb2-ac2eeaedeeea.png
+-- for the colors used by sonokai
 config.colors = {
-  background = 'black',
+  background = '#2C2E34',
 
   -- The default text color
   foreground = 'white',
