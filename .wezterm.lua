@@ -68,6 +68,8 @@ config.window_decorations = 'INTEGRATED_BUTTONS|RESIZE'
 config.tab_bar_at_bottom = false
 config.tab_max_width = 20
 
+config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
+
 config.window_padding = {
   left = 2,
   right = 2,
