@@ -66,6 +66,7 @@ config.keys = {
 config.window_decorations = 'INTEGRATED_BUTTONS|RESIZE'
 
 config.tab_bar_at_bottom = false
+config.tab_max_width = 20
 
 config.window_padding = {
   left = 2,
