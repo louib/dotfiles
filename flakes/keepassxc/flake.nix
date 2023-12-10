@@ -40,6 +40,7 @@
                 xorg.libXi
                 libargon2
                 libusb1
+                keyutils
                 minizip
                 pcsclite
                 qrencode
