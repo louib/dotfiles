@@ -71,7 +71,14 @@ gpf () {
 }
 # git fuzzy checkout
 gfo () {
-    git branch | fzf --height=40% --reverse --info=inline | xargs git checkout
+    selected_branch=$(git branch --all | grep -v "\->" | fzf --height=40% --reverse --info=inline)
+    echo "Checking out $selected_branch"
+    case "$selected_branch" in
+        *"remotes/"*) selected_branch=$(echo "$selected_branch" | sed "s/\ *remotes\/[^\/]*\///");;
+        *);;
+    esac
+    echo "Checking out $selected_branch"
+    git checkout "$selected_branch"
 }
 
 # Cargo stuff
