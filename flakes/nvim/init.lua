@@ -369,7 +369,7 @@ local function configure_auto_format()
     augroup END
   ]])
 
-  vim.keymap.set('n', '<c-A>', function()
+  vim.keymap.set('n', '<Space>f', function()
     local buffer_number = vim.api.nvim_get_current_buf()
     local filetype = vim.api.nvim_buf_get_option(buffer_number, 'filetype')
 
@@ -574,6 +574,20 @@ local function configure_status_bar()
           function()
             local tools = ''
 
+            local formatter_enabled, formatter_tool_name =
+              pcall(vim.api.nvim_buf_get_var, 0, ENABLED_FORMATTING_TOOL_VAR_NAME)
+            if formatter_enabled and formatter_tool_name then
+              -- Put the autoformat first so that we don't shift the other tools when toggling it.
+              local buffer_number = vim.api.nvim_get_current_buf()
+              local filetype = vim.api.nvim_buf_get_option(buffer_number, 'filetype')
+              local auto_formatting_enabled = AUTO_FORMATTING_ENABLED[filetype]
+              if auto_formatting_enabled ~= false then
+                tools = tools .. '(autoformat)'
+              end
+
+              tools = tools .. '(' .. formatter_tool_name .. ')'
+            end
+
             local nix_shell_var = os.getenv('IN_NIX_SHELL')
             if nix_shell_var and nix_shell_var:gsub('^%s*(.-)%s*$', '%1') ~= '' then
               tools = tools .. '(nix)'
@@ -592,19 +606,6 @@ local function configure_status_bar()
             local linter_enabled, linter_tool_name = pcall(vim.api.nvim_buf_get_var, 0, ENABLED_LINTING_TOOL_VAR_NAME)
             if linter_enabled and linter_tool_name then
               tools = tools .. '(' .. linter_tool_name .. ')'
-            end
-
-            local formatter_enabled, formatter_tool_name =
-              pcall(vim.api.nvim_buf_get_var, 0, ENABLED_FORMATTING_TOOL_VAR_NAME)
-            if formatter_enabled and formatter_tool_name then
-              tools = tools .. '(' .. formatter_tool_name .. ')'
-
-              local buffer_number = vim.api.nvim_get_current_buf()
-              local filetype = vim.api.nvim_buf_get_option(buffer_number, 'filetype')
-              local auto_formatting_enabled = AUTO_FORMATTING_ENABLED[filetype]
-              if auto_formatting_enabled ~= false then
-                tools = tools .. '(autoformat)'
-              end
             end
 
             -- TODO add an emoji to indicate errors when configuring the tools.
