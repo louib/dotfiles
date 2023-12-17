@@ -743,13 +743,6 @@ local function configure_lsp()
     debounce_text_changes = 150,
   }
 
-  local rust_analyzer_features = {}
-  -- FIXME the get_project_name() function is still untested, but
-  -- could be useful in the future.
-  -- if get_project_name() == "project-name" then
-  --   rust_analyzer_features = {"allo"}
-  -- end
-
   require('lspconfig').rust_analyzer.setup({
     on_attach = custom_lsp_attach,
     flags = lsp_flags,
@@ -757,7 +750,7 @@ local function configure_lsp()
     settings = {
       ['rust-analyzer'] = {
         cargo = {
-          features = rust_analyzer_features,
+          allFeatures = true,
         },
       },
     },
