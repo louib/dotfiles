@@ -22,6 +22,8 @@ rec {
     }
   ];
 
+  WEZTERM_CONFIG = builtins.readFile (./. + "/.wezterm.lua");
+
   # We need to call a home-manager function to generate the input sources
   # in a valid format.
   GET_DCONF_INPUT_SOURCES = home-manager: {
