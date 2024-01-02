@@ -127,7 +127,7 @@ local function set_filetype_options()
   -- buffer hidden. This makes it difficult to close it.
   vim.go.hidden = false
 
-  if filetype == 'typescript' or filetype == 'javascript' or filetype == 'yaml' then
+  if filetype == 'typescript' or filetype == 'javascript' or filetype == 'yaml' or filetype == 'json' then
     -- We call this function here because is has the side-effect of detecting which formatting
     -- tools are available at this time.
     get_prettier_formatting_config()
