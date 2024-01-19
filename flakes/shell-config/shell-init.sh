@@ -77,6 +77,7 @@ gfo () {
         *"remotes/"*) selected_branch=$(echo "$selected_branch" | sed "s/\ *remotes\/[^\/]*\///");;
         *);;
     esac
+    selected_branch=$(echo "$selected_branch" | sed "s/\ *//")
     echo "Checking out $selected_branch"
     git checkout "$selected_branch"
 }
