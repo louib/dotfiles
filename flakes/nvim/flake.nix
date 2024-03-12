@@ -50,15 +50,14 @@
           };
           # FIXME this should probably be ported over to nixpkgs
           copilotchat-nvim = pkgs.vimUtils.buildVimPlugin {
-            pname = "copilotchat-nvim";
+            pname = "CopilotChat";
             version = "2020-08-14";
             src = pkgs.fetchFromGitHub {
               owner = "CopilotC-Nvim";
               repo = "CopilotChat.nvim";
               rev = "c5b0f79ba942edb9385ff4903a925bc20d00de64";
-              sha256 = "1rvlx21kw8865dg6q97hx9i2s1n8mn1nyhn0m7dkx625pghsx3js";
+              # sha256 = "1rvlx21kw8865dg6q97hx9i2s1n8mn1nyhn0m7dkx625pghsx3js";
             };
-            meta.homepage = "https://github.com/CopilotC-Nvim/CopilotChat.nvim";
           };
 
           neovimLuaConfig = builtins.readFile (./. + "/init.lua");
