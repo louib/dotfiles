@@ -893,7 +893,7 @@ local function configure_key_bindings()
   -- to edit the line by pressing Esc instead.
   vim.api.nvim_set_keymap('t', '<Space><Esc>', '<C-\\><C-n>', { silent = false, noremap = true })
 
-  vim.api.nvim_set_keymap('n', '<C-n>', ':CopilotChatOpen', { silent = false, noremap = true })
+  vim.api.nvim_set_keymap('n', '<C-n>', ':CopilotChatOpen<Enter>', { silent = false, noremap = true })
 end
 
 local function configure_commenting()
