@@ -48,6 +48,19 @@
 
             inherit ripgrep;
           };
+          # FIXME this should probably be ported over to nixpkgs
+          copilotchat-nvim = pkgs.vimUtils.buildVimPlugin {
+            pname = "copilotchat-nvim";
+            version = "2020-08-14";
+            src = pkgs.fetchFromGitHub {
+              owner = "CopilotC-Nvim";
+              repo = "CopilotChat.nvim";
+              rev = "c5b0f79ba942edb9385ff4903a925bc20d00de64";
+              sha256 = "1rvlx21kw8865dg6q97hx9i2s1n8mn1nyhn0m7dkx625pghsx3js";
+            };
+            meta.homepage = "https://github.com/CopilotC-Nvim/CopilotChat.nvim";
+          };
+
           neovimLuaConfig = builtins.readFile (./. + "/init.lua");
           customNeovim = pkgs.neovim.override {
             # vimAlias = true;
@@ -68,6 +81,11 @@
                   cmp-buffer
                   cmp-path
                   cmp-cmdline
+
+                  # Required by copilotchat-nvim
+                  plenary-nvim
+
+                  copilotchat-nvim
 
                   # both cmp-vsnip and vim-vsnip are required to add completion engine support
                   # to nvim-cmp
