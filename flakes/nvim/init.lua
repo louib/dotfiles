@@ -924,6 +924,10 @@ local function configure_copilot()
     print('copilot_cmp is not installed.')
     return
   end
+  if not pcall(require, 'CopilotChat') then
+    print('CopilotChat is not installed')
+    return
+  end
 
   if os.getenv('NVIM_ENABLE_COPILOT') ~= 'true' then
     return
@@ -964,7 +968,15 @@ local function configure_copilot()
     copilot_node_command = 'node', -- Node.js version must be > 18.x
     server_opts_overrides = {},
   })
+
   require('copilot_cmp').setup({})
+
+  -- See https://github.com/CopilotC-Nvim/CopilotChat.nvim?tab=readme-ov-file#default-configuration for the
+  -- default configuration.
+  require('CopilotChat').setup({
+    debug = true,
+    allow_insecure = false,
+  })
 
   -- vim.keymap.set('n', '<c-c>', '<cmd>Copilot panel<CR>', { silent = true })
 end
