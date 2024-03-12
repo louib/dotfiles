@@ -892,6 +892,8 @@ local function configure_key_bindings()
   -- line cannot be modified from the nvim buffer. I might want to use the vi mode from bash
   -- to edit the line by pressing Esc instead.
   vim.api.nvim_set_keymap('t', '<Space><Esc>', '<C-\\><C-n>', { silent = false, noremap = true })
+
+  vim.api.nvim_set_keymap('n', '<C-n>', ':CopilotChatOpen', { silent = false, noremap = true })
 end
 
 local function configure_commenting()
@@ -976,6 +978,15 @@ local function configure_copilot()
   require('CopilotChat').setup({
     debug = true,
     allow_insecure = false,
+    window = {
+      layout = 'float',
+      relative = 'editor', -- 'editor', 'win', 'cursor', 'mouse'
+      border = 'single', -- 'none', single', 'double', 'rounded', 'solid', 'shadow'
+      width = 0.8, -- fractional width of parent
+      height = 0.6, -- fractional height of parent
+      title = 'Copilot Chat', -- title of chat window
+      zindex = 1, -- determines if window is on top or below other floating windows
+    },
   })
 
   -- vim.keymap.set('n', '<c-c>', '<cmd>Copilot panel<CR>', { silent = true })
