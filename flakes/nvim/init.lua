@@ -894,6 +894,8 @@ local function configure_key_bindings()
   vim.api.nvim_set_keymap('t', '<Space><Esc>', '<C-\\><C-n>', { silent = false, noremap = true })
 
   vim.api.nvim_set_keymap('n', '<C-n>', ':CopilotChatOpen<Enter>', { silent = false, noremap = true })
+
+  vim.api.nvim_set_keymap('n', '<C-b>', ':GitBlameCopyFileURL<Enter>', { silent = false, noremap = true })
 end
 
 local function configure_commenting()
@@ -988,8 +990,6 @@ local function configure_copilot()
       zindex = 1, -- determines if window is on top or below other floating windows
     },
   })
-
-  -- vim.keymap.set('n', '<c-c>', '<cmd>Copilot panel<CR>', { silent = true })
 end
 
 local function configure_git_blame()
