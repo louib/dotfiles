@@ -61,6 +61,7 @@ grm () {
     default_branch=$(get_default_git_branch)
     git pull --rebase origin "$default_branch"
 }
+alias grc="git rebase --continue"
 gp () {
     current_branch=$(git rev-parse --abbrev-ref HEAD)
     git push origin "$current_branch"
