@@ -989,6 +989,17 @@ local function configure_copilot()
       title = 'Copilot Chat', -- title of chat window
       zindex = 1, -- determines if window is on top or below other floating windows
     },
+
+    mappings = {
+      close = '<C-c>',
+      reset = '<Del>',
+      complete = '<Tab>',
+      submit_prompt = '<CR>',
+      accept_diff = 'a',
+      show_diff = 'gd',
+      show_system_prompt = 'gp',
+      show_user_selection = 'gs',
+    },
   })
 end
 
