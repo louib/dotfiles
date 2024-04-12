@@ -66,7 +66,7 @@ config.keys = {
 config.window_decorations = 'INTEGRATED_BUTTONS|RESIZE'
 
 config.tab_bar_at_bottom = false
-config.tab_max_width = 25
+config.tab_max_width = 35
 
 config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
 
