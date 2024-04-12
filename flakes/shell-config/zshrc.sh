@@ -14,8 +14,27 @@ bindkey -r '\ec'
 bindkey -M vicmd -r '\ec'
 bindkey -M viins -r '\ec'
 
+set_title () {
+    # FIXME this should basically only remove the path to my projects, if that path
+    # exists in the current directory. Everything else should be the full path of the
+    # directory.
+    CURRENT_DIR=$(basename "$PWD")
+    wezterm cli set-tab-title "$CURRENT_DIR"
+}
+
 if [ -x "$(command -v starship)" ]; then
     eval "$(starship init zsh)"
 fi
+
+if [ -x "$(command -v wezterm)" ]; then
+    # See all the other hook functions for zsh here:
+    # https://zsh.sourceforge.io/Doc/Release/Functions.html#Hook-Functions
+    function chpwd() {
+        set_title
+    }
+
+    set_title
+fi
+
 
 export CLICOLOR=1
