@@ -25,7 +25,7 @@
             inherit xclip;
             # Copilot requires a version of Node.js > 16.x
             inherit nodejs-18_x;
-            inherit rnix-lsp;
+            inherit nil;
             inherit rust-analyzer;
             inherit cargo;
             inherit rustc;
@@ -51,11 +51,11 @@
           # FIXME this should probably be ported over to nixpkgs
           copilotchat-nvim = pkgs.vimUtils.buildVimPlugin {
             pname = "CopilotChat";
-            version = "2020-08-14";
+            version = "v2.6.0";
             src = pkgs.fetchFromGitHub {
               owner = "CopilotC-Nvim";
               repo = "CopilotChat.nvim";
-              rev = "c5b0f79ba942edb9385ff4903a925bc20d00de64";
+              rev = "c53e41fd2f4769e3fe60c7233fbd5d5a78324f4b";
               sha256 = "sha256-zyplWVDuGBISaFzLKfHwxtKMd2hK0+oQE5HMkWMkveo=";
             };
           };
