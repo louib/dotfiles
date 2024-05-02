@@ -71,7 +71,10 @@
                   git-blame-nvim
                   vim-surround
                   lualine-nvim
+
                   comment-nvim
+                  nvim-comment
+
                   formatter-nvim
                   nvim-lastplace
                   nvim-lspconfig
