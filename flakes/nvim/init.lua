@@ -899,24 +899,48 @@ local function configure_key_bindings()
 end
 
 local function configure_commenting()
-  if not pcall(require, 'Comment') then
-    print('Comment is not installed.')
-    return
+  -- I'm having issues with comment.nvim, So I'm currently trying comment_nvim instead.
+  if os.getenv('NVIM_ENABLE_COMMENT_NVIM') == 'true' then
+    if not pcall(require, 'nvim_comment') then
+      print('nvim_comment is not installed.')
+      return
+    end
+
+    -- Config options are documented here
+    -- https://github.com/terrortylor/nvim-comment?tab=readme-ov-file#configure
+    require('nvim_comment').setup({
+      -- should comment out empty or whitespace only lines
+      comment_empty = false,
+
+      -- Should key mappings be created
+      create_mappings = true,
+
+      -- Normal mode mapping left hand side
+      line_mapping = 'gcc',
+
+      -- Visual/Operator mapping left hand side
+      operator_mapping = 'gc',
+    })
+  else
+    if not pcall(require, 'Comment') then
+      print('Comment is not installed.')
+      return
+    end
+
+    -- See https://github.com/numToStr/Comment.nvim#configuration-optional
+    require('Comment').setup({
+      padding = true,
+
+      ---LHS of operator-pending mappings in NORMAL + VISUAL mode
+      ---@type table
+      opleader = {
+        ---Line-comment keymap
+        line = 'gc',
+        ---Block-comment keymap
+        block = 'gb',
+      },
+    })
   end
-
-  -- See https://github.com/numToStr/Comment.nvim#configuration-optional
-  require('Comment').setup({
-    padding = true,
-
-    ---LHS of operator-pending mappings in NORMAL + VISUAL mode
-    ---@type table
-    opleader = {
-      ---Line-comment keymap
-      line = 'gc',
-      ---Block-comment keymap
-      block = 'gb',
-    },
-  })
 end
 
 local function configure_copilot()
