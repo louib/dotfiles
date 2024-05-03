@@ -1184,11 +1184,11 @@ local function configure()
   configure_auto_completion()
   configure_commenting()
   configure_git_blame()
-  configure_copilot()
   configure_fzf()
   configure_lsp()
   configure_lastplace()
   configure_status_bar()
+  configure_copilot()
 end
 
 configure()
