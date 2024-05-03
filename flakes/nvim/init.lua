@@ -1018,14 +1018,31 @@ local function configure_copilot()
     },
 
     mappings = {
-      close = '<C-c>',
-      reset = '<Del>',
-      complete = '<Tab>',
-      submit_prompt = '<CR>',
-      accept_diff = 'a',
-      show_diff = 'gd',
-      show_system_prompt = 'gp',
-      show_user_selection = 'gs',
+      close = {
+        insert = '<C-c>',
+      },
+      reset = {
+        normal = '<Del>',
+        insert = '<Del>',
+      },
+      complete = {
+        insert = '<Tab>',
+      },
+      submit_prompt = {
+        normal = '<CR>',
+      },
+      accept_diff = {
+        normal = 'a',
+      },
+      show_diff = {
+        normal = 'gd',
+      },
+      show_system_prompt = {
+        normal = 'gp',
+      },
+      show_user_selection = {
+        normal = 'gs',
+      },
     },
   })
 end
