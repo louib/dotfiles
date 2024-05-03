@@ -439,6 +439,10 @@ local function configure_auto_completion()
       ['<CR>'] = cmp.mapping.confirm({ select = false }),
     }),
     sources = cmp.config.sources({
+      {
+        name = 'dictionary',
+        keyword_length = 2,
+      },
       { name = 'nvim_lsp' },
       { name = 'vsnip' },
       { name = 'copilot', group_index = 2 },
@@ -516,6 +520,16 @@ local function configure_auto_completion()
 
   -- vim.o.completeopt = 'menu,menuone,noselect'
   vim.o.completeopt = 'menu,menuone,noselect,preview'
+
+  require('cmp_dictionary').setup({
+    paths = { '/usr/share/dict/words' },
+    exact_length = 2,
+    first_case_insensitive = true,
+    document = {
+      enable = true,
+      command = { 'wn', '${label}', '-over' },
+    },
+  })
 end
 
 local function configure_status_bar()

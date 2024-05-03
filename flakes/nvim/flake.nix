@@ -47,6 +47,7 @@
             inherit taplo-lsp;
 
             inherit ripgrep;
+            inherit wordnet;
           };
           # FIXME this should probably be ported over to nixpkgs
           copilotchat-nvim = pkgs.vimUtils.buildVimPlugin {
@@ -83,8 +84,9 @@
                   cmp-buffer
                   cmp-path
                   cmp-cmdline
+                  cmp-dictionary
 
-                  # Required by copilotchat-nvim
+                  # Required by copilotchat-nvim, cmp-dictionary, and potentially other plugins.
                   plenary-nvim
 
                   copilotchat-nvim
