@@ -56,7 +56,7 @@
               owner = "CopilotC-Nvim";
               repo = "CopilotChat.nvim";
               rev = "c53e41fd2f4769e3fe60c7233fbd5d5a78324f4b";
-              sha256 = "sha256-zyplWVDuGBISaFzLKfHwxtKMd2hK0+oQE5HMkWMkveo=";
+              sha256 = "sha256-SzFRI5MfByFQZw80dv4nbmJmPUIo5o5NhNarlMueHYY=";
             };
           };
 
