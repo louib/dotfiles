@@ -1033,16 +1033,16 @@ local function configure_copilot()
 
     mappings = {
       close = {
-        insert = '<C-c>',
+        normal = '<C-c>',
       },
       reset = {
         normal = '<Del>',
-        insert = '<Del>',
       },
       complete = {
         insert = '<Tab>',
       },
       submit_prompt = {
+        insert = '<CR>',
         normal = '<CR>',
       },
       accept_diff = {
