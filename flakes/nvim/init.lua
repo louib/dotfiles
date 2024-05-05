@@ -521,8 +521,13 @@ local function configure_auto_completion()
   -- vim.o.completeopt = 'menu,menuone,noselect'
   vim.o.completeopt = 'menu,menuone,noselect,preview'
 
+  local dictionaries = {}
+  if os.getenv('NVIM_ENABLE_DICTIONARIES') == 'true' then
+    dictionaries = { '/usr/share/dict/words' }
+  end
+
   require('cmp_dictionary').setup({
-    paths = { '/usr/share/dict/words' },
+    paths = dictionaries,
     exact_length = 2,
     first_case_insensitive = true,
     document = {
