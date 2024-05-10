@@ -443,6 +443,9 @@ local function configure_auto_completion()
         name = 'dictionary',
         keyword_length = 2,
       },
+      {
+        name = 'emoji',
+      },
       { name = 'nvim_lsp' },
       { name = 'vsnip' },
       { name = 'copilot', group_index = 2 },
