@@ -21,6 +21,19 @@ get_default_git_branch () {
     fi
 }
 
+get_default_git_remote () {
+    username=$(whoami)
+    if [ -n "$GITHUB_USERNAME" ]; then
+        username="$GITHUB_USERNAME"
+    fi
+    remote_url=$(git config --get "remote.$username.url")
+    if [ -n "$remote_url" ]; then
+        echo "$username"
+    else
+        echo "origin"
+    fi
+}
+
 # checkout the default git branch.
 # (git checkout default)
 gcd () {
@@ -64,11 +77,13 @@ grm () {
 alias grc="git rebase --continue"
 gp () {
     current_branch=$(git rev-parse --abbrev-ref HEAD)
-    git push origin "$current_branch"
+    default_remote=$(get_default_git_remote)
+    git push "$default_remote" "$current_branch"
 }
 gpf () {
     current_branch=$(git rev-parse --abbrev-ref HEAD)
-    git push --force-with-lease origin "$current_branch"
+    default_remote=$(get_default_git_remote)
+    git push --force-with-lease "$default_remote" "$current_branch"
 }
 # git fuzzy checkout
 gfo () {
