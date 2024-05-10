@@ -94,8 +94,12 @@ gfo () {
         *);;
     esac
     selected_branch=$(echo "$selected_branch" | sed "s/\ *//")
-    echo "Checking out $selected_branch"
-    git checkout "$selected_branch"
+    if [ -z "$selected_branch" ]; then
+        echo "No branch selected"
+    else
+        echo "Checking out $selected_branch"
+        git checkout "$selected_branch"
+    fi
 }
 alias gcs="GITHUB_TOKEN=\"\" gh copilot suggest -t shell"
 
