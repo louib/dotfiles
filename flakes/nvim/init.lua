@@ -918,6 +918,10 @@ local function configure_key_bindings()
   vim.api.nvim_set_keymap('n', '<C-n>', ':CopilotChatOpen<Enter>', { silent = false, noremap = true })
 
   vim.api.nvim_set_keymap('n', '<C-b>', ':GitBlameCopyFileURL<Enter>', { silent = false, noremap = true })
+
+  if os.getenv('NVIM_EMBEDDED') == 'true' then
+    vim.api.nvim_set_keymap('c', 'w<Enter>', 'w >> /dev/stderr<Enter>:q!<Enter>', { silent = false, noremap = true })
+  end
 end
 
 local function configure_commenting()
