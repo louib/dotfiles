@@ -107,10 +107,6 @@ local function get_project_name()
 end
 
 local function prepare_embedded_buffer()
-  if os.getenv('NVIM_EMBEDDED') ~= 'true' then
-    return
-  end
-
   local buffer_number = vim.api.nvim_get_current_buf()
 
   -- See the buftype option for details
@@ -1174,13 +1170,16 @@ local function configure_nvim()
   -- vim.api.nvim_command('packloadall')
   --
 
-  vim.api.nvim_create_autocmd('FileType', {
-    pattern = '*',
-    callback = function()
-      vim.schedule(set_filetype_options)
-    end,
-  })
-  prepare_embedded_buffer()
+  if os.getenv('NVIM_EMBEDDED') == 'true' then
+    prepare_embedded_buffer()
+  else
+    vim.api.nvim_create_autocmd('FileType', {
+      pattern = '*',
+      callback = function()
+        vim.schedule(set_filetype_options)
+      end,
+    })
+  end
 
   vim.cmd([[
     augroup quickfix
