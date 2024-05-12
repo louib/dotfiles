@@ -113,9 +113,6 @@ local function prepare_embedded_buffer()
   -- https://neovim.io/doc/user/options.html#'buftype'
   vim.api.nvim_buf_set_option(buffer_number, 'buftype', 'nofile')
   vim.api.nvim_buf_set_option(buffer_number, 'filetype', 'markdown')
-
-  local buffer_name = os.getenv('NVIM_EMBEDDED_BUFFER_NAME') or 'No Name'
-  vim.cmd('file ' .. buffer_name)
 end
 
 local function set_filetype_options()
@@ -552,6 +549,21 @@ local function configure_status_bar()
     return
   end
 
+  local function get_embedded_buffer_name()
+    return os.getenv('NVIM_EMBEDDED_BUFFER_NAME') or 'No Name'
+  end
+
+  local filename_section = os.getenv('NVIM_EMBEDDED') == 'true' and get_embedded_buffer_name
+    or {
+      'filename',
+      -- 0: Just the filename
+      -- 1: Relative path
+      -- 2: Absolute path
+      -- 3: Absolute path, with tilde as the home directory
+      path = 1,
+      padding = 1,
+    }
+
   -- https://github.com/nvim-lualine/lualine.nvim#available-components
   -- for the available components.
   require('lualine').setup({
@@ -587,15 +599,7 @@ local function configure_status_bar()
         },
       },
       lualine_c = {
-        {
-          'filename',
-          -- 0: Just the filename
-          -- 1: Relative path
-          -- 2: Absolute path
-          -- 3: Absolute path, with tilde as the home directory
-          path = 1,
-          padding = 1,
-        },
+        filename_section,
       },
       lualine_x = {
         {
@@ -1228,6 +1232,9 @@ local function configure_fzf()
 end
 
 local function configure()
+  if os.getenv('NVIM_EMBEDDED') == 'true' then
+    prepare_embedded_buffer()
+  end
   if os.getenv('NVIM_DISABLE_CONFIG') == 'true' then
     print('Config is disabled.')
     return
