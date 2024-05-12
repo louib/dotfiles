@@ -930,7 +930,9 @@ local function configure_key_bindings()
   vim.api.nvim_set_keymap('n', '<C-b>', ':GitBlameCopyFileURL<Enter>', { silent = false, noremap = true })
 
   if os.getenv('NVIM_EMBEDDED') == 'true' then
-    vim.api.nvim_set_keymap('c', 'w<Enter>', 'w >> /dev/stderr<Enter>:q!<Enter>', { silent = false, noremap = true })
+    local embedded_exit_sequence = 'w >> /dev/stderr<Enter>:q!<Enter>'
+    vim.api.nvim_set_keymap('c', 'w<Enter>', embedded_exit_sequence, { silent = false, noremap = true })
+    vim.api.nvim_set_keymap('c', 'wq<Enter>', embedded_exit_sequence, { silent = false, noremap = true })
   end
 end
 
