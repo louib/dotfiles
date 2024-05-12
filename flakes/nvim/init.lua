@@ -49,7 +49,6 @@ local function get_prettier_formatting_config()
   end
 
   if executable_is_available('prettier') then
-    local buffer_number = vim.api.nvim_get_current_buf()
     vim.api.nvim_buf_set_var(buffer_number, ENABLED_FORMATTING_TOOL_VAR_NAME, 'prettier')
 
     -- I do not install prettier on my host machines, which means that if prettier is installed,
@@ -112,6 +111,10 @@ local function set_filetype_options()
   local filetype = vim.api.nvim_buf_get_option(buffer_number, 'filetype')
   -- Apparently this is the only way to get the path associated with a buffer.
   local buffer_path = vim.api.nvim_buf_get_name(buffer_number)
+
+  if os.getenv('NVIM_EMBEDDED') == 'true' then
+    vim.fo.buffer_name = os.getenv('NVIM_EMBEDDED_BUFFER_NAME') or 'No Name'
+  end
 
   -- Default if we cannot detect the filetype.
   vim.wo.spell = false
@@ -244,11 +247,6 @@ local function formatting_is_enabled()
     return false
   end
   return true
-end
-
-local function escape_termcode(raw_termcode)
-  -- Adjust boolean arguments as needed
-  return vim.api.nvim_replace_termcodes(raw_termcode, true, true, true)
 end
 
 local function configure_auto_format()
