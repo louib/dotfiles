@@ -106,15 +106,27 @@ local function get_project_name()
   return last_dir_name
 end
 
+local function prepare_embedded_buffer()
+  if os.getenv('NVIM_EMBEDDED') ~= 'true' then
+    return
+  end
+
+  local buffer_number = vim.api.nvim_get_current_buf()
+
+  -- See the buftype option for details
+  -- https://neovim.io/doc/user/options.html#'buftype'
+  vim.api.nvim_buf_set_option(buffer_number, 'buftype', 'nofile')
+  vim.api.nvim_buf_set_option(buffer_number, 'filetype', 'markdown')
+
+  local buffer_name = os.getenv('NVIM_EMBEDDED_BUFFER_NAME') or 'No Name'
+  vim.cmd('file ' .. buffer_name)
+end
+
 local function set_filetype_options()
   local buffer_number = vim.api.nvim_get_current_buf()
   local filetype = vim.api.nvim_buf_get_option(buffer_number, 'filetype')
   -- Apparently this is the only way to get the path associated with a buffer.
   local buffer_path = vim.api.nvim_buf_get_name(buffer_number)
-
-  if os.getenv('NVIM_EMBEDDED') == 'true' then
-    vim.fo.buffer_name = os.getenv('NVIM_EMBEDDED_BUFFER_NAME') or 'No Name'
-  end
 
   -- Default if we cannot detect the filetype.
   vim.wo.spell = false
@@ -1166,6 +1178,7 @@ local function configure_nvim()
       vim.schedule(set_filetype_options)
     end,
   })
+  prepare_embedded_buffer()
 
   vim.cmd([[
     augroup quickfix
