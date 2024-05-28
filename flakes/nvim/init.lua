@@ -1045,6 +1045,9 @@ local function configure_copilot()
   require('CopilotChat').setup({
     debug = true,
     allow_insecure = false,
+
+    context = 'buffers',
+
     window = {
       layout = 'float',
       relative = 'editor', -- 'editor', 'win', 'cursor', 'mouse'
