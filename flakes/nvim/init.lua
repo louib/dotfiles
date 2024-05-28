@@ -43,7 +43,9 @@ local function get_prettier_formatting_config()
   local formatter_util = require('formatter.util')
 
   local buffer_number = vim.api.nvim_get_current_buf()
-  local filetype = vim.api.nvim_buf_get_option(buffer_number, 'filetype')
+  local filetype = vim.api.nvim_get_option_value('filetype', {
+    buf = buffer_number,
+  })
   if AUTO_FORMATTING_ENABLED[filetype] == false then
     return nil
   end
@@ -111,13 +113,19 @@ local function prepare_embedded_buffer()
 
   -- See the buftype option for details
   -- https://neovim.io/doc/user/options.html#'buftype'
-  vim.api.nvim_buf_set_option(buffer_number, 'buftype', 'nofile')
-  vim.api.nvim_buf_set_option(buffer_number, 'filetype', 'markdown')
+  vim.api.nvim_set_option_value('buftype', 'nofile', {
+    buf = buffer_number,
+  })
+  vim.api.nvim_set_option_value('filetype', 'markdown', {
+    buf = buffer_number,
+  })
 end
 
 local function set_filetype_options()
   local buffer_number = vim.api.nvim_get_current_buf()
-  local filetype = vim.api.nvim_buf_get_option(buffer_number, 'filetype')
+  local filetype = vim.api.nvim_get_option_value('filetype', {
+    buf = buffer_number,
+  })
   -- Apparently this is the only way to get the path associated with a buffer.
   local buffer_path = vim.api.nvim_buf_get_name(buffer_number)
 
@@ -374,7 +382,9 @@ local function configure_auto_format()
 
   vim.keymap.set('n', '<Space>f', function()
     local buffer_number = vim.api.nvim_get_current_buf()
-    local filetype = vim.api.nvim_buf_get_option(buffer_number, 'filetype')
+    local filetype = vim.api.nvim_get_option_value('filetype', {
+      buf = buffer_number,
+    })
 
     if not AUTO_FORMATTING_ENABLED[filetype] then
       AUTO_FORMATTING_ENABLED[filetype] = true
@@ -611,7 +621,9 @@ local function configure_status_bar()
             if formatter_enabled and formatter_tool_name then
               -- Put the autoformat first so that we don't shift the other tools when toggling it.
               local buffer_number = vim.api.nvim_get_current_buf()
-              local filetype = vim.api.nvim_buf_get_option(buffer_number, 'filetype')
+              local filetype = vim.api.nvim_get_option_value('filetype', {
+                buf = buffer_number,
+              })
               local auto_formatting_enabled = AUTO_FORMATTING_ENABLED[filetype]
               if auto_formatting_enabled ~= false then
                 tools = tools .. '(autoformat)'
@@ -751,11 +763,15 @@ local function configure_lsp()
   local custom_lsp_attach = function(client, buffer_number)
     -- Use LSP as the handler for omnifunc.
     --    See `:help omnifunc` and `:help ins-completion` for more information.
-    vim.api.nvim_buf_set_option(buffer_number, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+    vim.api.nvim_set_option_value('omnifunc', 'v:lua.vim.lsp.omnifunc', {
+      buf = buffer_number,
+    })
 
     -- Use LSP as the handler for formatexpr.
     --    See `:help formatexpr` for more information.
-    vim.api.nvim_buf_set_option(buffer_number, 'formatexpr', 'v:lua.vim.lsp.formatexpr()')
+    vim.api.nvim_set_option_value('formatexpr', 'v:lua.vim.lsp.formatexpr()', {
+      buf = buffer_number,
+    })
 
     -- Mappings.
     -- See `:h :map-arguments` for the options available when mapping
