@@ -49,17 +49,6 @@
             inherit ripgrep;
             inherit wordnet;
           };
-          # FIXME this should probably be ported over to nixpkgs
-          copilotchat-nvim = pkgs.vimUtils.buildVimPlugin {
-            pname = "CopilotChat";
-            version = "v2.6.0";
-            src = pkgs.fetchFromGitHub {
-              owner = "CopilotC-Nvim";
-              repo = "CopilotChat.nvim";
-              rev = "c53e41fd2f4769e3fe60c7233fbd5d5a78324f4b";
-              sha256 = "sha256-SzFRI5MfByFQZw80dv4nbmJmPUIo5o5NhNarlMueHYY=";
-            };
-          };
 
           neovimLuaConfig = builtins.readFile (./. + "/init.lua");
           customNeovim = pkgs.neovim.override {
@@ -90,8 +79,6 @@
                   # Required by copilotchat-nvim, cmp-dictionary, and potentially other plugins.
                   plenary-nvim
 
-                  copilotchat-nvim
-
                   # both cmp-vsnip and vim-vsnip are required to add completion engine support
                   # to nvim-cmp
                   cmp-vsnip
@@ -99,6 +86,7 @@
 
                   copilot-lua
                   copilot-cmp
+                  CopilotChat-nvim
 
                   fzf-lua
 
