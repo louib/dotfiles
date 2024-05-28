@@ -1132,8 +1132,6 @@ local function configure_global_options()
     vim.o.termguicolors = true
   end
 
-  vim.o.pastetoggle = '<F5>'
-
   -- This will render the trailing spaces and the tabs in a visible way.
   vim.o.listchars = 'tab:>-,trail:·'
   vim.o.list = true
