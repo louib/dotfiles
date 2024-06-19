@@ -79,6 +79,9 @@ rec {
     "org/gnome/settings-daemon/plugins/color" = {
       "night-light-temperature" = 2200;
     };
+    "org/gnome/shell/extensions/dash-to-dock" = {
+      "dock-fixed" = false;
+    };
 
     "org/gnome/desktop/peripherals/touchpad" = {
       "natural-scroll" = false;
