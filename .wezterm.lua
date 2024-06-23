@@ -107,9 +107,11 @@ config.colors = {
 config.use_fancy_tab_bar = false
 config.hide_mouse_cursor_when_typing = false
 
--- This is required to circumvent the following bug:
--- https://github.com/wez/wezterm/issues/2870
-config.default_prog = { '/bin/bash' }
+if os.getenv('EXPLICIT_WEZTERM_PROG') == 'true' then
+  -- This is required to circumvent the following bug:
+  -- https://github.com/wez/wezterm/issues/2870
+  config.default_prog = { '/bin/bash' }
+end
 
 config.prefer_egl = true
 
