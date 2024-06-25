@@ -107,7 +107,17 @@ config.colors = {
 config.use_fancy_tab_bar = false
 config.hide_mouse_cursor_when_typing = false
 
-if os.getenv('EXPLICIT_WEZTERM_PROG') == 'true' then
+local function bash_exists()
+  local file = io.open('/bin/bash', 'r')
+  if file then
+    file:close()
+    return true
+  else
+    return false
+  end
+end
+
+if bash_exists() then
   -- This is required to circumvent the following bug:
   -- https://github.com/wez/wezterm/issues/2870
   config.default_prog = { '/bin/bash' }
