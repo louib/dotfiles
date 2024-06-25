@@ -137,7 +137,7 @@ nfu () {
     if [ -z "$input_name" ]; then
         nix flake update
     else
-        nix flake lock --update-input "$input_name"
+        nix flake update "$input_name"
     fi
 }
 
