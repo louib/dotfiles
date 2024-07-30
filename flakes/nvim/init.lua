@@ -1030,7 +1030,9 @@ local function configure_copilot()
     filetypes = {
       -- filetypes here can be boolean values or functions that return a boolean value.
       -- See https://github.com/zbirenbaum/copilot.lua#filetypes
-      yaml = false,
+      yaml = function()
+        return os.getenv('NVIM_ENABLE_COPILOT') == 'true'
+      end,
       markdown = function()
         -- TODO we might also allow turning it on and off for the current buffer.
         return os.getenv('NVIM_ENABLE_COPILOT_MARKDOWN') == 'true'
