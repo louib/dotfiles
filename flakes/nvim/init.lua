@@ -831,7 +831,7 @@ local function configure_lsp()
   })
 
   -- Documented at https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#tsserver
-  require('lspconfig').tsserver.setup({
+  require('lspconfig').ts_ls.setup({
     on_attach = custom_lsp_attach,
     flags = lsp_flags,
   })
