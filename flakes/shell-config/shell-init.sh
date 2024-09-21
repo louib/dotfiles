@@ -137,7 +137,10 @@ nfu () {
     if [ -z "$input_name" ]; then
         nix flake update
     else
-        nix flake update "$input_name"
+        # FIXME the syntax below has only been valid for a couple of nix versions I believe.
+        # Not sure what happened with that.
+        # nix flake update "$input_name"
+        nix flake lock --update-input "$input_name"
     fi
 }
 
