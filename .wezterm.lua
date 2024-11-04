@@ -109,4 +109,8 @@ config.hide_mouse_cursor_when_typing = false
 
 config.prefer_egl = true
 
+if os.getenv('WEZTERM_DEFAULT_TO_ZSH') == 'true' then
+  config.default_prog = { '/bin/zsh' }
+end
+
 return config
