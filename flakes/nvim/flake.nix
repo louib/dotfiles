@@ -24,7 +24,7 @@
             # xclip (or wl-clipboard) is required to clip to the system clipboard.
             inherit xclip;
             # Copilot requires a version of Node.js > 16.x
-            inherit nodejs-18_x;
+            inherit nodejs_20;
             inherit nil;
             inherit rust-analyzer;
             inherit cargo;
