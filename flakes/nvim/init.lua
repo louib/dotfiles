@@ -639,7 +639,13 @@ local function configure_status_bar()
 
             local copilot_enabled, copilot_response = pcall(vim.api.nvim_buf_get_var, 0, COPILOT_ENABLED_VAR_NAME)
             if copilot_enabled and copilot_response then
-              tools = tools .. '(copilot)'
+              if pcall(require, 'CopilotChat') then
+                local chat_config = require('CopilotChat').config
+                tools = tools .. string.format('(copilot using %s)', chat_config.model)
+              else
+                tools = tools .. '(copilot)'
+                return
+              end
             end
 
             local lsp_enabled, lsp_tool_name = pcall(vim.api.nvim_buf_get_var, 0, LSP_ENABLED_VAR_NAME)
