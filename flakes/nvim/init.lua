@@ -252,7 +252,12 @@ local function set_filetype_options()
   if filetype == 'markdown' then
     vim.bo.makeprg = 'markdownlint %'
     vim.bo.errorformat = '%f:%l %c %m'
+
+    -- FIXME not sure that both are needed
     vim.wo.spell = true
+    vim.opt.spell = true
+
+    vim.opt.spelllang = { 'en_us' }
     return
   end
 end
@@ -467,6 +472,16 @@ local function configure_auto_completion()
       -- { name = 'luasnip' }, -- For luasnip users.
       -- { name = 'ultisnips' }, -- For ultisnips users.
       -- { name = 'snippy' }, -- For snippy users.
+      {
+        name = 'spell',
+        option = {
+          keep_all_entries = true,
+          enable_in_context = function()
+            return true
+          end,
+          preselect_correct_word = true,
+        },
+      },
     }, {
       { name = 'buffer' },
     }, {
@@ -661,6 +676,7 @@ local function configure_status_bar()
             end
 
             -- TODO add an emoji to indicate errors when configuring the tools.
+            -- local spellcheck_enabled, spellcheck_lang = vim.wo.spelllang
 
             return tools
           end,

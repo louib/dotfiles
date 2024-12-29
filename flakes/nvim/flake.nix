@@ -77,6 +77,7 @@
                   cmp-path
                   cmp-cmdline
                   cmp-dictionary
+                  cmp-spell
 
                   # Required by copilotchat-nvim, cmp-dictionary, and potentially other plugins.
                   plenary-nvim
