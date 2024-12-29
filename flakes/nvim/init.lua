@@ -250,6 +250,8 @@ local function set_filetype_options()
     return
   end
   if filetype == 'markdown' then
+    vim.bo.makeprg = 'markdownlint %'
+    vim.bo.errorformat = '%f:%l %c %m'
     vim.wo.spell = true
     return
   end

@@ -48,6 +48,8 @@
 
             inherit ripgrep;
             inherit wordnet;
+
+            inherit markdownlint-cli;
           };
 
           neovimLuaConfig = builtins.readFile (./. + "/init.lua");
