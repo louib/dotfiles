@@ -2,7 +2,9 @@ local LSP_ENABLED_VAR_NAME = 'LSP_ENABLED'
 local COPILOT_ENABLED_VAR_NAME = 'COPILOT_ENABLED'
 local ENABLED_FORMATTING_TOOL_VAR_NAME = 'ENABLED_FORMATTING_TOOL'
 local ENABLED_LINTING_TOOL_VAR_NAME = 'ENABLED_LINTING_TOOL'
+local CURRENT_LANG_VAR_NAME = 'CURRENT_LANG'
 local DEFAULT_COLORSCHEME = 'sonokai'
+local DEFAULT_LANG = 'en_us'
 
 -- Table to store the current state of auto-formatting
 -- for a filetype
@@ -257,7 +259,8 @@ local function set_filetype_options()
     vim.wo.spell = true
     vim.opt.spell = true
 
-    vim.opt.spelllang = { 'en_us' }
+    vim.api.nvim_buf_set_var(buffer_number, CURRENT_LANG_VAR_NAME, DEFAULT_LANG)
+    vim.opt.spelllang = { DEFAULT_LANG }
     return
   end
 end
@@ -676,7 +679,11 @@ local function configure_status_bar()
             end
 
             -- TODO add an emoji to indicate errors when configuring the tools.
-            -- local spellcheck_enabled, spellcheck_lang = vim.wo.spelllang
+
+            local spellcheck_enabled, spellcheck_lang = pcall(vim.api.nvim_buf_get_var, 0, CURRENT_LANG_VAR_NAME)
+            if spellcheck_enabled and spellcheck_lang then
+              tools = tools .. '(' .. spellcheck_lang .. ')'
+            end
 
             return tools
           end,
