@@ -5,6 +5,7 @@ local ENABLED_LINTING_TOOL_VAR_NAME = 'ENABLED_LINTING_TOOL'
 local CURRENT_LANG_VAR_NAME = 'CURRENT_LANG'
 local DEFAULT_COLORSCHEME = 'sonokai'
 local DEFAULT_LANG = 'en_us'
+local DEFAULT_COPILOT_AI_MODEL = 'claude-3.5-sonnet'
 
 -- Table to store the current state of auto-formatting
 -- for a filetype
@@ -1095,6 +1096,7 @@ local function configure_copilot()
     debug = true,
     allow_insecure = false,
 
+    model = DEFAULT_COPILOT_AI_MODEL,
     context = 'buffers',
 
     window = {
