@@ -254,6 +254,7 @@ local function set_filetype_options()
   if filetype == 'markdown' then
     vim.bo.makeprg = 'markdownlint %'
     vim.bo.errorformat = '%f:%l %c %m'
+    vim.api.nvim_buf_set_var(buffer_number, ENABLED_LINTING_TOOL_VAR_NAME, 'markdownlint')
 
     -- FIXME not sure that both are needed
     vim.wo.spell = true
