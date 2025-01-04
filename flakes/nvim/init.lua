@@ -560,8 +560,13 @@ local function configure_auto_completion()
   vim.o.completeopt = 'menu,menuone,noselect,preview'
 
   local dictionaries = {}
-  if os.getenv('NVIM_ENABLE_DICTIONARIES') == 'true' then
-    dictionaries = { '/usr/share/dict/words' }
+  local en_db_path = os.getenv('NVIM_DICTDB_EN_PATH')
+  if en_db_path and en_db_path ~= '' then
+    dictionaries.add(en_db_path)
+  end
+  local fr_db_path = os.getenv('NVIM_DICTDB_FR_PATH')
+  if fr_db_path and fr_db_path ~= '' then
+    dictionaries.add(fr_db_path)
   end
 
   require('cmp_dictionary').setup({
