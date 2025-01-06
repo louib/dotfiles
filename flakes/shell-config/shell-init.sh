@@ -69,6 +69,12 @@ grb () {
     git fetch -a
     git rebase "origin/$current_branch"
 }
+grc () {
+    git rebase --continue
+}
+gra () {
+    git rebase --abort
+}
 # Rebase on the default branch
 grm () {
     default_branch=$(get_default_git_branch)
