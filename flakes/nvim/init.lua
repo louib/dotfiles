@@ -1051,6 +1051,15 @@ local function configure_toggleterm()
     open_mapping = [[<c-\>]],
     shade_terminals = true,
   })
+
+  require('toggleterm-aider').setup({
+    args = '--no-pretty --no-auto-commit',
+
+    -- Custom keymaps (changed to avoid conflicts)
+    toggle_key = '<space>t', -- Toggle aider terminal
+    add_key = '<space>aa', -- Add file to aider
+    drop_key = '<space>ad', -- Drop file from aider
+  })
 end
 
 local function configure_copilot()
