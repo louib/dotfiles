@@ -58,8 +58,7 @@
             configure = {
               packages.myPlugins = with pkgs.vimPlugins; {
                 start = [
-                  # TODO check out https://github.com/akinsho/toggleterm.nvim
-                  # TODO check out https://github.com/direnv/direnv.vim
+                  toggleterm-nvim
                   git-blame-nvim
                   vim-surround
                   lualine-nvim
@@ -79,13 +78,10 @@
                   cmp-dictionary
                   cmp-spell
 
-                  # Required by copilotchat-nvim, cmp-dictionary, and potentially other plugins.
-                  plenary-nvim
+                  plenary-nvim # Required by copilotchat-nvim, cmp-dictionary, and potentially other plugins.
 
-                  # both cmp-vsnip and vim-vsnip are required to add completion engine support
-                  # to nvim-cmp
-                  cmp-vsnip
-                  vim-vsnip
+                  cmp-vsnip # required to add completion engine support to nvim-cmp
+                  vim-vsnip # required to add completion engine support to nvim-cmp
 
                   copilot-lua
                   copilot-cmp

@@ -1036,6 +1036,23 @@ local function configure_commenting()
   end
 end
 
+local function configure_toggleterm()
+  if not pcall(require, 'toggleterm') then
+    print('toggleterm is not installed.')
+    return
+  end
+
+  -- See config options here https://github.com/akinsho/toggleterm.nvim?tab=readme-ov-file#setup
+  require('toggleterm').setup({
+    -- direction can be: horizontal, vertical, tab, float
+    direction = 'float',
+    start_in_insert = true,
+    size = 15,
+    open_mapping = [[<c-\>]],
+    shade_terminals = true,
+  })
+end
+
 local function configure_copilot()
   if not pcall(require, 'copilot') then
     print('copilot is not installed.')
@@ -1310,6 +1327,7 @@ local function configure()
   configure_lastplace()
   configure_status_bar()
   configure_copilot()
+  configure_toggleterm()
 
   -- FIXME this is a workaround for the bug described in issue #30985 of the GitHub neovim repo.
   for _, method in ipairs({ 'textDocument/diagnostic', 'workspace/diagnostic' }) do
