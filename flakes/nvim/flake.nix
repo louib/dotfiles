@@ -52,13 +52,26 @@
             inherit markdownlint-cli;
           };
 
+          toggleterm-aider = pkgs.vimUtils.buildVimPlugin {
+            name = "toggleterm-aider";
+            src = pkgs.fetchFromGitHub {
+              owner = "louib-bitgo";
+              repo = "toggleterm-aider";
+              # rev = "lazy-toggleterm-require";
+              # rev = "5b74d3edf258d424dc1d4ef4b1f2e9bb8e5b5f5b";
+              rev = "tmp-branch";
+              sha256 = "sha256-DTqV/+sFG1SRBv0LWWBPe5gw7SsRiCfmLje9o4Vzxd0=";
+            };
+          };
+
           neovimLuaConfig = builtins.readFile (./. + "/init.lua");
           customNeovim = pkgs.neovim.override {
             # vimAlias = true;
             configure = {
               packages.myPlugins = with pkgs.vimPlugins; {
                 start = [
-                  toggleterm-nvim
+                  toggleterm-nvim # required by toggleterm-aider
+                  toggleterm-aider
                   git-blame-nvim
                   vim-surround
                   lualine-nvim
