@@ -1,0 +1,6 @@
+assistant-output-color: 'yellow'
+tool-output-color: "#c9d2a3"
+tool-error-color: "#ff3333"
+tool-warning-color: "#FFA500"
+
+user-input-color: '#a6d189'
