@@ -58,7 +58,7 @@
               owner = "louib-bitgo";
               repo = "toggleterm-aider";
               rev = "77ce747f6100f497c764ad61624cf1f431d34036"; # from branch lazy-toggleterm-require
-              sha256 = "sha256-DTqV/+sFG1SRBv0LWWBPe5gw7SsRiCfmLje9o4Vzxd0=";
+              sha256 = "sha256-Gc5ZhSDx+2jnXAhlDtrzVAc288pc6Q1iL5bL9dcuPPA=";
             };
           };
 
