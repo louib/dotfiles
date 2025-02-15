@@ -1056,7 +1056,7 @@ local function configure_toggleterm()
     args = '--no-pretty --no-auto-commit',
 
     -- Custom keymaps (changed to avoid conflicts)
-    toggle_key = '<space>t', -- Toggle aider terminal
+    toggle_key = '<c-L>', -- Toggle aider terminal
     add_key = '<space>aa', -- Add file to aider
     drop_key = '<space>ad', -- Drop file from aider
   })
