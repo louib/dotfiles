@@ -23,6 +23,7 @@ rec {
   ];
 
   WEZTERM_CONFIG = builtins.readFile (./. + "/.wezterm.lua");
+  AIDER_CONFIG = builtins.readFile (./. + "/.aider.conf.yml");
 
   # We need to call a home-manager function to generate the input sources
   # in a valid format.
