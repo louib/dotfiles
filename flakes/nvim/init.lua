@@ -1050,7 +1050,18 @@ local function configure_toggleterm()
     size = 15,
     open_mapping = [[<c-\>]],
     shade_terminals = true,
+    persist_size = true,
+    persist_mode = true,
   })
+
+  if not executable_is_available('aider') then
+    print('aider is not installed.')
+    return
+  end
+
+  if os.getenv('NVIM_ENABLE_AIDER') ~= 'true' then
+    return
+  end
 
   require('toggleterm-aider').setup({
     args = '--no-pretty --no-auto-commit',
