@@ -41,6 +41,22 @@ fi
 
 set -o vi
 
+# FIXME the only reason why this function exists is because the default home-manager config
+# added at the end of the generated bashrc file always gives priority to the packages installed
+# at the user-level over packages installed at the project level.
+reorder_nix_paths () {
+    was_removed=0
+    # While the path is found at the start of PATH, remove it
+    while [[ "$PATH" == "/home/$USER/.nix-profile/bin:"* ]]; do
+        was_removed=1
+        PATH="${PATH#/home/"$USER"/.nix-profile/bin:}"
+    done
+    # Add it back at the end if it was removed from the front
+    if [ $was_removed -eq 1 ]; then
+        PATH="$PATH:/home/$USER/.nix-profile/bin"
+    fi
+}
+
 # Setting the current directory as the tab's title.
 # See https://wiki.archlinux.org/title/Bash/Prompt_customization#Prompts
 # for additional Bash customizations.
@@ -51,6 +67,7 @@ set_title () {
 # See https://starship.rs/advanced-config/#change-window-title
 # for documentation.
 set_title_starship () {
+    reorder_nix_paths
     CURRENT_DIR=$(basename "$PWD")
     echo -ne "\033]0; $CURRENT_DIR \007"
 }
