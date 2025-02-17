@@ -1052,6 +1052,7 @@ local function configure_toggleterm()
     shade_terminals = true,
     persist_size = true,
     persist_mode = true,
+    close_on_exit = false,
   })
 
   if not executable_is_available('aider') then
