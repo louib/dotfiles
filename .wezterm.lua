@@ -92,16 +92,45 @@ for i = 1, 8 do
   })
 end
 
--- See https://user-images.githubusercontent.com/58662350/214389078-702babc1-fd73-40d7-9fb2-ac2eeaedeeea.png
--- for the colors used by sonokai
+-- Using Gruvbox colors for better readability and accessibility
 config.colors = {
-  background = '#2C2E34',
+  -- Background with slight transparency for better contrast
+  background = '#282828',
 
-  -- The default text color
-  foreground = 'white',
+  -- Soft white foreground that's easy on the eyes
+  foreground = '#ebdbb2',
 
-  -- cursor_bg = '#52ad70',
-  cursor_fg = 'white',
+  -- Cursor colors
+  cursor_bg = '#d5c4a1',
+  cursor_fg = '#282828',
+
+  -- Selection colors
+  selection_bg = '#504945',
+  selection_fg = '#ebdbb2',
+
+  -- Normal colors (for better distinction)
+  ansi = {
+    '#282828', -- black
+    '#cc241d', -- red
+    '#98971a', -- green
+    '#d79921', -- yellow
+    '#458588', -- blue
+    '#b16286', -- magenta
+    '#689d6a', -- cyan
+    '#a89984', -- white
+  },
+
+  -- Bright colors (for emphasis)
+  brights = {
+    '#928374', -- bright black
+    '#fb4934', -- bright red
+    '#b8bb26', -- bright green
+    '#fabd2f', -- bright yellow
+    '#83a598', -- bright blue
+    '#d3869b', -- bright magenta
+    '#8ec07c', -- bright cyan
+    '#ebdbb2', -- bright white
+  },
 }
 
 config.use_fancy_tab_bar = false

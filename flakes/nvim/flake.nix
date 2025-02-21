@@ -107,6 +107,7 @@
 
                   # Colorschemes
                   sonokai
+                  gruvbox
                   vim-noctu
                 ];
                 opt = [];
