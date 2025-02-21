@@ -2,5 +2,10 @@ assistant-output-color: 'yellow'
 tool-output-color: "#c9d2a3"
 tool-error-color: "#ff3333"
 tool-warning-color: "#FFA500"
-
 user-input-color: '#a6d189'
+system-message-color: '#666666'
+diff-add-color: '#00FF00'
+diff-remove-color: '#FF0000'
+file-context-color: '#666666'
+prompt-color: '#00FF00'
+chat-name-color: '#666666'
