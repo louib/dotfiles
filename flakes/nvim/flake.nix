@@ -62,6 +62,16 @@
             };
           };
 
+          codecompanion = pkgs.vimUtils.buildVimPlugin {
+            name = "codecompanion";
+            src = pkgs.fetchFromGitHub {
+              owner = "olimorris";
+              repo = "codecompanion.nvim";
+              rev = "34a6d25c46f9a9a8e8e4348f929860da60417a7d"; # from branch lazy-toggleterm-require
+              sha256 = "sha256-Gc5ZhSDx+2jnXAhlDtrzVAc288pc6Q1iL5bL9dcuPPA=";
+            };
+          };
+
           neovimLuaConfig = builtins.readFile (./. + "/init.lua");
           customNeovim = pkgs.neovim.override {
             # vimAlias = true;
@@ -97,6 +107,8 @@
                   copilot-lua
                   copilot-cmp
                   CopilotChat-nvim
+
+                  codecompanion
 
                   fzf-lua
 

@@ -499,6 +499,7 @@ local function configure_auto_completion()
   })
 
   -- Set configuration for specific filetype.
+  ---@diagnostic disable-next-line: undefined-field
   cmp.setup.filetype('gitcommit', {
     sources = cmp.config.sources({
       { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
@@ -508,6 +509,7 @@ local function configure_auto_completion()
   })
 
   -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+  ---@diagnostic disable-next-line: undefined-field
   cmp.setup.cmdline('/', {
     mapping = cmp.mapping.preset.cmdline(),
     sources = {
@@ -518,6 +520,7 @@ local function configure_auto_completion()
   -- Commenting out this one for the moment since it breaks using the '%' as a shorthand
   -- for the current buffer file path
   -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+  ---@diagnostic disable-next-line: undefined-field
   cmp.setup.cmdline(':', {
     -- Default mappings are defined here:
     -- https://github.com/hrsh7th/nvim-cmp/blob/0b751f6beef40fd47375eaf53d3057e0bfa317e4/lua/cmp/config/mapping.lua#L74
@@ -1074,6 +1077,23 @@ local function configure_toggleterm()
   })
 end
 
+local function configure_codecompanion()
+  if os.getenv('NVIM_ENABLE_COPILOT') ~= 'true' then
+    return
+  end
+
+  if not pcall(require, 'codecompanion') then
+    print('codecompanion is not installed.')
+    return
+  end
+
+  require('codecompanion').setup({
+    opts = {
+      log_level = 'DEBUG', -- or "TRACE"
+    },
+  })
+end
+
 local function configure_copilot()
   if not pcall(require, 'copilot') then
     print('copilot is not installed.')
@@ -1096,6 +1116,7 @@ local function configure_copilot()
   -- the first time.
 
   -- Settings are defined at https://github.com/zbirenbaum/copilot.lua#setup-and-configuration
+  ---@diagnostic disable-next-line: undefined-field
   require('copilot').setup({
     panel = {
       enabled = false,
@@ -1348,6 +1369,7 @@ local function configure()
   configure_lastplace()
   configure_status_bar()
   configure_copilot()
+  configure_codecompanion()
   configure_toggleterm()
 
   -- FIXME this is a workaround for the bug described in issue #30985 of the GitHub neovim repo.
