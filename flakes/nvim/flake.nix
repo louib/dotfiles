@@ -119,7 +119,7 @@
 
                   # Colorschemes
                   sonokai
-                  gruvbox
+                  gruvbox-nvim
                   vim-noctu
                 ];
                 opt = [];
