@@ -1039,6 +1039,18 @@ local function configure_commenting()
   end
 end
 
+local function configure_colors()
+  if not pcall(require, 'gruvbox') then
+    print('gruvbox is not installed.')
+    return
+  end
+  require('gruvbox').setup({
+    palette_overrides = {
+      bright_green = '#990000',
+    },
+  })
+end
+
 local function configure_toggleterm()
   if not pcall(require, 'toggleterm') then
     print('toggleterm is not installed.')
@@ -1371,6 +1383,7 @@ local function configure()
   configure_copilot()
   configure_codecompanion()
   configure_toggleterm()
+  configure_colors()
 
   -- FIXME this is a workaround for the bug described in issue #30985 of the GitHub neovim repo.
   for _, method in ipairs({ 'textDocument/diagnostic', 'workspace/diagnostic' }) do
