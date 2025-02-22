@@ -118,9 +118,7 @@
                   rust-vim
 
                   # Colorschemes
-                  sonokai
                   gruvbox-nvim
-                  vim-noctu
                 ];
                 opt = [];
               };
