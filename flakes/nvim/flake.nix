@@ -67,9 +67,10 @@
             src = pkgs.fetchFromGitHub {
               owner = "olimorris";
               repo = "codecompanion.nvim";
-              rev = "34a6d25c46f9a9a8e8e4348f929860da60417a7d"; # from branch lazy-toggleterm-require
-              sha256 = "sha256-Gc5ZhSDx+2jnXAhlDtrzVAc288pc6Q1iL5bL9dcuPPA=";
+              rev = "34a6d25c46f9a9a8e8e4348f929860da60417a7d";
+              sha256 = "sha256-+0nfaFle7nzwTY+J6A+NsMD7nlUCfDYZSH71prpUi5M=";
             };
+            dontCheck = true;
           };
 
           neovimLuaConfig = builtins.readFile (./. + "/init.lua");
@@ -99,7 +100,9 @@
                   cmp-dictionary
                   cmp-spell
 
-                  plenary-nvim # Required by copilotchat-nvim, cmp-dictionary, and potentially other plugins.
+                  # codecompanion
+                  # nvim-treesitter # Required by codecompanion
+                  plenary-nvim # Required by codecompanion, copilotchat-nvim, cmp-dictionary, and potentially other plugins.
 
                   cmp-vsnip # required to add completion engine support to nvim-cmp
                   vim-vsnip # required to add completion engine support to nvim-cmp
@@ -107,8 +110,6 @@
                   copilot-lua
                   copilot-cmp
                   CopilotChat-nvim
-
-                  codecompanion
 
                   fzf-lua
 
