@@ -22,6 +22,42 @@ rec {
     }
   ];
 
+  GIT_COLORS_CONFIG = {
+    colors = {
+      ui = "auto";
+      branch = {
+        current = "136 bold"; # yellow bold
+        local = "64"; # green
+        remote = "160"; # red
+      };
+      diff = {
+        meta = "33"; # bright blue
+        frag = "61"; # soft violet
+        old = "160"; # deep red
+        new = "64"; # soft green
+        whitespace = "160 reverse"; # deep red reverse
+      };
+      status = {
+        added = "64"; # green
+        changed = "136"; # yellow
+        untracked = "160"; # red
+      };
+      decorate = {
+        branch = "64 bold"; # green bold
+        remoteBranch = "160 bold"; # red bold
+        tag = "136 bold"; # yellow bold
+        stash = "125"; # magenta
+        HEAD = "33 bold"; # blue bold
+      };
+      interactive = {
+        prompt = "33 bold"; # blue bold
+        header = "160 bold"; # red bold
+        help = "64 bold"; # green bold
+        error = "160 bold"; # red bold
+      };
+    };
+  };
+
   WEZTERM_CONFIG = builtins.readFile (./. + "/.wezterm.lua");
   AIDER_CONFIG = builtins.readFile (./. + "/.aider.conf.yml");
 
