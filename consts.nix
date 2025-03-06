@@ -147,7 +147,7 @@ rec {
     };
 
     # Gnome window mgmt options
-    "/org/gnome/desktop/wm/keybindings" = {
+    "org/gnome/desktop/wm/keybindings" = {
       "switch-to-workspace-left" = "<Shift><Control>h";
       "switch-to-workspace-right" = "<Shift><Control>l";
     };
