@@ -1089,23 +1089,6 @@ local function configure_toggleterm()
   })
 end
 
-local function configure_codecompanion()
-  if os.getenv('NVIM_ENABLE_COPILOT') ~= 'true' then
-    return
-  end
-
-  if not pcall(require, 'codecompanion') then
-    print('codecompanion is not installed.')
-    return
-  end
-
-  require('codecompanion').setup({
-    opts = {
-      log_level = 'DEBUG', -- or "TRACE"
-    },
-  })
-end
-
 local function configure_copilot()
   if not pcall(require, 'copilot') then
     print('copilot is not installed.')
@@ -1380,7 +1363,6 @@ local function configure()
   configure_lsp()
   configure_lastplace()
   configure_status_bar()
-  configure_codecompanion()
   configure_copilot()
   configure_toggleterm()
   configure_colors()

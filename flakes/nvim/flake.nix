@@ -62,27 +62,6 @@
             };
           };
 
-          codecompanion = pkgs.vimUtils.buildVimPlugin {
-            name = "codecompanion";
-            src = pkgs.fetchFromGitHub {
-              owner = "olimorris";
-              repo = "codecompanion.nvim";
-              rev = "1a073303d6fac2b27e641a1e71070ad0306c5dc8";
-              sha256 = "sha256-dhMpbPjlCONpwymlpppVhPTUkH267jv8Px2WMTRteww=";
-              postFetch = ''
-                cd $out
-                rm -f minimal.lua
-              '';
-            };
-            dependencies = [
-              pkgs.vimPlugins.nvim-treesitter
-              pkgs.vimPlugins.plenary-nvim
-              pkgs.vimPlugins.telescope-nvim
-              pkgs.vimPlugins.mini-pick
-              pkgs.vimPlugins.mini-diff
-            ];
-          };
-
           neovimLuaConfig = builtins.readFile (./. + "/init.lua");
           customNeovim = pkgs.neovim.override {
             # vimAlias = true;
@@ -109,8 +88,6 @@
                   cmp-cmdline
                   cmp-dictionary
                   cmp-spell
-
-                  codecompanion
 
                   cmp-vsnip # required to add completion engine support to nvim-cmp
                   vim-vsnip # required to add completion engine support to nvim-cmp
