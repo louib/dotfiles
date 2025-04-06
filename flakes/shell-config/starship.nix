@@ -3,15 +3,15 @@
   "$schema" = "https://starship.rs/config-schema.json";
 
   format = ''
-    $username\
-    $hostname\
-    $time\
-    $directory\
-    $git_branch\
-    $git_state\
-    $git_status\
-    $nix_shell\
-    $character\
+    $username\\
+    $hostname\\
+    $time\\
+    $directory\\
+    $git_branch\\
+    $git_state\\
+    $git_status\\
+    $nix_shell\\
+    $character\\
   '';
 
   # Disable the blank line at the start of the prompt
