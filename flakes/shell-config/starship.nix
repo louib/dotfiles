@@ -11,7 +11,7 @@
     $git_state\\
     $git_status\\
     $nix_shell\\
-    $character\\
+    $character
   '';
 
   # Disable the blank line at the start of the prompt
