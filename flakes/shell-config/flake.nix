@@ -8,12 +8,13 @@
         VISUAL = "nvim";
         EDITOR = "nvim";
       };
+      COLORS = builtins.fromTOML (builtins.readFile (./. + "/../../colors.toml"));
       READLINE_CONFIG = builtins.readFile (./. + "/.inputrc");
       SHELL_CONFIG = builtins.readFile (./. + "/shell-init.sh");
       BASH_CONFIG = (builtins.readFile (./. + "/bashrc.sh")) + SHELL_CONFIG;
       BASH_INIT_EXTRA_CONFIG = builtins.readFile (./. + "/bash-init-extra.sh");
       ZSH_CONFIG = (builtins.readFile (./. + "/zshrc.sh")) + SHELL_CONFIG;
-      STARSHIP_CONFIG = builtins.fromTOML (builtins.readFile (./. + "/starship.toml"));
+      STARSHIP_CONFIG = import (./. + "/starship.nix") {colors = COLORS;};
 
       SHELL_ALIASES = [
         # Defaults from template .bashrc config
