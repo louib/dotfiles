@@ -15,12 +15,12 @@ user-bg = "cc241d"
 root-user-bg = "fb4934"
 
 # aider colors
-assistant-output-color = '#98C379'
-tool-output-color = '#ABB2BF'
-tool-error-color = '#E06C75'
-tool-warning-color = '#E5C07B'
-user-input-color = '#61AFEF'
-completion-menu-color = '#98C379'
-completion-menu-bg-color = '#282C34'
-completion-menu-current-color = '#C678DD'
-completion-menu-current-bg-color = '#3E4452'
+assistant-output-color = '98C379'
+tool-output-color = 'ABB2BF'
+tool-error-color = 'E06C75'
+tool-warning-color = 'E5C07B'
+user-input-color = '61AFEF'
+completion-menu-color = '98C379'
+completion-menu-bg-color = '282C34'
+completion-menu-current-color = 'C678DD'
+completion-menu-current-bg-color = '3E4452'
