@@ -58,8 +58,19 @@ rec {
     };
   };
 
+  COLORS = builtins.fromTOML (builtins.readFile (./. + "/colors.toml"));
   WEZTERM_CONFIG = builtins.readFile (./. + "/.wezterm.lua");
-  AIDER_CONFIG = builtins.readFile (./. + "/.aider.conf.yml");
+  AIDER_CONFIG = ''
+    assistant-output-color: '#${COLORS.assistant-output-color}'
+    tool-output-color: '#${COLORS.tool-output-color}'
+    tool-error-color: '#${COLORS.tool-error-color}'
+    tool-warning-color: '#${COLORS.tool-warning-color}'
+    user-input-color: '#${COLORS.user-input-color}'
+    completion-menu-color: '#${COLORS.completion-menu-color}'
+    completion-menu-bg-color: '#${COLORS.completion-menu-bg-color}'
+    completion-menu-current-color: '#${COLORS.completion-menu-current-color}'
+    completion-menu-current-bg-color: '#${COLORS.completion-menu-current-bg-color}'
+  '';
 
   # We need to call a home-manager function to generate the input sources
   # in a valid format.
