@@ -1,9 +1,0 @@
-assistant-output-color: '#98C379'      # Soft green - matches nvim colors
-tool-output-color: '#ABB2BF'          # Light gray - good contrast
-tool-error-color: '#E06C75'           # Soft red - matches nvim error colors
-tool-warning-color: '#E5C07B'         # Soft yellow - matches nvim warning colors
-user-input-color: '#61AFEF'           # Soft blue - matches nvim function colors
-completion-menu-color: '#98C379'       # Soft green for additions
-completion-menu-bg-color: '#282C34'    # Dark background - matches nvim theme
-completion-menu-current-color: '#C678DD' # Purple - matches nvim keyword colors
-completion-menu-current-bg-color: '#3E4452' # Slightly lighter than bg for contrast
