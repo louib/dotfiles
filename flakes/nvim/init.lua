@@ -1046,9 +1046,36 @@ local function configure_colors()
   end
   require('gruvbox').setup({
     palette_overrides = {
-      bright_green = '#990000',
+      bg0 = '#282828',
+      bg1 = '#3c3836',
+      bg2 = '#504945',
+      bg3 = '#665c54',
+      bg4 = '#7c6f64',
+      fg0 = '#fbf1c7',
+      fg1 = '#ebdbb2',
+      fg2 = '#d5c4a1',
+      fg3 = '#bdae93',
+      fg4 = '#a89984',
+      red = '#fb4934',
+      green = '#b8bb26',
+      yellow = '#fabd2f',
+      blue = '#83a598',
+      purple = '#d3869b',
+      aqua = '#8ec07c',
+      orange = '#fe8019',
+      neutral_red = '#cc241d',
+      neutral_green = '#98971a',
+      neutral_yellow = '#d79921',
+      neutral_blue = '#458588',
+      neutral_purple = '#b16286',
+      neutral_aqua = '#689d6a',
+      dark_red = '#9d0006',
+      dark_green = '#79740e',
+      dark_aqua = '#427b58',
+      gray = '#928374',
     },
   })
+  vim.cmd('colorscheme ' .. DEFAULT_COLORSCHEME)
 end
 
 local function configure_toggleterm()
@@ -1268,8 +1295,6 @@ local function configure_global_options()
     -- https://gist.github.com/romainl/56f0c28ef953ffc157f36cc495947ab3
     vim.go.grepprg = 'grep --binary-files=without-match --exclude-dir=target/ --exclude-dir=.git/ -rni'
   end
-
-  vim.cmd('colorscheme ' .. DEFAULT_COLORSCHEME)
 end
 
 local function configure_nvim()
