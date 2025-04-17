@@ -84,9 +84,8 @@ set_title_starship () {
 # prefixes that zellij adds by default.
 set_zellij_tab_name () {
     if [ -x "$(command -v wezterm)" ] && [ -x "$(command -v zellij)" ]; then
-        session_name=$(zellij list-sessions | grep "\(current\)" | cut -d' ' -f1)
-        if [[ -n "$session_name" ]]; then
-            wezterm cli set-tab-title "$session_name"
+        if [[ -n "$ZELLIJ_SESSION_NAME" ]]; then
+            wezterm cli set-tab-title "$ZELLIJ_SESSION_NAME"
         fi
     fi
 }
