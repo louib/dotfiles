@@ -1,0 +1,26 @@
+layout {
+    tab name="Terminal" {
+      pane
+      pane size=1 {
+          plugin location="tab-bar"
+      }
+    }
+    tab name="Code" {
+      pane
+      pane size=1 {
+          plugin location="tab-bar"
+      }
+    }
+    tab name="AI Agent" {
+      pane
+      pane size=1 {
+          plugin location="tab-bar"
+      }
+    }
+    tab name="Misc" {
+      pane
+      pane size=1 {
+          plugin location="tab-bar"
+      }
+    }
+}

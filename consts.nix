@@ -71,6 +71,8 @@ rec {
     completion-menu-current-color: '#${COLORS.completion-menu-current-color}'
     completion-menu-current-bg-color: '#${COLORS.completion-menu-current-bg-color}'
   '';
+  ZELLIJ_CONFIG = builtins.readFile (./. + "/zellij-config.kdl");
+  ZELLIJ_DEFAULT_LAYOUT_CONFIG = builtins.readFile (./. + "/default-zellij-layout.kdl");
 
   # We need to call a home-manager function to generate the input sources
   # in a valid format.
