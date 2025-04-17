@@ -13,7 +13,6 @@ keybinds clear-defaults=true {
         bind "e" { TogglePaneEmbedOrFloating; SwitchToMode "normal"; }
         bind "f" { ToggleFocusFullscreen; SwitchToMode "normal"; }
         bind "h" { MoveFocus "left"; }
-        bind "i" { TogglePanePinned; SwitchToMode "normal"; }
         bind "j" { MoveFocus "down"; }
         bind "k" { MoveFocus "up"; }
         bind "l" { MoveFocus "right"; }
@@ -311,7 +310,7 @@ mouse_mode true
 // Options:
 //   - true (default, enabled)
 //   - false
-pane_frames true
+pane_frames false
 
 // When attaching to an existing session with other users,
 // should the session be mirrored (true)
