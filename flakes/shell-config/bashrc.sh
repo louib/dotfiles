@@ -63,13 +63,32 @@ reorder_nix_paths () {
 set_title () {
     CURRENT_DIR=$(basename "$PWD")
     PS1="${PS1}\[\e]2;$CURRENT_DIR\a\]"
+    # This should not be in a starship specific function, since this should
+    # run whether starship is configured or not.
+    set_zellij_tab_name
 }
+
 # See https://starship.rs/advanced-config/#change-window-title
 # for documentation.
 set_title_starship () {
     reorder_nix_paths
     CURRENT_DIR=$(basename "$PWD")
     echo -ne "\033]0; $CURRENT_DIR \007"
+    # This should not be in a starship specific function, since this should
+    # run whether starship is configured or not.
+    set_zellij_tab_name
+}
+
+# This function is used only to make sure that the wezterm tab name
+# is exactly equal to the zellij short session name, without all the
+# prefixes that zellij adds by default.
+set_zellij_tab_name () {
+    if [ -x "$(command -v wezterm)" ] && [ -x "$(command -v zellij)" ]; then
+        session_name=$(zellij list-sessions | grep "\(current\)" | cut -d' ' -f1)
+        if [[ -n "$session_name" ]]; then
+            wezterm cli set-tab-title "$CURRENT_DIR"
+        fi
+    fi
 }
 
 get_prompt () {
