@@ -86,7 +86,7 @@ set_zellij_tab_name () {
     if [ -x "$(command -v wezterm)" ] && [ -x "$(command -v zellij)" ]; then
         session_name=$(zellij list-sessions | grep "\(current\)" | cut -d' ' -f1)
         if [[ -n "$session_name" ]]; then
-            wezterm cli set-tab-title "$CURRENT_DIR"
+            wezterm cli set-tab-title "$session_name"
         fi
     fi
 }
