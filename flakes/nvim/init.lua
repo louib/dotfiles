@@ -1078,44 +1078,6 @@ local function configure_colors()
   vim.cmd('colorscheme ' .. DEFAULT_COLORSCHEME)
 end
 
-local function configure_toggleterm()
-  if not pcall(require, 'toggleterm') then
-    print('toggleterm is not installed.')
-    return
-  end
-
-  -- See config options here https://github.com/akinsho/toggleterm.nvim?tab=readme-ov-file#setup
-  require('toggleterm').setup({
-    -- direction can be: horizontal, vertical, tab, float
-    direction = 'float',
-    start_in_insert = true,
-    size = 15,
-    open_mapping = [[<c-\>]],
-    shade_terminals = true,
-    persist_size = true,
-    persist_mode = true,
-    close_on_exit = false,
-  })
-
-  if not executable_is_available('aider') then
-    print('aider is not installed.')
-    return
-  end
-
-  if os.getenv('NVIM_ENABLE_AIDER') ~= 'true' then
-    return
-  end
-
-  require('toggleterm-aider').setup({
-    args = '--no-pretty --no-auto-commit',
-
-    -- Custom keymaps (changed to avoid conflicts)
-    toggle_key = '<c-M>', -- Toggle aider terminal
-    add_key = '<space>aa', -- Add file to aider
-    drop_key = '<space>ad', -- Drop file from aider
-  })
-end
-
 local function configure_copilot()
   if not pcall(require, 'copilot') then
     print('copilot is not installed.')
@@ -1389,7 +1351,6 @@ local function configure()
   configure_lastplace()
   configure_status_bar()
   configure_copilot()
-  configure_toggleterm()
   configure_colors()
 
   -- FIXME this is a workaround for the bug described in issue #30985 of the GitHub neovim repo.
