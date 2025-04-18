@@ -136,6 +136,8 @@ config.colors = {
 config.use_fancy_tab_bar = false
 config.hide_mouse_cursor_when_typing = false
 
+config.enable_kitty_keyboard = true
+
 local function bash_exists()
   local file = io.open('/bin/bash', 'r')
   if file then
