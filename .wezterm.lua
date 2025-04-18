@@ -65,9 +65,6 @@ config.keys = {
 
 config.window_decorations = 'INTEGRATED_BUTTONS|RESIZE'
 
-config.tab_bar_at_bottom = false
-config.tab_max_width = 35
-
 config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
 
 wezterm.on('gui-startup', function(_window)
@@ -126,8 +123,10 @@ config.colors = {
   },
 }
 
+config.tab_bar_at_bottom = false
+config.tab_max_width = 35
 config.show_tab_index_in_tab_bar = false
-config.use_fancy_tab_bar = true
+config.use_fancy_tab_bar = false
 config.hide_mouse_cursor_when_typing = false
 
 -- Tab bar styling
