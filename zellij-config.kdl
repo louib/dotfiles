@@ -195,29 +195,29 @@ ui {
         hide_session_name true
     }
 }
- 
+
 // Use a simplified UI without special fonts (arrow glyphs)
 // Options:
 //   - true
 //   - false (Default)
-// 
+//
 simplified_ui false
- 
+
 // Choose the theme that is specified in the themes section.
 // Default: default
-// 
+//
 theme "gruvbox-dark"
- 
+
 // Choose the base input mode of zellij.
 // Default: normal
-// 
+//
 default_mode "normal"
- 
+
 // Choose the path to the default shell that zellij will use for opening new panes
 // Default: $SHELL
-// 
+//
 // default_shell "fish"
- 
+
 // Choose the path to override cwd that zellij will use for opening new panes
 //
 // default_cwd "/tmp"
@@ -232,7 +232,7 @@ default_layout "default"
 //   - true (default)
 //   - false
 mouse_mode true
- 
+
 // Toggle having pane frames around the panes
 // Options:
 //   - true (default, enabled)

@@ -1,26 +1,26 @@
 layout {
     tab name="Terminal" {
-      pane
       pane size=1 {
           plugin location="tab-bar"
       }
+      pane
     }
     tab name="Code" {
-      pane command="nvim"
       pane size=1 {
           plugin location="tab-bar"
       }
+      pane command="nvim"
     }
     tab name="AI Agent" {
-      pane
       pane size=1 {
           plugin location="tab-bar"
       }
+      pane
     }
     tab name="Misc" {
-      pane
       pane size=1 {
           plugin location="tab-bar"
       }
+      pane
     }
 }
