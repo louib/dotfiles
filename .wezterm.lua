@@ -70,13 +70,6 @@ config.tab_max_width = 35
 
 config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
 
-config.window_padding = {
-  left = 2,
-  right = 2,
-  top = 0,
-  bottom = 0,
-}
-
 wezterm.on('gui-startup', function(_window)
   local _tab, pane, window = wezterm.mux.spawn_window({})
   local gui_window = window:gui_window()
@@ -133,8 +126,46 @@ config.colors = {
   },
 }
 
-config.use_fancy_tab_bar = false
+config.show_tab_index_in_tab_bar = false
+config.use_fancy_tab_bar = true
 config.hide_mouse_cursor_when_typing = false
+
+-- Tab bar styling
+config.window_frame = {
+  font = wezterm.font({ family = 'Roboto', weight = 'Bold' }),
+  font_size = 10.0,
+  active_titlebar_bg = '#282828',
+  inactive_titlebar_bg = '#1d2021',
+}
+-- Customize tab appearance
+config.colors.tab_bar = {
+  background = '#282828',
+  active_tab = {
+    bg_color = '#504945',
+    fg_color = '#ebdbb2',
+    intensity = 'Bold',
+  },
+  inactive_tab = {
+    bg_color = '#3c3836',
+    fg_color = '#a89984',
+  },
+  new_tab = {
+    bg_color = '#3c3836',
+    fg_color = '#bdae93',
+  },
+  new_tab_hover = {
+    bg_color = '#504945',
+    fg_color = '#ebdbb2',
+  },
+}
+
+-- Add padding around the tab bar
+config.window_padding = {
+  left = 2,
+  right = 2,
+  top = 2,
+  bottom = 2,
+}
 
 config.enable_kitty_keyboard = true
 
