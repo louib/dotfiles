@@ -1,0 +1,24 @@
+[editor]
+vim_mode = true
+
+[theme]
+foreground = "#ebdbb2"
+background = "#282828"
+selection = "#458588"
+cursor = "#ebdbb2"
+black = "#282828"
+red = "#cc241d"
+green = "#98971a"
+yellow = "#d79921"
+blue = "#458588"
+magenta = "#b16286"
+cyan = "#689d6a"
+white = "#a89984"
+bright_black = "#928374"
+bright_red = "#d85f5f"
+bright_green = "#98a83c"
+bright_yellow = "#d5b06b"
+bright_blue = "#7a9a9d"
+bright_magenta = "#b77a93"
+bright_cyan = "#7dab8f"
+bright_white = "#ebdbb2"

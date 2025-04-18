@@ -60,6 +60,7 @@ rec {
 
   COLORS = builtins.fromTOML (builtins.readFile (./. + "/colors.toml"));
   WEZTERM_CONFIG = builtins.readFile (./. + "/.wezterm.lua");
+  CLAUDE_CONFIG = builtins.readFile (./. + "/claude.toml");
   AIDER_CONFIG = ''
     assistant-output-color: '#${COLORS.assistant-output-color}'
     tool-output-color: '#${COLORS.tool-output-color}'
