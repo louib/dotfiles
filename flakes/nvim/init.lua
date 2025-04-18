@@ -882,6 +882,15 @@ local function configure_lsp()
   require('lspconfig').nil_ls.setup({
     on_attach = custom_lsp_attach,
     flags = lsp_flags,
+    settings = {
+      ['nil'] = {
+        nix = {
+          flake = {
+            autoArchive = false,
+          },
+        },
+      },
+    },
   })
 
   require('lspconfig').clangd.setup({
