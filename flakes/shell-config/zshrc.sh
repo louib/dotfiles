@@ -19,7 +19,7 @@ set_title () {
     # exists in the current directory. Everything else should be the full path of the
     # directory.
     CURRENT_DIR=$(basename "$PWD")
-    wezterm cli set-tab-title "$CURRENT_DIR"
+    wezterm cli set-tab-title " $CURRENT_DIR "
 }
 
 if [ -x "$(command -v starship)" ]; then

@@ -85,7 +85,7 @@ set_title_starship () {
 set_zellij_tab_name () {
     if [ -x "$(command -v wezterm)" ] && [ -x "$(command -v zellij)" ]; then
         if [[ -n "$ZELLIJ_SESSION_NAME" ]]; then
-            wezterm cli set-tab-title "$ZELLIJ_SESSION_NAME"
+            wezterm cli set-tab-title " $ZELLIJ_SESSION_NAME "
         fi
     fi
 }
