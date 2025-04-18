@@ -61,6 +61,8 @@ config.keys = {
     mods = 'CTRL|SHIFT',
     action = wezterm.action.ActivatePaneDirection('Up'),
   },
+
+  { key = 'f', mods = 'CTRL|SHIFT', action = wezterm.action.ToggleFullScreen },
 }
 
 config.window_decorations = 'INTEGRATED_BUTTONS|RESIZE'
