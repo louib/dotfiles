@@ -138,11 +138,11 @@ config.window_frame = {
   active_titlebar_bg = '#282828',
   inactive_titlebar_bg = '#1d2021',
 }
--- Customize tab appearance
+
 config.colors.tab_bar = {
   background = '#282828',
   active_tab = {
-    bg_color = '#504945',
+    bg_color = '#458588',
     fg_color = '#ebdbb2',
     intensity = 'Bold',
   },
@@ -155,7 +155,7 @@ config.colors.tab_bar = {
     fg_color = '#bdae93',
   },
   new_tab_hover = {
-    bg_color = '#504945',
+    bg_color = '#458588',
     fg_color = '#ebdbb2',
   },
 }
