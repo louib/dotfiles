@@ -271,7 +271,14 @@ scroll_buffer_size 10000
 // Options:
 //   - system (default)
 //   - primary
-copy_clipboard "primary"
+// copy_clipboard "primary"
+//
+
+// From https://zellij.dev/documentation/faq#copy--paste-isnt-working-how-can-i-fix-this:
+// > Some terminals don't support the the OSC 52 signal, which is the method Zellij uses by default to copy text to the clipboard.
+// > To get around this, you can either switch to a supported terminal (eg. Alacritty or xterm) or configure Zellij to use an
+// > external utility when copy pasting (eg. xclip, wl-copy or pbcopy).
+copy_command: "wl-copy"
 
 // Enable automatic copying (and clearing) of selection when releasing mouse
 // Default: true
