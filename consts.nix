@@ -74,6 +74,7 @@ rec {
   '';
   ZELLIJ_CONFIG = builtins.readFile (./. + "/zellij-config.kdl");
   ZELLIJ_DEFAULT_LAYOUT_CONFIG = builtins.readFile (./. + "/default-zellij-layout.kdl");
+  ZELLIJ_CUSTOM_THEME = builtins.readFile (./. + "/my-zellij-theme.kdl");
 
   # We need to call a home-manager function to generate the input sources
   # in a valid format.
