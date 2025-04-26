@@ -107,7 +107,6 @@ gfo () {
         git checkout "$selected_branch"
     fi
 }
-alias gcs="GITHUB_TOKEN=\"\" gh copilot suggest -t shell"
 
 # Cargo stuff
 alias ci="cargo install --force --path ."
