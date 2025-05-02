@@ -19,6 +19,7 @@ local AUTO_FORMATTING_ENABLED = {
   typescript = true,
   lua = true,
   rust = true,
+  python = true,
 }
 
 local function executable_is_available(executable_name)
@@ -211,6 +212,7 @@ local function set_filetype_options()
   if filetype == 'python' then
     vim.bo.tabstop = 4
     vim.bo.shiftwidth = 4
+    vim.api.nvim_buf_set_var(buffer_number, ENABLED_FORMATTING_TOOL_VAR_NAME, 'ruff')
     return
   end
 
@@ -347,6 +349,23 @@ local function configure_auto_format()
     }
   end
 
+  local get_python_config = function()
+    if AUTO_FORMATTING_ENABLED['python'] == false then
+      return nil
+    end
+
+    return {
+      exe = 'ruff',
+      args = {
+        'format',
+        '--stdin-filename',
+        formatter_util.escape_path(formatter_util.get_current_buffer_file_path()),
+        '-',
+      },
+      stdin = true,
+    }
+  end
+
   -- Provides the Format and FormatWrite commands
   -- See https://github.com/mhartington/formatter.nvim#configuration-specification
   -- for all the configuration options.
@@ -369,6 +388,9 @@ local function configure_auto_format()
       },
       lua = {
         get_lua_config,
+      },
+      python = {
+        get_python_config,
       },
       javascript = {
         get_prettier_formatting_config,

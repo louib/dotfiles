@@ -31,6 +31,7 @@
             inherit rustc;
             inherit rustfmt;
             inherit stylua;
+            inherit ruff;
             inherit alejandra;
             inherit shellcheck;
             # This one is for clangd, the LSP for C and C++, and for clang-format
