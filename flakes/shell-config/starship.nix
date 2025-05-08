@@ -2,17 +2,7 @@
   # Get editor completions based on the config schema
   "$schema" = "https://starship.rs/config-schema.json";
 
-  format = ''
-    $username\\
-    $hostname\\
-    $time\\
-    $directory\\
-    $git_branch\\
-    $git_state\\
-    $git_status\\
-    $nix_shell\\
-    $character
-  '';
+  format = "$username$hostname$time$directory$git_branch$git_state$git_status$nix_shell$character";
 
   # Disable the blank line at the start of the prompt
   add_newline = false;
