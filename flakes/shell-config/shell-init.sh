@@ -1,6 +1,8 @@
 # shellcheck shell=sh
+
+unalias ll
 ll () {
-    if [ -x "$(command -v id)" ]; then
+    if [ -x "$(command -v eza)" ]; then
         eza -alF
     else
         ls -alF

@@ -16,50 +16,6 @@
       ZSH_CONFIG = (builtins.readFile (./. + "/zshrc.sh")) + SHELL_CONFIG;
       STARSHIP_CONFIG = import (./. + "/starship.nix") {colors = COLORS;};
 
-      SHELL_ALIASES = [
-        # Defaults from template .bashrc config
-        {
-          name = "ll";
-          target = "ls -alF";
-        }
-        {
-          name = "la";
-          target = "ls -A";
-        }
-        # Cargo stuff
-        {
-          name = "ci";
-          target = "cargo install --force --path .";
-        }
-        {
-          name = "cb";
-          target = "cargo build";
-        }
-        {
-          name = "ct";
-          target = "cargo test";
-        }
-        {
-          name = "cf";
-          target = "find . -name '*.rs' -exec rustfmt {} \;";
-        }
-        # Nix stuff
-        {
-          name = "nix-search";
-          target = "nix-env -qa";
-        }
-        {
-          name = "ndv";
-          target = "nix develop .";
-        }
-        {
-          name = "nfc";
-          target = "nix flake check";
-        }
-      ];
-      SHELL_ALIASES_TUPLES = builtins.map (alias: [alias.name alias.target]) SHELL_ALIASES;
-      SHELL_ALIASES_STRING = builtins.map (alias: "alias ${alias.name}=${alias.target}") SHELL_ALIASES;
-
       # Full documentation on the syntax for the LS_COLORS variable can be found here
       # https://linuxopsys.com/topics/colors-for-ls-mean-change-colors-for-ls-in-bash
       LS_COLORS = builtins.foldl' (x: y: y + ":" + x) "" [
