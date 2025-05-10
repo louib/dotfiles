@@ -55,7 +55,6 @@
 
           neovimLuaConfig = builtins.readFile (./. + "/init.lua");
           customNeovim = pkgs.neovim.override {
-            # vimAlias = true;
             configure = {
               packages.myPlugins = with pkgs.vimPlugins; {
                 start = [

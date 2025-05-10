@@ -1,6 +1,11 @@
 # shellcheck shell=sh
-alias ll='ls -alF'
-alias la='ls -A'
+ll () {
+    if [ -x "$(command -v id)" ]; then
+        eza -alF
+    else
+        ls -alF
+    fi
+}
 
 alias vi="nvim"
 alias vim="nvim"
