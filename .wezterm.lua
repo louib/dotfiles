@@ -192,4 +192,6 @@ if os.getenv('WEZTERM_DEFAULT_TO_ZSH') == 'true' then
   config.default_prog = { '/bin/zsh' }
 end
 
+config.check_for_updates = false
+
 return config
