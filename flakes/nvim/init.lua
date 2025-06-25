@@ -2,6 +2,7 @@ local LSP_ENABLED_VAR_NAME = 'LSP_ENABLED'
 local COPILOT_ENABLED_VAR_NAME = 'COPILOT_ENABLED'
 local ENABLED_FORMATTING_TOOL_VAR_NAME = 'ENABLED_FORMATTING_TOOL'
 local ENABLED_LINTING_TOOL_VAR_NAME = 'ENABLED_LINTING_TOOL'
+local COPILOT_AI_MODEL_VAR_NAME = 'NVIM_COPILOT_AI_MODEL'
 local CURRENT_LANG_VAR_NAME = 'CURRENT_LANG'
 local DEFAULT_COLORSCHEME = 'gruvbox'
 local DEFAULT_LANG = 'en_us'
@@ -21,6 +22,10 @@ local AUTO_FORMATTING_ENABLED = {
   rust = true,
   python = true,
 }
+
+local function get_copilot_ai_model()
+  return os.getenv(COPILOT_AI_MODEL_VAR_NAME) or DEFAULT_COPILOT_AI_MODEL
+end
 
 local function executable_is_available(executable_name)
   local handle = io.popen(string.format('which %s 2> /dev/null', executable_name))
@@ -1177,7 +1182,7 @@ local function configure_copilot()
     debug = true,
     allow_insecure = false,
 
-    model = DEFAULT_COPILOT_AI_MODEL,
+    model = get_copilot_ai_model(),
     context = 'buffers',
 
     window = {
