@@ -1,6 +1,6 @@
 # shellcheck shell=sh
 
-unalias ll
+alias ll 2>/dev/null >/dev/null && unalias ll
 ll () {
     if [ -x "$(command -v eza)" ]; then
         eza -alF
