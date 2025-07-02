@@ -1,13 +1,11 @@
 # shellcheck shell=sh
 
-alias ll 2>/dev/null >/dev/null && unalias ll
-ll () {
-    if [ -x "$(command -v eza)" ]; then
+if [ -x "$(command -v eza)" ]; then
+    alias ll 2>/dev/null >/dev/null && unalias ll
+    ll () {
         eza -alF
-    else
-        ls -alF
-    fi
-}
+    }
+fi
 
 alias vi="nvim"
 alias vim="nvim"
