@@ -69,8 +69,8 @@ config.window_decorations = 'INTEGRATED_BUTTONS|RESIZE'
 
 config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
 
-wezterm.on('gui-startup', function(_window)
-  local _tab, pane, window = wezterm.mux.spawn_window({})
+wezterm.on('gui-startup', function()
+  local _, pane, window = wezterm.mux.spawn_window({})
   local gui_window = window:gui_window()
   gui_window:perform_action(wezterm.action.ToggleFullScreen, pane)
 end)
@@ -188,7 +188,7 @@ end
 
 config.prefer_egl = true
 
-if os.getenv('WEZTERM_DEFAULT_TO_ZSH') == 'true' then
+if wezterm.target_triple:find('darwin') then
   config.default_prog = { '/bin/zsh' }
 end
 
