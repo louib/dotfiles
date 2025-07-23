@@ -3,6 +3,8 @@
 if [ -x "$(command -v eza)" ]; then
     alias ll 2>/dev/null >/dev/null && unalias ll
     alias ll="eza -alF"
+else
+    alias ll="ls -la"
 fi
 
 alias vi="nvim"
