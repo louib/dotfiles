@@ -90,9 +90,6 @@
                   vim-nix
                   typescript-vim
                   rust-vim
-
-                  # Colorschemes
-                  gruvbox-nvim
                 ];
                 opt = [];
               };
