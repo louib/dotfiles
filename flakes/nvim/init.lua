@@ -1116,7 +1116,6 @@ end
 -- Define our custom theme directly in init.lua
 local my_custom_theme = {}
 
--- Color palette
 local palette = {
   -- Base colors
   dark0 = '#282828',
@@ -1165,7 +1164,6 @@ local palette = {
 }
 
 function my_custom_theme.setup()
-  -- Organize colors as gruvbox does
   local color_groups = {
     dark = {
       bg0 = palette.dark0,
