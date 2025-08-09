@@ -18,13 +18,13 @@ in {
       hunk-header-decoration-style = "bold #${colors.directory-bg} box";
 
       # Added lines
-      plus-style = "syntax";
-      plus-emph-style = "syntax bold";
+      plus-style = "#${colors.delta-plus-fg} #${colors.delta-plus-bg}";
+      plus-emph-style = "bold #${colors.delta-plus-fg} #${colors.delta-plus-bg}";
       plus-non-emph-style = "syntax #${colors.success-symbol-bg}";
 
       # Removed lines
-      minus-style = "syntax";
-      minus-emph-style = "syntax bold";
+      minus-style = "#${colors.delta-minus-fg} #${colors.delta-minus-bg}";
+      minus-emph-style = "bold #${colors.delta-minus-fg} #${colors.delta-minus-bg}";
       minus-non-emph-style = "syntax #${colors.error-symbol-bg}";
 
       # Unchanged lines
