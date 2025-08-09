@@ -4,7 +4,6 @@ local ENABLED_FORMATTING_TOOL_VAR_NAME = 'ENABLED_FORMATTING_TOOL'
 local ENABLED_LINTING_TOOL_VAR_NAME = 'ENABLED_LINTING_TOOL'
 local COPILOT_AI_MODEL_VAR_NAME = 'NVIM_COPILOT_AI_MODEL'
 local CURRENT_LANG_VAR_NAME = 'CURRENT_LANG'
-local DEFAULT_COLORSCHEME = 'gruvbox'
 local DEFAULT_LANG = 'en_us'
 local DEFAULT_COPILOT_AI_MODEL = 'claude-3.5-sonnet'
 
@@ -638,7 +637,38 @@ local function configure_status_bar()
     options = {
       -- FIXME what do I need to enable the icons?
       icons_enabled = false,
-      theme = DEFAULT_COLORSCHEME,
+      theme = {
+        normal = {
+          a = { fg = '#282828', bg = '#458588', gui = 'bold' },
+          b = { fg = '#ebdbb2', bg = '#504945' },
+          c = { fg = '#ebdbb2', bg = '#3c3836' },
+        },
+        insert = {
+          a = { fg = '#282828', bg = '#8ec07c', gui = 'bold' },
+          b = { fg = '#ebdbb2', bg = '#504945' },
+          c = { fg = '#ebdbb2', bg = '#3c3836' },
+        },
+        visual = {
+          a = { fg = '#282828', bg = '#b16286', gui = 'bold' },
+          b = { fg = '#ebdbb2', bg = '#504945' },
+          c = { fg = '#ebdbb2', bg = '#3c3836' },
+        },
+        replace = {
+          a = { fg = '#282828', bg = '#cc241d', gui = 'bold' },
+          b = { fg = '#ebdbb2', bg = '#504945' },
+          c = { fg = '#ebdbb2', bg = '#3c3836' },
+        },
+        command = {
+          a = { fg = '#282828', bg = '#d65d0e', gui = 'bold' },
+          b = { fg = '#ebdbb2', bg = '#504945' },
+          c = { fg = '#ebdbb2', bg = '#3c3836' },
+        },
+        inactive = {
+          a = { fg = '#ebdbb2', bg = '#3c3836', gui = 'bold' },
+          b = { fg = '#ebdbb2', bg = '#3c3836' },
+          c = { fg = '#ebdbb2', bg = '#3c3836' },
+        },
+      },
       component_separators = { left = '', right = '' },
       section_separators = { left = '', right = '' },
       disabled_filetypes = {},
@@ -1083,43 +1113,263 @@ local function configure_commenting()
   end
 end
 
-local function configure_colors()
-  if not pcall(require, 'gruvbox') then
-    print('gruvbox is not installed.')
-    return
-  end
-  require('gruvbox').setup({
-    palette_overrides = {
-      dark0 = '#282828',
-      dark1 = '#3c3836',
-      dark2 = '#504945',
-      dark3 = '#665c54',
-      dark4 = '#7c6f64',
-      light0 = '#fbf1c7',
-      light1 = '#ebdbb2',
-      light2 = '#d5c4a1',
-      light3 = '#bdae93',
-      light4 = '#a89984',
-      bright_red = '#fb4934',
-      bright_green = '#b8bb26',
-      bright_yellow = '#fabd2f',
-      bright_blue = '#83a598',
-      bright_purple = '#d3869b',
-      bright_aqua = '#8ec07c',
-      bright_orange = '#fe8019',
-      neutral_red = '#cc241d',
-      neutral_green = '#98971a',
-      neutral_yellow = '#d79921',
-      neutral_blue = '#458588',
-      neutral_purple = '#b16286',
-      neutral_aqua = '#689d6a',
-      dark_red = '#9d0006',
-      dark_green = '#79740e',
-      dark_aqua = '#427b58',
-      gray = '#928374',
+-- Define our custom theme directly in init.lua
+local my_custom_theme = {}
+
+-- Color palette
+local palette = {
+  -- Base colors
+  dark0 = '#282828',
+  dark1 = '#3c3836',
+  dark2 = '#504945',
+  dark3 = '#665c54',
+  dark4 = '#7c6f64',
+  light0 = '#fbf1c7',
+  light1 = '#ebdbb2',
+  light2 = '#d5c4a1',
+  light3 = '#bdae93',
+  light4 = '#a89984',
+
+  -- Standard colors
+  bright_red = '#fb4934',
+  bright_green = '#b8bb26',
+  bright_yellow = '#fabd2f',
+  bright_blue = '#83a598',
+  bright_purple = '#d3869b',
+  bright_aqua = '#8ec07c',
+  bright_orange = '#fe8019',
+
+  -- Neutral colors
+  neutral_red = '#cc241d',
+  neutral_green = '#98971a',
+  neutral_yellow = '#d79921',
+  neutral_blue = '#458588',
+  neutral_purple = '#b16286',
+  neutral_aqua = '#689d6a',
+
+  -- Faded colors
+  faded_red = '#9d0006',
+  faded_green = '#79740e',
+  faded_yellow = '#b57614',
+  faded_blue = '#076678',
+  faded_purple = '#8f3f71',
+  faded_aqua = '#427b58',
+  faded_orange = '#af3a03',
+
+  -- Light mode specific colors
+  light_red = '#9d0006',
+  light_green = '#79740e',
+  light_aqua = '#427b58',
+
+  gray = '#928374',
+}
+
+function my_custom_theme.setup()
+  -- Organize colors as gruvbox does
+  local color_groups = {
+    dark = {
+      bg0 = palette.dark0,
+      bg1 = palette.dark1,
+      bg2 = palette.dark2,
+      bg3 = palette.dark3,
+      bg4 = palette.dark4,
+      fg0 = palette.light0,
+      fg1 = palette.light1,
+      fg2 = palette.light2,
+      fg3 = palette.light3,
+      fg4 = palette.light4,
+      red = palette.bright_red,
+      green = palette.bright_green,
+      yellow = palette.bright_yellow,
+      blue = palette.bright_blue,
+      purple = palette.bright_purple,
+      aqua = palette.bright_aqua,
+      orange = palette.bright_orange,
+      neutral_red = palette.neutral_red,
+      neutral_green = palette.neutral_green,
+      neutral_yellow = palette.neutral_yellow,
+      neutral_blue = palette.neutral_blue,
+      neutral_purple = palette.neutral_purple,
+      neutral_aqua = palette.neutral_aqua,
+      dark_red = palette.faded_red,
+      dark_green = palette.faded_green,
+      dark_aqua = palette.faded_aqua,
+      gray = palette.gray,
     },
-  })
-  vim.cmd('colorscheme ' .. DEFAULT_COLORSCHEME)
+    light = {
+      bg0 = palette.light0,
+      bg1 = palette.light1,
+      bg2 = palette.light2,
+      bg3 = palette.light3,
+      bg4 = palette.light4,
+      fg0 = palette.dark0,
+      fg1 = palette.dark1,
+      fg2 = palette.dark2,
+      fg3 = palette.dark3,
+      fg4 = palette.dark4,
+      red = palette.faded_red,
+      green = palette.faded_green,
+      yellow = palette.faded_yellow,
+      blue = palette.faded_blue,
+      purple = palette.faded_purple,
+      aqua = palette.faded_aqua,
+      orange = palette.faded_orange,
+      neutral_red = palette.neutral_red,
+      neutral_green = palette.neutral_green,
+      neutral_yellow = palette.neutral_yellow,
+      neutral_blue = palette.neutral_blue,
+      neutral_purple = palette.neutral_purple,
+      neutral_aqua = palette.neutral_aqua,
+      dark_red = palette.light_red,
+      dark_green = palette.light_green,
+      dark_aqua = palette.light_aqua,
+      gray = palette.gray,
+    },
+  }
+
+  -- Use dark mode colors
+  local c = color_groups.dark
+
+  -- Define highlight groups
+  local groups = {
+    -- Base highlights
+    Normal = { fg = c.fg1, bg = c.bg0 },
+    NormalFloat = { fg = c.fg1, bg = c.bg1 },
+    Bold = { bold = true },
+    Italic = { italic = true },
+    Underlined = { underline = true, fg = c.fg1 },
+    Cursor = { bg = c.fg1 },
+    CursorLine = { bg = c.bg1 },
+    CursorColumn = { bg = c.bg1 },
+    ColorColumn = { bg = c.bg1 },
+    LineNr = { fg = c.bg4 },
+    CursorLineNr = { fg = c.yellow },
+    Visual = { bg = c.bg2 },
+    VisualNOS = { bg = c.bg2 },
+    Search = { fg = c.bg0, bg = c.yellow },
+    IncSearch = { fg = c.bg0, bg = c.orange },
+
+    -- Syntax highlighting
+    Comment = { fg = c.gray, italic = true },
+    SpecialComment = { fg = c.gray, italic = true },
+    Constant = { fg = c.purple },
+    String = { fg = c.green },
+    Character = { fg = c.purple },
+    Number = { fg = c.purple },
+    Boolean = { fg = c.purple },
+    Float = { fg = c.purple },
+    Identifier = { fg = c.blue },
+    Function = { fg = c.aqua },
+    Statement = { fg = c.red },
+    Conditional = { fg = c.red },
+    Repeat = { fg = c.red },
+    Label = { fg = c.red },
+    Operator = { fg = c.red },
+    Keyword = { fg = c.red },
+    Exception = { fg = c.red },
+    PreProc = { fg = c.aqua },
+    Include = { fg = c.aqua },
+    Define = { fg = c.aqua },
+    Macro = { fg = c.aqua },
+    PreCondit = { fg = c.aqua },
+    Type = { fg = c.yellow },
+    StorageClass = { fg = c.orange },
+    Structure = { fg = c.aqua },
+    Typedef = { fg = c.yellow },
+    Special = { fg = c.orange },
+    SpecialChar = { fg = c.red },
+    Tag = { fg = c.aqua },
+    Delimiter = { fg = c.fg3 },
+
+    -- UI elements
+    StatusLine = { fg = '#ebdbb2', bg = '#504945' },
+    StatusLineNC = { fg = c.fg4, bg = c.bg1 },
+    TabLine = { fg = c.fg3, bg = c.bg2 },
+    TabLineFill = { fg = c.fg4, bg = c.bg1 },
+    TabLineSel = { fg = '#282828', bg = '#458588' },
+    VertSplit = { fg = c.bg2 },
+    Folded = { fg = c.gray, bg = c.bg1 },
+    FoldColumn = { fg = c.gray, bg = c.bg0 },
+    SignColumn = { fg = c.fg1, bg = c.bg0 },
+    NonText = { fg = c.bg3 },
+    SpecialKey = { fg = c.bg3 },
+    Pmenu = { fg = c.fg1, bg = c.bg2 },
+    PmenuSel = { fg = c.bg0, bg = c.blue },
+    PmenuSbar = { bg = c.bg2 },
+    PmenuThumb = { bg = c.bg4 },
+    WildMenu = { fg = c.blue, bg = c.bg2, bold = true },
+    Title = { fg = c.green, bold = true },
+    Directory = { fg = c.blue },
+
+    -- Messages
+    Error = { fg = c.red },
+    ErrorMsg = { fg = c.red },
+    WarningMsg = { fg = c.yellow },
+    MoreMsg = { fg = c.blue },
+    Question = { fg = c.orange },
+
+    -- Diagnostics
+    DiagnosticError = { fg = c.red },
+    DiagnosticWarn = { fg = c.yellow },
+    DiagnosticInfo = { fg = c.blue },
+    DiagnosticHint = { fg = c.aqua },
+    DiagnosticUnderlineError = { undercurl = true, sp = c.red },
+    DiagnosticUnderlineWarn = { undercurl = true, sp = c.yellow },
+    DiagnosticUnderlineInfo = { undercurl = true, sp = c.blue },
+    DiagnosticUnderlineHint = { undercurl = true, sp = c.aqua },
+
+    -- Diff
+    DiffAdd = { bg = c.dark_green },
+    DiffChange = { bg = c.dark_aqua },
+    DiffDelete = { bg = c.dark_red },
+    DiffText = { bg = c.neutral_blue },
+
+    -- Spell checking
+    SpellBad = { undercurl = true, sp = c.red },
+    SpellCap = { undercurl = true, sp = c.blue },
+    SpellRare = { undercurl = true, sp = c.purple },
+    SpellLocal = { undercurl = true, sp = c.aqua },
+
+    -- Treesitter specific
+    ['@keyword'] = { fg = c.red },
+    ['@string'] = { fg = c.green },
+    ['@function'] = { fg = c.aqua },
+    ['@function.builtin'] = { fg = c.orange },
+    ['@variable'] = { fg = c.fg1 },
+    ['@field'] = { fg = c.blue },
+    ['@property'] = { fg = c.blue },
+    ['@parameter'] = { fg = c.fg3 },
+
+    -- LSP
+    LspReferenceText = { bg = c.bg2 },
+    LspReferenceRead = { bg = c.bg2 },
+    LspReferenceWrite = { bg = c.bg2 },
+
+    -- For Lualine
+    LualineModeNormal = { fg = '#282828', bg = '#458588', bold = true },
+    LualineModeInsert = { fg = '#282828', bg = '#8ec07c', bold = true },
+    LualineModeVisual = { fg = '#282828', bg = '#b16286', bold = true },
+    LualineModeReplace = { fg = '#282828', bg = '#cc241d', bold = true },
+    LualineModeCommand = { fg = '#282828', bg = '#d65d0e', bold = true },
+
+    -- Git highlighting
+    GitSignsAdd = { fg = c.green },
+    GitSignsChange = { fg = c.blue },
+    GitSignsDelete = { fg = c.red },
+  }
+
+  -- Apply all highlight groups
+  for group, styles in pairs(groups) do
+    vim.api.nvim_set_hl(0, group, styles)
+  end
+
+  -- Return the palette for other modules to use
+  return palette
+end
+
+local function configure_colors()
+  -- Apply our custom theme
+  my_custom_theme.setup()
 end
 
 local function configure_copilot()
