@@ -8,7 +8,7 @@
         VISUAL = "nvim";
         EDITOR = "nvim";
       };
-      COLORS = builtins.fromTOML (builtins.readFile (./. + "/../../colors.toml"));
+      COLORS = builtins.fromTOML (builtins.readFile (./. + "/../../colorscheme/colors.toml"));
       READLINE_CONFIG = builtins.readFile (./. + "/.inputrc");
       SHELL_CONFIG = builtins.readFile (./. + "/shell-init.sh");
       BASH_CONFIG = (builtins.readFile (./. + "/bashrc.sh")) + SHELL_CONFIG;

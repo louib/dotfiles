@@ -58,7 +58,7 @@ rec {
     };
   };
 
-  COLORS = builtins.fromTOML (builtins.readFile (./. + "/colors.toml"));
+  COLORS = builtins.fromTOML (builtins.readFile (./. + "/colorscheme/colors.toml"));
   WEZTERM_CONFIG = builtins.readFile (./. + "/.wezterm.lua");
   CLAUDE_CONFIG = builtins.readFile (./. + "/claude.toml");
   AIDER_CONFIG = ''
