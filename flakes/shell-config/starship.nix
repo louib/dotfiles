@@ -9,40 +9,40 @@
 
   username = {
     show_always = true;
-    style_user = "bold fg:#${colors.default-fg} bg:#cc241d";
-    style_root = "bold fg:#${colors.default-fg} bg:#fb4934";
+    style_user = "bold fg:#${colors.default-fg} bg:#${colors.user-bg}";
+    style_root = "bold fg:#${colors.default-fg} bg:#${colors.root-user-bg}";
     format = "[ $user ]($style)";
   };
 
   hostname = {
     ssh_only = true;
     format = "[ $hostname ]($style)";
-    style = "bold fg:#${colors.default-fg} bg:#d65d0e";
+    style = "bold fg:#${colors.default-fg} bg:#${colors.hostname-bg}";
   };
 
   time = {
     disabled = false;
     time_format = "%X";
-    style = "bold fg:#${colors.default-fg} bg:#b16286";
+    style = "bold fg:#${colors.default-fg} bg:#${colors.time-bg}";
     format = "[ $time ]($style)";
   };
 
   directory = {
     format = "[ $path ]($style)";
-    style = "bold fg:#${colors.default-fg} bg:#458588";
+    style = "bold fg:#${colors.default-fg} bg:#${colors.directory-bg}";
     truncation_length = 3;
     truncation_symbol = "…/";
   };
 
   git_branch = {
     format = "[( $branch)]($style)";
-    style = "bold fg:#${colors.default-fg} bg:#689d6a";
+    style = "bold fg:#${colors.default-fg} bg:#${colors.git-branch-bg}";
     symbol = "";
   };
 
   git_state = {
     format = "[( $state)]($style)";
-    style = "bold fg:#${colors.default-fg} bg:#689d6a";
+    style = "bold fg:#${colors.default-fg} bg:#${colors.git-state-bg}";
   };
 
   git_status = {
@@ -56,19 +56,19 @@
     staged = "+";
     conflicted = "!";
     stashed = "";
-    style = "bold fg:#${colors.default-fg} bg:#689d6a";
+    style = "bold fg:#${colors.default-fg} bg:#${colors.git-status-bg}";
     up_to_date = "✓";
   };
 
   nix_shell = {
-    style = "bold fg:#282828 bg:#8ec07c";
+    style = "bold fg:#${colors.nix-prompt-fg} bg:#${colors.nix-prompt-bg}";
     symbol = "nix";
     format = "[ $symbol ]($style)";
   };
 
   character = {
-    success_symbol = "[ ](bold fg:#282828 bg:#98971a)";
-    error_symbol = "[ ](bold fg:#${colors.default-fg} bg:#cc241d)";
+    success_symbol = "[ ](bold fg:#${colors.success-symbol-fg} bg:#${colors.success-symbol-bg})";
+    error_symbol = "[ ](bold fg:#${colors.default-fg} bg:#${colors.error-symbol-bg})";
     # FIXME vicmd_symbol is not supported on bash :(
     # https://starship.rs/config/#character
     # vicmd_symbol = "[ ](bg:green)";
