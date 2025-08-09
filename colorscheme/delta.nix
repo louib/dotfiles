@@ -20,12 +20,12 @@ in {
       # Added lines
       plus-style = "#${colors.delta-plus-fg} #${colors.delta-plus-bg}";
       plus-emph-style = "bold #${colors.delta-plus-fg} #${colors.delta-plus-bg}";
-      plus-non-emph-style = "syntax #${colors.success-symbol-bg}";
+      plus-non-emph-style = "#${colors.delta-plus-non-emph-fg} #${colors.delta-plus-bg}";
 
       # Removed lines
       minus-style = "#${colors.delta-minus-fg} #${colors.delta-minus-bg}";
       minus-emph-style = "bold #${colors.delta-minus-fg} #${colors.delta-minus-bg}";
-      minus-non-emph-style = "syntax #${colors.error-symbol-bg}";
+      minus-non-emph-style = "#${colors.delta-minus-non-emph-fg} #${colors.delta-minus-bg}";
 
       # Unchanged lines
       zero-style = "syntax #${colors.default-fg}";
