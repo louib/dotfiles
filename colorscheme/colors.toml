@@ -26,9 +26,9 @@ completion-menu-current-color = 'c678dd'
 completion-menu-current-bg-color = '3e4452'
 
 # delta colors
-delta-plus-bg = "2d472d"
-delta-minus-bg = "422a2a"
-delta-plus-fg = "c8d8a8"
-delta-minus-fg = "e8a8a8"
-delta-plus-non-emph-fg = "a8b888"
-delta-minus-non-emph-fg = "c88888"
+delta-plus-bg = "00008B"
+delta-minus-bg = "8B0000"
+delta-plus-fg = "FFFFFF"
+delta-minus-fg = "FFFFFF"
+delta-plus-non-emph-fg = "FFFFFF"
+delta-minus-non-emph-fg = "FFFFFF"
