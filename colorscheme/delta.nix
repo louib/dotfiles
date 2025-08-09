@@ -28,7 +28,7 @@ in {
       minus-non-emph-style = "#${colors.delta-minus-non-emph-fg} #${colors.delta-minus-bg}";
 
       # Unchanged lines
-      zero-style = "syntax #${colors.default-fg}";
+      zero-style = "syntax";
 
       # Other elements
       commit-style = "bold #${colors.hostname-bg}";
