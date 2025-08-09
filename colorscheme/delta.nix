@@ -2,7 +2,7 @@
   colors = builtins.fromTOML (builtins.readFile ./colors.toml);
 in {
   enable = true;
-  settings = {
+  options = {
     features = "my-custom-theme";
     side-by-side = true;
     line-numbers = true;
