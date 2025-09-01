@@ -168,6 +168,12 @@ rec {
       "switch-to-workspace-right" = "<Shift><Control>l";
     };
 
+    # The default shortcut for the screensaver is to easy to
+    # trigger by accident, so I'm using another one.
+    "org/gnome/settings-daemon/plugins/media-keys" = {
+      "screensaver" = "<Control><Alt>l";
+    };
+
     # Gnome terminal options
     "org/gnome/terminal/legacy/keybindings" = {
       "default-show-menubar" = false;
