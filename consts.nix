@@ -172,6 +172,15 @@ rec {
     # trigger by accident, so I'm using another one.
     "org/gnome/settings-daemon/plugins/media-keys" = {
       "screensaver" = "<Control><Alt>l";
+      "custom-keybindings" = [
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/vctl-toggle/"
+      ];
+    };
+
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/vctl-toggle" = {
+      binding = "<Control><Alt>m";
+      command = "vctl-control toggle-manual";
+      name = "vctl Toggle Manual Recording";
     };
 
     # Gnome terminal options
