@@ -9,7 +9,9 @@ layout {
       pane size=1 {
           plugin location="tab-bar"
       }
-      pane
+      pane {
+        command "nvim"
+      }
     }
     tab name="AI Agent" {
       pane size=1 {
