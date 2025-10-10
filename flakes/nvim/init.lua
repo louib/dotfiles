@@ -20,6 +20,7 @@ local AUTO_FORMATTING_ENABLED = {
   lua = true,
   rust = true,
   python = true,
+  go = true,
 }
 
 local function get_copilot_ai_model()
@@ -180,10 +181,14 @@ local function set_filetype_options()
   end
 
   if filetype == 'go' then
-    vim.bo.tabstop = 2
-    vim.bo.shiftwidth = 2
-    -- Apparently using tabs is a convention for Go code?
+    vim.bo.tabstop = 8 -- Go standard is 8-space tabs
+    vim.bo.shiftwidth = 8
+    -- Go convention requires tabs for indentation
     vim.bo.expandtab = false
+    vim.bo.makeprg = 'go build -v ./%'
+    vim.api.nvim_buf_set_var(buffer_number, ENABLED_LINTING_TOOL_VAR_NAME, 'go vet')
+    vim.api.nvim_buf_set_var(buffer_number, ENABLED_FORMATTING_TOOL_VAR_NAME, 'gofmt')
+    vim.bo.errorformat = '%f:%l:%c: %m'
     return
   end
 
@@ -370,6 +375,20 @@ local function configure_auto_format()
     }
   end
 
+  local get_go_config = function()
+    if AUTO_FORMATTING_ENABLED['go'] == false then
+      return nil
+    end
+
+    local buffer_number = vim.api.nvim_get_current_buf()
+    vim.api.nvim_buf_set_var(buffer_number, ENABLED_FORMATTING_TOOL_VAR_NAME, 'gofmt')
+
+    return {
+      exe = 'gofmt',
+      stdin = true,
+    }
+  end
+
   -- Provides the Format and FormatWrite commands
   -- See https://github.com/mhartington/formatter.nvim#configuration-specification
   -- for all the configuration options.
@@ -395,6 +414,9 @@ local function configure_auto_format()
       },
       python = {
         get_python_config,
+      },
+      go = {
+        get_go_config,
       },
       javascript = {
         get_prettier_formatting_config,
@@ -971,6 +993,19 @@ local function configure_lsp()
   require('lspconfig').dockerls.setup({
     on_attach = custom_lsp_attach,
     flags = lsp_flags,
+  })
+
+  require('lspconfig').gopls.setup({
+    on_attach = custom_lsp_attach,
+    flags = lsp_flags,
+    settings = {
+      gopls = {
+        analyses = {
+          unusedparams = true,
+        },
+        staticcheck = true,
+      },
+    },
   })
 
   -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#yamlls

@@ -38,6 +38,10 @@
             inherit clang-tools;
             # I believe this is the same package as sumneko-lua-language-server
             inherit lua-language-server;
+            # Go language server and tools
+            inherit gopls;
+            inherit go;
+            inherit gotools; # Includes goimports and other useful Go tools
             typescript-language-server = nodePackages.typescript-language-server;
             yaml-language-server = nodePackages.yaml-language-server;
             docker-language-server = nodePackages.dockerfile-language-server-nodejs;
@@ -90,6 +94,7 @@
                   vim-nix
                   typescript-vim
                   rust-vim
+                  vim-go
                 ];
                 opt = [];
               };
