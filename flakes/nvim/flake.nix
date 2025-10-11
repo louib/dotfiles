@@ -57,6 +57,26 @@
             inherit markdownlint-cli;
           };
 
+          # Load colors from TOML file
+          colors = builtins.fromTOML (builtins.readFile (../.. + "/colorscheme/colors.toml"));
+
+          # Create the environment variables for Neovim colors
+          colorEnv =
+            {
+              # Enable custom colors
+              "NVIM_COLOR_ENABLED" = "true";
+            }
+            // (pkgs.lib.mapAttrs' (name: value: {
+                # Convert kebab-case or snake_case to UPPER_SNAKE_CASE with NVIM_COLOR_ prefix
+                name = "NVIM_COLOR_" + (pkgs.lib.strings.toUpper (builtins.replaceStrings ["-" "_"] ["_" "_"] name));
+                # Remove # from colors if present
+                value =
+                  if (builtins.isString value) && (builtins.substring 0 1 value == "#")
+                  then builtins.substring 1 (builtins.stringLength value - 1) value
+                  else value;
+              })
+              colors);
+
           neovimLuaConfig = builtins.readFile (./. + "/init.lua");
           customNeovim = pkgs.neovim.override {
             configure = {
@@ -108,10 +128,24 @@
               '';
             };
           };
+
+          # Create a new derivation with Neovim and the color environment variables
+          neovimWithColors = pkgs.writeShellScriptBin "nvim" ''
+            # Set color environment variables
+            ${builtins.concatStringsSep "\n" (
+              pkgs.lib.mapAttrsToList (name: value: "export ${name}=${value}") colorEnv
+            )}
+
+            # Execute original Neovim
+            exec ${customNeovim}/bin/nvim "$@"
+          '';
         in {
           packages = (
             {
               inherit customNeovim;
+              inherit neovimWithColors;
+              # Set as the default package for this flake
+              default = neovimWithColors;
             }
             // languageTools
           );

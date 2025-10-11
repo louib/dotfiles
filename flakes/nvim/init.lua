@@ -1148,57 +1148,82 @@ local function configure_commenting()
   end
 end
 
--- Define our custom theme directly in init.lua
+-- Define our custom theme with environment variable loading
 local my_custom_theme = {}
 
-local palette = {
-  -- Base colors
-  dark0 = '#282828',
-  dark1 = '#3c3836',
-  dark2 = '#504945',
-  dark3 = '#665c54',
-  dark4 = '#7c6f64',
-  light0 = '#fbf1c7',
-  light1 = '#ebdbb2',
-  light2 = '#d5c4a1',
-  light3 = '#bdae93',
-  light4 = '#a89984',
+-- Function to check if environment variables for colors are set
+local function should_use_custom_colors()
+  -- Check for at least one color environment variable to determine if we should use custom colors
+  local required_env_vars = { 'NVIM_COLOR_ENABLED' }
+  for _, env_name in ipairs(required_env_vars) do
+    local env_value = os.getenv(env_name)
+    if env_value and env_value:lower() == 'true' then
+      return true
+    end
+  end
+  return false
+end
 
-  -- Standard colors
-  bright_red = '#fb4934',
-  bright_green = '#b8bb26',
-  bright_yellow = '#fabd2f',
-  bright_blue = '#83a598',
-  bright_purple = '#d3869b',
-  bright_aqua = '#8ec07c',
-  bright_orange = '#fe8019',
+-- Function to get color from environment variable
+local function get_color(color_name)
+  local env_name = 'NVIM_COLOR_' .. color_name:upper():gsub('%-', '_')
+  local env_value = os.getenv(env_name)
+  if env_value and env_value ~= '' then
+    -- Add # prefix if not present
+    if env_value:sub(1, 1) ~= '#' then
+      env_value = '#' .. env_value
+    end
+    return env_value
+  end
+  return nil
+end
 
-  -- Neutral colors
-  neutral_red = '#cc241d',
-  neutral_green = '#98971a',
-  neutral_yellow = '#d79921',
-  neutral_blue = '#458588',
-  neutral_purple = '#b16286',
-  neutral_aqua = '#689d6a',
+-- Initialize the palette
+local palette = {}
 
-  -- Faded colors
-  faded_red = '#9d0006',
-  faded_green = '#79740e',
-  faded_yellow = '#b57614',
-  faded_blue = '#076678',
-  faded_purple = '#8f3f71',
-  faded_aqua = '#427b58',
-  faded_orange = '#af3a03',
+if should_use_custom_colors() then
+  -- Get all environment variables
+  local environ = vim.fn.environ()
 
-  -- Light mode specific colors
-  light_red = '#9d0006',
-  light_green = '#79740e',
-  light_aqua = '#427b58',
+  -- Look for all NVIM_COLOR_ variables and add them to the palette
+  for name, value in pairs(environ) do
+    local color_key = name:match("^NVIM_COLOR_(.+)$")
+    if color_key and color_key ~= "ENABLED" then
+      -- Convert to lowercase
+      color_key = color_key:lower()
 
-  gray = '#928374',
-}
+      -- Add # prefix if not present
+      if value:sub(1, 1) ~= "#" then
+        value = "#" .. value
+      end
+
+      -- Add to palette
+      palette[color_key] = value
+    end
+  end
+end
 
 function my_custom_theme.setup()
+  -- Check if environment variable is set to enable custom colors
+  if not should_use_custom_colors() then
+    return nil
+  end
+
+  -- Check if we have enough colors to build a theme
+  local essential_colors = { "dark0", "dark1", "light1" }
+  for _, color in ipairs(essential_colors) do
+    if not palette[color] then
+      print('Not applying custom theme: missing essential color ' .. color)
+      return nil
+    end
+  end
+
+  -- Check if we have at least some basic color definitions
+  if vim.tbl_count(palette) < 5 then
+    print('Not applying custom theme: not enough colors defined')
+    return nil
+  end
+
   local color_groups = {
     dark = {
       bg0 = palette.dark0,
