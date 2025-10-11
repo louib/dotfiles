@@ -84,80 +84,14 @@ for i = 1, 8 do
   })
 end
 
--- Using Gruvbox colors for better readability and accessibility
-config.colors = {
-  -- Background with slight transparency for better contrast
-  background = '#282828',
-
-  -- Soft white foreground that's easy on the eyes
-  foreground = '#ebdbb2',
-
-  -- Cursor colors
-  cursor_bg = '#d5c4a1',
-  cursor_fg = '#282828',
-
-  -- Selection colors
-  selection_bg = '#504945',
-  selection_fg = '#ebdbb2',
-
-  -- Normal colors (for better distinction)
-  ansi = {
-    '#282828', -- black
-    '#cc241d', -- red
-    '#98971a', -- green
-    '#d79921', -- yellow
-    '#458588', -- blue
-    '#b16286', -- magenta
-    '#689d6a', -- cyan
-    '#a89984', -- white
-  },
-
-  -- Bright colors (for emphasis)
-  brights = {
-    '#928374', -- bright black
-    '#fb4934', -- bright red
-    '#b8bb26', -- bright green
-    '#fabd2f', -- bright yellow
-    '#83a598', -- bright blue
-    '#d3869b', -- bright magenta
-    '#8ec07c', -- bright cyan
-    '#ebdbb2', -- bright white
-  },
-}
-
-config.tab_bar_at_bottom = false
-config.tab_max_width = 35
-config.show_tab_index_in_tab_bar = false
-config.use_fancy_tab_bar = false
-config.hide_mouse_cursor_when_typing = false
-
--- Tab bar styling
+-- Load colors from the generated theme file
+local colors = require('wezterm_colors')
+config.colors = colors
 config.window_frame = {
   font = wezterm.font({ family = 'Roboto', weight = 'Bold' }),
   font_size = 10.0,
-  active_titlebar_bg = '#282828',
-  inactive_titlebar_bg = '#1d2021',
-}
-
-config.colors.tab_bar = {
-  background = '#282828',
-  active_tab = {
-    bg_color = '#458588',
-    fg_color = '#ebdbb2',
-    intensity = 'Bold',
-  },
-  inactive_tab = {
-    bg_color = '#3c3836',
-    fg_color = '#a89984',
-  },
-  new_tab = {
-    bg_color = '#3c3836',
-    fg_color = '#bdae93',
-  },
-  new_tab_hover = {
-    bg_color = '#458588',
-    fg_color = '#ebdbb2',
-  },
+  active_titlebar_bg = colors.window_frame.active_titlebar_bg,
+  inactive_titlebar_bg = colors.window_frame.inactive_titlebar_bg,
 }
 
 -- Add padding around the tab bar

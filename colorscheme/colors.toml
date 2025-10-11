@@ -1,6 +1,4 @@
-# NVIM-SPECIFIC COLORS
 [nvim]
-# Base gruvbox colors
 dark0 = "282828"
 dark1 = "3c3836"
 dark2 = "504945"
@@ -12,7 +10,6 @@ light2 = "d5c4a1"
 light3 = "bdae93"
 light4 = "a89984"
 
-# Standard colors
 bright_red = "fc5944"
 bright_green = "b9c92a"
 bright_yellow = "fac440"
@@ -21,7 +18,6 @@ bright_purple = "d79aa6"
 bright_aqua = "95c486"
 bright_orange = "fe8c29"
 
-# Neutral colors
 neutral_red = "c23422"
 neutral_green = "9ca826"
 neutral_yellow = "e29e26"
@@ -29,7 +25,6 @@ neutral_blue = "4d918e"
 neutral_purple = "b57990"
 neutral_aqua = "70a778"
 
-# Faded colors
 faded_red = "a41b10"
 faded_green = "7e7a16"
 faded_yellow = "bb7d1c"
@@ -38,15 +33,12 @@ faded_purple = "954978"
 faded_aqua = "4b865e"
 faded_orange = "b74b12"
 
-# Light mode specific colors
 light_red = "ae1010"
 light_green = "7f8016"
 light_aqua = "467d5e"
 
-# Gray
 gray = "928a7e"
 
-# CROSS-TOOL SEMANTIC COLORS
 # For consistency across different tools
 [semantic]
 semantic_success = "9ca826"
@@ -55,7 +47,6 @@ semantic_warning = "e29e26"
 semantic_info = "4d918e"
 semantic_hint = "70a778"
 
-# starship colors
 [starship]
 default-fg = "ebdbb2"
 hostname-bg = "d65d0e"
@@ -72,7 +63,6 @@ time-bg = "b16286"
 user-bg = "cc241d"
 root-user-bg = "fb4934"
 
-# aider colors
 [aider]
 assistant-output-color = '98c379'
 tool-output-color = 'abb2bf'
@@ -84,7 +74,6 @@ completion-menu-bg-color = '282c34'
 completion-menu-current-color = 'c678dd'
 completion-menu-current-bg-color = '3e4452'
 
-# delta colors
 [delta]
 delta-plus-bg = "2d472d"
 delta-minus-bg = "422a2a"
@@ -92,6 +81,37 @@ delta-plus-fg = "c8d8a8"
 delta-minus-fg = "e8a8a8"
 delta-plus-non-emph-fg = "a8b888"
 delta-minus-non-emph-fg = "c88888"
+
+[wezterm]
+dark0 = "282828"
+dark2 = "504945"
+light1 = "ebdbb2"
+light2 = "d5c4a1"
+light4 = "a89984"
+neutral_red = "c23422"
+neutral_green = "9ca826"
+neutral_yellow = "e29e26"
+neutral_blue = "4d918e"
+neutral_purple = "b57990"
+neutral_aqua = "70a778"
+gray = "928a7e"
+bright_red = "fc5944"
+bright_green = "b9c92a"
+bright_yellow = "fac440"
+bright_blue = "8aacaa"
+bright_purple = "d79aa6"
+bright_aqua = "95c486"
+dark1 = "3c3836"
+light3 = "bdae93"
+inactive_titlebar_bg = "1d2021"
+active_tab_bg = "458588"
+active_tab_fg = "ebdbb2"
+inactive_tab_bg = "3c3836"
+inactive_tab_fg = "a89984"
+new_tab_bg = "3c3836"
+new_tab_fg = "bdae93"
+new_tab_hover_bg = "458588"
+new_tab_hover_fg = "ebdbb2"
 
 [zellij]
 text_unselected_base = "ebdbb2"
