@@ -63,15 +63,15 @@ rec {
   WEZTERM_CONFIG = builtins.readFile (./. + "/.wezterm.lua");
   CLAUDE_CONFIG = builtins.readFile (./. + "/claude.toml");
   AIDER_CONFIG = ''
-    assistant-output-color: '#${COLORS.assistant-output-color}'
-    tool-output-color: '#${COLORS.tool-output-color}'
-    tool-error-color: '#${COLORS.tool-error-color}'
-    tool-warning-color: '#${COLORS.tool-warning-color}'
-    user-input-color: '#${COLORS.user-input-color}'
-    completion-menu-color: '#${COLORS.completion-menu-color}'
-    completion-menu-bg-color: '#${COLORS.completion-menu-bg-color}'
-    completion-menu-current-color: '#${COLORS.completion-menu-current-color}'
-    completion-menu-current-bg-color: '#${COLORS.completion-menu-current-bg-color}'
+    assistant-output-color: '#${COLORS.aider.assistant-output-color}'
+    tool-output-color: '#${COLORS.aider.tool-output-color}'
+    tool-error-color: '#${COLORS.aider.tool-error-color}'
+    tool-warning-color: '#${COLORS.aider.tool-warning-color}'
+    user-input-color: '#${COLORS.aider.user-input-color}'
+    completion-menu-color: '#${COLORS.aider.completion-menu-color}'
+    completion-menu-bg-color: '#${COLORS.aider.completion-menu-bg-color}'
+    completion-menu-current-color: '#${COLORS.aider.completion-menu-current-color}'
+    completion-menu-current-bg-color: '#${COLORS.aider.completion-menu-current-bg-color}'
   '';
   ZELLIJ_CONFIG = builtins.readFile (./. + "/zellij-config.kdl");
   ZELLIJ_DEFAULT_LAYOUT_CONFIG = builtins.readFile (./. + "/default-zellij-layout.kdl");

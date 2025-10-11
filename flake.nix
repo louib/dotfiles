@@ -25,6 +25,12 @@
           in {
             packages = {
             };
+            devShells.default = pkgs.mkShell {
+              buildInputs = with pkgs; [
+                # Used by colorscheme comparison script.
+                python3
+              ];
+            };
           }
         )
       )

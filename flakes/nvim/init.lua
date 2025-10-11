@@ -1187,14 +1187,14 @@ if should_use_custom_colors() then
 
   -- Look for all NVIM_COLOR_ variables and add them to the palette
   for name, value in pairs(environ) do
-    local color_key = name:match("^NVIM_COLOR_(.+)$")
-    if color_key and color_key ~= "ENABLED" then
+    local color_key = name:match('^NVIM_COLOR_(.+)$')
+    if color_key and color_key ~= 'ENABLED' then
       -- Convert to lowercase
       color_key = color_key:lower()
 
       -- Add # prefix if not present
-      if value:sub(1, 1) ~= "#" then
-        value = "#" .. value
+      if value:sub(1, 1) ~= '#' then
+        value = '#' .. value
       end
 
       -- Add to palette
@@ -1210,7 +1210,7 @@ function my_custom_theme.setup()
   end
 
   -- Check if we have enough colors to build a theme
-  local essential_colors = { "dark0", "dark1", "light1" }
+  local essential_colors = { 'dark0', 'dark1', 'light1' }
   for _, color in ipairs(essential_colors) do
     if not palette[color] then
       print('Not applying custom theme: missing essential color ' .. color)
