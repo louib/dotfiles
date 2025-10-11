@@ -34,12 +34,12 @@ return {
       background = '#3c3836',
       active_tab = {
         bg_color = '#458588',
-        fg_color = '#ebdbb2',
+        fg_color = '#282828',
         intensity = 'Bold',
       },
       inactive_tab = {
         bg_color = '#fbf1c7',
-        fg_color = '#a89984',
+        fg_color = '#282828',
       },
       new_tab = {
         bg_color = '#3c3836',

@@ -47,56 +47,56 @@ def main():
 
 return {{
   colors = {{
-    background = "{get_color("dark0")}",
-    foreground = "{get_color("light1")}",
-    cursor_bg = "{get_color("light2")}",
-    cursor_fg = "{get_color("dark0")}",
-    selection_bg = "{get_color("dark2")}",
-    selection_fg = "{get_color("light1")}",
+    background = '{get_color("dark0")}',
+    foreground = '{get_color("light1")}',
+    cursor_bg = '{get_color("light2")}',
+    cursor_fg = '{get_color("dark0")}',
+    selection_bg = '{get_color("dark2")}',
+    selection_fg = '{get_color("light1")}',
     ansi = {{
-      "{get_color("dark0")}", -- black
-      "{get_color("neutral_red")}", -- red
-      "{get_color("neutral_green")}", -- green
-      "{get_color("neutral_yellow")}", -- yellow
-      "{get_color("neutral_blue")}", -- blue
-      "{get_color("neutral_purple")}", -- magenta
-      "{get_color("neutral_aqua")}", -- cyan
-      "{get_color("light4")}", -- white
+      '{get_color("dark0")}', -- black
+      '{get_color("neutral_red")}', -- red
+      '{get_color("neutral_green")}', -- green
+      '{get_color("neutral_yellow")}', -- yellow
+      '{get_color("neutral_blue")}', -- blue
+      '{get_color("neutral_purple")}', -- magenta
+      '{get_color("neutral_aqua")}', -- cyan
+      '{get_color("light4")}', -- white
     }},
     brights = {{
-      "{get_color("gray")}", -- bright black
-      "{get_color("bright_red")}", -- bright red
-      "{get_color("bright_green")}", -- bright green
-      "{get_color("bright_yellow")}", -- bright yellow
-      "{get_color("bright_blue")}", -- bright blue
-      "{get_color("bright_purple")}", -- bright magenta
-      "{get_color("bright_aqua")}", -- bright cyan
-      "{get_color("light1")}", -- bright white
+      '{get_color("gray")}', -- bright black
+      '{get_color("bright_red")}', -- bright red
+      '{get_color("bright_green")}', -- bright green
+      '{get_color("bright_yellow")}', -- bright yellow
+      '{get_color("bright_blue")}', -- bright blue
+      '{get_color("bright_purple")}', -- bright magenta
+      '{get_color("bright_aqua")}', -- bright cyan
+      '{get_color("light1")}', -- bright white
     }},
     tab_bar = {{
-      background = "{get_color("tab_bar_bg")}",
+      background = '{get_color("tab_bar_bg")}',
       active_tab = {{
-        bg_color = "{get_color("active_tab_bg")}",
-        fg_color = "{get_color("active_tab_fg")}",
+        bg_color = '{get_color("active_tab_bg")}',
+        fg_color = '{get_color("active_tab_fg")}',
         intensity = 'Bold',
       }},
       inactive_tab = {{
-        bg_color = "{get_color("inactive_tab_bg")}",
-        fg_color = "{get_color("inactive_tab_fg")}",
+        bg_color = '{get_color("inactive_tab_bg")}',
+        fg_color = '{get_color("inactive_tab_fg")}',
       }},
       new_tab = {{
-        bg_color = "{get_color("new_tab_bg")}",
-        fg_color = "{get_color("new_tab_fg")}",
+        bg_color = '{get_color("new_tab_bg")}',
+        fg_color = '{get_color("new_tab_fg")}',
       }},
       new_tab_hover = {{
-        bg_color = "{get_color("new_tab_hover_bg")}",
-        fg_color = "{get_color("new_tab_hover_fg")}",
+        bg_color = '{get_color("new_tab_hover_bg")}',
+        fg_color = '{get_color("new_tab_hover_fg")}',
       }},
     }},
   }},
   window_frame = {{
-    active_titlebar_bg = "{get_color("dark0")}",
-    inactive_titlebar_bg = "{get_color("inactive_titlebar_bg")}",
+    active_titlebar_bg = '{get_color("dark0")}',
+    inactive_titlebar_bg = '{get_color("inactive_titlebar_bg")}',
   }},
 }}
 """

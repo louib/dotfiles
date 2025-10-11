@@ -131,6 +131,9 @@ config.show_new_tab_button_in_tab_bar = false
 
 config.use_fancy_tab_bar = false
 
+-- Set a generous tab width limit
+config.tab_max_width = 40
+
 -- Right-pointing arrow head: 
 local RIGHT_POINTING_ARROW = wezterm.nerdfonts.pl_left_hard_divider
 
