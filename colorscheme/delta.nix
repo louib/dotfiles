@@ -12,31 +12,31 @@ in {
       syntax-theme = "gruvbox-dark";
 
       # File and hunk headers
-      file-style = "bold #${colors.directory-bg}";
-      file-decoration-style = "bold #${colors.directory-bg} ul";
-      hunk-header-style = "bold #${colors.directory-bg}";
-      hunk-header-decoration-style = "bold #${colors.directory-bg} box";
+      file-style = "bold #${colors.starship.directory-bg}";
+      file-decoration-style = "bold #${colors.starship.directory-bg} ul";
+      hunk-header-style = "bold #${colors.starship.directory-bg}";
+      hunk-header-decoration-style = "bold #${colors.starship.directory-bg} box";
 
       # Added lines
-      plus-style = "#${colors.delta-plus-fg} #${colors.delta-plus-bg}";
-      plus-emph-style = "bold #${colors.delta-plus-fg} #${colors.delta-plus-bg}";
-      plus-non-emph-style = "#${colors.delta-plus-non-emph-fg} #${colors.delta-plus-bg}";
+      plus-style = "#${colors.delta.delta-plus-fg} #${colors.delta.delta-plus-bg}";
+      plus-emph-style = "bold #${colors.delta.delta-plus-fg} #${colors.delta.delta-plus-bg}";
+      plus-non-emph-style = "#${colors.delta.delta-plus-non-emph-fg} #${colors.delta.delta-plus-bg}";
 
       # Removed lines
-      minus-style = "#${colors.delta-minus-fg} #${colors.delta-minus-bg}";
-      minus-emph-style = "bold #${colors.delta-minus-fg} #${colors.delta-minus-bg}";
-      minus-non-emph-style = "#${colors.delta-minus-non-emph-fg} #${colors.delta-minus-bg}";
+      minus-style = "#${colors.delta.delta-minus-fg} #${colors.delta.delta-minus-bg}";
+      minus-emph-style = "bold #${colors.delta.delta-minus-fg} #${colors.delta.delta-minus-bg}";
+      minus-non-emph-style = "#${colors.delta.delta-minus-non-emph-fg} #${colors.delta.delta-minus-bg}";
 
       # Unchanged lines
       zero-style = "syntax";
 
       # Other elements
-      commit-style = "bold #${colors.hostname-bg}";
-      commit-decoration-style = "bold #${colors.hostname-bg} ul";
-      line-numbers-left-style = "#${colors.git-status-bg}";
-      line-numbers-right-style = "#${colors.git-status-bg}";
-      line-numbers-minus-style = "#${colors.error-symbol-bg}";
-      line-numbers-plus-style = "#${colors.success-symbol-bg}";
+      commit-style = "bold #${colors.starship.hostname-bg}";
+      commit-decoration-style = "bold #${colors.starship.hostname-bg} ul";
+      line-numbers-left-style = "#${colors.starship.git-status-bg}";
+      line-numbers-right-style = "#${colors.starship.git-status-bg}";
+      line-numbers-minus-style = "#${colors.starship.error-symbol-bg}";
+      line-numbers-plus-style = "#${colors.starship.success-symbol-bg}";
     };
   };
 }

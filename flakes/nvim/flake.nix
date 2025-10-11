@@ -75,7 +75,7 @@
                   then builtins.substring 1 (builtins.stringLength value - 1) value
                   else value;
               })
-              colors);
+              colors.nvim);
 
           neovimLuaConfig = builtins.readFile (./. + "/init.lua");
           customNeovim = pkgs.neovim.override {
