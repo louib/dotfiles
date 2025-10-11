@@ -104,7 +104,7 @@ return {{
         sys.exit(1)
 
     with open(wezterm_colors_file, "w") as f:
-        f.write(wezterm_colors.strip())
+        f.write(wezterm_colors.lstrip())
 
     print(f"Successfully generated '{wezterm_colors_file}'")
 
