@@ -12,7 +12,7 @@ def main():
     script_dir = os.path.dirname(os.path.abspath(__file__))
     project_root = os.path.dirname(script_dir)
     colors_file = os.path.join(project_root, "colorscheme", "colors.toml")
-    wezterm_colors_file = os.path.join(project_root, "wezterm_colors.lua")
+    wezterm_colors_file = os.path.join(project_root, "wezterm_theme.lua")
 
     try:
         with open(colors_file, "rb") as f:
@@ -32,7 +32,10 @@ def main():
     def get_color(name):
         color = wezterm_colors_map.get(name)
         if not color:
-            print(f"Error: Color '{name}' not found in [wezterm] section.", file=sys.stderr)
+            print(
+                f"Error: Color '{name}' not found in [wezterm] section.",
+                file=sys.stderr,
+            )
             sys.exit(1)
         return "#" + color
 
@@ -43,61 +46,62 @@ def main():
 -- colorscheme/generate_wezterm_theme.py
 
 return {{
-    background = "{get_color('dark0')}",
-    foreground = "{get_color('light1')}",
-    cursor_bg = "{get_color('light2')}",
-    cursor_fg = "{get_color('dark0')}",
-    selection_bg = "{get_color('dark2')}",
-    selection_fg = "{get_color('light1')}",
+  colors = {{
+    background = "{get_color("dark0")}",
+    foreground = "{get_color("light1")}",
+    cursor_bg = "{get_color("light2")}",
+    cursor_fg = "{get_color("dark0")}",
+    selection_bg = "{get_color("dark2")}",
+    selection_fg = "{get_color("light1")}",
     ansi = {{
-        "{get_color('dark0')}", -- black
-        "{get_color('neutral_red')}", -- red
-        "{get_color('neutral_green')}", -- green
-        "{get_color('neutral_yellow')}", -- yellow
-        "{get_color('neutral_blue')}", -- blue
-        "{get_color('neutral_purple')}", -- magenta
-        "{get_color('neutral_aqua')}", -- cyan
-        "{get_color('light4')}", -- white
+      "{get_color("dark0")}", -- black
+      "{get_color("neutral_red")}", -- red
+      "{get_color("neutral_green")}", -- green
+      "{get_color("neutral_yellow")}", -- yellow
+      "{get_color("neutral_blue")}", -- blue
+      "{get_color("neutral_purple")}", -- magenta
+      "{get_color("neutral_aqua")}", -- cyan
+      "{get_color("light4")}", -- white
     }},
     brights = {{
-        "{get_color('gray')}", -- bright black
-        "{get_color('bright_red')}", -- bright red
-        "{get_color('bright_green')}", -- bright green
-        "{get_color('bright_yellow')}", -- bright yellow
-        "{get_color('bright_blue')}", -- bright blue
-        "{get_color('bright_purple')}", -- bright magenta
-        "{get_color('bright_aqua')}", -- bright cyan
-        "{get_color('light1')}", -- bright white
+      "{get_color("gray")}", -- bright black
+      "{get_color("bright_red")}", -- bright red
+      "{get_color("bright_green")}", -- bright green
+      "{get_color("bright_yellow")}", -- bright yellow
+      "{get_color("bright_blue")}", -- bright blue
+      "{get_color("bright_purple")}", -- bright magenta
+      "{get_color("bright_aqua")}", -- bright cyan
+      "{get_color("light1")}", -- bright white
     }},
     tab_bar = {{
-        background = "{get_color('dark0')}",
-        active_tab = {{
-            bg_color = "{get_color('active_tab_bg')}",
-            fg_color = "{get_color('active_tab_fg')}",
-            intensity = 'Bold',
-        }},
-        inactive_tab = {{
-            bg_color = "{get_color('inactive_tab_bg')}",
-            fg_color = "{get_color('inactive_tab_fg')}",
-        }},
-        new_tab = {{
-            bg_color = "{get_color('new_tab_bg')}",
-            fg_color = "{get_color('new_tab_fg')}",
-        }},
-        new_tab_hover = {{
-            bg_color = "{get_color('new_tab_hover_bg')}",
-            fg_color = "{get_color('new_tab_hover_fg')}",
-        }},
+      background = "{get_color("dark0")}",
+      active_tab = {{
+        bg_color = "{get_color("active_tab_bg")}",
+        fg_color = "{get_color("active_tab_fg")}",
+        intensity = 'Bold',
+      }},
+      inactive_tab = {{
+        bg_color = "{get_color("inactive_tab_bg")}",
+        fg_color = "{get_color("inactive_tab_fg")}",
+      }},
+      new_tab = {{
+        bg_color = "{get_color("new_tab_bg")}",
+        fg_color = "{get_color("new_tab_fg")}",
+      }},
+      new_tab_hover = {{
+        bg_color = "{get_color("new_tab_hover_bg")}",
+        fg_color = "{get_color("new_tab_hover_fg")}",
+      }},
     }},
-    window_frame = {{
-        active_titlebar_bg = "{get_color('dark0')}",
-        inactive_titlebar_bg = "{get_color('inactive_titlebar_bg')}",
-    }},
+  }},
+  window_frame = {{
+    active_titlebar_bg = "{get_color("dark0")}",
+    inactive_titlebar_bg = "{get_color("inactive_titlebar_bg")}",
+  }},
 }}
 """
     except SystemExit:
         sys.exit(1)
-
 
     with open(wezterm_colors_file, "w") as f:
         f.write(wezterm_colors.strip())

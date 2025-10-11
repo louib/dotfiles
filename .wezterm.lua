@@ -86,7 +86,7 @@ end
 
 -- Load theme from the generated theme file
 local theme = require('wezterm_theme')
-config.colors = theme
+config.colors = theme.colors
 config.window_frame = {
   font = wezterm.font({ family = 'Roboto', weight = 'Bold' }),
   font_size = 10.0,
