@@ -12,7 +12,7 @@ def main():
     script_dir = os.path.dirname(os.path.abspath(__file__))
     project_root = os.path.dirname(script_dir)
     colors_file = os.path.join(project_root, "colorscheme", "colors.toml")
-    wezterm_colors_file = os.path.join(project_root, "wezterm_theme.lua")
+    wezterm_colors_file = os.path.join(project_root, "/wezterm/wezterm_theme.lua")
 
     try:
         with open(colors_file, "rb") as f:
