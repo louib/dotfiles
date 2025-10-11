@@ -22,7 +22,7 @@ bright_aqua = "95c486"
 bright_orange = "fe8c29"
 
 # Neutral colors
-neutral_red = "d93a28"
+neutral_red = "c23422"
 neutral_green = "9ca826"
 neutral_yellow = "e29e26"
 neutral_blue = "4d918e"
@@ -49,7 +49,7 @@ gray = "928a7e"
 # CROSS-TOOL SEMANTIC COLORS
 # For consistency across different tools
 semantic_success = "9ca826"
-semantic_error = "d93a28"
+semantic_error = "c23422"
 semantic_warning = "e29e26"
 semantic_info = "4d918e"
 semantic_hint = "70a778"
