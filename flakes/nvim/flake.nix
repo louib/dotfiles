@@ -142,10 +142,7 @@
         in {
           packages = (
             {
-              inherit customNeovim;
               inherit neovimWithColors;
-              # Set as the default package for this flake
-              default = neovimWithColors;
             }
             // languageTools
           );
