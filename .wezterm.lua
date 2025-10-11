@@ -84,14 +84,14 @@ for i = 1, 8 do
   })
 end
 
--- Load colors from the generated theme file
-local colors = require('wezterm_colors')
-config.colors = colors
+-- Load theme from the generated theme file
+local theme = require('wezterm_theme')
+config.colors = theme
 config.window_frame = {
   font = wezterm.font({ family = 'Roboto', weight = 'Bold' }),
   font_size = 10.0,
-  active_titlebar_bg = colors.window_frame.active_titlebar_bg,
-  inactive_titlebar_bg = colors.window_frame.inactive_titlebar_bg,
+  active_titlebar_bg = theme.window_frame.active_titlebar_bg,
+  inactive_titlebar_bg = theme.window_frame.inactive_titlebar_bg,
 }
 
 -- Add padding around the tab bar

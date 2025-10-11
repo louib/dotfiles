@@ -61,7 +61,7 @@ rec {
   COLORS = builtins.fromTOML (builtins.readFile (./. + "/colorscheme/colors.toml"));
   GIT_DELTA_CONFIG = import (./. + "/colorscheme/delta.nix") {};
   WEZTERM_CONFIG = builtins.readFile (./. + "/.wezterm.lua");
-  WEZTERM_THEME_CONFIG = builtins.readFile (./. + "/wezterm-theme.lua");
+  WEZTERM_THEME = builtins.readFile (./. + "/wezterm_theme.lua");
   CLAUDE_CONFIG = builtins.readFile (./. + "/claude.toml");
   AIDER_CONFIG = ''
     assistant-output-color: '#${COLORS.aider.assistant-output-color}'
