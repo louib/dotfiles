@@ -74,7 +74,7 @@ return {{
       "{get_color("light1")}", -- bright white
     }},
     tab_bar = {{
-      background = "{get_color("dark0")}",
+      background = "{get_color("tab_bar_bg")}",
       active_tab = {{
         bg_color = "{get_color("active_tab_bg")}",
         fg_color = "{get_color("active_tab_fg")}",

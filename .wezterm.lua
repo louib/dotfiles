@@ -127,5 +127,47 @@ if wezterm.target_triple:find('darwin') then
 end
 
 config.check_for_updates = false
+config.show_new_tab_button_in_tab_bar = false
+
+config.use_fancy_tab_bar = false
+
+-- Right-pointing arrow head: 
+local RIGHT_POINTING_ARROW = wezterm.nerdfonts.pl_left_hard_divider
+
+wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_width)
+  local bg = tab.is_active and theme.colors.tab_bar.active_tab.bg_color or theme.colors.tab_bar.inactive_tab.bg_color
+  local fg = tab.is_active and theme.colors.tab_bar.active_tab.fg_color or theme.colors.tab_bar.inactive_tab.fg_color
+
+  -- Determine the title to use. Wezterm's default behavior is to use the
+  -- tab title if it's set, otherwise fall back to the pane's title.
+  -- We replicate that here.
+  local title
+  if tab.tab_title and #tab.tab_title > 0 then
+    title = tab.tab_title
+  else
+    title = tab.active_pane.title
+  end
+
+  local parts = {}
+
+  -- Left arrow for all tabs except the first, creating a concave effect
+  if tab.tab_index > 0 then
+    table.insert(parts, { Background = { Color = bg } })
+    table.insert(parts, { Foreground = { Color = theme.colors.tab_bar.background } })
+    table.insert(parts, { Text = RIGHT_POINTING_ARROW })
+  end
+
+  -- The main tab content
+  table.insert(parts, { Background = { Color = bg } })
+  table.insert(parts, { Foreground = { Color = fg } })
+  table.insert(parts, { Text = ' ' .. title .. ' ' })
+
+  -- Right arrow at the end of the tab
+  table.insert(parts, { Background = { Color = theme.colors.tab_bar.background } })
+  table.insert(parts, { Foreground = { Color = bg } })
+  table.insert(parts, { Text = RIGHT_POINTING_ARROW })
+
+  return parts
+end)
 
 return config

@@ -4,55 +4,55 @@
 
 return {
   colors = {
-    background = "#282828",
-    foreground = "#ebdbb2",
-    cursor_bg = "#d5c4a1",
-    cursor_fg = "#282828",
-    selection_bg = "#504945",
-    selection_fg = "#ebdbb2",
+    background = '#282828',
+    foreground = '#ebdbb2',
+    cursor_bg = '#d5c4a1',
+    cursor_fg = '#282828',
+    selection_bg = '#504945',
+    selection_fg = '#ebdbb2',
     ansi = {
-      "#282828", -- black
-      "#c23422", -- red
-      "#9ca826", -- green
-      "#e29e26", -- yellow
-      "#4d918e", -- blue
-      "#b57990", -- magenta
-      "#70a778", -- cyan
-      "#a89984", -- white
+      '#282828', -- black
+      '#c23422', -- red
+      '#9ca826', -- green
+      '#e29e26', -- yellow
+      '#4d918e', -- blue
+      '#b57990', -- magenta
+      '#70a778', -- cyan
+      '#a89984', -- white
     },
     brights = {
-      "#928a7e", -- bright black
-      "#fc5944", -- bright red
-      "#b9c92a", -- bright green
-      "#fac440", -- bright yellow
-      "#8aacaa", -- bright blue
-      "#d79aa6", -- bright magenta
-      "#95c486", -- bright cyan
-      "#ebdbb2", -- bright white
+      '#928a7e', -- bright black
+      '#fc5944', -- bright red
+      '#b9c92a', -- bright green
+      '#fac440', -- bright yellow
+      '#8aacaa', -- bright blue
+      '#d79aa6', -- bright magenta
+      '#95c486', -- bright cyan
+      '#ebdbb2', -- bright white
     },
     tab_bar = {
-      background = "#282828",
+      background = '#3c3836',
       active_tab = {
-        bg_color = "#458588",
-        fg_color = "#ebdbb2",
+        bg_color = '#458588',
+        fg_color = '#ebdbb2',
         intensity = 'Bold',
       },
       inactive_tab = {
-        bg_color = "#3c3836",
-        fg_color = "#a89984",
+        bg_color = '#fbf1c7',
+        fg_color = '#a89984',
       },
       new_tab = {
-        bg_color = "#3c3836",
-        fg_color = "#bdae93",
+        bg_color = '#3c3836',
+        fg_color = '#bdae93',
       },
       new_tab_hover = {
-        bg_color = "#458588",
-        fg_color = "#ebdbb2",
+        bg_color = '#458588',
+        fg_color = '#ebdbb2',
       },
     },
   },
   window_frame = {
-    active_titlebar_bg = "#282828",
-    inactive_titlebar_bg = "#1d2021",
+    active_titlebar_bg = '#282828',
+    inactive_titlebar_bg = '#1d2021',
   },
 }
