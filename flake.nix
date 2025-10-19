@@ -24,6 +24,7 @@
             pkgs = nixpkgs.legacyPackages.${system};
           in {
             packages = {
+              claude-config = import ./claude.nix { inherit pkgs; };
             };
             devShells.default = pkgs.mkShell {
               buildInputs = with pkgs; [

@@ -62,7 +62,7 @@ rec {
   GIT_DELTA_CONFIG = import (./. + "/colorscheme/delta.nix") {};
   WEZTERM_CONFIG = builtins.readFile (./. + "/wezterm/.wezterm.lua");
   WEZTERM_THEME = builtins.readFile (./. + "/wezterm/wezterm_theme.lua");
-  CLAUDE_CONFIG = builtins.readFile (./. + "/claude.toml");
+  CLAUDE_CONFIG = import (./. + "/claude.nix") {};
   AIDER_CONFIG = ''
     assistant-output-color: '#${COLORS.aider.assistant-output-color}'
     tool-output-color: '#${COLORS.aider.tool-output-color}'
