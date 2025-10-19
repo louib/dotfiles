@@ -74,9 +74,9 @@ rec {
     completion-menu-current-color: '#${COLORS.aider.completion-menu-current-color}'
     completion-menu-current-bg-color: '#${COLORS.aider.completion-menu-current-bg-color}'
   '';
-  ZELLIJ_CONFIG = builtins.readFile (./. + "/zellij-config.kdl");
-  ZELLIJ_DEFAULT_LAYOUT_CONFIG = builtins.readFile (./. + "/default-zellij-layout.kdl");
-  ZELLIJ_CUSTOM_THEME = builtins.readFile (./. + "/my-zellij-theme.kdl");
+  ZELLIJ_CONFIG = builtins.readFile (./. + "/zellij/zellij-config.kdl");
+  ZELLIJ_DEFAULT_LAYOUT_CONFIG = builtins.readFile (./. + "/zellij/default-zellij-layout.kdl");
+  ZELLIJ_CUSTOM_THEME = builtins.readFile (./. + "/zellij/my-zellij-theme.kdl");
 
   # We need to call a home-manager function to generate the input sources
   # in a valid format.

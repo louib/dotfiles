@@ -22,7 +22,7 @@ def main():
     script_dir = os.path.dirname(os.path.abspath(__file__))
     project_root = os.path.dirname(script_dir)
     colors_file = os.path.join(project_root, "colorscheme", "colors.toml")
-    zellij_theme_file = os.path.join(project_root, "my-zellij-theme.kdl")
+    zellij_theme_file = os.path.join(project_root, "zellij/my-zellij-theme.kdl")
 
     try:
         with open(colors_file, "rb") as f:
