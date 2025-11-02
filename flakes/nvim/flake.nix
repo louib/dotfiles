@@ -91,7 +91,6 @@
 
                   formatter-nvim
                   nvim-lastplace
-                  nvim-lspconfig
                   nvim-cmp
                   cmp-emoji
                   cmp-nvim-lsp
