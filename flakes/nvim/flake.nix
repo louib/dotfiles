@@ -24,7 +24,7 @@
             # xclip (or wl-clipboard) is required to clip to the system clipboard.
             inherit xclip;
             # Copilot requires a version of Node.js > 16.x
-            inherit nodejs_20;
+            inherit nodejs_22;
             inherit nil;
             inherit rust-analyzer;
             inherit cargo;
@@ -44,12 +44,12 @@
             inherit gotools; # Includes goimports and other useful Go tools
             typescript-language-server = nodePackages.typescript-language-server;
             yaml-language-server = nodePackages.yaml-language-server;
-            docker-language-server = nodePackages.dockerfile-language-server-nodejs;
             json-language-server = nodePackages.vscode-langservers-extracted;
             bash-language-server = nodePackages.bash-language-server;
             # There is also terraform-lsp which I could try
             inherit terraform-ls;
-            inherit taplo-lsp;
+            inherit taplo;
+            inherit dockerfile-language-server;
 
             inherit ripgrep;
             inherit wordnet;
@@ -106,7 +106,6 @@
 
                   copilot-lua
                   copilot-cmp
-                  CopilotChat-nvim
 
                   fzf-lua
 

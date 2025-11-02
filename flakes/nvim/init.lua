@@ -2,10 +2,8 @@ local LSP_ENABLED_VAR_NAME = 'LSP_ENABLED'
 local COPILOT_ENABLED_VAR_NAME = 'COPILOT_ENABLED'
 local ENABLED_FORMATTING_TOOL_VAR_NAME = 'ENABLED_FORMATTING_TOOL'
 local ENABLED_LINTING_TOOL_VAR_NAME = 'ENABLED_LINTING_TOOL'
-local COPILOT_AI_MODEL_VAR_NAME = 'NVIM_COPILOT_AI_MODEL'
 local CURRENT_LANG_VAR_NAME = 'CURRENT_LANG'
 local DEFAULT_LANG = 'en_us'
-local DEFAULT_COPILOT_AI_MODEL = 'claude-3.5-sonnet'
 
 -- Table to store the current state of auto-formatting
 -- for a filetype
@@ -22,10 +20,6 @@ local AUTO_FORMATTING_ENABLED = {
   python = true,
   go = true,
 }
-
-local function get_copilot_ai_model()
-  return os.getenv(COPILOT_AI_MODEL_VAR_NAME) or DEFAULT_COPILOT_AI_MODEL
-end
 
 local function executable_is_available(executable_name)
   local handle = io.popen(string.format('which %s 2> /dev/null', executable_name))
@@ -749,13 +743,7 @@ local function configure_status_bar()
 
             local copilot_enabled, copilot_response = pcall(vim.api.nvim_buf_get_var, 0, COPILOT_ENABLED_VAR_NAME)
             if copilot_enabled and copilot_response then
-              if pcall(require, 'CopilotChat') then
-                local chat_config = require('CopilotChat').config
-                tools = tools .. string.format('(copilot using %s)', chat_config.model)
-              else
-                tools = tools .. '(copilot)'
-                return
-              end
+              tools = tools .. '(copilot)'
             end
 
             local lsp_enabled, lsp_tool_name = pcall(vim.api.nvim_buf_get_var, 0, LSP_ENABLED_VAR_NAME)
@@ -876,46 +864,49 @@ local function configure_lastplace()
 end
 
 local function configure_lsp()
-  if not pcall(require, 'lspconfig') then
-    print('lspconfig is not installed.')
-    return
-  end
+  -- Using the built-in vim.lsp.config API for Neovim 0.11+
+  -- See :help lsp.config
 
-  local custom_lsp_attach = function(client, buffer_number)
+  -- Define on_attach function
+  local on_attach = function(client, buffer_number)
     -- Use LSP as the handler for omnifunc.
-    --    See `:help omnifunc` and `:help ins-completion` for more information.
     vim.api.nvim_set_option_value('omnifunc', 'v:lua.vim.lsp.omnifunc', {
       buf = buffer_number,
     })
 
     -- Use LSP as the handler for formatexpr.
-    --    See `:help formatexpr` for more information.
     vim.api.nvim_set_option_value('formatexpr', 'v:lua.vim.lsp.formatexpr()', {
       buf = buffer_number,
     })
 
     -- Mappings.
-    -- See `:h :map-arguments` for the options available when mapping
     local mapping_options = { noremap = true, silent = true, buffer = buffer_number }
 
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, mapping_options)
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, mapping_options)
-
     vim.keymap.set('n', '<C-s>', vim.lsp.buf.signature_help, mapping_options)
 
     vim.api.nvim_buf_set_var(buffer_number, LSP_ENABLED_VAR_NAME, true)
   end
 
-  local lsp_flags = {
-    -- This is the default in Nvim 0.7+
+  -- Define capabilities and flags
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  local flags = {
     debounce_text_changes = 150,
   }
 
-  require('lspconfig').rust_analyzer.setup({
-    on_attach = custom_lsp_attach,
-    flags = lsp_flags,
-    -- Server-specific settings...
+  -- Configure all LSP servers with the new API
+
+  -- Set default configuration for all servers
+  vim.lsp.config('*', {
+    on_attach = on_attach,
+    flags = flags,
+    capabilities = capabilities,
+  })
+
+  -- Configure Rust Analyzer
+  vim.lsp.config('rust_analyzer', {
     settings = {
       ['rust-analyzer'] = {
         cargo = {
@@ -925,25 +916,19 @@ local function configure_lsp()
     },
   })
 
-  -- Documented at https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#lua_ls
-  require('lspconfig').lua_ls.setup({
-    on_attach = custom_lsp_attach,
-    flags = lsp_flags,
+  -- Configure Lua language server
+  vim.lsp.config('lua_ls', {
     settings = {
       Lua = {
         runtime = {
-          -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
           version = 'LuaJIT',
         },
         diagnostics = {
-          -- Get the language server to recognize the `vim` global
           globals = { 'vim' },
         },
         workspace = {
-          -- Make the server aware of Neovim runtime files
           library = vim.api.nvim_get_runtime_file('', true),
         },
-        -- Do not send telemetry data containing a randomized but unique identifier
         telemetry = {
           enable = false,
         },
@@ -951,16 +936,11 @@ local function configure_lsp()
     },
   })
 
-  -- Documented at https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#tsserver
-  require('lspconfig').ts_ls.setup({
-    on_attach = custom_lsp_attach,
-    flags = lsp_flags,
-  })
+  -- Configure TypeScript server
+  vim.lsp.config('ts_ls', {})
 
-  -- Documented at https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#nil_ls
-  require('lspconfig').nil_ls.setup({
-    on_attach = custom_lsp_attach,
-    flags = lsp_flags,
+  -- Configure Nix language server
+  vim.lsp.config('nil_ls', {
     settings = {
       ['nil'] = {
         nix = {
@@ -972,32 +952,24 @@ local function configure_lsp()
     },
   })
 
-  require('lspconfig').clangd.setup({
-    on_attach = custom_lsp_attach,
-    flags = lsp_flags,
+  -- Configure C/C++ language server
+  vim.lsp.config('clangd', {
     settings = {
       ['clangd'] = {},
     },
   })
 
-  require('lspconfig').jsonls.setup({
-    on_attach = custom_lsp_attach,
-    flags = lsp_flags,
-  })
+  -- Configure JSON language server
+  vim.lsp.config('jsonls', {})
 
-  require('lspconfig').taplo.setup({
-    on_attach = custom_lsp_attach,
-    flags = lsp_flags,
-  })
+  -- Configure TOML language server
+  vim.lsp.config('taplo', {})
 
-  require('lspconfig').dockerls.setup({
-    on_attach = custom_lsp_attach,
-    flags = lsp_flags,
-  })
+  -- Configure Docker language server
+  vim.lsp.config('dockerls', {})
 
-  require('lspconfig').gopls.setup({
-    on_attach = custom_lsp_attach,
-    flags = lsp_flags,
+  -- Configure Go language server
+  vim.lsp.config('gopls', {
     settings = {
       gopls = {
         analyses = {
@@ -1008,13 +980,10 @@ local function configure_lsp()
     },
   })
 
-  -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#yamlls
-  require('lspconfig').yamlls.setup({
-    on_attach = custom_lsp_attach,
-    flags = lsp_flags,
+  -- Configure YAML language server
+  vim.lsp.config('yamlls', {
     settings = {
       ['yaml'] = {
-        -- Name has to be in camelCase because this is what the yaml-language-server uses.
         keyOrdering = false,
         redhat = {
           telemetry = {
@@ -1025,29 +994,25 @@ local function configure_lsp()
     },
   })
 
-  require('lspconfig').bashls.setup({
-    on_attach = custom_lsp_attach,
-    flags = lsp_flags,
-  })
+  -- Configure Bash language server
+  vim.lsp.config('bashls', {})
 
-  -- Other option for terraform is terraform-lsp:
-  -- ```
-  -- require('lspconfig').terraform_lsp.setup({})
-  -- ```
-  require('lspconfig').terraformls.setup({
-    on_attach = custom_lsp_attach,
-    flags = lsp_flags,
-  })
+  -- Configure Terraform language server
+  vim.lsp.config('terraformls', {})
 
-  -- See https://github.com/neovim/nvim-lspconfig#suggested-configuration for
-  -- the suggested top-level configuration and https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-  -- for a list of all the available language servers.
-
-  -- TODO add sumneko_lua support.
-  -- TODO add eslint support?
-  -- TODO add vanilla JS support?
-  -- TODO add dockerfile support?
-  -- TODO add python support
+  -- Enable all configured servers individually
+  vim.lsp.enable('rust_analyzer')
+  vim.lsp.enable('lua_ls')
+  vim.lsp.enable('ts_ls')
+  vim.lsp.enable('nil_ls')
+  vim.lsp.enable('clangd')
+  vim.lsp.enable('jsonls')
+  vim.lsp.enable('taplo')
+  vim.lsp.enable('dockerls')
+  vim.lsp.enable('gopls')
+  vim.lsp.enable('yamlls')
+  vim.lsp.enable('bashls')
+  vim.lsp.enable('terraformls')
 end
 
 local function configure_key_bindings()
@@ -1083,8 +1048,6 @@ local function configure_key_bindings()
   -- line cannot be modified from the nvim buffer. I might want to use the vi mode from bash
   -- to edit the line by pressing Esc instead.
   vim.api.nvim_set_keymap('t', '<Space><Esc>', '<C-\\><C-n>', { silent = false, noremap = true })
-
-  vim.api.nvim_set_keymap('n', '<C-n>', ':CopilotChatOpen<Enter>', { silent = false, noremap = true })
 
   vim.api.nvim_set_keymap('n', '<C-b>', ':GitBlameCopyFileURL<Enter>', { silent = false, noremap = true })
 
@@ -1439,10 +1402,6 @@ local function configure_copilot()
     print('copilot_cmp is not installed.')
     return
   end
-  if not pcall(require, 'CopilotChat') then
-    print('CopilotChat is not installed')
-    return
-  end
 
   if os.getenv('NVIM_ENABLE_COPILOT') ~= 'true' then
     return
@@ -1491,54 +1450,6 @@ local function configure_copilot()
   })
 
   require('copilot_cmp').setup({})
-
-  -- See https://github.com/CopilotC-Nvim/CopilotChat.nvim?tab=readme-ov-file#default-configuration for the
-  -- default configuration.
-  require('CopilotChat').setup({
-    debug = true,
-    allow_insecure = false,
-
-    model = get_copilot_ai_model(),
-    context = 'buffers',
-
-    window = {
-      layout = 'float',
-      relative = 'editor', -- 'editor', 'win', 'cursor', 'mouse'
-      border = 'single', -- 'none', single', 'double', 'rounded', 'solid', 'shadow'
-      width = 0.8, -- fractional width of parent
-      height = 0.6, -- fractional height of parent
-      title = 'Copilot Chat', -- title of chat window
-      zindex = 1, -- determines if window is on top or below other floating windows
-    },
-
-    mappings = {
-      close = {
-        normal = '<C-c>',
-      },
-      reset = {
-        normal = '<Del>',
-      },
-      complete = {
-        insert = '<Tab>',
-      },
-      submit_prompt = {
-        insert = '<CR>',
-        normal = '<CR>',
-      },
-      accept_diff = {
-        normal = 'a',
-      },
-      show_diff = {
-        normal = 'gd',
-      },
-      show_info = {
-        normal = 'gp',
-      },
-      show_context = {
-        normal = 'gs',
-      },
-    },
-  })
 end
 
 local function configure_git_blame()
