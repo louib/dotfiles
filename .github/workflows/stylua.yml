@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - uses: DeterminateSystems/nix-installer-action@v9
+    - uses: DeterminateSystems/nix-installer-action@v22
 
     - name: installing stylua
       # We're reusing the version from the neovim configuration so that we get expect
