@@ -16,6 +16,7 @@
     flake-utils,
   }: let
     consts = import ./consts.nix;
+    shell-config = import ./shell-config/lib.nix {colors = consts.COLORS;};
   in
     (
       flake-utils.lib.eachSystem consts.DEFAULT_SYSTEMS (
@@ -35,5 +36,8 @@
         )
       )
     )
-    // {inherit consts;};
+    // {
+      inherit consts;
+      shellConfig.lib = shell-config;
+    };
 }
