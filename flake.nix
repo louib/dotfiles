@@ -38,6 +38,6 @@
     )
     // {
       inherit consts;
-      shellConfig.lib = shell-config;
+      shell-config.lib = shell-config;
     };
 }
