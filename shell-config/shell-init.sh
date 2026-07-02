@@ -134,12 +134,13 @@ alias nsc="nix search nixpkgs"
 alias nfc="nix flake check"
 ndv () {
     flake_path=$1
-    # If no path is provided, use the current directory
-    if [ -z "$flake_path" ]; then
-        nix develop . -c "$SHELL"
-    else
-        nix develop "$flake_path" -c "$SHELL"
+    if [ -z "$flake_path" ] && [ -f ".envrc" ]; then
+        flake_path=$(grep -m1 '^use flake' .envrc | awk '{print $3}')
+        [ -z "$flake_path" ] && flake_path="."
+    elif [ -z "$flake_path" ]; then
+        flake_path="."
     fi
+    nix develop "$flake_path" -c "$SHELL"
 }
 nfu () {
     input_name=$1
