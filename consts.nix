@@ -175,13 +175,19 @@ rec {
       "screensaver" = "<Control><Alt>l";
       "custom-keybindings" = [
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/vctl-toggle/"
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/vctl-agent-mode/"
       ];
     };
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/vctl-toggle" = {
       binding = "<Control><Alt>m";
-      command = "vctl-control toggle-manual";
+      command = "sh -c 'printf toggle-manual > /tmp/vctl_command'";
       name = "vctl Toggle Manual Recording";
+    };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/vctl-agent-mode" = {
+      binding = "<Control><Alt>n";
+      command = "sh -c 'printf toggle-agent-mode > /tmp/vctl_command'";
+      name = "vctl Toggle Agent Mode Recording";
     };
 
     # Gnome terminal options
