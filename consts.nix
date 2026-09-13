@@ -164,6 +164,14 @@ rec {
     };
 
     # Gnome window mgmt options
+    "org/gnome/mutter" = {
+      "dynamic-workspaces" = false;
+    };
+
+    "org/gnome/desktop/wm/preferences" = {
+      "num-workspaces" = 6;
+    };
+
     "org/gnome/desktop/wm/keybindings" = {
       "switch-to-workspace-left" = "<Shift><Control>h";
       "switch-to-workspace-right" = "<Shift><Control>l";
