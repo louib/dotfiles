@@ -161,6 +161,8 @@ rec {
         "thunderbird.desktop"
         "org.keepassxc.KeePassXC.desktop"
         "org.gnome.Nautilus.desktop"
+        "org.gnome.Settings.desktop"
+        "org.gnome.DiskUtility.desktop"
       ];
     };
 
