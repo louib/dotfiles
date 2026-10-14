@@ -155,6 +155,7 @@ rec {
     "org/gnome/shell" = {
       "favorite-apps" = [
         "org.wezfurlong.wezterm.desktop"
+        "org.gnome.Terminal.desktop"
         "com.mitchellh.ghostty.desktop"
         "firefox.desktop"
         "thunderbird.desktop"
